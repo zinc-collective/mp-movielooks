@@ -414,6 +414,7 @@
 		5EE319B212ADD9180014F48A /* tips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EE319B112ADD9180014F48A /* tips.plist */; };
 		5EEA637612BA1FF900AE1334 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA637512BA1FF900AE1334 /* InfoViewController.m */; };
 		5EFDDC971283B4CF00EC208E /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFDDC961283B4CF00EC208E /* Renderer.m */; };
+		6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */; };
 		74560847125EC25400963BDD /* vignette1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560843125EC25400963BDD /* vignette1.png */; };
 		74560848125EC25400963BDD /* vignette2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560844125EC25400963BDD /* vignette2.png */; };
 		74560849125EC25400963BDD /* vignette3.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560845125EC25400963BDD /* vignette3.png */; };
@@ -505,16 +506,10 @@
 		D80C94E317B1782C00C10D5E /* FBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D80C94C517B1782B00C10D5E /* FBSession.m */; };
 		D80C94E417B1782C00C10D5E /* FBUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D80C94C717B1782B00C10D5E /* FBUserInfo.m */; };
 		D80C94E517B1782C00C10D5E /* FBUserRequestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D80C94C917B1782B00C10D5E /* FBUserRequestResult.m */; };
-		D87E6B7F17D5117C00C6FE98 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D882C0A717CD51D6007C47E7 /* libGTLTouchStaticLib.a */; };
 		D882BBED17CCFC2A007C47E7 /* YoutubeConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D882BBEC17CCFC2A007C47E7 /* YoutubeConnect.m */; };
 		D882BF3D17CD12A7007C47E7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6FC9E712239C9000E9F2AC /* MobileCoreServices.framework */; };
-		D882C0B117CD58AA007C47E7 /* GTLYouTube_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = D882C0B017CD58AA007C47E7 /* GTLYouTube_Sources.m */; };
 		D882C0B217CD5CAE007C47E7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D882BE2517CD05C0007C47E7 /* Security.framework */; };
 		D882C0B317CD5CB5007C47E7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D882BE2717CD05C8007C47E7 /* SystemConfiguration.framework */; };
-		D882C0BA17CD5CEE007C47E7 /* GTMOAuth2Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = D882C0B717CD5CEE007C47E7 /* GTMOAuth2Authentication.m */; };
-		D882C0BB17CD5CEE007C47E7 /* GTMOAuth2SignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = D882C0B917CD5CEE007C47E7 /* GTMOAuth2SignIn.m */; };
-		D882C0BF17CD5CFC007C47E7 /* GTMOAuth2ViewControllerTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = D882C0BD17CD5CFC007C47E7 /* GTMOAuth2ViewControllerTouch.m */; };
-		D882C0C017CD5CFC007C47E7 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = D882C0BE17CD5CFC007C47E7 /* GTMOAuth2ViewTouch.xib */; };
 		D8A39DC617B29D7D008D05F5 /* facebook_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A39DC317B29D7D008D05F5 /* facebook_48x48.png */; };
 		D8A39DC717B29D7D008D05F5 /* twitter_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A39DC417B29D7D008D05F5 /* twitter_48x48.png */; };
 		D8A39DC817B29D7D008D05F5 /* youtube2_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A39DC517B29D7D008D05F5 /* youtube2_48x48.png */; };
@@ -523,39 +518,7 @@
 		D8E2372217AAF324004BC514 /* bullet_share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E2371E17AAF324004BC514 /* bullet_share_button.png */; };
 		D8E2372317AAF324004BC514 /* bullet_share_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E2371F17AAF324004BC514 /* bullet_share_button@2x.png */; };
 		D8E2372717AAF5D4004BC514 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E2372617AAF5D4004BC514 /* ShareViewController.m */; };
-		D8F2EBF217CE8CE100DBAB1C /* GTMHTTPUploadFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F2EBF117CE8CE100DBAB1C /* GTMHTTPUploadFetcher.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D882C0A417CD51D6007C47E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D882C09D17CD51D5007C47E7 /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81;
-			remoteInfo = GTLFramework;
-		};
-		D882C0A617CD51D6007C47E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D882C09D17CD51D5007C47E7 /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F12027C11A4CA2F00BEB470;
-			remoteInfo = GTLTouchStaticLib;
-		};
-		D882C0A817CD51D6007C47E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D882C09D17CD51D5007C47E7 /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F12027D11A4CA2F00BEB470;
-			remoteInfo = GTLUnitTests;
-		};
-		D882C0AA17CD51D6007C47E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D882C09D17CD51D5007C47E7 /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
-			remoteInfo = DevelopmentTestTool;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		042D17E7134F1A6400E73C80 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
@@ -920,6 +883,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieLooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA4F630368D1EE00C91783 /* MovieLooks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieLooks_Prefix.pch; sourceTree = "<group>"; };
 		5E19FDF812430DFB0062BE29 /* LooksBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksBrowserViewController.h; sourceTree = "<group>"; };
 		5E19FDF912430DFB0062BE29 /* LooksBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksBrowserViewController.m; sourceTree = "<group>"; };
@@ -1024,6 +988,8 @@
 		5EEA637512BA1FF900AE1334 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		5EFDDC941283B45800EC208E /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		5EFDDC961283B4CF00EC208E /* Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Renderer.m; sourceTree = "<group>"; };
+		6BEFFA679D9CE31CF48E870D /* Pods-MovieLooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.release.xcconfig"; sourceTree = "<group>"; };
+		70A7258FBFF222862E714C72 /* Pods-MovieLooks.ad hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.ad hoc.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.ad hoc.xcconfig"; sourceTree = "<group>"; };
 		74560843125EC25400963BDD /* vignette1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette1.png; sourceTree = "<group>"; };
 		74560844125EC25400963BDD /* vignette2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette2.png; sourceTree = "<group>"; };
 		74560845125EC25400963BDD /* vignette3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette3.png; sourceTree = "<group>"; };
@@ -1108,6 +1074,7 @@
 		9CF0533A121516AA00130D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9CF40FB1135EA7630066C911 /* bullet_ready_button_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_ready_button_h.png; sourceTree = "<group>"; };
 		9CF40FB2135EA7630066C911 /* bullet_ready_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_ready_button.png; sourceTree = "<group>"; };
+		9E70126454921E1326E71395 /* Pods-MovieLooks.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.distribution.xcconfig"; sourceTree = "<group>"; };
 		D80C94A717B163B700C10D5E /* btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_down.png; sourceTree = "<group>"; };
 		D80C94A817B163B700C10D5E /* btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_up.png; sourceTree = "<group>"; };
 		D80C94A917B163B700C10D5E /* btn_up2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_up2.png; sourceTree = "<group>"; };
@@ -1137,15 +1104,6 @@
 		D882BE2517CD05C0007C47E7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D882BE2717CD05C8007C47E7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D882BF3917CD0E3A007C47E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D882C09D17CD51D5007C47E7 /* GTL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GTL.xcodeproj; path = GTL/GTL.xcodeproj; sourceTree = "<group>"; };
-		D882C0B017CD58AA007C47E7 /* GTLYouTube_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLYouTube_Sources.m; path = GTL/Services/YouTube/Generated/GTLYouTube_Sources.m; sourceTree = SOURCE_ROOT; };
-		D882C0B617CD5CEE007C47E7 /* GTMOAuth2Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2Authentication.h; path = GTL/OAuth2/GTMOAuth2Authentication.h; sourceTree = SOURCE_ROOT; };
-		D882C0B717CD5CEE007C47E7 /* GTMOAuth2Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2Authentication.m; path = GTL/OAuth2/GTMOAuth2Authentication.m; sourceTree = SOURCE_ROOT; };
-		D882C0B817CD5CEE007C47E7 /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2SignIn.h; path = GTL/OAuth2/GTMOAuth2SignIn.h; sourceTree = SOURCE_ROOT; };
-		D882C0B917CD5CEE007C47E7 /* GTMOAuth2SignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2SignIn.m; path = GTL/OAuth2/GTMOAuth2SignIn.m; sourceTree = SOURCE_ROOT; };
-		D882C0BC17CD5CFC007C47E7 /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2ViewControllerTouch.h; path = GTL/OAuth2/Touch/GTMOAuth2ViewControllerTouch.h; sourceTree = SOURCE_ROOT; };
-		D882C0BD17CD5CFC007C47E7 /* GTMOAuth2ViewControllerTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2ViewControllerTouch.m; path = GTL/OAuth2/Touch/GTMOAuth2ViewControllerTouch.m; sourceTree = SOURCE_ROOT; };
-		D882C0BE17CD5CFC007C47E7 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GTMOAuth2ViewTouch.xib; path = GTL/OAuth2/Touch/GTMOAuth2ViewTouch.xib; sourceTree = SOURCE_ROOT; };
 		D8A39DC317B29D7D008D05F5 /* facebook_48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_48x48.png; sourceTree = "<group>"; };
 		D8A39DC417B29D7D008D05F5 /* twitter_48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_48x48.png; sourceTree = "<group>"; };
 		D8A39DC517B29D7D008D05F5 /* youtube2_48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube2_48x48.png; sourceTree = "<group>"; };
@@ -1155,7 +1113,7 @@
 		D8E2371F17AAF324004BC514 /* bullet_share_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet_share_button@2x.png"; sourceTree = "<group>"; };
 		D8E2372517AAF5D4004BC514 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShareViewController.h; path = Sharing/ShareViewController.h; sourceTree = "<group>"; };
 		D8E2372617AAF5D4004BC514 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShareViewController.m; path = Sharing/ShareViewController.m; sourceTree = "<group>"; };
-		D8F2EBF117CE8CE100DBAB1C /* GTMHTTPUploadFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMHTTPUploadFetcher.m; path = GTL/HTTPFetcher/GTMHTTPUploadFetcher.m; sourceTree = SOURCE_ROOT; };
+		F17B776F3517F5E2752EAE23 /* Pods-MovieLooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1163,7 +1121,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D87E6B7F17D5117C00C6FE98 /* libGTLTouchStaticLib.a in Frameworks */,
 				D882C0B317CD5CB5007C47E7 /* SystemConfiguration.framework in Frameworks */,
 				D882C0B217CD5CAE007C47E7 /* Security.framework in Frameworks */,
 				D882BF3D17CD12A7007C47E7 /* MobileCoreServices.framework in Frameworks */,
@@ -1180,6 +1137,7 @@
 				9CF0533B121516AA00130D07 /* MediaPlayer.framework in Frameworks */,
 				5E3144DD122DFA6F00D67E0D /* StoreKit.framework in Frameworks */,
 				9CDF04581361203F00EA163D /* CoreLocation.framework in Frameworks */,
+				6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1638,7 +1596,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D882C0AE17CD586A007C47E7 /* GTL Services */,
 				D8E2372417AAF511004BC514 /* Sharing */,
 				9C89A502134D950F00598959 /* MProgressView.h */,
 				9C89A503134D950F00598959 /* MProgressView.m */,
@@ -1662,6 +1619,17 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		16D64DA889B8B78148F475C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F17B776F3517F5E2752EAE23 /* Pods-MovieLooks.debug.xcconfig */,
+				6BEFFA679D9CE31CF48E870D /* Pods-MovieLooks.release.xcconfig */,
+				70A7258FBFF222862E714C72 /* Pods-MovieLooks.ad hoc.xcconfig */,
+				9E70126454921E1326E71395 /* Pods-MovieLooks.distribution.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1673,7 +1641,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				D882C09D17CD51D5007C47E7 /* GTL.xcodeproj */,
 				9CA89FC31352CBF4006F93B2 /* redsafiversion */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				5E9FF91C1213C5730083E4E9 /* Shaders */,
@@ -1682,6 +1649,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				16D64DA889B8B78148F475C7 /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1717,6 +1685,7 @@
 				9C6FC9E712239C9000E9F2AC /* MobileCoreServices.framework */,
 				5E3144DC122DFA6F00D67E0D /* StoreKit.framework */,
 				9CDF04571361203F00EA163D /* CoreLocation.framework */,
+				3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1967,57 +1936,6 @@
 			path = Sharing/FBConnect;
 			sourceTree = "<group>";
 		};
-		D882C09E17CD51D5007C47E7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D882C0A517CD51D6007C47E7 /* GTL.framework */,
-				D882C0A717CD51D6007C47E7 /* libGTLTouchStaticLib.a */,
-				D882C0A917CD51D6007C47E7 /* GTLUnitTests.octest */,
-				D882C0AB17CD51D6007C47E7 /* DevelopmentTestTool */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D882C0AE17CD586A007C47E7 /* GTL Services */ = {
-			isa = PBXGroup;
-			children = (
-				D8F2EBEA17CE8C5C00DBAB1C /* HTTPFetcher */,
-				D882C0B417CD5CCA007C47E7 /* OAuth2 */,
-				D882C0AF17CD587B007C47E7 /* YouTube */,
-			);
-			name = "GTL Services";
-			sourceTree = "<group>";
-		};
-		D882C0AF17CD587B007C47E7 /* YouTube */ = {
-			isa = PBXGroup;
-			children = (
-				D882C0B017CD58AA007C47E7 /* GTLYouTube_Sources.m */,
-			);
-			name = YouTube;
-			sourceTree = "<group>";
-		};
-		D882C0B417CD5CCA007C47E7 /* OAuth2 */ = {
-			isa = PBXGroup;
-			children = (
-				D882C0B617CD5CEE007C47E7 /* GTMOAuth2Authentication.h */,
-				D882C0B717CD5CEE007C47E7 /* GTMOAuth2Authentication.m */,
-				D882C0B817CD5CEE007C47E7 /* GTMOAuth2SignIn.h */,
-				D882C0B917CD5CEE007C47E7 /* GTMOAuth2SignIn.m */,
-				D882C0B517CD5CDD007C47E7 /* Touch */,
-			);
-			name = OAuth2;
-			sourceTree = "<group>";
-		};
-		D882C0B517CD5CDD007C47E7 /* Touch */ = {
-			isa = PBXGroup;
-			children = (
-				D882C0BC17CD5CFC007C47E7 /* GTMOAuth2ViewControllerTouch.h */,
-				D882C0BD17CD5CFC007C47E7 /* GTMOAuth2ViewControllerTouch.m */,
-				D882C0BE17CD5CFC007C47E7 /* GTMOAuth2ViewTouch.xib */,
-			);
-			name = Touch;
-			sourceTree = "<group>";
-		};
 		D8E2372417AAF511004BC514 /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
@@ -2036,14 +1954,6 @@
 			name = Sharing;
 			sourceTree = "<group>";
 		};
-		D8F2EBEA17CE8C5C00DBAB1C /* HTTPFetcher */ = {
-			isa = PBXGroup;
-			children = (
-				D8F2EBF117CE8CE100DBAB1C /* GTMHTTPUploadFetcher.m */,
-			);
-			name = HTTPFetcher;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2051,9 +1961,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MovieLooks" */;
 			buildPhases = (
+				1AB918481CEA0EDDC9DB111A /* Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				4E430B719680C7F65567CD17 /* Embed Pods Frameworks */,
+				6810D1B72E371F505CAC0EF0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2089,49 +2002,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D882C09E17CD51D5007C47E7 /* Products */;
-					ProjectRef = D882C09D17CD51D5007C47E7 /* GTL.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* MovieLooks */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D882C0A517CD51D6007C47E7 /* GTL.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GTL.framework;
-			remoteRef = D882C0A417CD51D6007C47E7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D882C0A717CD51D6007C47E7 /* libGTLTouchStaticLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGTLTouchStaticLib.a;
-			remoteRef = D882C0A617CD51D6007C47E7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D882C0A917CD51D6007C47E7 /* GTLUnitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GTLUnitTests.octest;
-			remoteRef = D882C0A817CD51D6007C47E7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D882C0AB17CD51D6007C47E7 /* DevelopmentTestTool */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = DevelopmentTestTool;
-			remoteRef = D882C0AA17CD51D6007C47E7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -2560,13 +2436,60 @@
 				19CDFD4A1855372400B2472B /* home_background_l_480@2x.png in Resources */,
 				D8A39DC717B29D7D008D05F5 /* twitter_48x48.png in Resources */,
 				D8A39DC817B29D7D008D05F5 /* youtube2_48x48.png in Resources */,
-				D882C0C017CD5CFC007C47E7 /* GTMOAuth2ViewTouch.xib in Resources */,
 				19CDFDEA185A805700B2472B /* Icon-152.png in Resources */,
 				19717F7218441F8700C9B604 /* develop_share_button58x58_iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1AB918481CEA0EDDC9DB111A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4E430B719680C7F65567CD17 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6810D1B72E371F505CAC0EF0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -2642,12 +2565,7 @@
 				D80C94E417B1782C00C10D5E /* FBUserInfo.m in Sources */,
 				D80C94E517B1782C00C10D5E /* FBUserRequestResult.m in Sources */,
 				D882BBED17CCFC2A007C47E7 /* YoutubeConnect.m in Sources */,
-				D882C0B117CD58AA007C47E7 /* GTLYouTube_Sources.m in Sources */,
-				D882C0BA17CD5CEE007C47E7 /* GTMOAuth2Authentication.m in Sources */,
 				1912F1CD187F21140078372A /* YoutubeUIActivityShareViewController.m in Sources */,
-				D882C0BB17CD5CEE007C47E7 /* GTMOAuth2SignIn.m in Sources */,
-				D882C0BF17CD5CFC007C47E7 /* GTMOAuth2ViewControllerTouch.m in Sources */,
-				D8F2EBF217CE8CE100DBAB1C /* GTMHTTPUploadFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2671,12 +2589,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Red Giant Software (D642JS68SL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Red Giant Software (D642JS68SL)";
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -2689,31 +2605,16 @@
 		};
 		042D1792134F18AE00E73C80 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70A7258FBFF222862E714C72 /* Pods-MovieLooks.ad hoc.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = (
-					$SDKROOT/usr/include/libxml2,
-					Sharing/Facebook/FBConnect,
-					"GTL/**",
-				);
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
-				OTHER_LDFLAGS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
@@ -2728,12 +2629,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Red Giant Software (D642JS68SL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Red Giant Software (D642JS68SL)";
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -2746,31 +2645,16 @@
 		};
 		042D1794134F18B600E73C80 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E70126454921E1326E71395 /* Pods-MovieLooks.distribution.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = (
-					$SDKROOT/usr/include/libxml2,
-					Sharing/Facebook/FBConnect,
-					"GTL/**",
-				);
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
-				OTHER_LDFLAGS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
@@ -2782,34 +2666,18 @@
 		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F17B776F3517F5E2752EAE23 /* Pods-MovieLooks.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
-				HEADER_SEARCH_PATHS = (
-					$SDKROOT/usr/include/libxml2,
-					Sharing/Facebook/FBConnect,
-					"GTL/**",
-				);
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
-				OTHER_LDFLAGS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
@@ -2820,31 +2688,16 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BEFFA679D9CE31CF48E870D /* Pods-MovieLooks.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = (
-					$SDKROOT/usr/include/libxml2,
-					Sharing/Facebook/FBConnect,
-					"GTL/**",
-				);
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
-				OTHER_LDFLAGS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
@@ -2860,13 +2713,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Joseph Snow (26374RRXL7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joseph Snow (26374RRXL7)";
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -2882,12 +2733,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Red Giant Software (D642JS68SL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Red Giant Software (D642JS68SL)";
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
