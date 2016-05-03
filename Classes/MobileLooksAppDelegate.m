@@ -324,11 +324,8 @@ void onUncaughtExceptionHandler(NSException *exception)
 	}
 	else
 	{
-		//Register for notifications
-		[[UIApplication sharedApplication]
-		 registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-											 UIRemoteNotificationTypeSound |
-											 UIRemoteNotificationTypeAlert)];
+        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 		
 		// Reset badge number to 0
 		[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -443,17 +440,8 @@ void onUncaughtExceptionHandler(NSException *exception)
 	}
 	else
 	{
-		//Register for notifications
-		[[UIApplication sharedApplication]
-		 registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-											 UIRemoteNotificationTypeSound |
-											 UIRemoteNotificationTypeAlert)];
-		
-		// Reset badge number to 0
-		[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        // removed register for notificaitons here. You don't need to do it when the app is foregrounded
 	}
-	//------------------------------------------------
-	
 }
 
 
@@ -560,6 +548,17 @@ void onUncaughtExceptionHandler(NSException *exception)
     }
 }
 #endif
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    if (notificationSettings.types != UIUserNotificationTypeNone) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else {
+		NSLog(@"Notifications are disabled for this application. Not registering with Urban Airship");
+		return;
+    }
+}
+
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     [self showAlarm:notification.alertBody];
@@ -581,12 +580,6 @@ void onUncaughtExceptionHandler(NSException *exception)
 												 stringByReplacingOccurrencesOfString: @" " withString: @""];
 	
 	NSLog(@"Device Token: %@", [NotiPusher sharedNotiPusher].deviceToken);
-	
-	if ([application enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone) {
-		NSLog(@"Notifications are disabled for this application. Not registering with Urban Airship");
-		return;
-	}
-	
 	
 	//check if have registed
 	NSNumber *registeOK = [[NSUserDefaults standardUserDefaults] objectForKey:@"_registOK"];
