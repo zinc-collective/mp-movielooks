@@ -58,7 +58,7 @@
 	[self addSubview:boxView];
     
 	progress_ = [[UILabel alloc] initWithFrame:CGRectMake(40.0, 50.0, 200, 20.0)];
-	progress_.textAlignment = UITextAlignmentCenter;
+	progress_.textAlignment = NSTextAlignmentCenter;
 	progress_.textColor = [UIColor blackColor];
 	progress_.backgroundColor = [UIColor clearColor];
 	[boxView addSubview:progress_];

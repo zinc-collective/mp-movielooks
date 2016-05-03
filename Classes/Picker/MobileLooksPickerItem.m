@@ -148,7 +148,7 @@
     else
         labelView.font = [UIFont boldSystemFontOfSize:22];
 	labelView.textColor	= [UIColor whiteColor];
-	labelView.textAlignment = UITextAlignmentRight;
+	labelView.textAlignment = NSTextAlignmentRight;
 	[durationView addSubview:labelView];									
 	//[durationView addSubview:imageView];
 	
@@ -202,10 +202,10 @@
 		//NSUInteger videoSeconds = CMTimeGetSeconds(avAsset.duration); 
 		
 		labelView.backgroundColor = [UIColor clearColor];
-		labelView.text = [NSString stringWithFormat:@"%02d:%02d",videoSeconds/60,videoSeconds%60];
+		labelView.text = [NSString stringWithFormat:@"%02lu:%02lu",videoSeconds/60,videoSeconds%60];
 		labelView.font = [UIFont boldSystemFontOfSize:12];
 		labelView.textColor	= [UIColor whiteColor];
-		labelView.textAlignment = UITextAlignmentRight;
+		labelView.textAlignment = NSTextAlignmentRight;
 		[durationView addSubview:labelView];									
 		[durationView addSubview:imageView];
 		

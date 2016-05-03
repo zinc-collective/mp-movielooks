@@ -431,7 +431,7 @@ static NotiPusher *_sharedNotiPusher;
 {
 	NSHTTPURLResponse *httprespnse = (NSHTTPURLResponse *)response;
 	NSInteger status = [httprespnse statusCode];
-	NSLog(@"%d", status);
+	NSLog(@"%ld", (long)status);
 	
 	if(http == _postHttp)
 	{

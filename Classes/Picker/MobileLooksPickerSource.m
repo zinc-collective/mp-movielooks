@@ -9,7 +9,7 @@
 #import "MobileLooksPickerSource.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface MobileLooksPickerSource_iTunesLibrary : NSObject
+@interface MobileLooksPickerSource_iTunesLibrary : MobileLooksPickerSource
 {
 	MPMediaLibrary* mLibrary;
 	NSArray* mURLs;
@@ -67,7 +67,7 @@
 }
 @end
 
-@interface MobileLooksPickerSource_iTunesFileSharing : NSObject
+@interface MobileLooksPickerSource_iTunesFileSharing : MobileLooksPickerSource
 {
 	NSArray* mURLs;
 	MPMediaLibrary* mLibrary;
@@ -141,7 +141,7 @@
 }
 @end
 
-@interface MobileLooksPickerSource_CameraRoll : NSObject
+@interface MobileLooksPickerSource_CameraRoll : MobileLooksPickerSource
 {
 	ALAssetsLibrary* mLibrary;
 	NSMutableArray* mAssetArray;
@@ -237,17 +237,17 @@
 */
 + (MobileLooksPickerSource*)cameraRollSource
 {
-	return [[MobileLooksPickerSource_CameraRoll allocWithZone:NULL] init];
+	return [[MobileLooksPickerSource_CameraRoll alloc] init];
 }
 
 + (MobileLooksPickerSource*)iTunesLibrarySource
 {
-	return [[[MobileLooksPickerSource_iTunesLibrary allocWithZone:NULL] init] autorelease];
+	return [[[MobileLooksPickerSource_iTunesLibrary alloc] init] autorelease];
 }
 
 + (MobileLooksPickerSource*)iTunesFileSharingSource
 {
-	return [[[MobileLooksPickerSource_iTunesFileSharing allocWithZone:NULL] init] autorelease];
+	return [[[MobileLooksPickerSource_iTunesFileSharing alloc] init] autorelease];
 }
 
 -(NSArray*)URLs

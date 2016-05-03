@@ -171,7 +171,7 @@
     {
         self.navigationController.navigationBar.translucent = NO;
         self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-        self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     }
 }
 
@@ -183,8 +183,9 @@
 	
 	// NSLog(@"viewWillAppear:");
 	
-	if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if(orientation == UIInterfaceOrientationPortrait
+	   || orientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -211,7 +212,8 @@
 {
 	return YES;
 }
-- (NSUInteger)supportedInterfaceOrientations
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 }

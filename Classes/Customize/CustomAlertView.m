@@ -71,7 +71,7 @@
 		
 		//title
 		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 5.0, 260.0, 40.0)];
-		titleLabel.textAlignment = UITextAlignmentLeft;
+		titleLabel.textAlignment = NSTextAlignmentLeft;
 		titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
 		titleLabel.adjustsFontSizeToFitWidth = YES;
 		titleLabel.textColor = [UIColor whiteColor];

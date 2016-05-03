@@ -161,7 +161,7 @@
     
     //draw mask
     //CGImageRef maskImageRef = mMaskImage.CGImage;
-    CGFloat maskImgWidth = CGImageGetWidth(mMaskImageRef);
+//    CGFloat maskImgWidth = CGImageGetWidth(mMaskImageRef);
     CGFloat maskImgHeight = CGImageGetWidth(mMaskImageRef);
     CGFloat leftTrimX = mMaskWidth*leftTrimValue;
     CGFloat rightTrimX = mMaskWidth*rightTrimValue;
@@ -296,7 +296,7 @@
     {
         CGFloat detaX = position.x-leftTrimPosX;
         CGFloat newLeftValue = leftTrimValue+detaX/mMaskWidth;
-        if(newLeftValue<rightTrimValue-0.05 && newLeftValue>0.f && abs(detaX)>0.4f)
+        if(newLeftValue<rightTrimValue-0.05 && newLeftValue>0.f && fabs(detaX)>0.4f)
         {    
             leftTrimValue = newLeftValue;
 			if(pickerTrimValue<leftTrimValue)
@@ -314,7 +314,7 @@
     {
         CGFloat detaX = position.x-rightTrimPosX;
         CGFloat newRightValue = rightTrimValue+detaX/mMaskWidth;
-        if(newRightValue>leftTrimValue+0.05 && newRightValue<1.f && abs(detaX)>0.4f)
+        if(newRightValue>leftTrimValue+0.05 && newRightValue<1.f && fabs(detaX)>0.4f)
         {   
             rightTrimValue = newRightValue;
 			if(pickerTrimValue>rightTrimValue)
@@ -335,7 +335,7 @@
         if(newPickerValue<leftTrimValue) newPickerValue = leftTrimValue;
 		if(newPickerValue>rightTrimValue) newPickerValue = rightTrimValue;
 
-        if(abs(detaX)>=0.4f)
+        if(fabs(detaX)>=0.4f)
 		{
 			pickerTrimValue = newPickerValue;
 			[self setNeedsDisplay];

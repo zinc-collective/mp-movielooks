@@ -78,8 +78,8 @@
 	UIFont *titleFont = [UIFont boldSystemFontOfSize:18];
 	UIFont *subtitleFont = [UIFont systemFontOfSize:16];
 	
-	CGSize titleSize = [title sizeWithFont:titleFont];
-	CGSize subtitleSize = [subtitle sizeWithFont:subtitleFont];
+    CGSize titleSize = [title sizeWithAttributes:@{NSFontAttributeName: titleFont}];
+    CGSize subtitleSize = [subtitle sizeWithAttributes:@{NSFontAttributeName: subtitleFont}];
 	
 	//CGSize size = CGSizeMake(titleSize.width + subtitleSize.width + 30, 27);
 	CGSize size = CGSizeMake(titleSize.width + subtitleSize.width + 26, 27);
