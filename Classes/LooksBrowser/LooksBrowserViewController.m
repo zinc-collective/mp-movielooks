@@ -288,7 +288,7 @@
 	}
 	
 	
-	[self layoutAfterorientation:self.interfaceOrientation];
+	[self layoutAfterorientation:[[UIApplication sharedApplication] statusBarOrientation]];
 	renderThreadCancel = NO;
 	self.isRenderThreadStop = NO;
 	[NSThread detachNewThreadSelector:@selector(renderLoop) toTarget:self withObject:nil];

@@ -45,7 +45,7 @@
 - (bool)isKeyFrameValid;
 - (void)unloadKeyFrame;
 - (void)resetRenderBuffer;
-//- (void)freeRenderBuffer;
+- (void)freeRenderBuffer;
 
 - (CGImageRef)frameProcessingAndReturnImage:(GLubyte *)original flipPixel:(BOOL)doInvert;
 @end

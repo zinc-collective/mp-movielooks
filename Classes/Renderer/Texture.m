@@ -496,8 +496,8 @@ void loadVignette(GLuint specialTexID, const char *VigName)
 		return;
 	}
 
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	
 	// * 2 by George.
 	GLubyte *data = malloc(width * height * glPixelSize);
@@ -529,8 +529,8 @@ void loadOverlay(GLuint texID, NSString *name)
 		return;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	
 	GLubyte *data = malloc(width * height * glPixelSize);
 	CGContextRef context = CGBitmapContextCreate(data, width, height, 8, width * glPixelSize, CGImageGetColorSpace(imageRef), glImageAlphaNoneSkipLast);
@@ -558,7 +558,7 @@ void loadOverlay(GLuint texID, NSString *name)
 
 GLuint loadSpecialImg(const char *name, const float diffusionHighlightsOnly)
 {
-	NSString *filepathString = [[NSString alloc] initWithCString:name];
+	NSString *filepathString = [NSString stringWithUTF8String:name];
 	
 	UIImage* image = [[UIImage alloc] initWithContentsOfFile:filepathString];
 	
@@ -570,8 +570,8 @@ GLuint loadSpecialImg(const char *name, const float diffusionHighlightsOnly)
 		return 0;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	
 	// * 2 by George.
 	GLubyte *data = malloc(width * height * glPixelSize);
@@ -633,8 +633,8 @@ GLuint loadTextureWithBuffer(const char *c_path, unsigned char* buffer)
 		return 0;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);	
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	CGContextRef context = CGBitmapContextCreate(buffer, width, height, 8, width * glPixelSize, CGImageGetColorSpace(imageRef), glImageAlphaNoneSkipLast);
 	CGContextSetBlendMode(context, kCGBlendModeCopy);
 	
@@ -671,7 +671,7 @@ GLuint loadTextureWithBuffer(const char *c_path, unsigned char* buffer)
 
 GLuint loadSpecialImgWithBuffer(const char *name, const float diffusionHighlightsOnly, unsigned char* buffer)
 {
-	NSString *filepathString = [[NSString alloc] initWithCString:name];
+	NSString *filepathString = [NSString stringWithUTF8String:name];
 	
 	UIImage* image = [[UIImage alloc] initWithContentsOfFile:filepathString];
 	
@@ -683,8 +683,8 @@ GLuint loadSpecialImgWithBuffer(const char *name, const float diffusionHighlight
 		return 0;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	
 	// * 2 by George.	
 	CGContextRef context = CGBitmapContextCreate(buffer, width, height, 8, width * glPixelSize, CGImageGetColorSpace(imageRef), glImageAlphaNoneSkipLast);

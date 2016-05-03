@@ -41,8 +41,8 @@
 -(void)setGroupName:(NSString*)groupName andLookName:(NSString*)lookName
 {
 	NSString *groupName_ = [NSString stringWithFormat:@"%@ - ", groupName];
-	CGSize groupNameSize = [groupName_ sizeWithFont:groupNameLabel.font];
-	CGSize lookNameSize = [lookName sizeWithFont:lookNameLabel.font];
+    CGSize groupNameSize = [groupName_ sizeWithAttributes:@{NSFontAttributeName: groupNameLabel.font}];
+    CGSize lookNameSize = [lookName sizeWithAttributes:@{NSFontAttributeName: lookNameLabel.font}];
 	
 	float offset = (480 - groupNameSize.width - lookNameSize.width) / 2.0;
 	groupNameLabel.frame = CGRectMake(offset, 3, groupNameSize.width, 24);

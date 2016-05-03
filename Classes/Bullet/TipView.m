@@ -50,27 +50,27 @@
 		titleLabel.font = titleFont;
 		titleLabel.backgroundColor = [UIColor clearColor];
 		titleLabel.textColor = [UIColor whiteColor];
-		titleLabel.textAlignment = UITextAlignmentCenter;
+		titleLabel.textAlignment = NSTextAlignmentCenter;
 		titleLabel.text = title;
 		[self addSubview:titleLabel];
 		
 		UIFont *contentFont = [UIFont systemFontOfSize:contentFontSize];
 		CGSize constrainedSize = CGSizeMake(width, INT_MAX);
-		CGSize contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+        NSStringDrawingOptions drawingOptions = NSStringDrawingTruncatesLastVisibleLine;
+        CGRect contentRect = [text boundingRectWithSize:constrainedSize options:drawingOptions attributes:@{NSFontAttributeName: contentFont} context:nil];
 		
-		if (contentSize.height > height)
+		if (contentRect.size.height > height)
 		{
-			for (int offset = 1; contentSize.height > height && offset < 4; offset++)
+			for (int offset = 1; contentRect.size.height > height && offset < 4; offset++)
 			{
 				contentFontSize -= offset;
 				contentFont = [UIFont systemFontOfSize:contentFontSize];
-				contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
-				
+                contentRect = [text boundingRectWithSize:constrainedSize options:drawingOptions attributes:@{NSFontAttributeName: contentFont} context:nil];
 				// NSLog(@"offset=%i, contentFontSize=%.1f", offset, contentFontSize);
 			}
 		}
 		
-		contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(fLeft, fTop, contentSize.width, contentSize.height)];
+		contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(fLeft, fTop, contentRect.size.width, contentRect.size.height)];
 		contentLabel.font = contentFont;
 		contentLabel.backgroundColor = [UIColor clearColor];
 		contentLabel.textColor = [UIColor whiteColor];

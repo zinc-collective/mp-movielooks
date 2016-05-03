@@ -68,12 +68,12 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 -(NSUInteger)estimateProcessingTimebyFrame:(NSUInteger)numFramesRemainingToProcess;
 {
 	float fps = 30.0f;
-	NSUInteger timeRemaining = 0;
+	NSUInteger timeLeft = 0;
 	// BOOL quickRender = renderer.doQuickRender;
-	timeRemaining = estimateFrameProcessTime*numFramesRemainingToProcess+ceil(numFramesRemainingToProcess/fps)*estimateClipProcessTime;
+	timeLeft = estimateFrameProcessTime*numFramesRemainingToProcess+ceil(numFramesRemainingToProcess/fps)*estimateClipProcessTime;
 	if(numFramesRemainingToProcess==1)
 		NSLog(@"========Last Frame!=======");
-	return timeRemaining;
+	return timeLeft;
 }
 
 - (void) exportAction:(id)sender{
@@ -120,7 +120,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	[super viewWillAppear:animated];
 	
 	[renderer unloadKeyFrame];
-    [self layoutOrientation:self.interfaceOrientation];
+    [self layoutOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -140,7 +140,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES] retain];
 	}
 
-    [self layoutOrientation:self.interfaceOrientation];
+    [self layoutOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

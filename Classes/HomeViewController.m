@@ -40,7 +40,8 @@
 	// UIDeviceOrientation orientation1 = [[UIDevice currentDevice] orientation];
 	// NSLog(@"layoutForCurrentOrientation %d %d", orientation0, orientation1);
 	
-	if(self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if(orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -133,8 +134,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	NSLog(@"viewWillAppear - interfaceOrientation: %d", self.interfaceOrientation);
-	
 	self.navigationController.navigationBarHidden = YES;
 	
 	[self layoutForCurrentOrientation];
@@ -403,8 +402,8 @@
 		[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
 #endif
 	
-		if (![[self modalViewController] isBeingDismissed]) {
-			[self.modalViewController dismissModalViewControllerAnimated:NO];
+		if (![[self presentedViewController] isBeingDismissed]) {
+            [self.presentedViewController dismissViewControllerAnimated:NO completion:^{}];
 		}
 	}
 }
@@ -418,12 +417,12 @@
     //[navigationController pushViewController:someOtherViewController animated:YES];
     if(navigationVideoPicker)
 	{
-		if (![[self modalViewController] isBeingDismissed])
+		if (![[self presentedViewController] isBeingDismissed])
         {
 			//[self.navigationController popToRootViewControllerAnimated:NO];
             [navigationVideoPicker popToRootViewControllerAnimated:NO];
             //[self.navigationController pushViewController:self animated:YES];
-			[self dismissModalViewControllerAnimated:NO];
+            [self dismissViewControllerAnimated:NO completion:^{}];
 			//bret [navigationVideoPicker release];
 			navigationVideoPicker = nil;
 		}
@@ -434,12 +433,12 @@
 {
 	if(navigationVideoProcessor)
 	{
-		if (![[self modalViewController] isBeingDismissed])
+		if (![[self presentedViewController] isBeingDismissed])
         {
 			//[self.navigationController popToRootViewControllerAnimated:NO];
 			[navigationVideoProcessor popToRootViewControllerAnimated:NO];
             //[self.navigationController pushViewController:self animated:YES];
-			[self dismissModalViewControllerAnimated:NO];
+            [self dismissViewControllerAnimated:NO completion:^{}];
 			//bret [navigationVideoProcessor release];
 			navigationVideoProcessor = nil;
 		}
@@ -513,7 +512,7 @@
 	
 	if(navigationVideoPicker)
 	{
-		if (![[self modalViewController] isBeingDismissed])
+		if (![[self presentedViewController] isBeingDismissed])
         {
 			[navigationVideoPicker popToRootViewControllerAnimated:NO];
 			//**[self dismissModalViewControllerAnimated:NO];
@@ -524,7 +523,7 @@
 	
 	if(navigationVideoProcessor)
 	{
-		if (![[self modalViewController] isBeingDismissed])
+		if (![[self presentedViewController] isBeingDismissed])
         {
 			[navigationVideoProcessor popToRootViewControllerAnimated:NO];
 			//**[self dismissModalViewControllerAnimated:NO];
@@ -609,7 +608,7 @@
 	LooksBrowserViewController *looksBrowser = [[LooksBrowserViewController alloc] init];
 	navigationVideoProcessor = [[UINavigationController alloc] initWithRootViewController:looksBrowser];
 	[looksBrowser release];		
-	[self presentModalViewController:navigationVideoProcessor animated:YES];
+    [self presentViewController:navigationVideoProcessor animated:YES completion:^{}];
 }
 
 
@@ -768,7 +767,7 @@
 	//webSite.bShowToolBar = NO;
 	webSite.bShowStatusBar = NO;
 	[webSite setCtrlorWithURL:active_link_url forTitle:active_link_title];
-	[self presentModalViewController:webSite animated:YES];
+    [self presentViewController:webSite animated:YES completion:^{}];
 	[webSite release];
 }
 

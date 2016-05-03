@@ -88,4 +88,5 @@
 -(NSUInteger)getProcessState;
 -(CGFloat)getComposeProgress;
 +(BOOL)checkMovieSession:(NSURL*)movieURL;
+-(BOOL)checkFor720P:(float*)frameCount;
 @end
