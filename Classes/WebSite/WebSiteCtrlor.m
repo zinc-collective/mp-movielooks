@@ -158,7 +158,6 @@
 		//add topDone button
 		UIBarButtonItem *topDoneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneBtnAction:)];
 		self.navItem.leftBarButtonItem = topDoneBtn;
-		[topDoneBtn release];
 		
 		//hide toolbar
 		self.toolBar.hidden = YES;
@@ -197,26 +196,6 @@
 	return YES;
 }
 
-- (void)dealloc
-{
-	[navBar release];
-	[navItem release];
-	[toolBar release];
-	[doneBtn release];
-	[refreshBtn release];
-	[backBtn release];
-	[forwardBtn release];
-	[safariBtn release];
-	
-	[_navTitle release];
-	[_webSiteURL release];
-	[_webView release];
-	
-	[navBarTintColor release];
-	[toolBarTintColor release];
-	
-	[super dealloc];
-}
 
 
 

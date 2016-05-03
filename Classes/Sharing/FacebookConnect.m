@@ -37,7 +37,7 @@
 		fbLoggedIn = NO;
 		fbSessionValid = NO;
 		session = [[FBSession alloc] init];
-		facebook = [[session restore] retain];
+		facebook = [session restore];
 		
 		if (true || facebook == nil) {
 			facebook = [[Facebook alloc] init];
@@ -74,7 +74,7 @@
 
 - (void) setPrivacy:(NSString *)value
 {
-	_privacy = [[value copy] autorelease];
+	_privacy = [value copy];
 }
 
 - (NSString *) getUsername
@@ -138,7 +138,6 @@
 	fbSessionValid = NO;
 	
 	if (facebookUserInfo) {
-		[facebookUserInfo release];
 		facebookUserInfo = nil;
 	}
 	
@@ -153,9 +152,7 @@
 
 - (void) fbDidLogin {
 	//NSLog(@"Facebook did login");
-	facebookUserInfo = [[[[FBUserInfo alloc] initWithFacebook:facebook andDelegate: self]
-						 autorelease] 
-						retain];
+	facebookUserInfo = [[FBUserInfo alloc] initWithFacebook:facebook andDelegate: self];
 	[facebookUserInfo requestAllInfo];	
 }
 
@@ -281,7 +278,6 @@
 													delegate:self
 													cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		sendingVideo = NO;
 		info_ = nil;
@@ -307,7 +303,7 @@
 		if (privacyStr != nil) {
 			NSMutableDictionary *privacyDic = [NSMutableDictionary dictionary];
 			[privacyDic setObject:privacyStr forKey:@"value"];			
-			SBJSON *jsonWriter = [[SBJSON new] autorelease];
+			SBJSON *jsonWriter = [SBJSON new];
 			privacyParam = [jsonWriter stringWithObject:privacyDic];
 		}
 	}
@@ -371,7 +367,7 @@
 	NSString *message = video_url;
 	
 	
-	SBJSON *jsonWriter = [[SBJSON new] autorelease];
+	SBJSON *jsonWriter = [SBJSON new];
 	
 	NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
 														   @"MovieLooks",@"text",@"http://www.facebook.com",@"href", nil], nil];
@@ -408,7 +404,6 @@
 	
 	NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:videoLink,@"video_url",nil];
 	[self publishOnFacebook:dic];
-	[dic release];	
 }
 
 - (void) joinFacebookPage{
@@ -467,7 +462,6 @@
 										  otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
 	alert.tag = 200;
 	[alert show];
-	[alert release];
 }
 
 #pragma mark Facebook delegate
@@ -489,7 +483,6 @@
 		
 		NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:videoLink,@"video_url",nil];
 		[self publishOnFacebook:dic];
-		[dic release];
 		
 		if(delegate_ && [delegate_ respondsToSelector:@selector(didFinishShare::)]){
 			[delegate_ didFinishShare:YES :nil];
@@ -512,7 +505,6 @@
 				isOK = YES;
 			}
 			
-			[string release];
 		}
 		
 		
@@ -556,14 +548,7 @@
 
 
 - (void)dealloc{
-	[videoLink release];
-	[method_ release];
-	[info_ release];
 	facebook.sessionDelegate = nil;
-	[facebook release];
-	[session release];
-	[facebookUserInfo release];
-	[super dealloc];
 }
 
 @end

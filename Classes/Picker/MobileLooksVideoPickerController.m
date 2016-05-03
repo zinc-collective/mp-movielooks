@@ -43,10 +43,7 @@
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:MobileLooksPickerSourceItemsDidChangeNotification object:mSource];
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:MobileLooksPickerSourceItemsDeniedAccessNotification object:mSource];
 	}
-	[mSource release];
-	[mURLs release];
     //[_mScrollView release];
-    [super dealloc];
 }
 
 -(void)layoutIPhonePortrait
@@ -498,7 +495,6 @@
 	}
 	NSUInteger duartion = [[asset valueForProperty:ALAssetPropertyDuration] doubleValue];
 	[item loadFromCache:thumbnailImage withDurationString:[NSString stringWithFormat:@"%02lu:%02lu",duartion/60,duartion%60]];
-	[thumbnailImage release];
 	item.hasThumbnail = YES;
 }
 
@@ -508,8 +504,8 @@
 
 -(void)loadItemThread:(NSNumber*)decelerateSpeed
 {
-	NSAutoreleasePool* threadPool = [[NSAutoreleasePool alloc] init];
-	@try{
+	@autoreleasepool {
+		@try{
         CGFloat rowHeight; // = 79;
         CGFloat screenDim = mScrollView.frame.size.width;
         NSInteger rowCount;  //= 6; //change
@@ -520,18 +516,18 @@
         screenDim = mScrollView.frame.size.height;
     }
         
-	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
+		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+		{
         rowCount = VPICKER_THUMB_LANDSCAPE_ROWS;
-		rowHeight = VPICKER_THUMB_WIDTH+VPICKER_THUMB_WIDTH_OFFSET;
-		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
+			rowHeight = VPICKER_THUMB_WIDTH+VPICKER_THUMB_WIDTH_OFFSET;
+			if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
         {
-			rowCount = VPICKER_THUMB_PORTRAIT_COLS;
+				rowCount = VPICKER_THUMB_PORTRAIT_COLS;
             rowHeight = VPICKER_THUMB_HEIGHT+VPICKER_THUMB_HEIGHT_OFFSET;
         }
-	}else //bret
+		}else //bret
     {
-		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
+			if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
         {
             rowHeight = VPICKER_THUMB_HEIGHT_IPHONE+VPICKER_THUMB_HEIGHT_OFFSET_IPHONE;
             rowCount = VPICKER_THUMB_PORTRAIT_COLS_IPHONE;
@@ -546,36 +542,36 @@
                 rowCount = VPICKER_THUMB_LANDSCAPE_ROWS_IPHONE;
         }
     }
-		
-	CGFloat scrollDeta = [decelerateSpeed floatValue];
-	NSInteger startRowIndex = floor(mScrollView.contentOffset.x/rowHeight);
-	NSInteger endRowIndex = ceil((mScrollView.contentOffset.x+screenDim)/rowHeight);
+			
+		CGFloat scrollDeta = [decelerateSpeed floatValue];
+		NSInteger startRowIndex = floor(mScrollView.contentOffset.x/rowHeight);
+		NSInteger endRowIndex = ceil((mScrollView.contentOffset.x+screenDim)/rowHeight);
     if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
     {
         startRowIndex = floor(mScrollView.contentOffset.y/rowHeight);
         endRowIndex = ceil((mScrollView.contentOffset.y+screenDim)/rowHeight);
     }
     NSArray* pickerItemArray = [mScrollView subviews];
-	NSArray* assetsArray = [mSource assetsArray];
-	
-	if(scrollDeta>0)
-		startRowIndex = endRowIndex>0?(endRowIndex-1):0;
-	if(scrollDeta<0)
-		endRowIndex = startRowIndex+1;
+		NSArray* assetsArray = [mSource assetsArray];
+		
+		if(scrollDeta>0)
+			startRowIndex = endRowIndex>0?(endRowIndex-1):0;
+		if(scrollDeta<0)
+			endRowIndex = startRowIndex+1;
 
 //	NSInteger assetCount = [assetsArray count];
-	for (NSInteger itemIndex = startRowIndex*rowCount; itemIndex<endRowIndex*rowCount&&itemIndex<[assetsArray count]; ++itemIndex)
+		for (NSInteger itemIndex = startRowIndex*rowCount; itemIndex<endRowIndex*rowCount&&itemIndex<[assetsArray count]; ++itemIndex)
     {
-		MobileLooksPickerItem* item = [pickerItemArray objectAtIndex:itemIndex];
-		ALAsset* asset = [assetsArray objectAtIndex:itemIndex];
-		if([item class]==[MobileLooksPickerItem class] && !item.hasThumbnail)
-			[self loadItem:item withAsset:asset];
+			MobileLooksPickerItem* item = [pickerItemArray objectAtIndex:itemIndex];
+			ALAsset* asset = [assetsArray objectAtIndex:itemIndex];
+			if([item class]==[MobileLooksPickerItem class] && !item.hasThumbnail)
+				[self loadItem:item withAsset:asset];
+		}
+		}
+		@catch (NSException* exc) {
+			NSLog(@"%@",[exc reason]);
+		}
 	}
-	}
-	@catch (NSException* exc) {
-		NSLog(@"%@",[exc reason]);
-	}
-	[threadPool release];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate // called on finger up if user dragged. decelerate is true if it will continue moving afterwards
@@ -834,7 +830,6 @@
 											  cancelButtonTitle:NSLocalizedString(@"OK",nil)
 											  otherButtonTitles:nil, nil];
 	[alertView show];
-	[alertView release];
 /*
 	[self clearScrollView];
 	
@@ -944,7 +939,6 @@
 		*/
 		item.delegate = self;		
         [mScrollView addSubview:item];
-		[item release];
     }
 	mLastSourceCount = [assetsArray count];
 	mLastScrollIndex = mLastSourceCount;
@@ -966,7 +960,6 @@
 		textView.textColor = fontColor;
 		textView.backgroundColor = [UIColor clearColor];
 		[mScrollView addSubview:textView];
-		[textView release];
 	}
 	
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -1526,7 +1519,6 @@
 //#if 0 //storyboard
     UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel",nil) style:UIBarButtonItemStylePlain target:self action:@selector(homeAction:)];
 	self.navigationItem.leftBarButtonItem = backButton;
-	[backButton release];
 	//self.view.backgroundColor = [UIColor blackColor];
 	//self.title = NSLocalizedString(@"Camera Roll", nil);
 //#endif

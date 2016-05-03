@@ -43,7 +43,7 @@
 	
 }
 @property (nonatomic, copy) NSURL* URL;
-@property (nonatomic, readonly) AVPlayer* player;
+@property (weak, nonatomic, readonly) AVPlayer* player;
 
 - (void)pickCurrentFrame:(id)sender;
 - (void)play:(id)sender;

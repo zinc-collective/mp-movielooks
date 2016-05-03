@@ -479,13 +479,6 @@ void onUncaughtExceptionHandler(NSException *exception)
 													name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 	
     [purchaseIndicatorView removeFromSuperview];
-    [purchaseIndicatorView release];
-	[purchaseMaskView release];
-    [viewController release];
-	[_maskView release];
-	[_spinner release];
-	[window release];
-    [super dealloc];
 }
 
 
@@ -666,7 +659,6 @@ void onUncaughtExceptionHandler(NSException *exception)
 											  cancelButtonTitle: @"Ok"
 											  otherButtonTitles: nil];
     [someError show];
-    [someError release];
     //NSLog(@"ERROR: NSError query result: %@", error);
     
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -735,7 +727,6 @@ void onUncaughtExceptionHandler(NSException *exception)
 	webSite.bShowStatusBar = NO;
 	[webSite setCtrlorWithURL:active_link_url forTitle:active_link_title];
     [topViewCtrlor presentViewController:webSite animated:YES completion:^{}];
-	[webSite release];
 	
 	
 	//使用获取的配置信息，触发一些隐藏功能显示出来
@@ -786,12 +777,10 @@ void onUncaughtExceptionHandler(NSException *exception)
 	// convert the time keep on 24-hour
 	NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"US"];
 	[formatter setLocale:usLocale];
-	[usLocale release];
 	
 	[formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate *fromDate = [formatter dateFromString:active_time_from];
 	NSDate *toDate = [formatter dateFromString:active_time_to];
-	[formatter release];
 	
 	//compare time
 	NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];

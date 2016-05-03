@@ -57,7 +57,6 @@ const GLfloat texcoords[] =
 		
         if (!context || ![EAGLContext setCurrentContext:context] || ![self loadShaders])
         {
-            [self release];
             return nil;
         }
 		
@@ -365,10 +364,8 @@ const GLfloat texcoords[] =
 		[EAGLContext setCurrentContext:nil];
 	}
 	
-	[context release];
     context = nil;
 	
-	[super dealloc];
 }
 
 @end

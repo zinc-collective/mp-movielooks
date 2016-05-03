@@ -21,15 +21,11 @@
 - (id) initWithDelegate:(id<FacebookUserRequestDelegate>)delegate {
     self = [super init];
     if (self) {
-        _userRequestDelegate = [delegate retain];
+        _userRequestDelegate = delegate;
     }
     return self;
 }
 
-- (void)dealloc {
-  [_userRequestDelegate release];
-  [super dealloc];
-}
 
 /**
  * FBRequestDelegate

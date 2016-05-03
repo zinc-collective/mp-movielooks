@@ -55,7 +55,6 @@
 			titleLabel.textColor = [UIColor whiteColor];
 			titleLabel.textAlignment = NSTextAlignmentCenter;
 			[self addSubview:titleLabel];
-			[titleLabel release];
 		}
     }
     return self;
@@ -75,9 +74,6 @@
 	NSLog(@"Compose progress %f",progress);
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

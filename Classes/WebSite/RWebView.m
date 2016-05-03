@@ -176,11 +176,7 @@
 		[_webView stopLoading];
 	}
 	
-	[webShowURL release];
-	[_waitSpinner release];
-	[_webView release];
 	
-    [super dealloc];
 }
 
 

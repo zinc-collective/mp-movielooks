@@ -21,7 +21,6 @@
 		UIImageView *header = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 63.0)];//126/2
 		header.image = [UIImage imageNamed:@"bulleting_header.png"];
 		[self addSubview:header];
-		[header release];
 		
 		mTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
 		mTitle.backgroundColor = [UIColor clearColor];
@@ -201,7 +200,6 @@
 											 cancelButtonTitle:NSLocalizedString(NSLocalizedString(@"OK",nil), nil) 
 											 otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 	}
 }
 
@@ -214,12 +212,6 @@
 }
 */
 
-- (void)dealloc {
-	[mSearchField release];
-	[url_ release];
-	[browser_ release];
-    [super dealloc];
-}
 
 
 @end

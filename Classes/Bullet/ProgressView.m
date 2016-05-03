@@ -52,11 +52,6 @@
 }
 */
 
-- (void)dealloc {
-	[background release];
-	[foreground release];
-    [super dealloc];
-}
 
 
 @end

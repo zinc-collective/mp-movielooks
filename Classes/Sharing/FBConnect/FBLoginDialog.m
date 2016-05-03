@@ -33,8 +33,8 @@
          delegate:(id <FBLoginDialogDelegate>) delegate{
   
   self = [super init];
-  _serverURL = [loginURL retain];
-  _params = [params retain];
+  _serverURL = loginURL;
+  _params = params;
   _loginDelegate = delegate;
   return self;
 }

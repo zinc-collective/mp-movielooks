@@ -45,24 +45,24 @@
 	
 	
 @private
-	id _delegate;	
+	id __weak _delegate;	
 }
-@property (assign) id<WebSiteCtrlorDelegate> delegate;
+@property (weak) id<WebSiteCtrlorDelegate> delegate;
 
 
-@property (nonatomic, retain) NSString *_webSiteURL;
-@property (nonatomic, retain) NSString *_navTitle;
-@property (nonatomic, retain) UINavigationBar *navBar;
-@property (nonatomic, retain) UINavigationItem *navItem;
-@property (nonatomic, retain) UIToolbar *toolBar;
-@property (nonatomic, retain) UIBarButtonItem *doneBtn;
-@property (nonatomic, retain) UIBarButtonItem *refreshBtn;
-@property (nonatomic, retain) UIBarButtonItem *backBtn;
-@property (nonatomic, retain) UIBarButtonItem *forwardBtn;
-@property (nonatomic, retain) UIBarButtonItem *safariBtn;
+@property (nonatomic, strong) NSString *_webSiteURL;
+@property (nonatomic, strong) NSString *_navTitle;
+@property (nonatomic, strong) UINavigationBar *navBar;
+@property (nonatomic, strong) UINavigationItem *navItem;
+@property (nonatomic, strong) UIToolbar *toolBar;
+@property (nonatomic, strong) UIBarButtonItem *doneBtn;
+@property (nonatomic, strong) UIBarButtonItem *refreshBtn;
+@property (nonatomic, strong) UIBarButtonItem *backBtn;
+@property (nonatomic, strong) UIBarButtonItem *forwardBtn;
+@property (nonatomic, strong) UIBarButtonItem *safariBtn;
 
-@property (nonatomic, retain) UIColor *navBarTintColor;
-@property (nonatomic, retain) UIColor *toolBarTintColor;
+@property (nonatomic, strong) UIColor *navBarTintColor;
+@property (nonatomic, strong) UIColor *toolBarTintColor;
 @property (nonatomic)         BOOL     bShowToolBar;
 @property (nonatomic)         BOOL     bShowStatusBar;
 

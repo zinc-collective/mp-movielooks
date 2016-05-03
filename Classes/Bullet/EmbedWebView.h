@@ -17,7 +17,7 @@
 	
 	UITextField					*mSearchField;
 }
-@property (nonatomic,retain) NSString* url_;
+@property (nonatomic,strong) NSString* url_;
 
 - (void) openUrl:(NSString*)uri;
 - (void) reLoad;

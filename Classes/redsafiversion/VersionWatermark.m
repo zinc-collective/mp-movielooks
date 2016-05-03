@@ -34,7 +34,6 @@
 		backGroundView.backgroundColor = [UIColor blackColor];
 		backGroundView.alpha = 0.5;
 		[self addSubview:backGroundView];
-		[backGroundView release];
 
 		_version = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, w-30, 30)];
 		_version.textAlignment = NSTextAlignmentCenter;
@@ -43,13 +42,12 @@
 		_version.font = [UIFont systemFontOfSize:13];
 		[self addSubview:_version];
 		
-		UIButton *close = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+		UIButton *close = [UIButton buttonWithType:UIButtonTypeCustom];
 		close.alpha = 0.65;
 		close.frame = CGRectMake(w-30, 0.0, 30.0, 30.0);
 		[close setBackgroundImage:[UIImage imageNamed:@"rs_version_close_btn.png"] forState:UIControlStateNormal];
 		[close addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:close];
-		[close release];
 		
 		[self loadingVersion];
 		
@@ -163,10 +161,6 @@
 	[UIView commitAnimations];
 }
 
-- (void) dealloc {
-	[_version release];
-    [super dealloc];
-}
 
 
 

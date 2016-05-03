@@ -30,7 +30,7 @@ typedef NSUInteger RenderingState;
 	NSInteger lookIndex;
 	NSInteger pageIndex;
 
-	id<LooksBrowserEventDelegate> delegate;
+	id<LooksBrowserEventDelegate> __weak delegate;
 	
 	UIImageView *frameView;
 	UIImageView *borderView;
@@ -50,17 +50,17 @@ typedef NSUInteger RenderingState;
 @property(nonatomic) NSInteger lookIndex;
 @property(nonatomic) NSInteger pageIndex;
 
-@property(nonatomic, assign) id<LooksBrowserEventDelegate> delegate;
+@property(nonatomic, weak) id<LooksBrowserEventDelegate> delegate;
 
-@property(nonatomic, retain) UIImageView *frameView;
-@property(nonatomic, retain) UIImageView *borderView;
+@property(nonatomic, strong) UIImageView *frameView;
+@property(nonatomic, strong) UIImageView *borderView;
 //@property(nonatomic, retain) UIImageView *titleBackgroundView;
-@property(nonatomic, retain) UIView *titleBackgroundView;
-@property(nonatomic, retain) UILabel *titleLabel;
-@property(nonatomic, retain) UIView *descBackgroundView;
-@property(nonatomic, retain) UILabel *descLabel;
-@property(nonatomic, retain) UIImageView *lockView;
-@property(nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property(nonatomic, strong) UIView *titleBackgroundView;
+@property(nonatomic, strong) UILabel *titleLabel;
+@property(nonatomic, strong) UIView *descBackgroundView;
+@property(nonatomic, strong) UILabel *descLabel;
+@property(nonatomic, strong) UIImageView *lockView;
+@property(nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property(nonatomic) RenderingState renderingState;
 
 @property(nonatomic) CGRect actualRect;

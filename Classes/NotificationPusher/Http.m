@@ -202,7 +202,6 @@
 	if(urlConnection != nil)
 	{
 		[urlConnection cancel];
-		[urlConnection release];
 		urlConnection = nil;
 	}
 }
@@ -210,7 +209,6 @@
 {
 	if(receivedData != nil)
 	{
-		[receivedData release];
 		receivedData = nil;
 	}
 }
@@ -224,7 +222,6 @@
 	
 	m_bStop = NO;
 	
-	[super dealloc];
 }
 
 

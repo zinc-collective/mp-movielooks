@@ -124,11 +124,9 @@
 		EAGLContext *subContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2 sharegroup:group];
 		if (!subContext || ![EAGLContext setCurrentContext:subContext])
 		{
-			[subContext release];
 			NSLog(@"Could not create WorkingContext");
 			return;
 		}
-		[subContext release];
 		
 		[renderer loadLookParam:lookDic withMode:videoMode];
 	}
@@ -136,25 +134,9 @@
 
 - (void)dealloc
 {
-	[resolutionLabel release];
-	[fullLabel release];
-	[halfLabel release];
-	[bDecrease release];
-	[bIncrease release];
-	[brightnessLabel release];
 	//[border release];
-	[sDecrease release];
-	[sIncrease release];
-	[strengthLabel release];
-	[modeSwitcher release];
-	[mThumbImageView release];
-	[mThumbView release];
-	[strengthSlider release];
-	[brightnessSlider release];
-	[mActivityIndicator release];
 	self.renderer = nil;
 	
-	[super dealloc];
 }
 
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -200,30 +182,30 @@
 
 - (void)renderImage:(id)sender
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
-	renderer.looksStrengthValue = fStrengthValue;
-	renderer.looksBrightnessValue = fBrightnessValue;
+		renderer.looksStrengthValue = fStrengthValue;
+		renderer.looksBrightnessValue = fBrightnessValue;
 
-	UIImage* image = nil;
-	CGImageRef imageRef = [renderer frameProcessingAndReturnImage:nil flipPixel:NO];
+		UIImage* image = nil;
+		CGImageRef imageRef = [renderer frameProcessingAndReturnImage:nil flipPixel:NO];
 //#if 0
-	if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait)
-		image = [[UIImage alloc] initWithCGImage:imageRef  scale:1.0 orientation:UIImageOrientationRight];
-	else
-		image = [[UIImage alloc] initWithCGImage:imageRef];
+		if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait)
+			image = [[UIImage alloc] initWithCGImage:imageRef  scale:1.0 orientation:UIImageOrientationRight];
+		else
+			image = [[UIImage alloc] initWithCGImage:imageRef];
 //#endif
 //    image = [[UIImage alloc] initWithCGImage:imageRef];
-	
+		
     CGImageRelease(imageRef);
-	
-	dispatch_async(dispatch_get_main_queue(),
-				   ^{
+		
+		dispatch_async(dispatch_get_main_queue(),
+					   ^{
                        //mThumbImageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
 //#if 0
                        //CGRect thumbnailRect = mThumbView.frame;
                        //CGSize imagesize = image.size;
-					   //if ( imagesize.width > imagesize.height )
+						   //if ( imagesize.width > imagesize.height )
                        //{
                        //    CGSize thumbnailImageSize = CGSizeMake(imagesize.width*thumbnailRect.size.height/imagesize.height,thumbnailRect.size.height);
                        //    mThumbImageView.frame = CGRectMake((thumbnailRect.size.width-thumbnailImageSize.width)/2, 0, thumbnailImageSize.width, thumbnailImageSize.height);
@@ -236,16 +218,15 @@
                        //CGRect trect = mThumbView.frame;
                        //CGRect timagerect = mThumbImageView.frame;
 //#endif
-					   mThumbImageView.image = image;
+						   mThumbImageView.image = image;
                        //bret
                        if (IS_IPAD)
                            [self layoutiPadAfterorientation:self.statusBarOrientation];
                        else
                            [self layoutiPhoneAfterorientation:self.statusBarOrientation];
                        //
-					   [image release];					   
-				   });
-	[pool release];
+					   });
+	}
 	
 	[self rendererEnd];
 }
@@ -1055,7 +1036,6 @@
 	NSLog(@"Estimated Render Time: %f seconds", estimateRenderTimeRemaining);
 	
 	free(estimateFrameData);
-	[movieAsset release];
 	
 	return estimateRenderTimeRemaining;
 }

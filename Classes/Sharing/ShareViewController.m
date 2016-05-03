@@ -867,7 +867,6 @@
 	UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(0, yPos, view.bounds.size.width, 2)];
 	separator.backgroundColor = viewBorderColor;
 	[view addSubview:separator];
-	[separator release];
 }
 
 -(void)delayPresentProviders:(BOOL) resignin
@@ -1042,7 +1041,6 @@
     
     UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
 	self.navigationItem.leftBarButtonItem = backButton;
-	[backButton release];
     
 	viewBorderColor = [UIColor clearColor];
     
@@ -1160,7 +1158,7 @@
     //UIButton *btnLogout; //sign out of facebook/youtube
     //UIButton *btnCancel;
 
-   	btnLogout = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+   	btnLogout = [UIButton buttonWithType:UIButtonTypeCustom];
 	//btnLogout.frame = CGRectMake(frameRect.size.width-btnWidth/2, logoutButtonHeight, btnWidth/2 , logoutButtonHeight);
 	btnLogout.backgroundColor = [UIColor clearColor];
 	btnLogout.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
@@ -1190,7 +1188,7 @@
 	[btnCancel addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 	[contentView addSubview:btnCancel];
 #endif
-    btnUpload = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    btnUpload = [UIButton buttonWithType:UIButtonTypeCustom];
 	//btnUpload.frame = CGRectMake(xPos, yPos, btnWidth, buttonHeight);
 	btnUpload.backgroundColor = [UIColor clearColor];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -1414,25 +1412,21 @@
     
 	if(mAlertView)
 	{
-		[mAlertView release];
 		mAlertView = nil;
 	}
     
 	if (titleInput)
     {
-		[titleInput release];
 		titleInput = nil;
 	}
 
 	if (_facebook) //nil
     {
-		[_facebook release];
 		_facebook = nil;
 	}
 	
     if (_youtube)//nil
     {
-		[_youtube release];
 		_youtube = nil;
 	}
 #if 0
@@ -1444,40 +1438,26 @@
 #endif
 	if (progressView)
     {
-		[progressView release];
 		progressView = nil;
 	}
 	
 	if (youtubeSettingsView)
     {
-		[youtubeSettingsView release];
 		youtubeSettingsView = nil;
 	}
 	
 	if (contentView)
     {
-		[contentView release];
 		contentView = nil;
 	}
     
-    [mThumbImageView release];
-    [mThumbImage release]; //check
-    [titleLabel release];
+     //check
     //titleInput
-    [uploadingLabel release];
     //progressView
-    [iconView release];
-    [userLabel release];
-    [btnLogout release];
-    [btnUpload release];
-    [privacyLabel release];
-    [facebookPrivacyControl release];
-    [youtubePrivacyControl release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ResignActivePause" object:nil];
-	[super dealloc];
 }
 
 -(Boolean) _showView:(UIView *)view activeView:(UIView *)activeView
@@ -1632,7 +1612,6 @@
                         isUploading = YES;
                         UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
                         self.navigationItem.leftBarButtonItem = backButton;
-                        [backButton release];
                         [_facebook uploadVideoToFacebook:dic];
 						[progressView updateProgress:0.0];
 						//[self setCurrentSubView:progressView];
@@ -1695,7 +1674,6 @@
                         isUploading = YES;
                         UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
                         self.navigationItem.leftBarButtonItem = backButton;
-                        [backButton release];
                         [_youtube uploadVideoToYoutube:dic];
 						[progressView updateProgress:0.0];
 						//[self setCurrentSubView:progressView];
@@ -1707,8 +1685,6 @@
 			}
 		}
 
-		[shareVideoUrl release];
-		[dic release];
 
 	} else
     {
@@ -1786,7 +1762,6 @@
             [self cancelUploadAction];
             UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
             self.navigationItem.leftBarButtonItem = backButton;
-            [backButton release];
             [self backAction:nil];
 		}
 	}else if (alertView.tag == 1003)
@@ -1807,7 +1782,6 @@
 	
 	if(mAlertView)
 	{
-		[mAlertView release];
 		mAlertView = nil;
 	}
     isAlertViewShown = YES;
@@ -1846,7 +1820,6 @@
         
         if(mAlertView)
         {
-            [mAlertView release];
             mAlertView = nil;
         }
         isAlertViewShown = YES;
@@ -1885,7 +1858,6 @@
 
         if(mAlertView)
         {
-            [mAlertView release];
             mAlertView = nil;
         }
         isAlertViewShown = YES;
@@ -1937,7 +1909,6 @@
 	webSite.delegate = self;
 	[webSite setCtrlorWithURL:joinUrl forTitle:@"Like MovieLooks Facebook page"];
     [self presentViewController:webSite animated:YES completion:^{}];
-	[webSite release];
 }
 
 

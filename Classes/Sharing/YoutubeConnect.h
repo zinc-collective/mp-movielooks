@@ -35,7 +35,7 @@ typedef void(^YOUTUBE_HANDLER)(void);
     NSURL *_uploadLocationURL;  // URL for restarting an upload.
 }
 
-@property (nonatomic, assign) id <YoutubeConnectDelegate> delegate_;
+@property (nonatomic, weak) id <YoutubeConnectDelegate> delegate_;
 
 // http://stackoverflow.com/questions/4081831/how-to-store-blocks-in-properties-in-objective-c
 @property(copy, nonatomic) YOUTUBE_HANDLER kAuthHandler;

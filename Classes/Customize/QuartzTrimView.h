@@ -49,10 +49,10 @@
     BOOL isEditing;
     BOOL isRangeChanged;
 	
-	id<QuartzTrimViewDelegate> _delegate;
+	id<QuartzTrimViewDelegate> __weak _delegate;
 }
 
-@property(nonatomic,assign) id<QuartzTrimViewDelegate> delegate;
+@property(nonatomic,weak) id<QuartzTrimViewDelegate> delegate;
 @property(nonatomic,assign) CGFloat maskWidth;
 @property(nonatomic,assign) CGFloat maskHeight;
 @property(nonatomic,assign) CGFloat maskWidthSpace;

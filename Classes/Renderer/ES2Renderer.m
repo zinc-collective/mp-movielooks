@@ -209,7 +209,6 @@ extern GLfloat texcoords[];
 	CGImageRef imageRef = keyFrameImage.CGImage;
 	if (!imageRef)
 	{ 
-		[keyFrameImage release];
 		return;
 	}
 	
@@ -230,7 +229,6 @@ extern GLfloat texcoords[];
 //	ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];		
 //	[assetsLibrary writeImageToSavedPhotosAlbum:CGBitmapContextCreateImage(keyFrameContext) orientation:ALAssetOrientationUp completionBlock:nil];
 	CGContextRelease(keyFrameContext);
-	[keyFrameImage release];	
 }
 
 - (void)loadKeyFrameCrop
@@ -242,7 +240,6 @@ extern GLfloat texcoords[];
 	CGImageRef imageRef = keyFrameImage.CGImage;
 	if (!imageRef)
 	{
-		[keyFrameImage release];
 		return;
 	}
 	
@@ -252,7 +249,6 @@ extern GLfloat texcoords[];
     CGRect originalRect = CGRectMake (0,0,width,height);
     CGRect croppedRect = [Utilities squareCrop:originalRect];
     CGImageRef imageRefCropped = CGImageCreateWithImageInRect(imageRef, croppedRect);
-	[keyFrameImage release];
     if (!imageRefCropped)
 	{
 		return;
@@ -351,11 +347,9 @@ extern GLfloat texcoords[];
 	
 	if (!subContext || ![EAGLContext setCurrentContext:subContext])
 	{
-		[subContext release];
 		NSLog(@"Could not create WorkingContext");
 		return;
 	}
-	[subContext release];
 	
 	if (!doQuickRender)
 	{
@@ -911,7 +905,6 @@ extern GLfloat texcoords[];
 		free(renderBuffer);
 	if(keyFrameData)
 		free(keyFrameData);
-	[super dealloc];
 }
 
 @end

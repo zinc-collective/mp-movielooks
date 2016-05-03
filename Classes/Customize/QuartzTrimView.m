@@ -383,7 +383,6 @@
 		CGImageRelease(mControlImageRef);
 	if(mUnselectedControlImageRef)
 		CGImageRelease(mUnselectedControlImageRef);	
-    [super dealloc];
 }
 
 @end

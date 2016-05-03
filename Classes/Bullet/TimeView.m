@@ -21,7 +21,6 @@
 		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
 			UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Processing_xianshishijian.png"]];
 			[self addSubview:background];
-			[background release];
 			
 			titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 3, 160, frame.size.height-6)];
 			titleLabel.font = [UIFont systemFontOfSize:20.0];
@@ -29,7 +28,6 @@
 			titleLabel.textColor = [UIColor whiteColor];
 			titleLabel.text = NSLocalizedString(@"Time Remaining:", nil);
 			[self addSubview:titleLabel];
-			[titleLabel release];
 			
 			timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 1, 100, frame.size.height-4)];
 			timeLabel.font = [UIFont systemFontOfSize:28.0];
@@ -38,12 +36,10 @@
 			timeLabel.textColor = [UIColor whiteColor];
 			timeLabel.text = @"0:00:00";
 			[self addSubview:timeLabel];
-			[timeLabel release];
 		}
 		else {
 			UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet_time_background.png"]];
 			[self addSubview:background];
-			[background release];
 			
 			titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, 3, 95, 18)];
 			titleLabel.font = [UIFont systemFontOfSize:12.0];
@@ -51,7 +47,6 @@
 			titleLabel.textColor = [UIColor whiteColor];
 			titleLabel.text = NSLocalizedString(@"Time Remaining:", nil);
 			[self addSubview:titleLabel];
-			[titleLabel release];
 			
 			timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 1, 55, 22)];
 			timeLabel.font = [UIFont systemFontOfSize:16.0];
@@ -60,7 +55,6 @@
 			timeLabel.textColor = [UIColor whiteColor];
 			timeLabel.text = @"0:00:00";
 			[self addSubview:timeLabel];
-			[timeLabel release];
 		}
 		
 		
@@ -103,9 +97,6 @@
 }
 */
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

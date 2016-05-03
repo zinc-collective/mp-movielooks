@@ -59,7 +59,7 @@ typedef enum
 	
 	CGSize				videoSize_;
 	CGSize				outputSize;
-	ES2Renderer			*renderer;
+	ES2Renderer			*__weak renderer;
 	MovieProcessor*		movieProcessor;
 	NSString*			processedMoviePath;
 	int 				_curInputFrameIdx;		// input frame idx from reader (may not match _completed frames if we are only rendering at half frame rate)
@@ -134,7 +134,7 @@ typedef enum
 }
 
 @property (nonatomic) VideoMode videoMode;
-@property (nonatomic, assign) ES2Renderer *renderer;
+@property (nonatomic, weak) ES2Renderer *renderer;
 @property (nonatomic) float fStrengthValue;
 @property (nonatomic) float fBrightnessValue;
 @property (nonatomic) NSTimeInterval renderStartTime;
@@ -142,7 +142,7 @@ typedef enum
 @property (nonatomic) NSTimeInterval estimateClipProcessTime;
 @property (nonatomic) NSTimeInterval estimateTotalRenderTime;
 @property (nonatomic) NSTimeInterval measuredTotalRenderTime;
-@property (nonatomic, retain) UIImage *mThumbImage;
+@property (nonatomic, strong) UIImage *mThumbImage;
 
 -(void)setRendererType:(RendererType)type withFullFramerate:(BOOL)fullFramerate andLookParam:(NSDictionary*)lookDic;
 

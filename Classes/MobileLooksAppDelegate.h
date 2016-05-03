@@ -34,8 +34,8 @@ BOOL TooHighForDevice(CGSize videoSize);
 @property (nonatomic) double videoDuration;
 @property (nonatomic) BOOL debug;
 
-@property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UINavigationController *viewController;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UINavigationController *viewController;
 //bret @property (strong, nonatomic) UIAlertView *notificationAlert;
 
 -(BOOL)checkIfWithinActiveDuration;

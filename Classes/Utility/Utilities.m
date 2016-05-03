@@ -81,7 +81,6 @@ static NSString* g_selectedVideoTitle = nil;
 +(NSString *)selectedVideoTitle:(NSString*)title{
 	if(title!=nil)
 	{
-		[g_selectedVideoTitle release];
 		g_selectedVideoTitle = [title copy];
 	}
 	return g_selectedVideoTitle;
@@ -90,7 +89,6 @@ static NSString* g_selectedVideoTitle = nil;
 +(NSURL *)selectedVideoPathWithURL:(NSURL*)url{
 	if(url!=nil)
 	{
-		[g_selectedVideoURL release];
 		g_selectedVideoURL = [url copy];
 	}
 	return g_selectedVideoURL; 

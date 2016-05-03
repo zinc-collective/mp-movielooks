@@ -44,7 +44,7 @@ NSString *const kKeychainItemName = @"com.redgiantsoftware.movielooks: YouTube";
 
 - (void) setPrivacy:(NSString *)value
 {
-	_privacy = [[value copy] autorelease];
+	_privacy = [value copy];
 }
 
 - (NSString *) getUsername
@@ -197,10 +197,11 @@ NSString *const kKeychainItemName = @"com.redgiantsoftware.movielooks: YouTube";
 		}];
 
 
+        __weak YoutubeConnect* weakSelf = self;
 		_uploadFileTicket.uploadProgressBlock = ^(GTLServiceTicket *ticket,
 												  unsigned long long numberOfBytesRead,
 												  unsigned long long dataLength) {
-			[self.delegate_ sendingVideoDataToYoutube:numberOfBytesRead dataLength:dataLength];
+			[weakSelf.delegate_ sendingVideoDataToYoutube:numberOfBytesRead dataLength:dataLength];
 		};
 
 		// To allow restarting after stopping, we need to track the upload location
@@ -383,12 +384,12 @@ NSString *const kKeychainItemName = @"com.redgiantsoftware.movielooks: YouTube";
   
 		// Show the OAuth 2 sign-in controller.
 		GTMOAuth2ViewControllerTouch *viewController;
-		viewController = [[[GTMOAuth2ViewControllerTouch alloc] initWithScope:kGTLAuthScopeYouTube
+		viewController = [[GTMOAuth2ViewControllerTouch alloc] initWithScope:kGTLAuthScopeYouTube
 								 clientID:clientID
 						     clientSecret:clientSecret
 						 keychainItemName:kKeychainItemName
 							     delegate:self
-						 finishedSelector:@selector(viewController:finishedWithAuth:error:)] autorelease];
+						 finishedSelector:@selector(viewController:finishedWithAuth:error:)];
         //UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Test",nil) style:UIBarButtonItemStylePlain target:viewController action:@selector(backAction:)];
         //viewController.navigationItem.leftBarButtonItem = backButton;
         //viewController.navigationItem.leftBarButtonItem = nil;
@@ -443,12 +444,12 @@ NSString *const kKeychainItemName = @"com.redgiantsoftware.movielooks: YouTube";
         
 		// Show the OAuth 2 sign-in controller.
 		GTMOAuth2ViewControllerTouch *viewController;
-		viewController = [[[GTMOAuth2ViewControllerTouch alloc] initWithScope:kGTLAuthScopeYouTube
+		viewController = [[GTMOAuth2ViewControllerTouch alloc] initWithScope:kGTLAuthScopeYouTube
                                                                      clientID:clientID
                                                                  clientSecret:clientSecret
                                                              keychainItemName:kKeychainItemName
                                                                      delegate:self
-                                                             finishedSelector:@selector(viewController:finishedWithAuth:error:)] autorelease];
+                                                             finishedSelector:@selector(viewController:finishedWithAuth:error:)];
 		
         //[self presentViewController:viewController animated:TRUE completion:nil];
 		

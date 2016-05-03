@@ -19,10 +19,10 @@
 	
 }
 
-@property (nonatomic, retain) NSString *ID;
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *content;
-@property (nonatomic, retain) NSString *sendtime;
+@property (nonatomic, strong) NSString *ID;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSString *sendtime;
 @property (nonatomic) BOOL      unread;
 
 @end

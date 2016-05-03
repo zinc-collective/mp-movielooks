@@ -19,6 +19,6 @@
 
 -(void)resize:(CGRect)newFrame;
 -(void)updateThumbnailLayer:(AVAsset*)asset withLayerNum:(NSUInteger)layerNum;
-@property(nonatomic,retain) QuartzTrimView* quartzTrimView;
+@property(nonatomic,strong) QuartzTrimView* quartzTrimView;
 
 @end

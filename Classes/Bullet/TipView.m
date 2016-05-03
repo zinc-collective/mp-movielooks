@@ -270,13 +270,6 @@
 }
 */
 
-- (void)dealloc {
-	[contentLabel release];
-	[titleLabel release];
-	[background release];
-	[borderView release];
-    [super dealloc];
-}
 
 
 @end

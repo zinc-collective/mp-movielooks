@@ -20,11 +20,13 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 @implementation MobileLooksTrimPlayerController
 
 @synthesize delegate = _delegate;
+@synthesize mCustomTrimView;
+@synthesize mPlayer;
 
 //storyboard
 - (void)setUrl:(NSURL *)sourceUrl withAssetMode:(AssetMode)mode
 {
-    mURL = [sourceUrl copyWithZone:[self zone]];
+    mURL = [sourceUrl copyWithZone:nil];
     mExportURL = nil;
     mAVTrimSession = nil;
     mTrimProgressTimer = nil;
@@ -54,29 +56,17 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 
 - (void)dealloc
 {
-	[mURL release];
 
 	//bret [doneButton removeFromSuperview];
 	[trimButton removeFromSuperview];
+    [mPlayer removeObserver:self forKeyPath:@"rate"];
 	//bret [doneButton release];
-	[trimButton release];
 
 	//[backButton release];
-	[cancelButton release];
 
     //[goBackButton release];
-    [goPlayButton release];
-    [goPauseButton release];
-    [movieAdvanceSliderBackground release];
-    [movieAdvanceSlider release];
-    [nextButton release];
 
-	[mCustomTrimView release];
-	[mPlaybackView release];
-	[mProgressView release];
-	[mPlayButton release];
     
-    [super dealloc];
 }
 
 -(void)layoutIPhoneLandscape
@@ -367,11 +357,9 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	{
 		[mPlayer removeObserver:self forKeyPath:@"rate"];	
 		[mPlayer removeTimeObserver:mPlayTimeObserver];
-		[mPlayer release];
 		mPlayer = nil;
 	}	
 //	[mPlaybackView setPlayer:nil];
-	[mPlayTimeObserver release];		
 }
 
 -(void)pauseToMultiTask
@@ -426,36 +414,41 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
 #endif
 	
-	mPlayer = [[AVPlayer allocWithZone:[self zone]] initWithURL:mURL];
+	mPlayer = [[AVPlayer alloc] initWithURL:mURL];
 	[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:(__bridge void * _Nullable)(AVPlayerRateObservationContext)];
 	[mPlaybackView setPlayer:mPlayer];
 
-	mPlayTimeObserver = [[mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, 600) queue:dispatch_get_main_queue() usingBlock:
+    __weak MobileLooksTrimPlayerController* weakSelf = self;
+	mPlayTimeObserver = [mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, 600) queue:dispatch_get_main_queue() usingBlock:
 						  ^(CMTime time) {
-							  if (mPlayer.rate==0.0) return;
-							  
-							  Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
-							  NSLog(@"Player factor:%f, Time(%lld,%d)",factor,[mPlayer currentTime].value,[mPlayer currentTime].timescale);
-							  if([mCustomTrimView.quartzTrimView isOverRange])
-							  {
-//								  factor = [mCustomTrimView.quartzTrimView getLeftPos];
-//								  CMTime videoPosTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(mVideoDuration)*factor,600);
-//								  [mPlayer seekToTime:videoPosTime];
-								  [mPlayer pause];
-                                  movieAdvanceSlider.value = 0.0;
-                                  goPauseButton.hidden = YES;
-                                  goPlayButton.hidden = NO;
-//								  mPlayerState = AVPlayerReady;
-//								  [self displayPlayerButton];	
-							  }
-							[mCustomTrimView.quartzTrimView setPickerPos:factor displayPicker:YES];
-                            movieAdvanceSlider.value = factor;
-						  }] retain];
+                              [weakSelf onTimeObserver];
+						  }];
 	
 	mPlayerState = AVPlayerReady;
 	[self displayPlayerButton];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseToMultiTask) name:@"MultiTaskPause" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeFromMultiTask) name:@"MultiTaskResume" object:nil];	
+}
+
+- (void)onTimeObserver {
+	  if (mPlayer.rate==0.0) return;
+	  
+	  Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
+//							  NSLog(@"Player factor:%f, Time(%lld,%d)",factor,[mPlayer currentTime].value,[mPlayer currentTime].timescale);
+	  if([mCustomTrimView.quartzTrimView isOverRange])
+	  {
+//								  factor = [mCustomTrimView.quartzTrimView getLeftPos];
+//								  CMTime videoPosTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(mVideoDuration)*factor,600);
+//								  [mPlayer seekToTime:videoPosTime];
+		  [mPlayer pause];
+          movieAdvanceSlider.value = 0.0;
+          goPauseButton.hidden = YES;
+          goPlayButton.hidden = NO;
+//								  weakSelf.mPlayerState = AVPlayerReady;
+//								  [self displayPlayerButton];	
+	  }
+	[mCustomTrimView.quartzTrimView setPickerPos:factor displayPicker:YES];
+    movieAdvanceSlider.value = factor;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -508,7 +501,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	//bret [doneButton setImage:[UIImage imageNamed:@"done_button.png"] forState:UIControlStateNormal];
 	//bret [doneButton addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
 	
-	trimButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	trimButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[trimButton setImage:[UIImage imageNamed:@"trim_button.png"] forState:UIControlStateNormal];
 	[trimButton addTarget:self action:@selector(trimAction:) forControlEvents:UIControlEventTouchUpInside];
 	
@@ -521,19 +514,19 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
         //[goBackButton setImage:[UIImage imageNamed:@"slider_back_ipad_226x71.png"] forState:UIControlStateNormal];
         //[goBackButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        nextButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [nextButton setImage:[UIImage imageNamed:@"slider_next_blue_ipad_228x72"] forState:UIControlStateNormal];
         [nextButton addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        goPlayButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPlayButton setImage:[UIImage imageNamed:@"slider_play_ipad_68x71"] forState:UIControlStateNormal];
         [goPlayButton addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        goPauseButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPauseButton setImage:[UIImage imageNamed:@"slider_pause_ipad_68x71"] forState:UIControlStateNormal];
         [goPauseButton addTarget:self action:@selector(pauseAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        movieAdvanceSliderBackground = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        movieAdvanceSliderBackground = [UIButton buttonWithType:UIButtonTypeCustom];
         [movieAdvanceSliderBackground setImage:[UIImage imageNamed:@"slider_frame_ipad_463x71"] forState:UIControlStateNormal];
         [movieAdvanceSliderBackground setEnabled:NO];
         
@@ -546,19 +539,19 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
         //[goBackButton setImage:[UIImage imageNamed:@"slider_back_iphone_106x33.png"] forState:UIControlStateNormal];
         //[goBackButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        nextButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [nextButton setImage:[UIImage imageNamed:@"slider_next_blue_iphone_107x34"] forState:UIControlStateNormal];
         [nextButton addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        goPlayButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPlayButton setImage:[UIImage imageNamed:@"slider_play_iphone_32x33"] forState:UIControlStateNormal];
         [goPlayButton addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        goPauseButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPauseButton setImage:[UIImage imageNamed:@"slider_pause_iphone_32x33"] forState:UIControlStateNormal];
         [goPauseButton addTarget:self action:@selector(pauseAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        movieAdvanceSliderBackground = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        movieAdvanceSliderBackground = [UIButton buttonWithType:UIButtonTypeCustom];
         [movieAdvanceSliderBackground setImage:[UIImage imageNamed:@"slider_frame_iphone_218x33"] forState:UIControlStateNormal];
         [movieAdvanceSliderBackground setEnabled:NO];
         
@@ -636,7 +629,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
         mProgressView.alpha = 0.f;
 	}
 	
-	mPlayButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	mPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	//[mPlayButton setImage:[UIImage imageNamed:@"trimButtonPlay.png"] forState:UIControlStateNormal];
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [mPlayButton setImage:[UIImage imageNamed:@"play_button253x253.png"] forState:UIControlStateNormal];
@@ -682,7 +675,6 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	
 	UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
 	[mPlaybackView addGestureRecognizer:tapRecognizer];
-	[tapRecognizer release];
 	mIsTrimming = NO;
 	
 	[self.view addSubview:mPlaybackView];
@@ -712,7 +704,6 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	CGFloat totalWidth = mCustomTrimView.quartzTrimView.maskWidth/mCustomTrimView.quartzTrimView.maskHeight;
 	
 	[mCustomTrimView updateThumbnailLayer:avAsset withLayerNum:ceil(totalWidth/width)];
- 	[avAsset release];
 }
 
  
@@ -747,7 +738,6 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	NSError* err = nil;
 	CMTime currentTime = [mPlayer currentTime];
 	CGImageRef keyFrameRef =  [avImageGenerator copyCGImageAtTime:currentTime actualTime:NULL error:&err];
-	[avAsset release];
 	
 	if(err)
 		NSLog(@"%@",[err localizedDescription]);
@@ -796,7 +786,6 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	NSError* err = nil;
 	CMTime currentTime = [mPlayer currentTime];
 	CGImageRef keyFrameRef =  [avImageGenerator copyCGImageAtTime:currentTime actualTime:NULL error:&err];
-	[avAsset release];
 
 	if(err)
 		NSLog(@"%@",[err localizedDescription]);
@@ -882,7 +871,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 		}];
 		
 		self.navigationItem.leftBarButtonItem.enabled = NO;
-		mTrimProgressTimer = [[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateTrimProgress:) userInfo:nil repeats:YES] retain];
+		mTrimProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateTrimProgress:) userInfo:nil repeats:YES];
 		mCustomTrimView.userInteractionEnabled = NO;
 		//bret doneButton.enabled = NO;
 		nextButton.enabled = NO; //bug fix
@@ -997,7 +986,6 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 -(void)trimCompleteEvent:(id)sender
 {
 	NSLog(@"trimCompleteEvent Begin");
-	[mAVTrimSession release];
 	mAVTrimSession = nil;
 
 	//pause export
@@ -1009,11 +997,9 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	
 	if(mURL)
 	{
-		[mURL release];
 		mURL = nil;
 	}
 	mURL = [mExportURL copy];
-	[mExportURL release];
 	mExportURL = nil;
 	
 	//fix for new UX logic
@@ -1023,7 +1009,6 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 		
 		[mPlayer replaceCurrentItemWithPlayerItem:nil];
 		[mTrimProgressTimer invalidate];
-		[mTrimProgressTimer release];
 		mTrimProgressTimer = nil;
 		
 		[self clearPlayer];
@@ -1053,11 +1038,9 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 
 	[mPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:avAsset]];
 	[mTrimProgressTimer invalidate];
-	[mTrimProgressTimer release];
 	mTrimProgressTimer = nil;
 		
 	mVideoDuration = avAsset.duration;
-	[avAsset release];
 	
 	mIsTrimming = NO;
 	NSLog(@"Time(%d,%lld)",mVideoDuration.timescale,mVideoDuration.value);
@@ -1230,4 +1213,5 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 					   });
 	}
 }
+
 @end

@@ -67,10 +67,10 @@
     BOOL backfromPause; //bret movielooks update
 	NSUInteger subMovieIndex;
 	CMTime subMovieStarts[4096];
-	id<MovieProcessorDelegate> _delegate;
+	id<MovieProcessorDelegate> __weak _delegate;
 }
 
-@property(nonatomic, assign) id<MovieProcessorDelegate> delegate;
+@property(nonatomic, weak) id<MovieProcessorDelegate> delegate;
 -(id)initWithReadURL:(NSURL*)readURL;
 -(void)writeMovieToAlbum:(NSString*)writePath;
 -(void)startComposeMovie;

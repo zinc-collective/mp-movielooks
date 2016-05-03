@@ -31,8 +31,8 @@
 }
 
 - (void) setSessionWithFacebook:(Facebook *)facebook andUid:(NSString *)uid {
-  _facebook = [facebook retain];
-  _uid = [uid retain];
+  _facebook = facebook;
+  _uid = uid;
 }
 
 - (Facebook *) getFacebook {
@@ -86,20 +86,12 @@
       _uid = [uid copy];
       _facebook = [[Facebook alloc] init];
       _facebook.accessToken = [[defaults stringForKey:@"FBAccessToken"] copy];
-      _facebook.expirationDate = [expirationDate retain];
+      _facebook.expirationDate = expirationDate;
     
       return _facebook;
     }
   }
   return nil;  
-}
-
-- (void)dealloc {
-  [_facebook.accessToken release];
-  [_facebook.expirationDate release];
-  [_facebook release];
-  [_uid release];
-  [super dealloc];
 }
 
 @end

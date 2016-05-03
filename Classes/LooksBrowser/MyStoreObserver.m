@@ -34,7 +34,6 @@
 				NSMutableDictionary *mutableGroupsDic = [groupsDic mutableCopy];
 				[mutableGroupsDic setObject:[NSNumber numberWithBool:NO] forKey:kProductLocked];
 				[mutableLooks addObject:mutableGroupsDic];
-				[mutableGroupsDic release];
 			}
 			else
 			{

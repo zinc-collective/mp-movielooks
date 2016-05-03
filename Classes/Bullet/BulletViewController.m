@@ -77,27 +77,27 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 }
 
 - (void) exportAction:(id)sender{
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
-	float frameFPS = 30.0f;		// NOTE: joe- I'm assuming the fps is hardcoded to 30
-	
-	_curInputFrameIdx = 0;
-	_completedFrames = 0;
-	framePastedFromPause = 0;
-	renderer.looksStrengthValue = fStrengthValue;
-	renderer.looksBrightnessValue = fBrightnessValue;
-	
-	if([movieProcessor checkFor720P:&_totalFrames])
-		renderType = RendererTypeFull;
-	else
-		[movieProcessor startRenderMovie];
+		float frameFPS = 30.0f;		// NOTE: joe- I'm assuming the fps is hardcoded to 30
+		
+		_curInputFrameIdx = 0;
+		_completedFrames = 0;
+		framePastedFromPause = 0;
+		renderer.looksStrengthValue = fStrengthValue;
+		renderer.looksBrightnessValue = fBrightnessValue;
+		
+		if([movieProcessor checkFor720P:&_totalFrames])
+			renderType = RendererTypeFull;
+		else
+			[movieProcessor startRenderMovie];
 
 
-	timeRemaining = estimateFrameProcessTime*_totalFrames + ceil(_totalFrames/frameFPS)*estimateClipProcessTime;
-	//timeScale = timeRemaining;
+		timeRemaining = estimateFrameProcessTime*_totalFrames + ceil(_totalFrames/frameFPS)*estimateClipProcessTime;
+		//timeScale = timeRemaining;
     timeScale = _totalFrames;
     //[timeView setTimeRemaining:timeRemaining isInit:YES];
-	[pool release];
+	}
 }
 
 
@@ -137,7 +137,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		{
 			NSAssert(0, @"ERROR: gettimeofday()");
 		}
-		timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES] retain];
+		timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
 	}
 
     [self layoutOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
@@ -886,7 +886,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     mPlaybackView.backgroundColor = [UIColor blackColor];
 	mPlaybackView.hidden = YES;
     
-    mPlayButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    mPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	//[mPlayButton setImage:[UIImage imageNamed:@"trimButtonPlay.png"] forState:UIControlStateNormal];
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [mPlayButton setImage:[UIImage imageNamed:@"play_button253x253.png"] forState:UIControlStateNormal];
@@ -897,7 +897,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     mPlayButton.hidden = YES;
     UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
 	[mPlaybackView addGestureRecognizer:tapRecognizer];
-	[tapRecognizer release];
     [self.view addSubview:mPlayButton];
     //[self.view addSubview:mMessage3]; //comes after mPlaybackView in view
 
@@ -906,19 +905,19 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     UIImage *thumbImage;
     if (IS_IPAD)
     {
-        goBackButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goBackButton setImage:[UIImage imageNamed:@"develop_done_button227x71.png"] forState:UIControlStateNormal];
         [goBackButton addTarget:self action:@selector(homeAction:) forControlEvents:UIControlEventTouchUpInside];
  
-        goPlayButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPlayButton setImage:[UIImage imageNamed:@"slider_play_ipad_68x71"] forState:UIControlStateNormal];
         [goPlayButton addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        goPauseButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPauseButton setImage:[UIImage imageNamed:@"slider_pause_ipad_68x71"] forState:UIControlStateNormal];
         [goPauseButton addTarget:self action:@selector(pauseAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        movieAdvanceSliderBackground = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        movieAdvanceSliderBackground = [UIButton buttonWithType:UIButtonTypeCustom];
         [movieAdvanceSliderBackground setImage:[UIImage imageNamed:@"slider_frame_ipad_463x71"] forState:UIControlStateNormal];
         [movieAdvanceSliderBackground setEnabled:NO];
         
@@ -926,44 +925,44 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
         maxImage = [[UIImage imageNamed:@"slider_background_ipad_463x71"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 5)];
         thumbImage = [UIImage imageNamed:@"slider_button_ipad_28x30"];
 
-        goChangeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goChangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goChangeButton setImage:[UIImage imageNamed:@"develop_change_button127x126.png"] forState:UIControlStateNormal];
         [goChangeButton addTarget:self action:@selector(changeAction:) forControlEvents:UIControlEventTouchUpInside];
 
         //if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
         //{
-            goFacebookButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+            goFacebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [goFacebookButton setImage:[UIImage imageNamed:@"develop_facebook_button127x126.png"] forState:UIControlStateNormal];
             [goFacebookButton addTarget:self action:@selector(facebookAction:) forControlEvents:UIControlEventTouchUpInside];
             
-            goYoutubeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+            goYoutubeButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [goYoutubeButton setImage:[UIImage imageNamed:@"develop_youtube_button127x126.png"] forState:UIControlStateNormal];
             [goYoutubeButton addTarget:self action:@selector(youtubeAction:) forControlEvents:UIControlEventTouchUpInside];
         //}else
         //{
-            goShareButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+            goShareButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [goShareButton setImage:[UIImage imageNamed:@"develop_share_button127x126.png"] forState:UIControlStateNormal];
             [goShareButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
         //}
         
-        goCameraRollButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goCameraRollButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goCameraRollButton setImage:[UIImage imageNamed:@"develop_cameraroll_button127x126.png"] forState:UIControlStateNormal];
         [goCameraRollButton addTarget:self action:@selector(cameraRollAction:) forControlEvents:UIControlEventTouchUpInside];
     }else
     {
-        goBackButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goBackButton setImage:[UIImage imageNamed:@"develop_done_button105x33_iphone.png"] forState:UIControlStateNormal];
         [goBackButton addTarget:self action:@selector(homeAction:) forControlEvents:UIControlEventTouchUpInside];
 
-        goPlayButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPlayButton setImage:[UIImage imageNamed:@"slider_play_iphone_32x33"] forState:UIControlStateNormal];
         [goPlayButton addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        goPauseButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goPauseButton setImage:[UIImage imageNamed:@"slider_pause_iphone_32x33"] forState:UIControlStateNormal];
         [goPauseButton addTarget:self action:@selector(pauseAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        movieAdvanceSliderBackground = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        movieAdvanceSliderBackground = [UIButton buttonWithType:UIButtonTypeCustom];
         [movieAdvanceSliderBackground setImage:[UIImage imageNamed:@"slider_frame_iphone_218x33"] forState:UIControlStateNormal];
         [movieAdvanceSliderBackground setEnabled:NO];
         
@@ -971,26 +970,26 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
         maxImage = [[UIImage imageNamed:@"slider_background_iphone_208x10"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 5)];
         thumbImage = [UIImage imageNamed:@"slider_button_iphone_13x14"];
         
-        goChangeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goChangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goChangeButton setImage:[UIImage imageNamed:@"develop_change_button58x58_iphone.png"] forState:UIControlStateNormal];
         [goChangeButton addTarget:self action:@selector(changeAction:) forControlEvents:UIControlEventTouchUpInside];
         
         //if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
         //{
-            goFacebookButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+            goFacebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [goFacebookButton setImage:[UIImage imageNamed:@"develop_facebook_button58x58_iphone.png"] forState:UIControlStateNormal];
             [goFacebookButton addTarget:self action:@selector(facebookAction:) forControlEvents:UIControlEventTouchUpInside];
             
-            goYoutubeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+            goYoutubeButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [goYoutubeButton setImage:[UIImage imageNamed:@"develop_youtube_button58x58_iphone.png"] forState:UIControlStateNormal];
             [goYoutubeButton addTarget:self action:@selector(youtubeAction:) forControlEvents:UIControlEventTouchUpInside];
         //}else
         //{
-            goShareButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+            goShareButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [goShareButton setImage:[UIImage imageNamed:@"develop_share_button58x58_iphone.png"] forState:UIControlStateNormal];
             [goShareButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
         //}
-        goCameraRollButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        goCameraRollButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [goCameraRollButton setImage:[UIImage imageNamed:@"develop_cameraroll_button58x58_iphone.png"] forState:UIControlStateNormal];
         [goCameraRollButton addTarget:self action:@selector(cameraRollAction:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -1232,17 +1231,14 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	if(timer)
 	{
 		[timer invalidate];
-		[timer release];
 		timer = nil;
 	}
 	if(mAlertView)
 	{	
-		[mAlertView release];
 		mAlertView = nil;
 	}
 	if(movieProcessor)
 	{
-		[movieProcessor release];
 		movieProcessor = nil;
 	}
 	self.renderer = nil;
@@ -1250,9 +1246,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 
 - (void)dealloc
 {
-	[mThumbImage release];
-    [mThumbImageView release];
-	[mThumbView release];
 	
     [self cleanController];
 	
@@ -1268,7 +1261,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	[[MPMusicPlayerController systemMusicPlayer] endGeneratingPlaybackNotifications];
 	
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-    [super dealloc];
 }
 
 //movie playback handlers
@@ -1342,11 +1334,9 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	{
 		[mPlayer removeObserver:self forKeyPath:@"rate"];
 		[mPlayer removeTimeObserver:mPlayTimeObserver];
-		[mPlayer release];
 		mPlayer = nil;
 	}
     //	[mPlaybackView setPlayer:nil];
-	[mPlayTimeObserver release];
 }
 
 - (void)playAction:(id)sender
@@ -1397,8 +1387,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 #pragma mark MovieProcessorDelegate 
 -(CVPixelBufferRef)processVideoFrame:(CMSampleBufferRef)sampleBuffer atTime:(CMTime)sampleTime
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; //bret
-    CVPixelBufferRef pixelBuffer = NULL;
+	@autoreleasepool { //bret
+        CVPixelBufferRef pixelBuffer = NULL;
 		
 	// check if we are only rendering even frames.
 	if (renderFullFramerate || (_curInputFrameIdx % 2) == 0) {
@@ -1432,113 +1422,113 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	}
 	
 	_curInputFrameIdx++;
-    
+        
 	dispatch_async(dispatch_get_main_queue(),
-    ^{
-        if ( _completedFrames != lastTimeRemaining)
-        {
-            lastTimeRemaining = _completedFrames;
-            int screenwidthl, screenwidthp;
-            if (IS_IPAD)
+        ^{
+            if ( _completedFrames != lastTimeRemaining)
             {
-                screenwidthl = 1024;
-                screenwidthp = 768;
-            }else
-            {
-                if (IS_IPHONE_5)
+                lastTimeRemaining = _completedFrames;
+                int screenwidthl, screenwidthp;
+                if (IS_IPAD)
                 {
-                    screenwidthl = 568;
-                    screenwidthp = 320;
+                    screenwidthl = 1024;
+                    screenwidthp = 768;
                 }else
                 {
-                    screenwidthl = 480;
-                    screenwidthp = 320;
+                    if (IS_IPHONE_5)
+                    {
+                        screenwidthl = 568;
+                        screenwidthp = 320;
+                    }else
+                    {
+                        screenwidthl = 480;
+                        screenwidthp = 320;
+                    }
                 }
-            }
-            
-            //timeScale is totalframes
-            //_completedFrames is the current frame index
+                
+                //timeScale is totalframes
+                //_completedFrames is the current frame index
 #if 0
-            //curve method 1
-            float timeoffsetcos = cos(_completedFrames/(timeScale/2));
-            timeoffsetcos = fabs(timeoffsetcos);
-            
-            float timeoffsetl = screenwidthl * (_completedFrames/timeScale);
-            float timeoffsetp = screenwidthp * (_completedFrames/timeScale);
-            
-            float timestepl = (screenwidthl/timeScale)*timeoffsetcos;
-            float timestepp = (screenwidthp/timeScale)*timeoffsetcos;
+                //curve method 1
+                float timeoffsetcos = cos(_completedFrames/(timeScale/2));
+                timeoffsetcos = fabs(timeoffsetcos);
+                
+                float timeoffsetl = screenwidthl * (_completedFrames/timeScale);
+                float timeoffsetp = screenwidthp * (_completedFrames/timeScale);
+                
+                float timestepl = (screenwidthl/timeScale)*timeoffsetcos;
+                float timestepp = (screenwidthp/timeScale)*timeoffsetcos;
 
-            timeoffsetl = timeoffsetl+timestepl; //comment out for linear
-            timeoffsetp = timeoffsetp+timestepp; //comment out for linear
-            
-            NSLog(@"bret timestepl == %f",timestepl);
-            
-            timeElapsedLandscape = timeoffsetl; //these are for rotation during render
-            timeElapsedPortrait = timeoffsetp;
+                timeoffsetl = timeoffsetl+timestepl; //comment out for linear
+                timeoffsetp = timeoffsetp+timestepp; //comment out for linear
+                
+                NSLog(@"bret timestepl == %f",timestepl);
+                
+                timeElapsedLandscape = timeoffsetl; //these are for rotation during render
+                timeElapsedPortrait = timeoffsetp;
 
-            CGRect frame;
-            frame = mOpaqueViewLandscape.frame;
-            frame.origin.x = timeoffsetl;
-            mOpaqueViewLandscape.frame = frame;
-            frame = mOpaqueViewPortrait.frame;
-            frame.origin.x = timeoffsetp;
-            mOpaqueViewPortrait.frame = frame;
-            //end curve method 1
+                CGRect frame;
+                frame = mOpaqueViewLandscape.frame;
+                frame.origin.x = timeoffsetl;
+                mOpaqueViewLandscape.frame = frame;
+                frame = mOpaqueViewPortrait.frame;
+                frame.origin.x = timeoffsetp;
+                mOpaqueViewPortrait.frame = frame;
+                //end curve method 1
 #endif
-            //curve method 2
-            float timeoffsetl = screenwidthl/timeScale;
-            float timeoffsetp = screenwidthp/timeScale;
-            float timezone = timeScale/8;
-            if (_completedFrames < (timezone*1) )
-            {
-                timeoffsetl = timeoffsetl * 1.50;
-                timeoffsetp = timeoffsetp * 1.50;
-            }else if ( _completedFrames < (timezone*2) )
-            {
-                timeoffsetl = timeoffsetl * 1.25;
-                timeoffsetp = timeoffsetp * 1.25;
-            }else if ( _completedFrames < (timezone*3) )
-            {
-                timeoffsetl = timeoffsetl * 0.75;
-                timeoffsetp = timeoffsetp * 0.75;
-            }else if ( _completedFrames < (timezone*4) )
-            {
-                timeoffsetl = timeoffsetl * 0.50;
-                timeoffsetp = timeoffsetp * 0.50;
-            }else if ( _completedFrames < (timezone*5) )
-            {
-                timeoffsetl = timeoffsetl * 0.50;
-                timeoffsetp = timeoffsetp * 0.50;
-            }else if ( _completedFrames < (timezone*6) )
-            {
-                timeoffsetl = timeoffsetl * 0.75;
-                timeoffsetp = timeoffsetp * 0.75;
-            }else if ( _completedFrames < (timezone*7) )
-            {
-                timeoffsetl = timeoffsetl * 1.25;
-                timeoffsetp = timeoffsetp * 1.25;
-            }else
-            {
-                timeoffsetl = timeoffsetl * 1.50;
-                timeoffsetp = timeoffsetp * 1.50;
+                //curve method 2
+                float timeoffsetl = screenwidthl/timeScale;
+                float timeoffsetp = screenwidthp/timeScale;
+                float timezone = timeScale/8;
+                if (_completedFrames < (timezone*1) )
+                {
+                    timeoffsetl = timeoffsetl * 1.50;
+                    timeoffsetp = timeoffsetp * 1.50;
+                }else if ( _completedFrames < (timezone*2) )
+                {
+                    timeoffsetl = timeoffsetl * 1.25;
+                    timeoffsetp = timeoffsetp * 1.25;
+                }else if ( _completedFrames < (timezone*3) )
+                {
+                    timeoffsetl = timeoffsetl * 0.75;
+                    timeoffsetp = timeoffsetp * 0.75;
+                }else if ( _completedFrames < (timezone*4) )
+                {
+                    timeoffsetl = timeoffsetl * 0.50;
+                    timeoffsetp = timeoffsetp * 0.50;
+                }else if ( _completedFrames < (timezone*5) )
+                {
+                    timeoffsetl = timeoffsetl * 0.50;
+                    timeoffsetp = timeoffsetp * 0.50;
+                }else if ( _completedFrames < (timezone*6) )
+                {
+                    timeoffsetl = timeoffsetl * 0.75;
+                    timeoffsetp = timeoffsetp * 0.75;
+                }else if ( _completedFrames < (timezone*7) )
+                {
+                    timeoffsetl = timeoffsetl * 1.25;
+                    timeoffsetp = timeoffsetp * 1.25;
+                }else
+                {
+                    timeoffsetl = timeoffsetl * 1.50;
+                    timeoffsetp = timeoffsetp * 1.50;
+                }
+                
+                timeElapsedLandscape = timeElapsedLandscape + timeoffsetl; //these are for rotation during render
+                timeElapsedPortrait = timeElapsedLandscape + timeoffsetp;
+                
+                CGRect frame;
+                frame = mOpaqueViewLandscape.frame;
+                frame.origin.x = frame.origin.x + timeoffsetl;
+                mOpaqueViewLandscape.frame = frame;
+                frame = mOpaqueViewPortrait.frame;
+                frame.origin.x = frame.origin.x + timeoffsetp;
+                mOpaqueViewPortrait.frame = frame;
+                //end curve method 2
             }
-            
-            timeElapsedLandscape = timeElapsedLandscape + timeoffsetl; //these are for rotation during render
-            timeElapsedPortrait = timeElapsedLandscape + timeoffsetp;
-            
-            CGRect frame;
-            frame = mOpaqueViewLandscape.frame;
-            frame.origin.x = frame.origin.x + timeoffsetl;
-            mOpaqueViewLandscape.frame = frame;
-            frame = mOpaqueViewPortrait.frame;
-            frame.origin.x = frame.origin.x + timeoffsetp;
-            mOpaqueViewPortrait.frame = frame;
-            //end curve method 2
-        }
-    });
-    [pool release];
+        });
 	return pixelBuffer;
+	}
 }
 
 -(CGSize)knownVideoInfoEvent:(CGSize)videoSize withDuration:(CMTime)duration;
@@ -1671,7 +1661,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	if(timer)
 	{
 		[timer invalidate];
-		[timer release];
 		timer = nil;
 	}
 	/*
@@ -1691,7 +1680,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	if(timer)
 	{
 		[timer invalidate];
-		[timer release];
 		timer = nil;
 	}
 	if(isAlertViewShown)
@@ -1761,23 +1749,19 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     //#if 0
     AVAsset* avAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:processedMoviePath] options:nil];
     mVideoDuration = avAsset.duration;
-    [avAsset release];
     
     //	[composeProgressView setTitleText:@"Done" withProgress:1.0];
 	//[timeView setTimeDone];
-	mPlayer = [[AVPlayer allocWithZone:[self zone]] initWithURL:[NSURL fileURLWithPath:processedMoviePath]];
+	mPlayer = [[AVPlayer allocWithZone:nil] initWithURL:[NSURL fileURLWithPath:processedMoviePath]];
 	//mPlayer = [[AVPlayer allocWithZone:[self zone]] initWithURL:processedMoviePath];
 	[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:(__bridge void * _Nullable)(AVPlayerRateObservationContextBullet)];
 	[mPlaybackView setPlayer:mPlayer];
     
-	mPlayTimeObserver = [[mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, 600) queue:dispatch_get_main_queue() usingBlock:
+    __weak BulletViewController* weakSelf = self;
+	mPlayTimeObserver = [mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, 600) queue:dispatch_get_main_queue() usingBlock:
 						  ^(CMTime time) {
-							  if (mPlayer.rate==0.0) return;
-							  
-							  Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
-							  //NSLog(@"Player factor:%f, Time(%d,%d)",factor,[mPlayer currentTime].value,[mPlayer currentTime].timescale);
-                              movieAdvanceSlider.value = factor;
-						  }] retain];
+                              [weakSelf onTimeObserver];
+						  }];
 	mPlayerState = bAVPlayerReady;
 	[self displayPlayerButton];
 	//**[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseToMultiTask) name:@"MultiTaskPause" object:nil];
@@ -1813,6 +1797,14 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		NSLog(@"Org Estimate: %f", estimateTotalRenderTime);
 		NSLog(@"Tot Duration: %f", measuredTotalRenderTime);
 	}
+}
+
+-(void)onTimeObserver {
+    if (mPlayer.rate==0.0) return;
+
+    Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
+    //NSLog(@"Player factor:%f, Time(%d,%d)",factor,[mPlayer currentTime].value,[mPlayer currentTime].timescale);
+    movieAdvanceSlider.value = factor;
 }
 
 -(void)finishSaveToCameraRollEventAfterDelay:(id)sender
@@ -1892,7 +1884,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		isAlertViewShown = YES;
 		if(mAlertView)
 		{
-			[mAlertView release];
 			mAlertView = nil;
 		}
 		mAlertView =  [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Resume Process!",nil)
@@ -1934,7 +1925,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	isAlertViewShown = YES;
 	if(mAlertView)
 	{
-		[mAlertView release];
 		mAlertView = nil;
 	}
 	mAlertView =  [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Resume Process!",nil)
@@ -1976,7 +1966,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	isAlertViewShown = YES;
 	if(mAlertView)
 	{
-		[mAlertView release];
 		mAlertView = nil;
 	}
 	mAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Terminate the Develop",nil)
@@ -2009,7 +1998,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
         isAlertViewShown = YES;
         if(mAlertView)
         {
-            [mAlertView release];
             mAlertView = nil;
         }
         mAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Camera Roll",nil)
@@ -2359,7 +2347,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	custom.tag  = 400;
 	custom.delegate_ = self;
 	[self.view addSubview:custom];
-	[custom release];
 }
 
 
@@ -2413,7 +2400,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 			if(timer)
 			{
 				[timer invalidate];
-				[timer release];
 				timer = nil;
 			}
 			if ([movieProcessor getProcessState]==MovieStateRendering  || [movieProcessor getProcessState]==MovieStateResume)

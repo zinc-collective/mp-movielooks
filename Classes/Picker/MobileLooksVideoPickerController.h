@@ -24,7 +24,7 @@
 @interface MobileLooksVideoPickerController : UIViewController<MobileLooksPickerItemDelegate,UIScrollViewDelegate> {
     //UIScrollView* mScrollView; //storyboard
 	
-	id<MobileLooksVideoPickerControllerDelegate, MobileLooksTrimPlayerControllerDelegate> _delegate;
+	id<MobileLooksVideoPickerControllerDelegate, MobileLooksTrimPlayerControllerDelegate> __weak _delegate;
 	MobileLooksPickerSource* mSource;
 	NSInteger mLastSourceCount;
 	NSMutableArray* mURLs;
@@ -42,9 +42,9 @@
     UIButton *topScrollOpaque;
     UIButton *bottomScrollOpaque;
 }
-@property (retain, nonatomic) IBOutlet UIScrollView *mScrollView;
+@property (strong, nonatomic) IBOutlet UIScrollView *mScrollView;
 
-@property(nonatomic,assign) id<MobileLooksVideoPickerControllerDelegate, MobileLooksTrimPlayerControllerDelegate> delegate;
+@property(nonatomic,weak) id<MobileLooksVideoPickerControllerDelegate, MobileLooksTrimPlayerControllerDelegate> delegate;
 @end
 
 extern NSString* const MobileLooksVideoPickerControllerDidPickURLNotification;

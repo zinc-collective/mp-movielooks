@@ -26,12 +26,12 @@ typedef enum
 {
 @private
 	RendererStatus			mRendererStatus;
-	ES2Renderer				*renderer;
+	ES2Renderer				*__weak renderer;
 	CGSize					frameSize;
 	CGSize					outputSize;
 	CGSize					outputSizeCropped;
 	CGSize					estimateOutputSize;
-	NSDictionary			*mLookDic;
+	NSDictionary			*__weak mLookDic;
 	
 	UIActivityIndicatorView *mActivityIndicator;	
 	UIImageView				*mThumbImageView;
@@ -69,8 +69,8 @@ typedef enum
 }
 
 //@property (nonatomic, retain) UIImage *renderedImg;
-@property (nonatomic, assign) NSDictionary *lookDic;
-@property (nonatomic, assign) ES2Renderer *renderer;
+@property (nonatomic, weak) NSDictionary *lookDic;
+@property (nonatomic, weak) ES2Renderer *renderer;
 @property (nonatomic) CGSize frameSize;
 @property (nonatomic) CGSize outputSize;
 @property (nonatomic) CGSize outputSizeCropped;

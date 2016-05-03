@@ -25,12 +25,12 @@
 	UIImage* mThumbnailImage;
 	BOOL mWithBorder;
 	BOOL mIsCanceled;
-	id<VideoThumbnailOperationDelegate> mDelegate;
+	id<VideoThumbnailOperationDelegate> __weak mDelegate;
 }
 
-@property(nonatomic,assign) id<VideoThumbnailOperationDelegate> resultDelegate;
+@property(nonatomic,weak) id<VideoThumbnailOperationDelegate> resultDelegate;
 @property(nonatomic,assign) BOOL isCanceled;
-@property(nonatomic,assign) UIImage* thumbnailImage;
+@property(nonatomic) UIImage* thumbnailImage;
 @property(nonatomic,assign) CMTime movieDuration;
 
 -(id)initWithURL:(NSURL*)videoURL/* index:(NSUInteger)aIndex targetSize:(CGSize)aSize */withBorder:(BOOL)aBorder;

@@ -31,15 +31,6 @@
     return nil;
 }
 
-- (void) dealloc 
-{
-	[boxView release];
-	[progress_ release];
-	[progressView_ release];
-	[cancelButton release];
-	
-    [super dealloc];
-}
 
 
 #pragma mark -

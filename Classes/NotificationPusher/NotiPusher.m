@@ -52,40 +52,29 @@ static NotiPusher *_sharedNotiPusher;
 
 - (void)dealloc
 {		
-	[_sharedNotiPusher release];
-	[deviceToken release];
-	[deviceAlias release];
-	[userID release];
-	[password release];
 	
 	if(_receivedData != nil)
 	{
-		[_receivedData release];
 		_receivedData = nil;
 	}
 	
 	if(_postHttp)
 	{
 		[_postHttp shutHttp];
-		[_postHttp release];
 	}
 	if(_createUserHttp)
 	{
 		[_createUserHttp shutHttp];
-		[_createUserHttp release];
 	}
 	if(_getHttp)
 	{
 		[_getHttp shutHttp];
-		[_getHttp release];
 	}
 	if(_putHttp)
 	{
 		[_putHttp shutHttp];
-		[_putHttp release];
 	}
 	
-	[super dealloc];
 }
 
 
@@ -123,7 +112,7 @@ static NotiPusher *_sharedNotiPusher;
         output[theIndex + 3] = (i + 2) < length ? table[(value >> 0)  & 0x3F] : '=';
     }
     
-    return [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
+    return [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 }
 
 
@@ -153,7 +142,6 @@ static NotiPusher *_sharedNotiPusher;
 	if(_postHttp != nil)
 	{
 		[_postHttp shutHttp];
-		[_postHttp release];
 		_postHttp = nil;
 	}
 	_postHttp = [[Http alloc] init];
@@ -182,7 +170,6 @@ static NotiPusher *_sharedNotiPusher;
 	if(_getHttp != nil)
 	{
 		[_getHttp shutHttp];
-		[_getHttp release];
 		_getHttp =  nil;
 	}
 	_getHttp = [[Http alloc] init];
@@ -217,7 +204,7 @@ static NotiPusher *_sharedNotiPusher;
 	}
 	
 	//组合发送的messageID的数组
-	NSMutableArray *markArr = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *markArr = [[NSMutableArray alloc] init];
 	for(NSString *mID in messageIDs)
 	{
 		NSString *markStr = [NSString stringWithFormat:@"https://go.urbanairship.com/api/user/%@/messages/message/%@/", self.userID, mID];
@@ -285,7 +272,6 @@ static NotiPusher *_sharedNotiPusher;
 	if(_createUserHttp == nil)
 	{
 		[_createUserHttp shutHttp];
-		[_createUserHttp release];
 		_createUserHttp = nil;
 	}
 	_createUserHttp = [[Http alloc] init];
@@ -371,7 +357,7 @@ static NotiPusher *_sharedNotiPusher;
 	}
 	
 	//组合发送的messageID的数组
-	NSMutableArray *markArr = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *markArr = [[NSMutableArray alloc] init];
 	NSString *markStr = [NSString stringWithFormat:@"https://go.urbanairship.com/api/user/%@/messages/message/%@/", self.userID, messageID];
 	[markArr addObject:markStr];
 	
@@ -412,7 +398,6 @@ static NotiPusher *_sharedNotiPusher;
 	if(_putHttp == nil)
 	{
 		[_putHttp shutHttp];
-		[_putHttp release];
 		_putHttp = nil;
 	}
 	_putHttp = [[Http alloc] init];
@@ -497,7 +482,7 @@ static NotiPusher *_sharedNotiPusher;
 	
 	if(data == nil) return;
 
-	NSString *jsonReturnString = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+	NSString *jsonReturnString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSLog(@"jsonReturnString : %@", jsonReturnString);
 	
 	if(http == _postHttp)
@@ -520,7 +505,7 @@ static NotiPusher *_sharedNotiPusher;
 			if(unreadArr == nil) return;
 			
 			//解析所有unread的ID，并保存成数组allUnreadIDs
-			NSMutableArray *allUnreadIDs = [[[NSMutableArray alloc] init] autorelease];
+			NSMutableArray *allUnreadIDs = [[NSMutableArray alloc] init];
 			for(NSDictionary *dic in unreadArr)
 			{
 				NSString *message_id = (NSString*)[dic objectForKey:@"message_id"];
@@ -556,7 +541,7 @@ static NotiPusher *_sharedNotiPusher;
 			RUAMessage *message = nil;
 			if(specDic != nil) 
 			{
-				message = [[[RUAMessage alloc] init] autorelease];
+				message = [[RUAMessage alloc] init];
 				message.title	  = (NSString*)[specDic objectForKey:@"title"];
 				message.content	  = (NSString*)[specDic objectForKey:@"message"];
 				message.sendtime  = (NSString*)[specDic objectForKey:@"message_sent"];

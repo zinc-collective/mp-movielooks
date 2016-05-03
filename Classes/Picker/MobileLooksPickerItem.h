@@ -24,14 +24,14 @@ typedef enum  {
 	BOOL mHasThumbnail;
 	UIImageView *iconView;
 	PickerItemStyle mPickerItemStyle;
-    id <MobileLooksPickerItemDelegate>  _delegate;
+    id <MobileLooksPickerItemDelegate>  __weak _delegate;
 }
 - (id)initWithURL:(NSURL*)URL withStyle:(PickerItemStyle)style withFrame:(CGRect)itemFrame;
 -(void)loadFromCache:(UIImage*)chachedImage withDurationString:(NSString*)durationStr;
 -(void)startOpertionOnQueue:(NSOperationQueue*)queue;
 
 
-@property(nonatomic,assign) id<MobileLooksPickerItemDelegate> delegate;
+@property(nonatomic,weak) id<MobileLooksPickerItemDelegate> delegate;
 @property(nonatomic,assign) BOOL hasThumbnail;
 @end
 

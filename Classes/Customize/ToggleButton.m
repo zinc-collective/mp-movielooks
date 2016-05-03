@@ -105,7 +105,6 @@
 			backgroundView.image = [[UIImage imageNamed:@"looksbrowser_normal_button22x27_iphone.png"] stretchableImageWithLeftCapWidth:11 topCapHeight:0];
 		}
 		[self addSubview:backgroundView];
-		[backgroundView release];
 		
 		titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 3, titleSize.width, titleSize.height)];
 		titleLabel.font = titleFont;
@@ -114,7 +113,6 @@
 		//titleLabel.shadowColor = [UIColor blackColor];
 		titleLabel.text = title;
 		[self addSubview:titleLabel];
-		[titleLabel release];
 		
 		subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(18 + titleSize.width, 4, subtitleSize.width, subtitleSize.height)];
 		subtitleLabel.font = subtitleFont;
@@ -123,7 +121,6 @@
         subtitleLabel.textColor = [UIColor colorWithRed:195/255.0 green:195/255.0 blue:195/255.0 alpha:1];
         subtitleLabel.text = subtitle;
 		[self addSubview:subtitleLabel];
-		[subtitleLabel release];
 		
 		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
@@ -144,9 +141,6 @@
 }
 */
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

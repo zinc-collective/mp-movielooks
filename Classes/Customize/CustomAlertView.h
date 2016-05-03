@@ -42,10 +42,10 @@ typedef enum {
 	UIView *_alertView;
 	
 @private
-	id _delegate;	
+	id __weak _delegate;	
 }
 
-@property (assign) id<CustomAlertDelegate> delegate;
+@property (weak) id<CustomAlertDelegate> delegate;
 
 
 #pragma mark -

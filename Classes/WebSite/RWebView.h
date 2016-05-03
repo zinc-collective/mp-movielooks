@@ -22,11 +22,11 @@
 	NSString *webShowURL;
 	
 @private
-	id _delegate;	
+	id __weak _delegate;	
 }
 
-@property (nonatomic, retain) NSString *webShowURL;
-@property (assign) id<RWebViewDelegate> delegate;
+@property (nonatomic, strong) NSString *webShowURL;
+@property (weak) id<RWebViewDelegate> delegate;
 
 
 #pragma mark -

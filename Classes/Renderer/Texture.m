@@ -59,8 +59,6 @@ GLuint loadTexture(const char *c_path)
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[path release];
-		[image release];
 		return 0;
 	}
 	
@@ -80,8 +78,6 @@ GLuint loadTexture(const char *c_path)
 	
 	if(NULL == data)
 	{
-		[path release];
-		[image release];
 		return 0;
 	}
 	
@@ -96,8 +92,6 @@ GLuint loadTexture(const char *c_path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexImage2D(GL_TEXTURE_2D, 0, glPixelFormat, width, height, 0, glPixelFormat, GL_UNSIGNED_BYTE, data);
 	
-	[path release];
-	[image release];
 	free(data);
 	
 	return texID;
@@ -155,7 +149,6 @@ void generateDarkenLUT(unsigned char *data)
 	{
 		memcpy(darken + 1280*row*glPixelSize, darken, 256*glPixelSize);
 	}
-	[darkenImg release];
 }
 
 void generateBrightnessLUT(unsigned char *data)
@@ -202,8 +195,6 @@ void generateBrightnessLUT(unsigned char *data)
 		memcpy(darken + 1280*row*glPixelSize, darken, 256*glPixelSize);
 		memcpy(brighten + 1280*row*glPixelSize, brighten, 256*glPixelSize);
 	}
-	[darkenImg release];
-	[brightenImg release];
 }
 
 //void generate3DLUT(unsigned char *data, const char *lut3dPath)
@@ -477,8 +468,6 @@ GLuint loadFastLookupTable(const char *lut3dPath)
 
 	CFRelease(darkenLUTData);
 	CFRelease(brightenLUTData);	
-	[darkenImg release];
-	[brightenImg release];
 	fclose(file);
 	return texID;
 }
@@ -492,7 +481,6 @@ void loadVignette(GLuint specialTexID, const char *VigName)
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[image release];
 		return;
 	}
 
@@ -508,13 +496,11 @@ void loadVignette(GLuint specialTexID, const char *VigName)
 	
 	if(NULL == data)
 	{
-		[image release];
 		return;
 	}
 	
 	glBindTexture(GL_TEXTURE_2D, specialTexID);
 	glTexSubImage2D (GL_TEXTURE_2D, 0, 0, 1280-height, width, height, glPixelFormat, GL_UNSIGNED_BYTE, data);
-	[image release];
 	free(data);
 }
 
@@ -525,7 +511,6 @@ void loadOverlay(GLuint texID, NSString *name)
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[image release];
 		return;
 	}
 	
@@ -545,14 +530,12 @@ void loadOverlay(GLuint texID, NSString *name)
 	
 	if(NULL == data)
 	{
-		[image release];
 		return;
 	}
 	
 	glBindTexture(GL_TEXTURE_2D, texID);
 	glTexImage2D(GL_TEXTURE_2D, 0, glPixelFormat, width, height, 0, glPixelFormat, GL_UNSIGNED_BYTE, data);
 	
-	[image release];
 	free(data);
 }
 
@@ -565,8 +548,6 @@ GLuint loadSpecialImg(const char *name, const float diffusionHighlightsOnly)
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[filepathString release];
-		[image release];
 		return 0;
 	}
 	
@@ -589,8 +570,6 @@ GLuint loadSpecialImg(const char *name, const float diffusionHighlightsOnly)
 	
 	if(NULL == data)
 	{
-		[filepathString release];
-		[image release];
 		return 0;
 	}
 	
@@ -611,8 +590,6 @@ GLuint loadSpecialImg(const char *name, const float diffusionHighlightsOnly)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexImage2D(GL_TEXTURE_2D, 0, glPixelFormat, width, height, 0, glPixelFormat, GL_UNSIGNED_BYTE, data);
 	
-	[filepathString release];
-	[image release];
 	free(data);
 	
 	return texID;
@@ -628,8 +605,6 @@ GLuint loadTextureWithBuffer(const char *c_path, unsigned char* buffer)
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[path release];
-		[image release];
 		return 0;
 	}
 	
@@ -647,8 +622,6 @@ GLuint loadTextureWithBuffer(const char *c_path, unsigned char* buffer)
 	
 	if(NULL == buffer)
 	{
-		[path release];
-		[image release];
 		return 0;
 	}
 	
@@ -663,8 +636,6 @@ GLuint loadTextureWithBuffer(const char *c_path, unsigned char* buffer)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexImage2D(GL_TEXTURE_2D, 0, glPixelFormat, width, height, 0, glPixelFormat, GL_UNSIGNED_BYTE, buffer);
 	
-	[path release];
-	[image release];
 	
 	return texID;
 }
@@ -678,8 +649,6 @@ GLuint loadSpecialImgWithBuffer(const char *name, const float diffusionHighlight
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[filepathString release];
-		[image release];
 		return 0;
 	}
 	
@@ -699,8 +668,6 @@ GLuint loadSpecialImgWithBuffer(const char *name, const float diffusionHighlight
 	
 	if(NULL == buffer)
 	{
-		[filepathString release];
-		[image release];
 		return 0;
 	}
 	
@@ -721,8 +688,6 @@ GLuint loadSpecialImgWithBuffer(const char *name, const float diffusionHighlight
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexImage2D(GL_TEXTURE_2D, 0, glPixelFormat, width, height, 0, glPixelFormat, GL_UNSIGNED_BYTE, buffer);
 	
-	[filepathString release];
-	[image release];
 	
 	return texID;
 }
@@ -734,7 +699,6 @@ void loadOverlayWithBuffer(GLuint texID, NSString *name, unsigned char* buffer)
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[image release];
 		return;
 	}
 	
@@ -752,14 +716,12 @@ void loadOverlayWithBuffer(GLuint texID, NSString *name, unsigned char* buffer)
 	
 	if(NULL == buffer)
 	{
-		[image release];
 		return;
 	}
 	
 	glBindTexture(GL_TEXTURE_2D, texID);
 	glTexImage2D(GL_TEXTURE_2D, 0, glPixelFormat, width, height, 0, glPixelFormat, GL_UNSIGNED_BYTE, buffer);
 	
-	[image release];
 }
 
 void loadVignetteWithBuffer(GLuint specialTexID, const char *VigName, unsigned char* buffer)
@@ -771,7 +733,6 @@ void loadVignetteWithBuffer(GLuint specialTexID, const char *VigName, unsigned c
 	CGImageRef imageRef = image.CGImage;
 	if (!imageRef)
 	{ 
-		[image release];
 		return;
 	}
 	
@@ -786,11 +747,9 @@ void loadVignetteWithBuffer(GLuint specialTexID, const char *VigName, unsigned c
 	
 	if(NULL == buffer)
 	{
-		[image release];
 		return;
 	}
 	
 	glBindTexture(GL_TEXTURE_2D, specialTexID);
 	glTexSubImage2D (GL_TEXTURE_2D, 0, 0, 1280-height, width, height, glPixelFormat, GL_UNSIGNED_BYTE, buffer);
-	[image release];
 }

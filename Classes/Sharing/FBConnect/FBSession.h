@@ -26,8 +26,8 @@
   NSString *_uid;
 }
 
-@property(nonatomic, retain) Facebook *facebook;
-@property(nonatomic, retain) NSString *uid;
+@property(nonatomic, strong) Facebook *facebook;
+@property(nonatomic, strong) NSString *uid;
 
 - (void) setSessionWithFacebook:(Facebook *)facebook andUid:(NSString *)uid;
 - (Facebook *) getFacebook;

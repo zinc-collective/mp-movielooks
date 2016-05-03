@@ -34,7 +34,7 @@ typedef void(^FACEBOOK_HANDLER)(void);
 	
 	NSDictionary *info_;
 	
-	id delegate_;
+	id __weak delegate_;
 	
 	int   limitSize;
 	int   length;
@@ -52,10 +52,10 @@ typedef void(^FACEBOOK_HANDLER)(void);
 	
 }
 
-@property (nonatomic, assign) id <FacebookConnectDelegate> delegate_;
-@property (nonatomic, retain) NSDictionary *info_;
-@property (nonatomic, retain) NSString *method_;
-@property (nonatomic, retain) NSString *videoLink;
+@property (nonatomic, weak) id <FacebookConnectDelegate> delegate_;
+@property (nonatomic, strong) NSDictionary *info_;
+@property (nonatomic, strong) NSString *method_;
+@property (nonatomic, strong) NSString *videoLink;
 @property(copy, nonatomic) FACEBOOK_HANDLER kAuthHandler;
 @property(copy, nonatomic) FACEBOOK_HANDLER kLogoutHandler;
 

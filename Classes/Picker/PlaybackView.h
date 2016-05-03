@@ -13,5 +13,5 @@
 @interface PlaybackView : UIView {
 	
 }
-@property (nonatomic, retain) AVPlayer* player;
+@property (nonatomic, strong) AVPlayer* player;
 @end

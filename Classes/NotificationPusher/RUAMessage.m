@@ -19,15 +19,6 @@
 
 
 
-- (void)dealloc
-{		
-	[ID release];
-	[title release];
-	[content release];
-	[sendtime release];
-	
-	[super dealloc];
-}
 
 
 

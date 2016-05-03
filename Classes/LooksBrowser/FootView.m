@@ -25,7 +25,6 @@
 		groupNameLabel.text = @" - ";
 		groupNameLabel.shadowColor = [UIColor blackColor];
 		[self addSubview:groupNameLabel];
-		[groupNameLabel release];
 		
 		lookNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 4, 230, 18)];
 		lookNameLabel.font = [UIFont systemFontOfSize:20];
@@ -33,7 +32,6 @@
 		lookNameLabel.textColor = [UIColor whiteColor];
 		lookNameLabel.shadowColor = [UIColor blackColor];
 		[self addSubview:lookNameLabel];
-		[lookNameLabel release];
     }
     return self;
 }
@@ -60,10 +58,6 @@
 }
 */
 
-- (void)dealloc
-{
-	[super dealloc];
-}
 
 
 @end

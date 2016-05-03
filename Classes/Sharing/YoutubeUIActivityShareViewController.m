@@ -500,7 +500,6 @@
 	UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(0, yPos, view.bounds.size.width, 2)];
 	separator.backgroundColor = viewBorderColor;
 	[view addSubview:separator];
-	[separator release];
 }
 
 -(void)delayPresentProviders:(BOOL) resignin
@@ -608,11 +607,9 @@
     
     UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
 	self.navigationItem.leftBarButtonItem = backButton;
-	[backButton release];
     
     UIBarButtonItem* postButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Post",nil) style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonAction:)];
 	self.navigationItem.rightBarButtonItem = postButton;
-	[postButton release];
 
 	viewBorderColor = [UIColor clearColor];
     
@@ -957,57 +954,42 @@
     
 	if(mAlertView)
 	{
-		[mAlertView release];
 		mAlertView = nil;
 	}
     
 	if (titleInput)
     {
-		[titleInput release];
 		titleInput = nil;
 	}
 	
     if (_youtube)//nil
     {
-		[_youtube release];
 		_youtube = nil;
 	}
 
 	if (progressView)
     {
-		[progressView release];
 		progressView = nil;
 	}
 	
 	if (youtubeSettingsView)
     {
-		[youtubeSettingsView release];
 		youtubeSettingsView = nil;
 	}
 	
 	if (contentView)
     {
-		[contentView release];
 		contentView = nil;
 	}
     
-    [mThumbImageView release];
-    [mThumbImage release]; //check
-    [titleLabel release];
+     //check
     //titleInput
-    [uploadingLabel release];
     //progressView
     //[iconView release];
-    [userLabel release];
-    [btnLogout release];
-    [btnUpload release];
-    [privacyLabel release];
-    [youtubePrivacyControl release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ResignActivePause" object:nil];
-	[super dealloc];
 }
 
 -(Boolean) _showView:(UIView *)view activeView:(UIView *)activeView
@@ -1103,7 +1085,6 @@
                      isUploading = YES;
                      UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
                      self.navigationItem.leftBarButtonItem = backButton;
-                     [backButton release];
                      [_youtube uploadVideoToYoutubeUIActivity:dic];
                      [self.delegate youTubeUIActivityShareViewControllerDidUpload:self];
                      [progressView updateProgress:0.0];
@@ -1115,8 +1096,6 @@
              }];
 		}
 
-		[shareVideoUrl release];
-		[dic release];
 
 	} else
     {
@@ -1145,7 +1124,6 @@
             [self cancelUploadAction];
             UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
             self.navigationItem.leftBarButtonItem = backButton;
-            [backButton release];
             [self backAction:nil];
 		}
 	}else if (alertView.tag == 1003)
@@ -1166,7 +1144,6 @@
 	
 	if(mAlertView)
 	{
-		[mAlertView release];
 		mAlertView = nil;
 	}
     isAlertViewShown = YES;
@@ -1195,7 +1172,6 @@
         
         if(mAlertView)
         {
-            [mAlertView release];
             mAlertView = nil;
         }
         isAlertViewShown = YES;
@@ -1217,7 +1193,6 @@
 
         if(mAlertView)
         {
-            [mAlertView release];
             mAlertView = nil;
         }
         isAlertViewShown = YES;

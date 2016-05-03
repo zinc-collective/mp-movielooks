@@ -66,9 +66,9 @@
 -(void)sendingVideoDataToYoutube:(unsigned long long)bytesRead dataLength:(unsigned long long)dataLength;
 -(void)backAction:(id)sender; //bret
 @property (nonatomic) BOOL useYouTube;
-@property (nonatomic, retain) UIImage *mThumbImage;
-@property (nonatomic, retain) NSString *processedMoviePath;
-@property (nonatomic, assign) id<YoutubeUIActivityShareViewControllerDelegate> delegate;
+@property (nonatomic, strong) UIImage *mThumbImage;
+@property (nonatomic, strong) NSString *processedMoviePath;
+@property (nonatomic, weak) id<YoutubeUIActivityShareViewControllerDelegate> delegate;
 @end
 
 @protocol YoutubeUIActivityShareViewControllerDelegate <NSObject>

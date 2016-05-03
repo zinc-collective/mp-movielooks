@@ -40,11 +40,11 @@
 	FBRequest *_reqUid;
 }
 
-@property(nonatomic, retain) id<FacebookUserInfoLoadDelegate> userInfoDelegate;
-@property(retain, nonatomic) id feed;
-@property(retain, nonatomic) NSString *uid;
-@property(retain, nonatomic) NSDictionary *userInfo;
-@property(retain, nonatomic) Facebook *facebook;
+@property(nonatomic, strong) id<FacebookUserInfoLoadDelegate> userInfoDelegate;
+@property(strong, nonatomic) id feed;
+@property(strong, nonatomic) NSString *uid;
+@property(strong, nonatomic) NSDictionary *userInfo;
+@property(strong, nonatomic) Facebook *facebook;
 
 - (void) requestUid;
 - (id) initWithFacebook:(Facebook *)facebook andDelegate:(id<FacebookUserInfoLoadDelegate>)delegate;

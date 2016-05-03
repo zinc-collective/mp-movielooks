@@ -48,19 +48,19 @@ static FileCache *_sharedCacher;
 
 -(void) cacheFileAsync:(NSDictionary *)info
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
-	@try {
-		[self cacheLocalImage:[info objectForKey:@"filename"] image:[info objectForKey:@"image"]];
-	}
-	@catch (NSException * e) {
-		;
-	}
-	@finally {
-		;
-	}
+		@try {
+			[self cacheLocalImage:[info objectForKey:@"filename"] image:[info objectForKey:@"image"]];
+		}
+		@catch (NSException * e) {
+			;
+		}
+		@finally {
+			;
+		}
 	
-	[pool release];
+	}
 }
 
 /*****************************************/
@@ -100,9 +100,5 @@ static FileCache *_sharedCacher;
 }
 
 
-- (void)dealloc {
-   	[_sharedCacher release];
-    [super dealloc];
-}
 
 @end 

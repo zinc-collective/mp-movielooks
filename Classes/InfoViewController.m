@@ -240,12 +240,6 @@
 }
 
 
-- (void)dealloc {
-	[_submitBtnItem release];
-    //[_contentView release];
-    //[_scrollView release];
-    [super dealloc];
-}
 
 
 -(void)showActiveButton
@@ -290,7 +284,6 @@
 	webSite.bShowStatusBar = NO;
 	[webSite setCtrlorWithURL:active_link_url forTitle:active_link_title];
     [self presentViewController:webSite animated:YES completion:^{}];
-	[webSite release];
 }
 
 

@@ -22,7 +22,7 @@
 {
 	if ((self = [super init]))
 	{
-		mLibrary = [[MPMediaLibrary defaultMediaLibrary] retain];
+		mLibrary = [MPMediaLibrary defaultMediaLibrary];
 		
 		[self regenerateURLs];
 		
@@ -36,15 +36,12 @@
 - (void)dealloc
 {
 	[mLibrary endGeneratingLibraryChangeNotifications];
-	[mLibrary release];
-	[mURLs release];
 	
-	[super dealloc];
 }
 
 - (NSArray*)URLs
 {
-	return [[mURLs retain] autorelease];
+	return mURLs;
 }
 
 - (void)regenerateURLs
@@ -57,11 +54,8 @@
 	for (MPMediaItem* item in [videoQuery items])
 		[URLs addObject:[item valueForProperty:MPMediaItemPropertyAssetURL]];
 	
-	[mURLs release];
-	mURLs = [URLs copyWithZone:[self zone]];
+	mURLs = [URLs copyWithZone:nil];
 	
-	[videoQuery release];
-	[URLs release];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:MobileLooksPickerSourceItemsDidChangeNotification object:self];
 }
@@ -83,7 +77,7 @@
 		[self regenerateURLs];
 		
 		/* MPMediaLibrary will fire a notification when these files change, even though they aren't in the library. */
-		mLibrary = [[MPMediaLibrary defaultMediaLibrary] retain];
+		mLibrary = [MPMediaLibrary defaultMediaLibrary];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(regenerateURLs) name:MPMediaLibraryDidChangeNotification object:mLibrary];
 		[mLibrary beginGeneratingLibraryChangeNotifications];
@@ -96,15 +90,12 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMediaLibraryDidChangeNotification object:mLibrary];
 	[mLibrary endGeneratingLibraryChangeNotifications];
-	[mLibrary release];
-	[mURLs release];
 	
-	[super dealloc];
 }
 
 - (NSArray*)URLs
 {
-	return [[mURLs retain] autorelease];
+	return mURLs;
 }
 
 - (void)regenerateURLs
@@ -132,10 +123,8 @@
 		}
 	}
 	
-	[fileManager release];
 	
-	[mURLs release];
-	mURLs = [contentURLs copyWithZone:[self zone]];
+	mURLs = [contentURLs copyWithZone:nil];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:MobileLooksPickerSourceItemsDidChangeNotification object:self];
 }
@@ -154,7 +143,7 @@
 {
 	if ((self = [super init]))
 	{
-		mLibrary = [[ALAssetsLibrary allocWithZone:[self zone]] init];
+		mLibrary = [[ALAssetsLibrary allocWithZone:nil] init];
 		mAssetArray = [[NSMutableArray alloc] init];
 		[self regenerateURLs];
 		
@@ -168,15 +157,12 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:ALAssetsLibraryChangedNotification object:mLibrary];
     
-	[mAssetArray release];
-	[mLibrary release];
     
-	[super dealloc];
 }
 
 - (NSArray*)assetsArray
 {
-	return [[mAssetArray retain] autorelease];
+	return mAssetArray;
 }
 
 - (void)regenerateURLs
@@ -242,12 +228,12 @@
 
 + (MobileLooksPickerSource*)iTunesLibrarySource
 {
-	return [[[MobileLooksPickerSource_iTunesLibrary alloc] init] autorelease];
+	return [[MobileLooksPickerSource_iTunesLibrary alloc] init];
 }
 
 + (MobileLooksPickerSource*)iTunesFileSharingSource
 {
-	return [[[MobileLooksPickerSource_iTunesFileSharing alloc] init] autorelease];
+	return [[MobileLooksPickerSource_iTunesFileSharing alloc] init];
 }
 
 -(NSArray*)URLs

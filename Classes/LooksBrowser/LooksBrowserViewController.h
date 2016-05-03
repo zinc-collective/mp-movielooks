@@ -75,20 +75,20 @@
 
 @property (assign) BOOL isRenderThreadStop;
 
-@property (nonatomic, retain) NSArray *products;
-@property (nonatomic, retain) NSMutableArray *groupsViews;
-@property (nonatomic, retain) NSMutableArray *looksViews;
+@property (nonatomic, strong) NSArray *products;
+@property (nonatomic, strong) NSMutableArray *groupsViews;
+@property (nonatomic, strong) NSMutableArray *looksViews;
 //
 //@property (nonatomic, retain) UIImageView *overView;
 //@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
-@property (nonatomic, retain) NSString *productIdentifier;
+@property (nonatomic, strong) NSString *productIdentifier;
 
-@property (nonatomic, retain) UIScrollView *groupsScrollView;
-@property (nonatomic, retain) UIScrollView *looksScrollView;
-@property (nonatomic, retain) NSMutableDictionary *requestDictionary;
+@property (nonatomic, strong) UIScrollView *groupsScrollView;
+@property (nonatomic, strong) UIScrollView *looksScrollView;
+@property (nonatomic, strong) NSMutableDictionary *requestDictionary;
 
-@property (nonatomic, retain) SKProduct *currentProduct;
+@property (nonatomic, strong) SKProduct *currentProduct;
 
 - (void)processingOnscreenLooks;
 - (void)layoutAfterorientation:(UIInterfaceOrientation)toInterfaceOrientation;

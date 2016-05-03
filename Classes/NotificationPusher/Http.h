@@ -24,10 +24,10 @@
 	BOOL m_bStop;
 
 @private
-	id _delegate;		
+	id __weak _delegate;		
 }
 
-@property(assign) id<HttpDelegate> delegate;
+@property(weak) id<HttpDelegate> delegate;
 @property BOOL m_bStop;
 
 

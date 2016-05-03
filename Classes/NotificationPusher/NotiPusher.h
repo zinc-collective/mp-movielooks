@@ -93,13 +93,13 @@ typedef enum{
 	BOOL _bPosting;
 	
 @private
-	id _delegate;		
+	id __weak _delegate;		
 }
-@property (assign) id<NotiPusherDelegate> delegate;
-@property (nonatomic, retain) NSString *deviceToken;
-@property (nonatomic, retain) NSString *deviceAlias;
-@property (nonatomic, retain) NSString *userID;
-@property (nonatomic, retain) NSString *password;
+@property (weak) id<NotiPusherDelegate> delegate;
+@property (nonatomic, strong) NSString *deviceToken;
+@property (nonatomic, strong) NSString *deviceAlias;
+@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *password;
 
 
 #pragma mark -

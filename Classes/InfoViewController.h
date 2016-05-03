@@ -15,8 +15,8 @@
 	//UIImageView *contentView;
 	UIBarButtonItem		*_submitBtnItem;
 }
-@property (retain, nonatomic) IBOutlet UIImageView *contentView;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIImageView *contentView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 -(void)activeAction:(id)sender;

@@ -87,7 +87,6 @@
 	CGImageRef imageRef = keyFrameImage.CGImage;
 	if (!imageRef)
 	{ 
-		[keyFrameImage release];
 		return;
 	}
 	
@@ -103,7 +102,6 @@
         outputSize = CGSizeMake(FRAME_CROP_SIZE_WIDTH, FRAME_CROP_SIZE_HEIGHT);
     }
 #endif
-    [keyFrameImage release];
 //#if 0
     
 	double aspectRatio = (double)width/(double)height;
@@ -956,79 +954,78 @@
 
 -(void)renderLoop
 {	
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	NSUInteger thumbnailIndex = 0;
-	//for a first frame render bug 
-	BOOL isRenderFirstTime = YES;
-	while (!renderThreadCancel) {
+	@autoreleasepool {
+		NSUInteger thumbnailIndex = 0;
+		//for a first frame render bug 
+		BOOL isRenderFirstTime = YES;
+		while (!renderThreadCancel) {
 //		if(!isRenderAlready) continue;
-		
-		[renderCondition lock];
-		while ([renderQueue count]==0 && !renderThreadCancel)
-			[renderCondition wait];
-		if (!renderThreadCancel) 
-		{
-			thumbnailIndex = [[renderQueue lastObject] unsignedIntValue];
-			if(!isRenderFirstTime)
-				[renderQueue removeLastObject];
-		}
-		[renderCondition unlock];
-		if(renderThreadCancel) 
-			break;
-		
-		LookThumbnailView* thumbnailView = [looksViews objectAtIndex:thumbnailIndex];
-		NSLog(@"Render thumb %lu",(unsigned long)thumbnailIndex);
-		//if (thumbnailView.renderingState!=RenderingStateNone)
-		//	continue;
-		
-		NSDictionary *packDic = [self.products objectAtIndex:thumbnailView.groupIndex];
-		NSArray *items = [packDic objectForKey:kProductLooks];
-		NSDictionary *lookDic = [items objectAtIndex:thumbnailView.lookIndex];
 			
-		[renderer loadLookParam:lookDic withMode:videoMode];
-		renderer.looksStrengthValue = 1.0;
-		renderer.looksBrightnessValue = 0.5;
+			[renderCondition lock];
+			while ([renderQueue count]==0 && !renderThreadCancel)
+				[renderCondition wait];
+			if (!renderThreadCancel) 
+			{
+				thumbnailIndex = [[renderQueue lastObject] unsignedIntValue];
+				if(!isRenderFirstTime)
+					[renderQueue removeLastObject];
+			}
+			[renderCondition unlock];
+			if(renderThreadCancel) 
+				break;
+			
+			LookThumbnailView* thumbnailView = [looksViews objectAtIndex:thumbnailIndex];
+			NSLog(@"Render thumb %lu",(unsigned long)thumbnailIndex);
+			//if (thumbnailView.renderingState!=RenderingStateNone)
+			//	continue;
+			
+			NSDictionary *packDic = [self.products objectAtIndex:thumbnailView.groupIndex];
+			NSArray *items = [packDic objectForKey:kProductLooks];
+			NSDictionary *lookDic = [items objectAtIndex:thumbnailView.lookIndex];
 				
-		
-		UIImage* processedImage = nil;
-		CGImageRef processedCGImageRef = [renderer frameProcessingAndReturnImage:nil flipPixel:NO];
-		if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
-			processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef  scale:1.0 orientation:UIImageOrientationRight];
+			[renderer loadLookParam:lookDic withMode:videoMode];
+			renderer.looksStrengthValue = 1.0;
+			renderer.looksBrightnessValue = 0.5;
+					
+			
+			UIImage* processedImage = nil;
+			CGImageRef processedCGImageRef = [renderer frameProcessingAndReturnImage:nil flipPixel:NO];
+			if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
+				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef  scale:1.0 orientation:UIImageOrientationRight];
+			}
+			else {
+				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
+			}
+			
+			CGImageRelease(processedCGImageRef);
+			
+			dispatch_async(dispatch_get_main_queue(),
+						   ^{
+							   if(!isRenderFirstTime)
+							   {
+								   [thumbnailView setThumbnailImage:processedImage];
+								   thumbnailView.renderingState = RenderingStateCompleted;
+								   [thumbnailView.activityIndicator stopAnimating];
+							   } 
+						   });
+			isRenderFirstTime = NO;
 		}
-		else {
-			processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
-		}
-		
-		CGImageRelease(processedCGImageRef);
-		
-		dispatch_async(dispatch_get_main_queue(),
-					   ^{
-						   if(!isRenderFirstTime)
-						   {
-							   [thumbnailView setThumbnailImage:processedImage];
-							   thumbnailView.renderingState = RenderingStateCompleted;
-							   [thumbnailView.activityIndicator stopAnimating];
-						   } 
-						   [processedImage release];
-					   });
-		isRenderFirstTime = NO;
-	}
-	[pool release];	
+	}	
 	NSLog(@"Render Thread Stop!");
 	self.isRenderThreadStop = YES;
 }
 
 - (void)resetRenderer:(id)sender
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 //	[renderLock lock];
 	
-	NSLog(@"renderer reset");
-	[renderer resetFrameSize:frameSize outputFrameSize:outputSize];
+		NSLog(@"renderer reset");
+		[renderer resetFrameSize:frameSize outputFrameSize:outputSize];
 	
 //	[renderLock unlock];
 	
-	[pool release];
+	}
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -1111,12 +1108,10 @@
 	looksScrollView.showsVerticalScrollIndicator = NO;
 	looksScrollView.showsHorizontalScrollIndicator = NO;
 	[self.view addSubview:looksScrollView];
-	[looksScrollView release];
 
     scrollEnhancer = [[ScrollViewEnhancer alloc] initWithFrame:CGRectMake(0, f_looksScrollViewTop, f_width, f_looksScrollViewHeight)];
 	scrollEnhancer.scrollView = looksScrollView;
 	[self.view insertSubview:scrollEnhancer belowSubview:looksScrollView];
-	[scrollEnhancer release];
     //
     
     groupsBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, f_width, 41)];
@@ -1129,7 +1124,6 @@
 	groupsScrollView.showsVerticalScrollIndicator = NO;
 	groupsScrollView.showsHorizontalScrollIndicator = NO;
 	[self.view addSubview:groupsScrollView];
-	[groupsScrollView release];
 	//ScrollViewEnhancer *scrollEnhancer = [[ScrollViewEnhancer alloc] initWithFrame:CGRectMake(0, f_looksScrollViewTop, f_width, f_looksScrollViewHeight)];
 	//scrollEnhancer.scrollView = looksScrollView;
 	UIImage *border = [UIImage imageNamed:@"lb_thumbnail_border.png"]; //bret 325x192
@@ -1173,7 +1167,6 @@
 		groupButton.exclusiveTouch = YES;
 		[groupsScrollView addSubview:groupButton];
 		[groupsViews addObject:groupButton];
-		[groupButton release];
 		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
 			//groupOffset += 10.0 + groupButton.frame.size.width;
@@ -1234,7 +1227,6 @@
 			}
 			
 			[array addObject:thumbView];
-			[thumbView release];
 			
 			[looksScrollView addSubview:thumbView];
 			[self.looksViews addObject:thumbView];
@@ -1490,7 +1482,6 @@
 -(void)releaseRender:(NSNotification *)notification
 {
 	if (renderer) {
-		[renderer release];
 		renderer = nil;
 	}
 }
@@ -1621,7 +1612,6 @@
 												   otherButtonTitles:NSLocalizedString(@"Purchase",nil), nil];
 		
 		[alertView show];
-		[alertView release];
 		
 		self.productIdentifier = product.productIdentifier;
         self.currentProduct = product;
@@ -1642,7 +1632,6 @@
 											  otherButtonTitles:nil];
 	
 	[alerView show];
-	[alerView release];
 }
 
 #pragma mark -
@@ -1750,7 +1739,7 @@
 	
 	NSLog(@"requestProductData:%@", identifier);
 	NSSet *productSet =[NSSet setWithObject:identifier];
-	SKProductsRequest *request = [[[SKProductsRequest alloc] initWithProductIdentifiers: productSet] autorelease]; 
+	SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers: productSet]; 
 	request.delegate = self;
 	
 	if (requestDictionary == nil)
@@ -2562,22 +2551,9 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReleaseRender" object:nil];
 
 	[self releaseRender:nil];
-	[headers release];
-	[groupsBackgroundView release];
-	[backgroundView_ release];
-	[looksDic_ release];
-	[products release];
-	[groupsViews release];
-	[looksViews release];
     
-	[productIdentifier release];	
-	[looksScrollView release];
-	[requestDictionary release];
 
-	[renderQueue release];	
-	[renderCondition release];
 	
-	[super dealloc];
 }
 
 @end

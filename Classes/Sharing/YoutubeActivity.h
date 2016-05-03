@@ -18,8 +18,8 @@
     UIImage             *mThumbImage;
     NSString    *processedMoviePath;
 }
-@property (nonatomic, retain) UIImage *mThumbImage;
-@property (nonatomic, retain) NSString *processedMoviePath;
+@property (nonatomic, strong) UIImage *mThumbImage;
+@property (nonatomic, strong) NSString *processedMoviePath;
 
 @end
 

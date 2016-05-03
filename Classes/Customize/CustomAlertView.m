@@ -27,7 +27,6 @@
 		backView.alpha = 0.5;
 		backView.tag = layerBackView;
 		[self addSubview:backView];
-		[backView release];
 		
 		
 		//add others
@@ -46,19 +45,16 @@
 		bgTopImageView.image = [UIImage imageNamed:@"custom_alert_bg_top.png"];
 		bgTopImageView.tag = layerTopImage;
 		[_alertView addSubview:bgTopImageView];
-		[bgTopImageView release];
 		
 		UIImageView *bgMidImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 40.0, 280.0, alertHeight-40.0-10.0)];
 		bgMidImageView.image = [UIImage imageNamed:@"custom_alert_bg_middle.png"];
 		bgMidImageView.tag = layerMidImage;
 		[_alertView addSubview:bgMidImageView];
-		[bgMidImageView release];
 		
 		UIImageView *bgBtmImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, alertHeight-10.0, 280.0, 10.0)];
 		bgBtmImageView.image = [UIImage imageNamed:@"custom_alert_bg_btm.png"];
 		bgBtmImageView.tag = layerBtmImage;
 		[_alertView addSubview:bgBtmImageView];
-		[bgBtmImageView release];
 		
 		
 		//shadow
@@ -66,7 +62,6 @@
 		shadowImageView.image = [UIImage imageNamed:@"GlossaryBack_hi.png"];
 		shadowImageView.tag = layerShadow;
 		[_alertView addSubview:shadowImageView];
-		[shadowImageView release];
 		
 		
 		//title
@@ -79,7 +74,6 @@
 		titleLabel.text = title;
 		titleLabel.tag = layerTitle;
 		[_alertView addSubview:titleLabel];
-		[titleLabel release];
 		
 		
 		//contentView
@@ -101,7 +95,6 @@
 			[leftBtn addTarget:self action:@selector(leftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 			leftBtn.tag = layerLeftBtn;
 			[_alertView addSubview:leftBtn];
-			[leftBtn release];
 		}
 		
 		
@@ -113,7 +106,6 @@
 			[rightBtn addTarget:self action:@selector(rightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 			rightBtn.tag = layerRightBtn;
 			[_alertView addSubview:rightBtn];
-			[rightBtn release];
 		}
 		
     }
@@ -127,11 +119,6 @@
 	
 }
 
-- (void)dealloc {
-
-	[_alertView release];	
-    [super dealloc];
-}
 
 
 
@@ -215,7 +202,6 @@
 	[self MoveViewAnimation:_alertView];
 	
 	[[UIApplication sharedApplication].keyWindow addSubview:self];
-	[self release];
 }
 
 

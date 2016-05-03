@@ -27,9 +27,9 @@
  */
 
 @interface FBLoginDialog : FBDialog {
-  id<FBLoginDialogDelegate> _loginDelegate;
+  id<FBLoginDialogDelegate> __weak _loginDelegate;
 }
-@property (nonatomic, assign) id<FBLoginDialogDelegate> _loginDelegate;
+@property (nonatomic, weak) id<FBLoginDialogDelegate> _loginDelegate;
 
 -(id) initWithURL:(NSString *) loginURL 
       loginParams:(NSMutableDictionary *) params 

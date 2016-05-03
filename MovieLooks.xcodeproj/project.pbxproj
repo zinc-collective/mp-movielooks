@@ -2615,6 +2615,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70A7258FBFF222862E714C72 /* Pods-MovieLooks.ad hoc.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2655,6 +2656,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E70126454921E1326E71395 /* Pods-MovieLooks.distribution.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2676,6 +2678,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F17B776F3517F5E2752EAE23 /* Pods-MovieLooks.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2698,6 +2701,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BEFFA679D9CE31CF48E870D /* Pods-MovieLooks.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

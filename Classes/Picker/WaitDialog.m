@@ -29,7 +29,6 @@
 		//indicator.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 		//[indicator startAnimating];
 		[self addSubview:indicator];
-		[indicator release];
 		
 		// label
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(130, top+40+10, 100, 20)];
@@ -40,7 +39,6 @@
 		label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
 		label.tag = LABEL_TAG;
 		[self addSubview:label];
-		[label release];
 		
 		self.backgroundColor = [UIColor clearColor];
 		return self;
@@ -54,12 +52,6 @@
 	v.center = self.center;
 }
 
-- (void) dealloc {
-    if (title_) {
-		[title_ release];
-    }
-    [super dealloc];
-}
 
 - (UIView *) createView
 {
@@ -85,9 +77,6 @@
 }
 
 - (void) endLoading {
-    if (title_) {
-		[title_ release];
-    }
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	
 	//self.hidden = YES;

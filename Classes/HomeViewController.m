@@ -298,7 +298,6 @@
                                                       otherButtonTitles:nil];
             
             [alerView show];
-            [alerView release];
             //return;
         }
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
@@ -382,8 +381,6 @@
 	[avImageGenerator setMaximumSize:CGSizeMake(320, 320)];
 	CGImageRef cgImageRefKeyFrameS =  [avImageGenerator copyCGImageAtTime:CMTimeMake(0,600) actualTime:NULL error:&err];
 	
-	if(avAsset)
-		[avAsset release];
 	if(err)
 		NSLog(@"%@",[err localizedDescription]);
 	return cgImageRefKeyFrameS;//jack modify
@@ -592,7 +589,6 @@
 												  otherButtonTitles:nil];
 		
 		[alerView show];
-		[alerView release];
         ret = false;
 	}
     
@@ -602,12 +598,10 @@
 -(void)presentBullet
 {
 	if(navigationVideoProcessor){
-		[navigationVideoProcessor release];
 		navigationVideoProcessor = nil;
 	}
 	LooksBrowserViewController *looksBrowser = [[LooksBrowserViewController alloc] init];
 	navigationVideoProcessor = [[UINavigationController alloc] initWithRootViewController:looksBrowser];
-	[looksBrowser release];		
     [self presentViewController:navigationVideoProcessor animated:YES completion:^{}];
 }
 
@@ -690,15 +684,10 @@
 
 
 - (void)dealloc {
-	[locationManager release];
-	[_newsBtn release];
-	[_shareBtn release];
 	if(navigationVideoPicker) {
-		[navigationVideoPicker release];
 		navigationVideoPicker = nil;
 	}
 	if(navigationVideoProcessor) {
-		[navigationVideoProcessor release];
 		navigationVideoProcessor = nil;
 	}
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"BecomeActiveResume" object:nil];
@@ -708,7 +697,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"BackToVideo" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"LooksPreviewOnScreen" object:nil];
 	
-	[super dealloc];
 }
 
 
@@ -733,7 +721,7 @@
 				btnImageName = @"news-iPad.png";
 			}
 			
-			_newsBtn = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+			_newsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 			_newsBtn.frame = btnFrame;
 			[_newsBtn setBackgroundImage:[UIImage imageNamed:btnImageName] forState:UIControlStateNormal];
 			[_newsBtn addTarget:self action:@selector(newsAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -768,7 +756,6 @@
 	webSite.bShowStatusBar = NO;
 	[webSite setCtrlorWithURL:active_link_url forTitle:active_link_title];
     [self presentViewController:webSite animated:YES completion:^{}];
-	[webSite release];
 }
 
 -(void)showShareButton
@@ -786,7 +773,7 @@
 			// TODO: add impl
 		}
 			
-		_shareBtn = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+		_shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		_shareBtn.frame = btnFrame;
 		[_shareBtn setBackgroundImage:[UIImage imageNamed:btnImageName] forState:UIControlStateNormal];
 		[_shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];

@@ -11,9 +11,9 @@
 
 @interface ScrollViewEnhancer : UIView
 {
-	UIScrollView *_scrollView;
+	UIScrollView *__weak _scrollView;
 }
 
-@property(nonatomic, assign) UIScrollView *scrollView;
+@property(nonatomic, weak) UIScrollView *scrollView;
 
 @end

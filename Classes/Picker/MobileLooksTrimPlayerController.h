@@ -47,22 +47,22 @@ typedef enum
     UIButton* movieAdvanceSliderBackground;
     UISlider* movieAdvanceSlider;
 	
-	CustomTrimView* mCustomTrimView;
 	UIButton* mPlayButton;
 	UIProgressView* mProgressView;
 	AVAssetExportSession* mAVTrimSession;
 	NSTimer				*mTrimProgressTimer;
 	
-	AVPlayer*       mPlayer;
 	PlaybackView*   mPlaybackView;
 	id				mPlayTimeObserver;
 	AVPlayerState	mPlayerState;
 	CMTime			mVideoDuration;	
 	AssetMode       mAssetMode;
-	id<MobileLooksTrimPlayerControllerDelegate> _delegate;
+	id<MobileLooksTrimPlayerControllerDelegate> __weak _delegate;
 }
 
-@property(nonatomic,assign) id<MobileLooksTrimPlayerControllerDelegate> delegate;
+@property(nonatomic,weak) id<MobileLooksTrimPlayerControllerDelegate> delegate;
+@property (nonatomic, strong) CustomTrimView* mCustomTrimView;
+@property (nonatomic, strong) AVPlayer*       mPlayer;
 
 //- (id)initWithUrl:(NSURL *)sourceUrl withAssetMode:(AssetMode)mode;
 - (void)setUrl:(NSURL *)sourceUrl withAssetMode:(AssetMode)mode; //storyboard

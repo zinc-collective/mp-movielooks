@@ -192,7 +192,7 @@
 
 - (UIImage*)currentFrame{
 	
-	CGImageRef imgRef = (CGImageRef)[self.layer contents];
+	CGImageRef imgRef = (__bridge CGImageRef)[self.layer contents];
 	
 	if(imgRef == nil)return nil;
 	
@@ -219,13 +219,12 @@
 				  ^{
 					  if (mImageGenerator)
 					  {
-						  [mImageGenerator release];
 						  mImageGenerator = nil;
 					  }
 					  
 					  if (asset)
 					  {
-						  mImageGenerator = [[AVAssetImageGenerator allocWithZone:[self zone]] initWithAsset:asset];
+						  mImageGenerator = [[AVAssetImageGenerator allocWithZone:nil] initWithAsset:asset];
 						  [mImageGenerator setAppliesPreferredTrackTransform:YES];
 						  [mImageGenerator setMaximumSize:mCropSize];
 					  }
@@ -245,12 +244,6 @@
  }
  */
 
-- (void)dealloc {
-	[mImageGenerator release];
-	[mThumbnailLayers release];
-	dispatch_release(mQueue);
-    [super dealloc];
-}
 
 
 @end

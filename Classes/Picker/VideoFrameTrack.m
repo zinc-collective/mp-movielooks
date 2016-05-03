@@ -26,7 +26,6 @@
 	//[generator setMaximumSize:CGSizeMake(1920, 1080)];
 	[generator setMaximumSize:CGSizeMake(1280, 720)];
 	
-	dispatch_retain(queue);
 	
 	[generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:requestedTime] completionHandler:
 	 ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
@@ -38,7 +37,6 @@
 							block(image);
 						});
 		 
-		 [generator release];
 	 }];	
 }
 
@@ -63,7 +61,6 @@
 							CGImageRelease(image);
 						});
 		 
-		 [generator release];
 	 }];	
 }
 
@@ -80,7 +77,7 @@
 	
 	if ((self = [super init]))
 	{
-		NSZone* zone = [self zone];
+		NSZone* zone = nil;
 		
 		mURL = [URL copyWithZone:zone];
 		
@@ -114,15 +111,13 @@
 						   [asset generateThumbnailInBackgroundAndNotifyOnQueue:dispatch_get_main_queue() requestedTime:requestedTime maxSize:max withBlock:
 							^(CGImageRef image)
 							{
-								[mImage release];
-								mImage = [[UIImage allocWithZone:[self zone]] initWithCGImage:image];
+								mImage = [[UIImage allocWithZone:nil] initWithCGImage:image];
 								
 								[[NSNotificationCenter defaultCenter] postNotificationName:AVFrameTrackedDidFinishNotification object:self];
 							}];
 						   
 					   }
 					   
-					   [asset release];
 				   });
 }
 
@@ -148,25 +143,16 @@
 						   [asset generateThumbnailInBackgroundAndNotifyOnQueue:dispatch_get_main_queue() requestedTime:requestedTime maxSize:max withBlock:
 							^(CGImageRef image)
 							{
-								[mImage release];
-								mImage = [[UIImage allocWithZone:[self zone]] initWithCGImage:image];
+								mImage = [[UIImage allocWithZone:nil] initWithCGImage:image];
 								
 								[[NSNotificationCenter defaultCenter] postNotificationName:AVFrameTrackedDidFinishNotification object:self];
 							}];
 						   
 					   }
 					   
-					   [asset release];
 				   });
 }
 
-- (void)dealloc
-{
-	[mURL release];
-	[mImage release];
-	
-	[super dealloc];
-}
 
 - (NSURL*)URL
 {

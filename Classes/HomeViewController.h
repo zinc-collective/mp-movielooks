@@ -31,9 +31,9 @@
     int assetMode;
 }
 //storyboard
-@property (retain, nonatomic) IBOutlet UIButton *infoButton;
+@property (strong, nonatomic) IBOutlet UIButton *infoButton;
 //- (IBAction)infoButtonAction:(id)sender;
-@property (retain, nonatomic) IBOutlet UIButton *chooseVideoButton;
+@property (strong, nonatomic) IBOutlet UIButton *chooseVideoButton;
 //- (IBAction)chooseVideoButtonAction:(id)sender;
 
 

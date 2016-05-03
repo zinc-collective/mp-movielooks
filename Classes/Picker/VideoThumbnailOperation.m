@@ -23,7 +23,7 @@
 	self = [super init];
 	if(self)
 	{
-		mThumbnailUrl = [videoURL retain];
+		mThumbnailUrl = videoURL;
 		//	mScrollIndex = aIndex;
 		//	mThumbnailSize = aSize;
 		mWithBorder = aBorder;
@@ -32,12 +32,6 @@
 	return self;
 }
 
--(void)dealloc
-{
-	[mThumbnailImage release];
-	[mThumbnailUrl release];
-	[super dealloc];
-}
 
 +(CGImageRef)generateBoard:(CGImageRef)originImg withSize:(CGSize)imgSize
 {
@@ -63,66 +57,65 @@
 	
 	if([self isCancelled]) return;
 	
-	NSAutoreleasePool* pool =[[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
-	AVAsset* avAsset = [[AVURLAsset alloc] initWithURL:mThumbnailUrl options:nil];
-	AVAssetImageGenerator* avGenerator = [[AVAssetImageGenerator alloc] initWithAsset:avAsset];
-	[avGenerator setAppliesPreferredTrackTransform:YES];
-	[avGenerator setMaximumSize:CGSizeMake(VPICKER_THUMB_WIDTH, VPICKER_THUMB_HEIGHT)];
+		AVAsset* avAsset = [[AVURLAsset alloc] initWithURL:mThumbnailUrl options:nil];
+		AVAssetImageGenerator* avGenerator = [[AVAssetImageGenerator alloc] initWithAsset:avAsset];
+		[avGenerator setAppliesPreferredTrackTransform:YES];
+		[avGenerator setMaximumSize:CGSizeMake(VPICKER_THUMB_WIDTH, VPICKER_THUMB_HEIGHT)];
 
-	mMovieDuration = avAsset.duration;
-	if (avGenerator!=nil && ![self isCancelled])
-	{
-		CGImageRef imageRef = [avGenerator copyCGImageAtTime:CMTimeMake(0, 1) actualTime:nil error:nil];
-		if(mWithBorder && ![self isCancelled])
+		mMovieDuration = avAsset.duration;
+		if (avGenerator!=nil && ![self isCancelled])
 		{
-			CGFloat imgWidth = CGImageGetWidth(imageRef);
-			CGFloat imgHeight = CGImageGetHeight(imageRef);
-			CGFloat imgAspect = imgWidth/imgHeight;
+			CGImageRef imageRef = [avGenerator copyCGImageAtTime:CMTimeMake(0, 1) actualTime:nil error:nil];
+			if(mWithBorder && ![self isCancelled])
+			{
+				CGFloat imgWidth = CGImageGetWidth(imageRef);
+				CGFloat imgHeight = CGImageGetHeight(imageRef);
+				CGFloat imgAspect = imgWidth/imgHeight;
 
-			if (imgWidth>imgHeight) {
-				imgWidth = VPICKER_THUMB_WIDTH;
-				imgHeight = VPICKER_THUMB_HEIGHT/imgAspect;
+				if (imgWidth>imgHeight) {
+					imgWidth = VPICKER_THUMB_WIDTH;
+					imgHeight = VPICKER_THUMB_HEIGHT/imgAspect;
+				}
+				else {
+					imgWidth = VPICKER_THUMB_WIDTH*imgAspect;
+					imgHeight = VPICKER_THUMB_HEIGHT;
+				}
+				
+				CGImageRef boardedImageRef = [VideoThumbnailOperation generateBoard:imageRef withSize:CGSizeMake(imgWidth, imgHeight)];
+				mThumbnailImage = [[UIImage alloc] initWithCGImage:boardedImageRef];
+				CGImageRelease(boardedImageRef);
+				//mThumbnailSize = CGSizeMake(imgWidth, imgHeight);
 			}
-			else {
-				imgWidth = VPICKER_THUMB_WIDTH*imgAspect;
-				imgHeight = VPICKER_THUMB_HEIGHT;
+			else
+			{	
+				mThumbnailImage = [[UIImage alloc] initWithCGImage:imageRef];
+				//mThumbnailSize = CGSizeMake(73, 73);
 			}
+			CGImageRelease(imageRef);
+		}
+		//Cache
+		if(![self isCancelled])
+		{
+			[self.resultDelegate operationFinished:self];
+		}
+		if(![self isCancelled])
+		{
+			NSString* md5EncodePath = [Utilities md5Encode:[mThumbnailUrl resourceSpecifier]];
+			NSString  *jpgPath = [[Utilities cachedThumbnailPath] stringByAppendingPathComponent:md5EncodePath];
+			NSFileManager *manager = [NSFileManager defaultManager];
 			
-			CGImageRef boardedImageRef = [VideoThumbnailOperation generateBoard:imageRef withSize:CGSizeMake(imgWidth, imgHeight)];
-			mThumbnailImage = [[UIImage alloc] initWithCGImage:boardedImageRef];
-			CGImageRelease(boardedImageRef);
-			//mThumbnailSize = CGSizeMake(imgWidth, imgHeight);
-		}
-		else
-		{	
-			mThumbnailImage = [[UIImage alloc] initWithCGImage:imageRef];
-			//mThumbnailSize = CGSizeMake(73, 73);
-		}
-		CGImageRelease(imageRef);
-	}
- 	[avAsset release];
-	//Cache
-	if(![self isCancelled])
-	{
-		[self.resultDelegate operationFinished:self];
-	}
-	if(![self isCancelled])
-	{
-		NSString* md5EncodePath = [Utilities md5Encode:[mThumbnailUrl resourceSpecifier]];
-		NSString  *jpgPath = [[Utilities cachedThumbnailPath] stringByAppendingPathComponent:md5EncodePath];
-		NSFileManager *manager = [NSFileManager defaultManager];
-		
-		if(![manager fileExistsAtPath:jpgPath])
-			[UIImageJPEGRepresentation(mThumbnailImage, 1.0) writeToFile:jpgPath atomically:YES];
-		NSMutableDictionary* attributesDictionary = [NSMutableDictionary dictionaryWithDictionary:[manager attributesOfItemAtPath:jpgPath error:nil]];
-		NSDate *date = [NSDate date];
-		[attributesDictionary setObject:date forKey:NSFileCreationDate];
-		[attributesDictionary setObject:[date dateByAddingTimeInterval:CMTimeGetSeconds(mMovieDuration)] forKey:NSFileModificationDate];
-		[manager setAttributes:attributesDictionary ofItemAtPath:jpgPath error:nil];
+			if(![manager fileExistsAtPath:jpgPath])
+				[UIImageJPEGRepresentation(mThumbnailImage, 1.0) writeToFile:jpgPath atomically:YES];
+			NSMutableDictionary* attributesDictionary = [NSMutableDictionary dictionaryWithDictionary:[manager attributesOfItemAtPath:jpgPath error:nil]];
+			NSDate *date = [NSDate date];
+			[attributesDictionary setObject:date forKey:NSFileCreationDate];
+			[attributesDictionary setObject:[date dateByAddingTimeInterval:CMTimeGetSeconds(mMovieDuration)] forKey:NSFileModificationDate];
+			[manager setAttributes:attributesDictionary ofItemAtPath:jpgPath error:nil];
 
+		}
 	}
-	[pool release];
 }
 
 @end

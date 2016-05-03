@@ -22,13 +22,13 @@
 
 @interface MProgressView : UIView {
 	
-	id				 delegate_;
+	id				 __weak delegate_;
     UILabel	         *progress_;
 	UIProgressView   *progressView_;
 	UIButton		 *cancelButton;
 	UIView			 *boxView;
 }
-@property (nonatomic, assign) id <MProgressViewDelegate> delegate_;
+@property (nonatomic, weak) id <MProgressViewDelegate> delegate_;
 
 -(UIView*)getBoxView;
 -(UIButton*)getCancelButton;

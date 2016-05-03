@@ -57,7 +57,7 @@ typedef enum VideoMode
 	BOOL doQuickRender;
 }
 
-@property (nonatomic, assign) EAGLContext *context;
+@property (nonatomic) EAGLContext *context;
 @property (nonatomic) float looksStrengthValue;
 @property (nonatomic) float looksBrightnessValue;
 @property (nonatomic) BOOL doQuickRender;

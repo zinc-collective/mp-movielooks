@@ -25,7 +25,6 @@
 	[generator setAppliesPreferredTrackTransform:YES];
 	[generator setMaximumSize:CGSizeMake(VPICKER_THUMB_WIDTH, VPICKER_THUMB_HEIGHT)];
 	
-	dispatch_retain(queue);
 	
 	[generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:[NSValue valueWithCMTime:CMTimeMake(5, 1)]] completionHandler:
      ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
@@ -35,7 +34,6 @@
                             block(image);
                         });
          
-         [generator release];
      }];	
 }
 
@@ -91,7 +89,6 @@
 	VideoThumbnailOperation* op = [[VideoThumbnailOperation alloc] initWithURL:mURL withBorder:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)];
 	op.resultDelegate = self;
 	[queue addOperation:op];
-	[op release];
 }
 
 -(void)loadFromCache:(UIImage*)chachedImage withDurationString:(NSString*)durationStr
@@ -145,9 +142,7 @@
 	[durationView addSubview:labelView];									
 	//[durationView addSubview:imageView];
 	
-	[labelView release];
 	//[imageView release];
-	[durationView release];
 }
 
 -(void)operationFinishedWithOperation:(VideoThumbnailOperation*)resultOpertion
@@ -155,7 +150,6 @@
 	if([NSThread isMainThread])
 	{
 		[iconView removeFromSuperview];
-		[iconView release];
 		
 		CGSize tPickerItemSize;
 		UIButton* button =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -202,9 +196,6 @@
 		[durationView addSubview:labelView];									
 		[durationView addSubview:imageView];
 		
-		[labelView release];
-		[imageView release];
-		[durationView release];
 	}
 	else {
 		//if(!mIsCanceled)
@@ -230,7 +221,7 @@
     
 	if ((self = [super init]))
 	{
-		NSZone* zone = [self zone];
+		NSZone* zone = nil;
 		
 		mURL = [URL copyWithZone:zone];
 		mPickerItemStyle = style;
@@ -256,10 +247,7 @@
 - (void)dealloc
 {
 	[iconView removeFromSuperview];
-	[iconView release];
 
-    [mURL release];
-	[super dealloc];
 }
 
 @end

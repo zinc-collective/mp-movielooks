@@ -44,7 +44,6 @@
 		bk.alpha = 0.6f;
 		bk.tag = 1;
 		[self addSubview:bk];
-		[bk release];
 		
 		float fontSize = 20;
 		UIImage *bkImage = [UIImage imageNamed:@"pop_background.png"];
@@ -54,7 +53,6 @@
 			imgView.userInteractionEnabled = YES;
 			imgView.tag = 2;
 			[self addSubview:imgView];
-			[imgView release];
 			
 			imgView.center = CGPointMake(frame.size.width/2, frame.size.height/2);
 		
@@ -94,7 +92,6 @@
 			imgView.userInteractionEnabled = YES;
 			imgView.tag = 2;
 			[self addSubview:imgView];
-			[imgView release];
 			
 			imgView.center = CGPointMake(frame.size.width/2, frame.size.height/2);
 			
@@ -197,7 +194,6 @@
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-    [super dealloc];
 }
 
 

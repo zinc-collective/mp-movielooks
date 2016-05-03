@@ -17,10 +17,10 @@
 
 
 @interface CustomPopView : UIView {
-	id delegate_;
+	id __weak delegate_;
 	CGSize framePortraitSize;
 }
-@property (nonatomic, assign) id <CustomPopViewDelegate> delegate_;
+@property (nonatomic, weak) id <CustomPopViewDelegate> delegate_;
 
 - (id) initWithButtons:(NSArray*)buttons frame:(CGRect)frame;
 

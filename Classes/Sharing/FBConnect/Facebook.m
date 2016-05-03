@@ -66,11 +66,10 @@ static NSString* kSDKVersion = @"ios";
     [params setValue:self.accessToken forKey:@"access_token"];
   }
   
-  [_request release];
-  _request = [[FBRequest getRequestWithParams:params
+  _request = [FBRequest getRequestWithParams:params
                                    httpMethod:httpMethod
                                      delegate:delegate
-                                   requestURL:url] retain];
+                                   requestURL:url];
   [_request connect];
 }
 
@@ -130,7 +129,6 @@ static NSString* kSDKVersion = @"ios";
 
   _sessionDelegate = delegate;
   
-  [_loginDialog release];
   _loginDialog = [[FBLoginDialog alloc] initWithURL:kOAuthURL 
                                          loginParams:params 
                                             delegate:self];
@@ -157,10 +155,7 @@ static NSString* kSDKVersion = @"ios";
                     andParams:params andHttpMethod:@"GET" 
                   andDelegate:nil];
   
-  [params release];
-  [_accessToken release];
   _accessToken = nil;
-  [_expirationDate release];
   _expirationDate = nil;
   
   NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -367,7 +362,6 @@ static NSString* kSDKVersion = @"ios";
     [params setObject:@"user_agent" forKey:@"type"];
     [params setObject:kRedirectURL forKey:@"redirect_uri"];
     
-    [_fbDialog release];
     _fbDialog = [[FBLoginDialog alloc] initWithURL:kOAuthURL loginParams:params delegate:self]; 
                  
   } else {
@@ -384,11 +378,9 @@ static NSString* kSDKVersion = @"ios";
       dialogURL = [kUIServerBaseURL copy];
     }
    
-    [_fbDialog release];
     _fbDialog = [[FBDialog alloc] initWithURL:dialogURL 
                                        params:params
                                      delegate:delegate]; 
-    [dialogURL release];
 
   }
   
@@ -434,14 +426,6 @@ static NSString* kSDKVersion = @"ios";
 /**
  * Override NSObject : free the space
  */
-- (void)dealloc {
-  [_accessToken release];
-  [_expirationDate release];
-  [_request release];
-  [_loginDialog release];
-  [_fbDialog release];
-  [super dealloc];
-}
 
 
 - (void) cancelFacebookRequest{

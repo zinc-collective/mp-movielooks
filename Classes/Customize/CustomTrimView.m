@@ -50,7 +50,6 @@
 	if(mThumbnailLayer)
 	{
 		[mThumbnailLayer removeFromSuperlayer];
-		[mThumbnailLayer release];
 	}
 	
 //	CGRect layerBounds = CGRectMake(mQuartzTrimView.maskWidthSpace, mQuartzTrimView.maskHeightSpace, maskWidth, maskHeight);
@@ -118,11 +117,7 @@
 	if(mThumbnailLayer)
 	{
 		[mThumbnailLayer removeFromSuperlayer];
-		[mThumbnailLayer release];
 	}
-	[mTrimBoardLayer release];
-	[mQuartzTrimView release];
-    [super dealloc];
 }
 
 @end

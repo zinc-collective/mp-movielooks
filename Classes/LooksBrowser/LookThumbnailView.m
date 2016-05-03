@@ -229,23 +229,6 @@
 }
 */
 
-- (void)dealloc
-{
-	[frameView release];
-	[borderView release];
-	[titleBackgroundView release];
-	[titleLabel release];
-#ifdef BOTTOM_TEXT
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
-    {
-        [descBackgroundView release];
-        [descLabel release];
-    }
-#endif
-	[lockView release];
-	[activityIndicator release];
-    [super dealloc];
-}
 
 
 @end

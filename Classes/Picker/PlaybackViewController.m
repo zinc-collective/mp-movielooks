@@ -30,7 +30,7 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
 	{
-		mPlayer = [[AVPlayer allocWithZone:[self zone]] init];
+		mPlayer = [[AVPlayer alloc] init];
 		[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:(__bridge void * _Nullable)(PlayerPlaybackViewControllerRateObservationContext)];
 		[mPlayer addObserver:self forKeyPath:@"currentItem.asset.duration" options:0 context:(__bridge void * _Nullable)(PlayerPlaybackViewControllerDurationObservationContext)];
 		
@@ -55,16 +55,11 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 
 - (void)dealloc
 {
-	[leftTime release];
-	[currentTime release];
 	
-	[mAvAsset release];
-	[mThumbView release];
 	
 	if (mTimeObserver)
 	{
 		[mPlayer removeTimeObserver:mTimeObserver];
-		[mTimeObserver release];
 	}
 	NSNotificationCenter* defaultCenter = [NSNotificationCenter defaultCenter];
 	[defaultCenter removeObserver:self name:AVFrameTrackedDidFinishNotification object:self];
@@ -72,14 +67,8 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	[mPlayer removeObserver:self forKeyPath:@"rate"];
 	[mPlayer removeObserver:self forKeyPath:@"currentItem.asset.duration"];
 	[mPlayer pause];
-	[mPlayer release];
-	[mURL release];
 	
-	if(mVideoFrameTrack){
-		[mVideoFrameTrack release];
-	}
 	
-	[super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -99,8 +88,7 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	{       
 		MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
 
-		[mURL release];
-		mURL = [URL copyWithZone:[self zone]];
+		mURL = [URL copyWithZone:nil];
 		
 		[mPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:URL]];
 		
@@ -114,9 +102,6 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 		}
 		else {
 			
-			if(mAvAsset){
-				[mAvAsset release];
-			}
 			mAvAsset = [[AVURLAsset allocWithZone:NULL] initWithURL:mURL options:nil];
 			[mThumbView setAsset:mAvAsset];
 			
@@ -127,9 +112,6 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 			}
 		}
 		
-		if(mVideoFrameTrack){
-			[mVideoFrameTrack release];
-		}
 		mVideoFrameTrack = [[VideoFrameTrack alloc] initWithURL:mURL];
 	}
 }
@@ -189,13 +171,11 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 																		  action:@selector(didPickFrame:)];
 	
 	self.navigationItem.rightBarButtonItem = done;
-	[done release];
 	
 	UIBarButtonItem *home = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home",nil) style:UIBarButtonItemStylePlain target:self
 																		  action:@selector(homeAction:)];
 	
 	self.navigationItem.leftBarButtonItem = home;
-	[home release];
 	
 	mPlaybackView.backgroundColor = [UIColor blackColor];
 	[mPlaybackView setPlayer:mPlayer];
@@ -212,7 +192,6 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	grayBlack.backgroundColor = [UIColor blackColor];
 	grayBlack.alpha = 0.5;
 	[mLowerUI insertSubview:grayBlack atIndex:0];
-	[grayBlack release];
 	
 	currentTime = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, 50, 30)];
 	currentTime.text  = @"0:00";
@@ -258,13 +237,13 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	if (mTimeObserver)
 	{
 		[mPlayer removeTimeObserver:mTimeObserver];
-		[mTimeObserver release];
 	}
 	
-	mTimeObserver = [[mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:
+    __weak PlaybackViewController* weakSelf = self;
+	mTimeObserver = [mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:
 					  ^(CMTime time) {
-						  [self syncScrubber];
-					  }] retain];
+						  [weakSelf syncScrubber];
+					  }];
 	
 
 	[mThumbView layer].contentsGravity = kCAGravityResizeAspect;
@@ -313,7 +292,6 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	
 	LooksBrowserViewController *looksBrowser = [[LooksBrowserViewController alloc] init];
 	[self.navigationController pushViewController:looksBrowser animated:YES];
-	[looksBrowser release];
 	
 }
 
@@ -406,7 +384,6 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	if (mTimeObserver)
 	{
 		[mPlayer removeTimeObserver:mTimeObserver];
-		[mTimeObserver release];
 		mTimeObserver = nil;
 	}
 }
@@ -471,11 +448,12 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 			CGFloat width = CGRectGetWidth([mScrubber bounds]);
 			double tolerance = 0.5f * duration / width;
 			
-			mTimeObserver = [[mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(tolerance, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:
+            __weak PlaybackViewController* weakSelf = self;
+			mTimeObserver = [mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(tolerance, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:
 							  ^(CMTime time)
 							  {
-								  [self syncScrubber];
-							  }] retain];
+								  [weakSelf syncScrubber];
+							  }];
 		}
 	}
 	
