@@ -43,13 +43,16 @@
         {
 			titleFont = [UIFont boldSystemFontOfSize:22.0];
 		}
-		CGSize titleSize = [title sizeWithFont:titleFont
-									  forWidth:230
-								 lineBreakMode:UILineBreakModeTailTruncation];
+        
+        // http://stackoverflow.com/questions/18315441/with-what-should-i-replace-the-deprecated-sizewithfont-method
+        CGSize maximumLabelSize = CGSizeMake(230, MAXFLOAT);
+        NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin;
+        NSDictionary * attributes = @{NSFontAttributeName: titleFont};
+        CGRect titleRect = [title boundingRectWithSize:maximumLabelSize options:options attributes:attributes context:nil];
 				
 		titleBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 26)];
         //titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5+2, 6+3, titleSize.width + 10, 22)];
-        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 2, titleSize.width + 10, 22)];
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 2, titleRect.size.width + 10, 22)];
 		titleLabel.font = titleFont;
 		titleLabel.textColor = [UIColor whiteColor];
 		titleLabel.text = title;
@@ -57,7 +60,7 @@
 		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
 			titleBackgroundView.frame = CGRectMake(0, 0, self.bounds.size.width, 58);
-			titleLabel.frame = CGRectMake(5, 9, titleSize.width + 10, 30);
+			titleLabel.frame = CGRectMake(5, 9, titleRect.size.width + 10, 30);
 		}
 		[titleBackgroundView setBackgroundColor:[UIColor blackColor]];
 		titleBackgroundView.alpha = 0.5f;

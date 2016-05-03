@@ -734,7 +734,7 @@ void onUncaughtExceptionHandler(NSException *exception)
 	//webSite.bShowToolBar = NO;
 	webSite.bShowStatusBar = NO;
 	[webSite setCtrlorWithURL:active_link_url forTitle:active_link_title];
-	[topViewCtrlor presentModalViewController:webSite animated:YES];
+    [topViewCtrlor presentViewController:webSite animated:YES completion:^{}];
 	[webSite release];
 	
 	
