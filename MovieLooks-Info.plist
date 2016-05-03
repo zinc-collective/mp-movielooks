@@ -74,14 +74,14 @@
 			<string>{768, 1024}</string>
 		</dict>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>Launch</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Storyboard</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Storyboard_ipad</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array/>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>

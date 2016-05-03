@@ -88,6 +88,8 @@
 @property (nonatomic, retain) UIScrollView *looksScrollView;
 @property (nonatomic, retain) NSMutableDictionary *requestDictionary;
 
+@property (nonatomic, retain) SKProduct *currentProduct;
+
 - (void)processingOnscreenLooks;
 - (void)layoutAfterorientation:(UIInterfaceOrientation)toInterfaceOrientation;
 

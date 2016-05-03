@@ -63,6 +63,7 @@
 //@synthesize footView=mFootView;
 
 @synthesize requestDictionary;
+@synthesize currentProduct;
 
 - (void)showNetworkActivityIndicator
 {
@@ -763,9 +764,9 @@
 		}
 	}
 	
-	currentSelectedGroup = groupButton.tag;
+	currentSelectedGroup = (int)groupButton.tag;
     {
-		selectedGroupIndex_landscape = groupButton.tag;
+		selectedGroupIndex_landscape = (int)groupButton.tag;
 	}
 
 }
@@ -976,7 +977,7 @@
 			break;
 		
 		LookThumbnailView* thumbnailView = [looksViews objectAtIndex:thumbnailIndex];
-		NSLog(@"Render thumb %d",thumbnailIndex);
+		NSLog(@"Render thumb %lu",(unsigned long)thumbnailIndex);
 		//if (thumbnailView.renderingState!=RenderingStateNone)
 		//	continue;
 		
@@ -1164,7 +1165,7 @@
 			groupOrigin = CGPointMake(groupOffset, 13);
 		}
 		
-		NSString *subtitle = [NSString stringWithFormat:@"(%i)", [looks count]];
+		NSString *subtitle = [NSString stringWithFormat:@"(%lu)", (unsigned long)[looks count]];
 		
 		ToggleButton *groupButton = [[ToggleButton alloc] initWithOrigin:groupOrigin title:groupName subtitle:subtitle];
 		[groupButton addTarget:self action:@selector(toggleGroup:) forControlEvents:UIControlEventTouchUpInside];
@@ -1555,7 +1556,7 @@
 {
 	return YES;
 }
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 }
@@ -1575,7 +1576,7 @@
 	else
 	{
 		[self showNetworkActivityIndicator];
-		SKPayment *payment = [SKPayment paymentWithProductIdentifier:self.productIdentifier];
+		SKPayment *payment = [SKPayment paymentWithProduct:self.currentProduct];
 		[[SKPaymentQueue defaultQueue] addPayment:payment];
 	}
 }
@@ -1588,7 +1589,7 @@
 	NSLog(@"productsRequest:didReceiveResponse:");
 	NSArray *myProducts = response.products;
 	
-	NSLog(@"the count of products is %d", [myProducts count]);
+	NSLog(@"the count of products is %lu", (unsigned long)[myProducts count]);
 	if ([myProducts count] == 0)
 	{
 //		self.overView.hidden = YES;
@@ -1623,6 +1624,7 @@
 		[alertView release];
 		
 		self.productIdentifier = product.productIdentifier;
+        self.currentProduct = product;
 	}
 }
 
@@ -1818,7 +1820,7 @@
 		 [renderCondition lock];
 		 thumbView.renderingState = RenderingStateRendering;
 		 [thumbView.activityIndicator startAnimating];
-		 [renderQueue addObject:[NSNumber numberWithUnsignedInt:thumbView.pageIndex]];
+		 [renderQueue addObject:[NSNumber numberWithInt:(int)thumbView.pageIndex]];
 		 [renderCondition signal];
 		 [renderCondition unlock];
 	 }	

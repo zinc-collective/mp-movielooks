@@ -222,6 +222,7 @@
 
 -(UIView *) initSettingsViewWithFrame:(CGRect)frameRect :(NSString*)imgpath :(NSInteger)logoutTag :(NSInteger)uploadTag :(NSArray*)privacyItems
 {
+    return nil;
 }
 
 - (void)shareButtonsAnimateToShow
@@ -466,9 +467,10 @@
         username = nil;
     }
     [userLabel setText:username];
-    userLabelSize = [username sizeWithFont:userLabel.font
-                                forWidth:300
-                           lineBreakMode:NSLineBreakByTruncatingTail];
+    
+    CGSize maxSize = CGSizeMake(300, MAXFLOAT);
+    NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine;
+    userLabelSize = [username boundingRectWithSize:maxSize options:options attributes:@{NSFontAttributeName: userLabel.font} context:nil].size;
     
 }
 
@@ -549,8 +551,8 @@
                      [self _updateYoutubeSettings];
                  }
                  
-                 if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-                    || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+                 if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+                    || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
                  {
                      [self layoutForPortrait];
                  }
@@ -570,8 +572,8 @@
         [self _updateYoutubeSettings];
     }
 
-    if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+	   || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -752,7 +754,7 @@
 	userLabel.backgroundColor = [UIColor clearColor];
 	userLabel.textColor = [UIColor blackColor];
 	//userLabel.shadowColor = [UIColor blackColor];
-	userLabel.textAlignment = UITextAlignmentRight;
+	userLabel.textAlignment = NSTextAlignmentRight;
 	[contentView addSubview:userLabel];
     
     //UIButton *btnLogout; //sign out of facebook/youtube
@@ -808,13 +810,10 @@
     else
         font = [UIFont boldSystemFontOfSize:12.0f];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                           forKey:UITextAttributeFont];
-	
+    NSDictionary *attributes = @{NSFontAttributeName: font};
     NSArray *itemArrayyoutube = [NSArray arrayWithObjects: @"Public", @"Unlisted", @"Private", nil];
     youtubePrivacyControl = [[UISegmentedControl alloc] initWithItems:itemArrayyoutube];
 	youtubePrivacyControl.tag = SETTINGS_PRIVACY_TAG;
-	youtubePrivacyControl.segmentedControlStyle = UISegmentedControlStylePlain;
 	youtubePrivacyControl.selectedSegmentIndex = 1;
 	[contentView addSubview:youtubePrivacyControl];
 
@@ -883,8 +882,8 @@
 	
 	[super viewDidAppear:animated];
 
-    if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+	   || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -905,8 +904,8 @@
     [super viewWillAppear:animated];
 	// NSLog(@"viewWillAppear:");
 	
-	if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+	if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+	   || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -1292,7 +1291,7 @@
 
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
     {
-        if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+        if(self.statusBarOrientation == UIDeviceOrientationLandscapeRight || self.statusBarOrientation == UIDeviceOrientationLandscapeLeft)
             [self setViewMovedUp:NO];
     }
 }
@@ -1302,7 +1301,7 @@
     
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
     {
-        if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+        if(self.statusBarOrientation == UIDeviceOrientationLandscapeRight || self.statusBarOrientation == UIDeviceOrientationLandscapeLeft)
             [self setViewMovedUp:YES];
     }
 }
@@ -1315,6 +1314,10 @@
         if (mAlertView.tag == 1004)
             [self backAction:nil];
     }
+}
+
+-(UIInterfaceOrientation) statusBarOrientation {
+    return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 @end

@@ -47,7 +47,6 @@
 @property(retain, nonatomic) Facebook *facebook;
 
 - (void) requestUid;
-- (void) requestFriendsDetail;
 - (id) initializeWithFacebook:(Facebook *)facebook andDelegate:(id<FacebookUserInfoLoadDelegate>)delegate;
 - (void) requestAllInfo;
 

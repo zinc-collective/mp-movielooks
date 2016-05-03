@@ -13,6 +13,7 @@
 #import "FileCache.h"
 #import "LooksBrowserViewController.h"
 #import "MobileLooksAppDelegate.h"
+#import "AVAssetUtilities.h"
 
 @interface PlaybackViewController()
 - (void)syncButtons;
@@ -32,9 +33,6 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 		mPlayer = [[AVPlayer allocWithZone:[self zone]] init];
 		[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:PlayerPlaybackViewControllerRateObservationContext];
 		[mPlayer addObserver:self forKeyPath:@"currentItem.asset.duration" options:0 context:PlayerPlaybackViewControllerDurationObservationContext];
-		
-		[self setWantsFullScreenLayout:YES];
-		
 		
 		mThumbView = [[ThumbView alloc] initWithFrame:mPlaybackView.frame];
 		mThumbView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -99,7 +97,7 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 {
 	if (mURL != URL)
 	{       
-		MobileLooksAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+		MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
 
 		[mURL release];
 		mURL = [URL copyWithZone:[self zone]];
@@ -124,7 +122,7 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 			
 			if (mAvAsset)
 			{
-				appDelegate.videoSize = mAvAsset.naturalSize;
+                appDelegate.videoSize = [AVAssetUtilities naturalSize:mAvAsset];
 				appDelegate.videoDuration = CMTimeGetSeconds([mAvAsset duration]);
 			}
 		}
@@ -219,7 +217,7 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	currentTime = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, 50, 30)];
 	currentTime.text  = @"0:00";
 	currentTime.textColor = [UIColor whiteColor];
-	currentTime.textAlignment = UITextAlignmentCenter;
+	currentTime.textAlignment = NSTextAlignmentCenter;
 	currentTime.backgroundColor = [UIColor clearColor];
 	[mLowerUI addSubview:currentTime];
 	
@@ -231,7 +229,7 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	leftTime = [[UILabel alloc] initWithFrame:rc];
 	leftTime.text  = @"-0:00";
 	leftTime.textColor = [UIColor whiteColor];
-	leftTime.textAlignment = UITextAlignmentCenter;
+	leftTime.textAlignment = NSTextAlignmentCenter;
 	leftTime.backgroundColor = [UIColor clearColor];
 	[mLowerUI addSubview:leftTime];
 	leftTime.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
@@ -299,8 +297,8 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
 #endif
 	
-	if (![[self modalViewController] isBeingDismissed]) {
-		[self dismissModalViewControllerAnimated:YES];
+	if (![[self presentedViewController] isBeingDismissed]) {
+        [self dismissViewControllerAnimated:YES completion:^{}];
 	}
 }
 

@@ -421,7 +421,6 @@
 		7456084A125EC25400963BDD /* vignette4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560846125EC25400963BDD /* vignette4.png */; };
 		74B8AAF51241CE43009D1B80 /* mobileLookbrighten_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */; };
 		74B8AAF61241CE43009D1B80 /* mobileLookdarken_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */; };
-		788310601CD9443D003DDBBD /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7883105F1CD9443D003DDBBD /* Launch.storyboard */; };
 		788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788310621CD944A4003DDBBD /* AVAssetUtilities.m */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
@@ -999,7 +998,6 @@
 		74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookbrighten_01.png; sourceTree = "<group>"; };
 		74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookdarken_01.png; sourceTree = "<group>"; };
 		7883105E1CD93903003DDBBD /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
-		7883105F1CD9443D003DDBBD /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		788310611CD944A4003DDBBD /* AVAssetUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetUtilities.h; sourceTree = "<group>"; };
 		788310621CD944A4003DDBBD /* AVAssetUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetUtilities.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MovieLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MovieLooks-Info.plist"; path = "../MovieLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -1648,7 +1646,6 @@
 			isa = PBXGroup;
 			children = (
 				7883105E1CD93903003DDBBD /* todo.md */,
-				7883105F1CD9443D003DDBBD /* Launch.storyboard */,
 				9CA89FC31352CBF4006F93B2 /* redsafiversion */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				5E9FF91C1213C5730083E4E9 /* Shaders */,
@@ -2225,7 +2222,6 @@
 				19717F6E18441F8700C9B604 /* develop_facebook_button58x58_iphone.png in Resources */,
 				19CDFD5C185561DF00B2472B /* camera_roll_button_top_iphone.png in Resources */,
 				06D6C9941345711400CF3FE6 /* bullet_ready_button_h@2x.png in Resources */,
-				788310601CD9443D003DDBBD /* Launch.storyboard in Resources */,
 				19717F521841521400C9B604 /* looktweak_sliderbtwide201x27.png in Resources */,
 				06D6C9951345711400CF3FE6 /* bullet_time_background@2x.png in Resources */,
 				06D6C9961345711400CF3FE6 /* custom_alert_bg_btm.png in Resources */,

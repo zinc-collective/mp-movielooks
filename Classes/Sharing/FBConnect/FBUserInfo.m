@@ -125,5 +125,9 @@
 	}	
 }
 
+- (void)facebookFeedRequestFailed {
+    
+}
+
   
 @end
