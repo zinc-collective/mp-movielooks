@@ -74,6 +74,8 @@
 			<string>{768, 1024}</string>
 		</dict>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Storyboard</string>
 	<key>UIMainStoryboardFile~ipad</key>

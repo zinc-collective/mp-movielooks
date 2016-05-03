@@ -497,7 +497,7 @@
 		//mThumbnailSize = CGSizeMake(73, 73);
 	}
 	NSUInteger duartion = [[asset valueForProperty:ALAssetPropertyDuration] doubleValue];
-	[item loadFromCache:thumbnailImage withDurationString:[NSString stringWithFormat:@"%02lu:%02d",duartion/60,duartion%60]];
+	[item loadFromCache:thumbnailImage withDurationString:[NSString stringWithFormat:@"%02lu:%02lu",duartion/60,duartion%60]];
 	[thumbnailImage release];
 	item.hasThumbnail = YES;
 }
@@ -991,7 +991,7 @@
 {
 	return YES;
 }
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 }

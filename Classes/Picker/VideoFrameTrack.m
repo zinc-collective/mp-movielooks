@@ -7,6 +7,8 @@
 //
 
 #import "VideoFrameTrack.h"
+#import "AVAssetUtilities.h"
+
 //bret hd
 @interface AVAsset (AsyncConvenience)
 
@@ -108,7 +110,7 @@
 					   if (asset)
 					   {
 						   mDuration = asset.duration;
-                           mSize = [[[asset tracksWithMediaType:AVMediaTypeVideo] firstObject] naturalSize];
+                           mSize = [AVAssetUtilities naturalSize:asset];
 						   
 						   NSValue *requestedTime = [NSValue valueWithCMTime:CMTimeMake(mDuration.value/2.0, mDuration.timescale)];
 						   
@@ -131,6 +133,7 @@
 					   [asset release];
 				   });
 }
+
 - (void) trackKeyFrame:(CMTime)time{
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
 				   ^{
@@ -139,7 +142,7 @@
 					   if (asset)
 					   {
 						   mDuration = asset.duration;
-                           mSize = [[[asset tracksWithMediaType:AVMediaTypeVideo] firstObject] naturalSize];
+                           mSize = [AVAssetUtilities naturalSize:asset];
 						   
 						   CGSize max = mSize;
 						   

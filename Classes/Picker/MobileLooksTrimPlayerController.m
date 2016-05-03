@@ -8,6 +8,7 @@
 
 #import "MobileLooksTrimPlayerController.h"
 #import "MobileLooksAppDelegate.h"
+#import "AVAssetUtilities.h"
 
 #import "DeviceDetect.h"
 
@@ -705,7 +706,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 {
 	AVAsset* avAsset = [[AVURLAsset alloc] initWithURL:mURL options:nil];
 	mVideoDuration = avAsset.duration;
-	CGSize naturalSize = avAsset.naturalSize;
+    CGSize naturalSize = [AVAssetUtilities naturalSize:avAsset];
 	
 	CGFloat width = naturalSize.width/naturalSize.height;
 	CGFloat totalWidth = mCustomTrimView.quartzTrimView.maskWidth/mCustomTrimView.quartzTrimView.maskHeight;
@@ -739,7 +740,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	[avImageGenerator setMaximumSize:maximumSize];
 	
 	MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
-	appDelegate.videoSize = avAsset.naturalSize;
+    appDelegate.videoSize = [AVAssetUtilities naturalSize:avAsset];
 	appDelegate.videoDuration = CMTimeGetSeconds([avAsset duration]);
 	NSLog(@"Video Time:%f",CMTimeGetSeconds([avAsset duration]));
 	
@@ -788,7 +789,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	[avImageGenerator setMaximumSize:maximumSize];
 
 	MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
-	appDelegate.videoSize = avAsset.naturalSize;
+    appDelegate.videoSize = [AVAssetUtilities naturalSize:avAsset];
 	appDelegate.videoDuration = CMTimeGetSeconds([avAsset duration]);
 	NSLog(@"Video Time:%f",CMTimeGetSeconds([avAsset duration]));
 	

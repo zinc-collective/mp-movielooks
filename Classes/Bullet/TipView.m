@@ -95,6 +95,7 @@
 - (void) setNewFrame:(CGRect)frame landscape:(BOOL)landscape{
 	
 	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, frame.size.height);
+    NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine;
 	
 	UIImage* img;
 	if (IS_IPAD)
@@ -120,7 +121,7 @@
             NSString* text = contentLabel.text;
             UIFont *contentFont = [UIFont systemFontOfSize:contentFontSize];
             CGSize constrainedSize = CGSizeMake(width, INT_MAX);
-            CGSize contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
             
             if (contentSize.height > height)
             {
@@ -128,7 +129,7 @@
                 {
                     contentFontSize -= offset;
                     contentFont = [UIFont systemFontOfSize:contentFontSize];
-                    contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+                    contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
                     
                     // NSLog(@"offset=%i, contentFontSize=%.1f", offset, contentFontSize);
                 }
@@ -158,7 +159,7 @@
             NSString* text = contentLabel.text;
             UIFont *contentFont = [UIFont systemFontOfSize:contentFontSize];
             CGSize constrainedSize = CGSizeMake(width, INT_MAX);
-            CGSize contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
             
             if (contentSize.height > height)
             {
@@ -166,7 +167,7 @@
                 {
                     contentFontSize -= offset;
                     contentFont = [UIFont systemFontOfSize:contentFontSize];
-                    contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+                    contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
                     
                     // NSLog(@"offset=%i, contentFontSize=%.1f", offset, contentFontSize);
                 }
@@ -199,7 +200,7 @@
             NSString* text = contentLabel.text;
             UIFont *contentFont = [UIFont systemFontOfSize:contentFontSize];
             CGSize constrainedSize = CGSizeMake(width, INT_MAX);
-            CGSize contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
             
             if (contentSize.height > height)
             {
@@ -207,7 +208,7 @@
                 {
                     contentFontSize -= offset;
                     contentFont = [UIFont systemFontOfSize:contentFontSize];
-                    contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+                    contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
                     
                     // NSLog(@"offset=%i, contentFontSize=%.1f", offset, contentFontSize);
                 }
@@ -236,7 +237,7 @@
             NSString* text = contentLabel.text;
             UIFont *contentFont = [UIFont systemFontOfSize:contentFontSize];
             CGSize constrainedSize = CGSizeMake(width, INT_MAX);
-            CGSize contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
             
             if (contentSize.height > height)
             {
@@ -244,7 +245,7 @@
                 {
                     contentFontSize -= offset;
                     contentFont = [UIFont systemFontOfSize:contentFontSize];
-                    contentSize = [text sizeWithFont:contentFont constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+                    contentSize = [text boundingRectWithSize:constrainedSize options:options attributes:@{NSFontAttributeName: contentFont} context:nil].size;
                     
                     // NSLog(@"offset=%i, contentFontSize=%.1f", offset, contentFontSize);
                 }

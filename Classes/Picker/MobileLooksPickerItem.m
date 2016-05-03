@@ -168,7 +168,7 @@
 		UIButton* button =[UIButton buttonWithType:UIButtonTypeCustom];
 		[button addTarget:self action:@selector(pushItemEven:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:button];
-		[button.layer setContents:resultOpertion.thumbnailImage.CGImage];
+		[button.layer setContents:(__bridge id) resultOpertion.thumbnailImage.CGImage];
 		
 		UIView *durationView = [[UIView alloc] initWithFrame:CGRectMake(0, 55, 73, 21)];
 		UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(4, 0, 67, 21)];

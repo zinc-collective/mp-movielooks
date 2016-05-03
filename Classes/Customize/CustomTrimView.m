@@ -7,6 +7,7 @@
 //
 
 #import "CustomTrimView.h"
+#import "AVAssetUtilities.h"
 
 @implementation CustomTrimView
 
@@ -67,7 +68,7 @@
 		[avImageGenerator setAppliesPreferredTrackTransform:YES];
 		[avImageGenerator setMaximumSize:CGSizeMake(128, 128)];
 		
-		CGSize naturalSize = [avAsset naturalSize];
+        CGSize naturalSize = [AVAssetUtilities naturalSize:avAsset];
 		NSTimeInterval duration = CMTimeGetSeconds([avAsset duration]);
 		if(duration>120)
 			duration -= 11;

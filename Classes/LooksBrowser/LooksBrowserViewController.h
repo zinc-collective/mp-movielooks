@@ -14,8 +14,7 @@
 @class ES2Renderer;
 //@class FootView;
 
-@interface LooksBrowserViewController : UIViewController <SKProductsRequestDelegate, LooksBrowserEventDelegate, UIScrollViewDelegate, UIAlertViewDelegate
-,UITableViewDelegate, UITableViewDataSource>
+@interface LooksBrowserViewController : UIViewController <SKProductsRequestDelegate, LooksBrowserEventDelegate, UIScrollViewDelegate, UIAlertViewDelegate>
 {
 	NSArray *products;
 	NSMutableArray *groupsViews;

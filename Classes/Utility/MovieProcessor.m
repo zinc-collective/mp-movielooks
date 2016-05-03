@@ -8,6 +8,7 @@
 
 #import "MovieProcessor.h"
 #import "Utilities.h"
+#import "AVAssetUtilities.h"
 
 @implementation MovieProcessor
 @synthesize delegate=_delegate;
@@ -69,7 +70,7 @@
 	readMovieAsset = [[AVURLAsset alloc] initWithURL:readMovieURL options:options];
 	//readMovieAsset = [[AVURLAsset alloc] initWithURL:readMovieURL options:nil];
 	//
-    sizeAVMediaInput =	[readMovieAsset naturalSize];
+    sizeAVMediaInput =	[AVAssetUtilities naturalSize:readMovieAsset];
 	durationAVAsset = [readMovieAsset duration];
 	
 	avMovieCondition = [[NSCondition alloc] init];
@@ -129,7 +130,9 @@
 	//		[self performSelectorOnMainThread:@selector(stopMovieSession) withObject:nil waitUntilDone:NO];
 	if(movieRenderState==MovieStateSamplerError)
 	{
-		[self.delegate performSelectorOnMainThread:@selector(errorSamplerMovieEvent) withObject:nil waitUntilDone:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate errorSamplerMovieEvent];
+        });
 	}
 	if(avVideoProcessCheckPoint)
 	{	
@@ -243,7 +246,7 @@
 		}
 		else if(lastSampleTimeRange.duration.value<20)
         {
-			NSLog(@"Video Rendering last Time(%d,%d)!",lastSampleTimeRange.duration.value,lastSampleTimeRange.duration.timescale);
+			NSLog(@"Video Rendering last Time(%lld,%d)!",lastSampleTimeRange.duration.value,lastSampleTimeRange.duration.timescale);
 
 			[avVideoWriterInput markAsFinished];
 				
@@ -582,7 +585,7 @@
     
 //	[movieAsset release];
 	
-	NSLog(@"Start Render CMTime(%d,%d)---CMTimeDuration(%d,%d)",lastSampleTimeRange.start.value,lastSampleTimeRange.start.timescale,lastSampleTimeRange.duration.value,lastSampleTimeRange.duration.timescale);
+	NSLog(@"Start Render CMTime(%lld,%d)---CMTimeDuration(%lld,%d)",lastSampleTimeRange.start.value,lastSampleTimeRange.start.timescale,lastSampleTimeRange.duration.value,lastSampleTimeRange.duration.timescale);
 	
     //bret movielooks update
     if (subMovieIndex > 1)
@@ -670,7 +673,7 @@
 		CVPixelBufferLockBaseAddress(videoImageBufferRef,0);
 		CGSize bufferSize = CVImageBufferGetEncodedSize(videoImageBufferRef);
 		size_t bytesPerRow = CVPixelBufferGetBytesPerRow(videoImageBufferRef);
-		NSLog(@"Buffer Size(%f,%f) BytesPerRow:%d",bufferSize.width,bufferSize.height,bytesPerRow);
+		NSLog(@"Buffer Size(%f,%f) BytesPerRow:%zu",bufferSize.width,bufferSize.height,bytesPerRow);
 		CVPixelBufferUnlockBaseAddress(videoImageBufferRef,0);
 		CFRelease(videoSampleBufferRef);
 		if(bytesPerRow>bufferSize.width*4)
@@ -755,7 +758,7 @@
         
         AVAssetTrack *clipVideoTrack = [[movieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
         [compositionVideoTrack insertTimeRange:clipTimeRange ofTrack:clipVideoTrack atTime:nextClipStartTime error:nil];
-        NSLog(@"Clip %d:CMTime(%d,%d)---CMTimeDuration(%d,%d)",i,nextClipStartTime.value,nextClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
+        NSLog(@"Clip %d:CMTime(%lld,%d)---CMTimeDuration(%lld,%d)",i,nextClipStartTime.value,nextClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
         nextClipStartTime = CMTimeAdd(nextClipStartTime, clipTimeRange.duration);
     }
 		
@@ -770,7 +773,7 @@
 		{
 			AVAssetTrack *clipAudioTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
 			[compositionAudioTrack insertTimeRange:clipTimeRange ofTrack:clipAudioTrack atTime:CMTimeMake(0, 600) error:nil];
-			NSLog(@"Clip audio:CMTime(%d,%d)---CMTimeDuration(%d,%d)",audioClipStartTime.value,audioClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
+			NSLog(@"Clip audio:CMTime(%lld,%d)---CMTimeDuration(%lld,%d)",audioClipStartTime.value,audioClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
 		}
 //#endif
         //bret render issue force recode
@@ -818,7 +821,9 @@
 			if(movieRenderState == MovieStateCompose)	
 			{
 				movieRenderState = MovieStateComplete;
-				[self.delegate performSelectorOnMainThread:@selector(finishProcessMovieEvent:) withObject:tempWriteMoviePath waitUntilDone:NO];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate finishProcessMovieEvent:tempWriteMoviePath];
+                });
 			}
 		}];
 //	}
@@ -840,9 +845,9 @@
 		lastSampleTimeRange = CMTimeRangeFromTimeToTime(lastSampleTime, CMTimeRangeGetEnd(lastSampleTimeRange));
 		
 		subMovieStarts[subMovieIndex] = lastSampleTimeRange.start;
-		NSLog(@"Stop w/o audio %d at（%d,%d） video frame!",subMovieIndex,subMovieStarts[subMovieIndex].value,subMovieStarts[subMovieIndex].timescale);
+		NSLog(@"Stop w/o audio %lu at（%lld,%d） video frame!",(unsigned long)subMovieIndex,subMovieStarts[subMovieIndex].value,subMovieStarts[subMovieIndex].timescale);
 		
-		[avMovieWriter finishWriting];
+        [avMovieWriter finishWritingWithCompletionHandler:^{}];
 		[avMovieReader cancelReading];
 //	}
 //	@catch (NSException* exc) {
@@ -936,7 +941,7 @@
 	
 	if(tempWriteMoviePath)
 		[tempWriteMoviePath release];
-	tempWriteMoviePath = [[Utilities documentsPath:[NSString stringWithFormat:@"Sub%d_%@",subMovieIndex,@"bullet_movie.mov"]] retain];
+	tempWriteMoviePath = [[Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]] retain];
 	NSFileManager *manager = [NSFileManager defaultManager];
 	NSLog(@"Start render%@",tempWriteMoviePath);
 	if([manager fileExistsAtPath:tempWriteMoviePath])
@@ -986,7 +991,7 @@
 	backfromPause = NO;
     movieRenderState = MovieStateResume;
 	{	
-		NSString* lastWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%d_%@",subMovieIndex,@"bullet_movie.mov"]];
+		NSString* lastWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]];
 		AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:lastWriteMoviePath] options:nil];	
 		if(![self checkVideoTrack:movieAsset])
         {
@@ -1004,14 +1009,14 @@
 	
 	if(tempWriteMoviePath)
 		[tempWriteMoviePath release];
-	tempWriteMoviePath = [[Utilities documentsPath:[NSString stringWithFormat:@"Sub%d_%@",subMovieIndex,@"bullet_movie.mov"]] retain];
+	tempWriteMoviePath = [[Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]] retain];
 	NSLog(@"Resume render %@",tempWriteMoviePath);
     //bret movielooks update
     if (subMovieIndex > 1 )
     {
         if(prevWriteMoviePath)
             [prevWriteMoviePath release];
-        prevWriteMoviePath = [[Utilities documentsPath:[NSString stringWithFormat:@"Sub%d_%@",subMovieIndex-1,@"bullet_movie.mov"]] retain];
+        prevWriteMoviePath = [[Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",subMovieIndex-1,@"bullet_movie.mov"]] retain];
     }
     
 	NSFileManager *manager = [NSFileManager defaultManager];
@@ -1041,13 +1046,19 @@
 	prevWriteMoviePath = nil;
     
     //	if(subMovieIndex>1)
-		[self.delegate performSelectorOnMainThread:@selector(finishRenderMovieEvent) withObject:nil waitUntilDone:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate finishRenderMovieEvent];
+    });
+    
 	//else
 	if(NO)
 	{	
 		movieRenderState = MovieStateComplete;
 
-		[self.delegate performSelectorOnMainThread:@selector(finishProcessMovieEvent:) withObject:[Utilities documentsPath:[NSString stringWithFormat:@"Sub%d_%@",subMovieIndex,@"bullet_movie.mov"]] waitUntilDone:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* path = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]];
+            [self.delegate finishProcessMovieEvent:path];
+        });
 	}
 }
 

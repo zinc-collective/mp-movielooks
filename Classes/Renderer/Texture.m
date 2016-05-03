@@ -621,7 +621,7 @@ GLuint loadSpecialImg(const char *name, const float diffusionHighlightsOnly)
 
 GLuint loadTextureWithBuffer(const char *c_path, unsigned char* buffer)
 {
-	NSString *path = [[NSString alloc] initWithCString:c_path];
+	NSString *path = [NSString stringWithUTF8String:c_path];
 	
 	UIImage* image = [[UIImage alloc] initWithContentsOfFile:path];
 	
@@ -738,8 +738,8 @@ void loadOverlayWithBuffer(GLuint texID, NSString *name, unsigned char* buffer)
 		return;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);		
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	CGContextRef context = CGBitmapContextCreate(buffer, width, height, 8, width * glPixelSize, CGImageGetColorSpace(imageRef), glImageAlphaNoneSkipLast);
 	CGContextSetBlendMode(context, kCGBlendModeCopy);
 	
@@ -775,8 +775,8 @@ void loadVignetteWithBuffer(GLuint specialTexID, const char *VigName, unsigned c
 		return;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	
 	// * 2 by George.
 	CGContextRef context = CGBitmapContextCreate(buffer, width, height, 8, width * glPixelSize, CGImageGetColorSpace(imageRef), glImageAlphaNoneSkipLast);

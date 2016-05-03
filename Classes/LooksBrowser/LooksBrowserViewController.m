@@ -378,7 +378,7 @@
 {
     CGFloat pageWidth;
     int page;
-    if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+    if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
     {
         pageWidth = looksScrollView.frame.size.width;
         page = floor((looksScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -409,6 +409,10 @@
 			}
 		}
 	}
+}
+
+- (UIInterfaceOrientation)statusBarOrientation {
+    return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 - (void)leftScrollButtonAnimateToHide
@@ -779,7 +783,7 @@
 		if(thumbView.groupIndex == groupButton.tag)
 		{
 			CGPoint offset = thumbView.frame.origin;
-            if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+            if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
 			{
                 //offset.x -= 7;
                 offset.y = 0;
@@ -1450,7 +1454,7 @@
 	currentSelectedGroup = 0;
 	selectedGroupIndex_Portrait = 0;
 	selectedGroupIndex_landscape = 0;
-	[self layoutAfterorientation:self.interfaceOrientation];
+	[self layoutAfterorientation:self.statusBarOrientation];
 	
 	if([looksScrollView superview]){
 		[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(renderFirst) userInfo:nil repeats:NO];
@@ -1522,7 +1526,7 @@
                                                object:nil];	  
 	NSLog(@"Thread Start");
     //bret
-    //[self layoutAfterorientation:self.interfaceOrientation];
+    //[self layoutAfterorientation:self.statusBarOrientation];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"LooksPreviewOnScreen" object:nil];    
 }
 
@@ -1699,8 +1703,8 @@
 //	}
 //	else
 //	{
-//		if (self.interfaceOrientation == UIInterfaceOrientationPortrait
-//			|| self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+//		if (self.statusBarOrientation == UIInterfaceOrientationPortrait
+//			|| self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 //		{
 //			self.overView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
 //		}
@@ -1723,8 +1727,8 @@
 //	else
 //	{
 //		self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//		if (self.interfaceOrientation == UIInterfaceOrientationPortrait
-//			|| self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+//		if (self.statusBarOrientation == UIInterfaceOrientationPortrait
+//			|| self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 //		{
 //			activityIndicator.frame = CGRectMake(140, 200, 30, 30);
 //		}
@@ -1829,7 +1833,7 @@
 	
     CGFloat pageWidth;
     int page;
-    if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+    if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
     {
         pageWidth = looksScrollView.frame.size.width;
         page = floor((looksScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -1862,7 +1866,7 @@
 //#if 0
     if (IS_IPAD)
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             bool leftScrollButtonState = YES;
             bool rightScrollButtonState = YES;
@@ -1921,7 +1925,7 @@
         }
     }else
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             bool leftScrollButtonState = YES;
             bool rightScrollButtonState = YES;
@@ -1988,7 +1992,7 @@
 	
     CGFloat pageWidth;
     int page;
-    if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+    if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
     {
         pageWidth = sender.frame.size.width;
         page = floor((sender.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -2020,7 +2024,7 @@
 //#if 0
     if (IS_IPAD)
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             bool leftScrollButtonState = YES;
             bool rightScrollButtonState = YES;
@@ -2079,7 +2083,7 @@
         }
     }else
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             bool leftScrollButtonState = YES;
             bool rightScrollButtonState = YES;

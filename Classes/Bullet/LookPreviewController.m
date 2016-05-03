@@ -10,6 +10,7 @@
 #import "BulletViewController.h"
 #import "UICustomSwitch.h"
 #import "MobileLooksAppDelegate.h"
+#import "AVAssetUtilities.h"
 
 #import "DeviceDetect.h"
 
@@ -238,15 +239,19 @@
 					   mThumbImageView.image = image;
                        //bret
                        if (IS_IPAD)
-                           [self layoutiPadAfterorientation:self.interfaceOrientation];
+                           [self layoutiPadAfterorientation:self.statusBarOrientation];
                        else
-                           [self layoutiPhoneAfterorientation:self.interfaceOrientation];
+                           [self layoutiPhoneAfterorientation:self.statusBarOrientation];
                        //
 					   [image release];					   
 				   });
 	[pool release];
 	
 	[self rendererEnd];
+}
+
+- (UIInterfaceOrientation)statusBarOrientation {
+    return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 #pragma mark -
@@ -261,9 +266,9 @@
 	[renderer loadKeyFrame];	
 	
 	if (IS_IPAD)
-        [self layoutiPadAfterorientation:self.interfaceOrientation];
+        [self layoutiPadAfterorientation:self.statusBarOrientation];
     else
-        [self layoutiPhoneAfterorientation:self.interfaceOrientation];
+        [self layoutiPhoneAfterorientation:self.statusBarOrientation];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -328,10 +333,10 @@
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
 		//[self.view.layer setContents:(id)[UIImage imageNamed:@"LooksBrowser02_background.png"].CGImage];
-		[self layoutiPadAfterorientation:self.interfaceOrientation];
+		[self layoutiPadAfterorientation:self.statusBarOrientation];
 	}
 	else {
-		[self layoutiPhoneAfterorientation:self.interfaceOrientation];
+		[self layoutiPhoneAfterorientation:self.statusBarOrientation];
 	}
 }
 
@@ -994,7 +999,7 @@
 		movieFrames = ceil((float)movieFrames / 2.0);
 	}
 	
-	CGSize movieOriginSize = movieAsset.naturalSize;
+    CGSize movieOriginSize = [AVAssetUtilities naturalSize:movieAsset];
 	CGSize movieOutputSize = movieOriginSize;
 	
 	CGFloat smallestSupportHeight = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?120:100;
@@ -1077,8 +1082,8 @@ if(TooHighForDevice(videoSize))
 	NSString *title = NSLocalizedString(@"Half Resolution",nil);
 	//NSString *content = @"Press the Develop button to create a new video with your Look."
 	//" This process can take some time, approximately %02d:%02d.";
-	NSString *content = @"Press the Develop button to create a new video with your Look."
-	" This process can take some time.";
+//	NSString *content = @"Press the Develop button to create a new video with your Look."
+//	" This process can take some time.";
 /*
 	//" This process%@ will take approximately %02d:%02d.";
 	NSString *replace = @"";
@@ -1256,7 +1261,7 @@ if(TooHighForDevice(videoSize))
 {
 	return YES;
 }
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 }
