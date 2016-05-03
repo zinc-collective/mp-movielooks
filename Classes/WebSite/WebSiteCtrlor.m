@@ -261,7 +261,7 @@
 {
 	[_webView closeWeb];
 	
-	if (![[self modalViewController] isBeingDismissed]) {
+	if (![[self presentedViewController] isBeingDismissed]) {
         [self dismissViewControllerAnimated:YES completion:^{}];
 	}
 	

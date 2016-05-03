@@ -12,9 +12,10 @@
 #import "FacebookConnect.h"
 #import "YoutubeConnect.h"
 #import "MProgressView.h"
+#import "WebSiteCtrlor.h"
 
 
-@interface ShareViewController : UIViewController<UIAlertViewDelegate,FacebookConnectDelegate, YoutubeConnectDelegate, MProgressViewDelegate, UITextFieldDelegate>
+@interface ShareViewController : UIViewController<UIAlertViewDelegate,FacebookConnectDelegate, YoutubeConnectDelegate, MProgressViewDelegate, UITextFieldDelegate, WebSiteCtrlorDelegate>
 {
 	UIView *contentView;
 	UIColor *viewBorderColor;

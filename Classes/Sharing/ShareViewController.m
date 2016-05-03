@@ -483,6 +483,7 @@
 	[btnUpload release];
 	return view;
 #endif
+    return nil;
 }
 
 - (void)shareButtonsAnimateToShow
@@ -748,9 +749,11 @@
 		if (username == nil) { username = @""; }
 		[userLabel setText:username];
 	//}
-    userLabelSize = [username sizeWithFont:userLabel.font
-                                        forWidth:300
-                                   lineBreakMode:NSLineBreakByTruncatingTail];
+    
+    
+    CGSize maxSize = CGSizeMake(300, MAXFLOAT);
+    NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine;
+    userLabelSize = [username boundingRectWithSize:maxSize options:options attributes:@{NSFontAttributeName: userLabel.font} context:nil].size;
     
 }
 
@@ -787,10 +790,11 @@
         username = nil;
     }
     [userLabel setText:username];
-    userLabelSize = [username sizeWithFont:userLabel.font
-                                forWidth:300
-                           lineBreakMode:NSLineBreakByTruncatingTail];
     
+    CGSize maxSize = CGSizeMake(300, MAXFLOAT);
+    NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine;
+    
+    userLabelSize = [username boundingRectWithSize:maxSize options:options attributes:@{NSFontAttributeName: userLabel.font} context:nil].size;
 }
 
 -(NSString *)_getFacebookPrivacyFromUI:(NSString *)defaultValue
@@ -914,8 +918,8 @@
                      [self _updateFacebookSettings];
                  }
                  
-                 if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-                    || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+                 if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+                    || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
                  {
                      [self layoutForPortrait];
                  }
@@ -964,8 +968,8 @@
                      [self _updateFacebookSettings];
                  }
                  
-                 if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-                    || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+                 if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+                    || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
                  {
                      [self layoutForPortrait];
                  }
@@ -998,8 +1002,8 @@
         [self _updateFacebookSettings];
     }
 
-    if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+	   || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -1097,9 +1101,10 @@
     uploadingLabel.hidden = YES;
 	//titleLabel.shadowColor = [UIColor blackColor];
 	[contentView addSubview:uploadingLabel];
-    uploadingLabelSize = [uploadingLabel.text sizeWithFont:uploadingLabel.font
-                                  forWidth:300
-                             lineBreakMode:NSLineBreakByTruncatingTail];
+    
+    CGSize maxSize = CGSizeMake(300, MAXFLOAT);
+    NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine;
+    uploadingLabelSize = [uploadingLabel.text boundingRectWithSize:maxSize options:options attributes:@{NSFontAttributeName: uploadingLabel.font} context:nil].size;
     
     progressView = [[MProgressView alloc] initWithFrame:CGRectMake(0, 0, MPROGRESSVIEW_MAX_WIDTH, MPROGRESSVIEW_MAX_WIDTH)];
 	[progressView getBoxView].backgroundColor = [UIColor clearColor];
@@ -1149,7 +1154,7 @@
 	userLabel.backgroundColor = [UIColor clearColor];
 	userLabel.textColor = [UIColor blackColor];
 	//userLabel.shadowColor = [UIColor blackColor];
-	userLabel.textAlignment = UITextAlignmentRight;
+	userLabel.textAlignment = NSTextAlignmentRight;
 	[contentView addSubview:userLabel];
     
     //UIButton *btnLogout; //sign out of facebook/youtube
@@ -1221,7 +1226,6 @@
     facebookPrivacyControl = [[UISegmentedControl alloc] initWithItems:itemArrayfacebook];
 	facebookPrivacyControl.tag = SETTINGS_PRIVACY_TAG;
 	//facebookPrivacyControl.frame = CGRectMake(0, 56+pad, frameRect.size.width, buttonHeight);
-	facebookPrivacyControl.segmentedControlStyle = UISegmentedControlStylePlain;
 	facebookPrivacyControl.selectedSegmentIndex = 1;
 	[contentView addSubview:facebookPrivacyControl];
 
@@ -1232,8 +1236,7 @@
     else
         font = [UIFont boldSystemFontOfSize:12.0f];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                           forKey:UITextAttributeFont];
+    NSDictionary *attributes = @{NSFontAttributeName: font};
     [facebookPrivacyControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
 	
     NSArray *itemArrayyoutube = [NSArray arrayWithObjects: @"Public", @"Unlisted", @"Private", nil];
@@ -1241,7 +1244,6 @@
 	youtubePrivacyControl.tag = SETTINGS_PRIVACY_TAG;
     //[[UISegmentedControl appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"STHeitiSC-Medium" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
 	//facebookPrivacyControl.frame = CGRectMake(0, 56+pad, frameRect.size.width, buttonHeight);
-	youtubePrivacyControl.segmentedControlStyle = UISegmentedControlStylePlain;
 	youtubePrivacyControl.selectedSegmentIndex = 1;
 	[contentView addSubview:youtubePrivacyControl];
 
@@ -1274,8 +1276,8 @@
 #endif
 
 #if 0
-    if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+	   || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -1329,8 +1331,8 @@
 	
 	[super viewDidAppear:animated];
 
-    if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+	   || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -1350,8 +1352,8 @@
 	[super viewWillAppear:animated];
 	// NSLog(@"viewWillAppear:");
 	
-	if(self.interfaceOrientation == UIInterfaceOrientationPortrait
-	   || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+	if(self.statusBarOrientation == UIInterfaceOrientationPortrait
+	   || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[self layoutForPortrait];
 	}
@@ -1378,6 +1380,10 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (UIInterfaceOrientation)statusBarOrientation {
+    return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 
@@ -1930,7 +1936,7 @@
 	webSite.bShowStatusBar = NO;
 	webSite.delegate = self;
 	[webSite setCtrlorWithURL:joinUrl forTitle:@"Like MovieLooks Facebook page"];
-	[self presentModalViewController:webSite animated:YES];
+    [self presentViewController:webSite animated:YES completion:^{}];
 	[webSite release];
 }
 
@@ -1978,7 +1984,7 @@
 
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
     {
-        if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+        if(self.statusBarOrientation == UIDeviceOrientationLandscapeRight || self.statusBarOrientation == UIDeviceOrientationLandscapeLeft)
             [self setViewMovedUp:NO];
     }
 }
@@ -1988,7 +1994,7 @@
     
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
     {
-        if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+        if(self.statusBarOrientation == UIDeviceOrientationLandscapeRight || self.statusBarOrientation == UIDeviceOrientationLandscapeLeft)
             [self setViewMovedUp:YES];
     }
 }

@@ -104,7 +104,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 - (void)updateTime:(id)sender
 {
 	//	NSLog(@"Last time:%d, last frame:%d, complete frame:%d!",timeRemaining,(NSUInteger)(_totalFrames-_completedFrames),_completedFrames);
-	timeRemaining = [self estimateProcessingTimebyFrame:(NSUInteger)(_totalFrames-_completedFrames)];
+	timeRemaining = (int)[self estimateProcessingTimebyFrame:(NSUInteger)(_totalFrames-_completedFrames)];
 	if(timeRemaining<0)
         timeRemaining=0;
 	//[timeView setTimeRemaining:timeRemaining isInit:NO];
@@ -1163,7 +1163,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	[self.view addSubview:composeProgressView];
 	[composeProgressView release];
 #endif
-	[self layoutOrientation:self.interfaceOrientation];
+	[self layoutOrientation:self.statusBarOrientation];
 	
 	movieProcessor = [[MovieProcessor alloc] initWithReadURL:[Utilities selectedVideoPathWithURL:nil]];
 	movieProcessor.delegate = self;
@@ -1180,8 +1180,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeToActive) name:@"BecomeActiveResume" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseToDisactive) name:@"ResignActivePause" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoWasShared) name:@"VideoWasShared" object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(monitorMusicPlayer:) name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:[MPMusicPlayerController iPodMusicPlayer]];
-	[[MPMusicPlayerController iPodMusicPlayer] beginGeneratingPlaybackNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(monitorMusicPlayer:) name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:[MPMusicPlayerController systemMusicPlayer]];
+	[[MPMusicPlayerController systemMusicPlayer] beginGeneratingPlaybackNotifications];
     
     timeElapsedLandscape = 0.0f;
     timeElapsedPortrait = 0.0f;
@@ -1205,7 +1205,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 {
 	return YES;
 }
-- (NSUInteger)supportedInterfaceOrientations
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 }
@@ -1263,8 +1264,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"ResignActivePause" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"VideoWasShared" object:nil];
     
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:[MPMusicPlayerController iPodMusicPlayer]];
-	[[MPMusicPlayerController iPodMusicPlayer] endGeneratingPlaybackNotifications];	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:[MPMusicPlayerController systemMusicPlayer]];
+	[[MPMusicPlayerController systemMusicPlayer] endGeneratingPlaybackNotifications];
 	
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [super dealloc];
@@ -1816,7 +1817,11 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 
 -(void)finishSaveToCameraRollEventAfterDelay:(id)sender
 {
-    [self layoutOrientation:self.interfaceOrientation];
+    [self layoutOrientation:self.statusBarOrientation];
+}
+
+-(UIInterfaceOrientation)statusBarOrientation {
+    return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 //bret
@@ -1831,14 +1836,14 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
                     completion:NULL];
     goCameraRollButton.hidden = YES;
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(finishSaveToCameraRollEventAfterDelay:) userInfo:nil repeats:NO];
-    //[self layoutOrientation:self.interfaceOrientation];
+    //[self layoutOrientation:self.statusBarOrientation];
 }
 
 -(void)checkPointRenderMovieEvent
 {
 	NSLog(@"Video Clip Check Point!");
 	CMTimeRange processRange = [movieProcessor getProcessRange];
-	_completedFrames = (NSUInteger)(processRange.start.value/20);	
+	_completedFrames = (int)(processRange.start.value/20);
 }
 
 -(void)cancelRenderMovieEvent
@@ -1944,7 +1949,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 -(void)monitorMusicPlayer:(id)sender
 {
 	// NSLog(@"ddddd");
-	MPMusicPlayerController* iPodPlayer =[MPMusicPlayerController iPodMusicPlayer];
+	MPMusicPlayerController* iPodPlayer =[MPMusicPlayerController systemMusicPlayer];
 	switch(iPodPlayer.playbackState)
 	{
 		case MPMoviePlaybackStatePlaying:
@@ -2113,7 +2118,10 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     UIKIT_EXTERN NSString *const UIActivityTypePostToTencentWeibo NS_AVAILABLE_IOS(7_0);
     UIKIT_EXTERN NSString *const UIActivityTypeAirDrop            NS_AVAILABLE_IOS(7_0);
 #endif
-    [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed)
+//    (NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError);
+
+
+    [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray * returnedItems, NSError * error)
     {
         bool activityTypeFound = false;
         NSString *notificationString;
@@ -2366,7 +2374,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		{
 			//pause the ipod
 			NSLog(@"Pause Music");
-			MPMusicPlayerController* iPodPlayer =[MPMusicPlayerController iPodMusicPlayer];
+			MPMusicPlayerController* iPodPlayer =[MPMusicPlayerController systemMusicPlayer];
 			if(iPodPlayer.playbackState == MPMoviePlaybackStatePlaying)
 				[iPodPlayer pause];
 			
@@ -2374,7 +2382,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 			{	
 				[movieProcessor resumeRenderMovie];
 				CMTimeRange processRange = [movieProcessor getProcessRange];
-				_completedFrames = (NSUInteger)(processRange.start.value/20);
+				_completedFrames = (int)(processRange.start.value/20);
 			}
 			else if([movieProcessor getProcessState]==MovieStateRenderEnd)
 				[self finishRenderMovieEvent];
@@ -2390,7 +2398,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 			{	
 				[movieProcessor resumeRenderMovie];
 				CMTimeRange processRange = [movieProcessor getProcessRange];
-				_completedFrames = (NSUInteger)(processRange.start.value/20);
+				_completedFrames = (int)(processRange.start.value/20);
 			}
 			else if([movieProcessor getProcessState]==MovieStateRenderEnd)
 				[self finishRenderMovieEvent];
@@ -2505,5 +2513,9 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	}
 }
 
+- (void)errorSamplerMovieEvent {
+    // don't know what this means
+    NSLog(@"ERROR: sampler movie event");
+}
 
 @end
