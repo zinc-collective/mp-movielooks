@@ -31,16 +31,11 @@
 	[generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:requestedTime] completionHandler:
 	 ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
 	 {
-		 CGImageRetain(image);
-		 
 		 //NSLog(@"actual got image at time:%f", CMTimeGetSeconds(requestedTime));
 		 
 		 dispatch_async(queue,
 						^{
 							block(image);
-							
-							CGImageRelease(image);
-							dispatch_release(queue);
 						});
 		 
 		 [generator release];
@@ -54,8 +49,6 @@
 	[generator setAppliesPreferredTrackTransform:YES];
 	[generator setMaximumSize:maxSize];
 	
-	dispatch_retain(queue);
-	
 	[generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:requestedTime] completionHandler:
 	 ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
 	 {
@@ -68,7 +61,6 @@
 							block(image);
 							
 							CGImageRelease(image);
-							dispatch_release(queue);
 						});
 		 
 		 [generator release];

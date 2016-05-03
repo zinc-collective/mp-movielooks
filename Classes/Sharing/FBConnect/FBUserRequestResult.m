@@ -18,10 +18,12 @@
 
 @implementation FBUserRequestResult
 
-- (id) initializeWithDelegate:(id<FacebookUserRequestDelegate>)delegate {
-  self = [super init];
-  _userRequestDelegate = [delegate retain];
-  return self;  
+- (id) initWithDelegate:(id<FacebookUserRequestDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        _userRequestDelegate = [delegate retain];
+    }
+    return self;
 }
 
 - (void)dealloc {

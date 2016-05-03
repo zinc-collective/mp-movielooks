@@ -13,6 +13,15 @@
 
 UIImageView *backgroundView;
 
+-(UIView*)backgroundView {
+    for (UIView * view in self.subviews) {
+        if (view.tag == 111) {
+            return view;
+        }
+    }
+    return nil;
+}
+
 -(void)setBackgroundImage:(UIImage*)image
 {
     if(image == nil)
@@ -21,15 +30,15 @@ UIImageView *backgroundView;
 //		if (backgroundView)
 //		{
 //			UIView *fatherView = [backgroundView superview];
-			[backgroundView removeFromSuperview];
+			[self.backgroundView removeFromSuperview];
 //			backgroundView = nil;
 //			[fatherView setNeedsDisplay];
 //		}
 	}
 	else
 	{
-		backgroundView = [[UIImageView alloc] initWithImage:image];
-		backgroundView.tag = 1;
+		UIView * backgroundView = [[UIImageView alloc] initWithImage:image];
+		backgroundView.tag = 111;
 		backgroundView.frame = CGRectMake(0.f, 0.f, self.frame.size.width, self.frame.size.height);
 		backgroundView.autoresizingMask  = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[self addSubview:backgroundView];

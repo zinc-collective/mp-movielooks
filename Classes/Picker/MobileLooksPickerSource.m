@@ -125,7 +125,7 @@
 		{
 			NSString* typeIdentifier;
 			
-			if ([URL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:NULL] && !UTTypeConformsTo((CFStringRef)typeIdentifier, kUTTypeMovie))
+			if ([URL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:NULL] && !UTTypeConformsTo((__bridge CFStringRef)typeIdentifier, kUTTypeMovie))
 				continue;
 			
 			[contentURLs addObject:URL];

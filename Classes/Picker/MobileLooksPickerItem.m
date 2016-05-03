@@ -30,14 +30,9 @@
 	[generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:[NSValue valueWithCMTime:CMTimeMake(5, 1)]] completionHandler:
      ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
      {
-         CGImageRetain(image);
-         
          dispatch_async(queue,
                         ^{
                             block(image);
-                            
-                            CGImageRelease(image);
-                            dispatch_release(queue);
                         });
          
          [generator release];
@@ -46,7 +41,6 @@
 
 - (void)generateTitleInBackgroundAndNotifyOnQueue:(dispatch_queue_t) queue withBlock:(void (^)(NSString* title))block
 {
-	dispatch_retain(queue);
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                    ^{
                        NSString* title = nil;
@@ -63,7 +57,6 @@
                        dispatch_async(queue, 
                                       ^{
                                           block(title);
-                                          dispatch_release(queue);
                                       });
                    });
 }

@@ -97,7 +97,7 @@
 			{
 				[CATransaction begin];
 				[CATransaction setDisableActions:YES];
-				[layer setContents:(id)img];
+				[layer setContents:(__bridge id)img];
 				[CATransaction commit];
 			}
 			else {

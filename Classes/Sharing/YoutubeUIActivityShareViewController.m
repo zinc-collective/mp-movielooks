@@ -220,11 +220,6 @@
     }
 }
 
--(UIView *) initSettingsViewWithFrame:(CGRect)frameRect :(NSString*)imgpath :(NSInteger)logoutTag :(NSInteger)uploadTag :(NSArray*)privacyItems
-{
-    return nil;
-}
-
 - (void)shareButtonsAnimateToShow
 {
     //buttons to show

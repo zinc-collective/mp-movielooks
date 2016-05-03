@@ -75,7 +75,7 @@
 		 {
 			 [CATransaction begin];
 			 [CATransaction setDisableActions:YES];
-			 [layer setContents:(id)image];
+			 [layer setContents:(__bridge id)image];
 			 
 			 if(isInitial){
 				 isInitial = NO;

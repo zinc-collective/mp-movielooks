@@ -31,8 +31,8 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
 	{
 		mPlayer = [[AVPlayer allocWithZone:[self zone]] init];
-		[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:PlayerPlaybackViewControllerRateObservationContext];
-		[mPlayer addObserver:self forKeyPath:@"currentItem.asset.duration" options:0 context:PlayerPlaybackViewControllerDurationObservationContext];
+		[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:(__bridge void * _Nullable)(PlayerPlaybackViewControllerRateObservationContext)];
+		[mPlayer addObserver:self forKeyPath:@"currentItem.asset.duration" options:0 context:(__bridge void * _Nullable)(PlayerPlaybackViewControllerDurationObservationContext)];
 		
 		mThumbView = [[ThumbView alloc] initWithFrame:mPlaybackView.frame];
 		mThumbView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -552,14 +552,14 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 
 - (void)observeValueForKeyPath:(NSString*) path ofObject:(id) object change:(NSDictionary*)change context:(void*)context
 {
-	if (context == PlayerPlaybackViewControllerRateObservationContext)
+	if (context == (__bridge void * _Nullable)(PlayerPlaybackViewControllerRateObservationContext))
 	{
 		dispatch_async(dispatch_get_main_queue(),
 					   ^{
 						   [self syncButtons];
 					   });
 	}
-	else if (context == PlayerPlaybackViewControllerDurationObservationContext)
+	else if (context == (__bridge void * _Nullable)(PlayerPlaybackViewControllerDurationObservationContext))
 	{
 		dispatch_async(dispatch_get_main_queue(),
 					   ^{

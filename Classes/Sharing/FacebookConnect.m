@@ -153,7 +153,7 @@
 
 - (void) fbDidLogin {
 	//NSLog(@"Facebook did login");
-	facebookUserInfo = [[[[FBUserInfo alloc] initializeWithFacebook:facebook andDelegate: self] 
+	facebookUserInfo = [[[[FBUserInfo alloc] initWithFacebook:facebook andDelegate: self]
 						 autorelease] 
 						retain];
 	[facebookUserInfo requestAllInfo];	

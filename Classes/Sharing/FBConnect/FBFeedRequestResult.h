@@ -23,7 +23,7 @@
   id<FacebookFeedRequestDelegate> _feedRequestDelegate;   
 }
 
-- (id) initializeWithDelegate: (id<FacebookFeedRequestDelegate>)delegate; 
+- (id) initWithDelegate: (id<FacebookFeedRequestDelegate>)delegate;
 
 @end
 

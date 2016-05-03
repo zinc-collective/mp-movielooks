@@ -160,7 +160,7 @@
 {
 	_alertView.transform = CGAffineTransformMakeScale(0.1, 0.1);
 	
-	[UIView beginAnimations:@"movement" context:mView]; 
+	[UIView beginAnimations:@"movement" context:(__bridge void * _Nullable)(mView)];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut]; 
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationDelegate:self];
@@ -172,7 +172,7 @@
 }
 -(void)MoveViewAnimationZoomOut:(UIView*)mView
 {
-	[UIView beginAnimations:@"movement zoom out" context:mView]; 
+	[UIView beginAnimations:@"movement zoom out" context:(__bridge void * _Nullable)(mView)];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut]; 
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationDelegate:self];
@@ -198,9 +198,9 @@
 {
 	if(finished ){
 		if([animationID isEqualToString:@"movement"])
-			[self MoveViewAnimationZoomOut:(UIView*)context];
+			[self MoveViewAnimationZoomOut:(__bridge UIView*)context];
 		if([animationID isEqualToString:@"movement zoom out"])
-			[self MoveViewAnimationZoomIn:(UIView*)context];
+			[self MoveViewAnimationZoomIn:(__bridge UIView*)context];
 	}
 }
 

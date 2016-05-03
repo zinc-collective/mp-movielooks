@@ -18,10 +18,12 @@
 
 @implementation FBFeedRequestResult
 
-- (id) initializeWithDelegate:(id<FacebookFeedRequestDelegate>)delegate {
-  self = [super init];
-  _feedRequestDelegate = [delegate retain];
-  return self;  
+- (id) initWithDelegate:(id<FacebookFeedRequestDelegate>)delegate {
+    self = [super init];
+    if(self) {
+        _feedRequestDelegate = [delegate retain];
+    }
+    return self;
 }
 
 - (void)dealloc {

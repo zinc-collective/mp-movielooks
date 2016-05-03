@@ -32,11 +32,13 @@
 /**
  * initialization
  */
-- (id) initializeWithFacebook:(Facebook *)facebook andDelegate:(id<FacebookUserInfoLoadDelegate>)delegate {
-  self = [super init];
-  _facebook = [facebook retain];
-  _userInfoDelegate = [delegate retain];
-  return self;
+- (id) initWithFacebook:(Facebook *)facebook andDelegate:(id<FacebookUserInfoLoadDelegate>)delegate {
+    self = [super init];
+    if (self) {
+      _facebook = [facebook retain];
+      _userInfoDelegate = [delegate retain];
+    }
+    return self;
 }
 
 - (void)dealloc {
@@ -71,7 +73,7 @@
  */
 - (void) requestUid{
   FBUserRequestResult *userRequestResult = 
-    [[[[FBUserRequestResult alloc] initializeWithDelegate:self] autorelease] retain];
+    [[[[FBUserRequestResult alloc] initWithDelegate:self] autorelease] retain];
   [_facebook requestWithGraphPath:@"me" andDelegate:userRequestResult];
 
 }
@@ -84,7 +86,7 @@
 	
 	
 	FBFeedRequestResult *feedRequestResult = 
-    [[[[FBFeedRequestResult alloc] initializeWithDelegate:self] autorelease] retain];
+    [[[[FBFeedRequestResult alloc] initWithDelegate:self] autorelease] retain];
 	
 	NSString *query = @"SELECT owner,pid,caption, src_small, src_big FROM photo WHERE aid IN ( SELECT aid FROM album WHERE owner = ";
 	query = [query stringByAppendingFormat:@"%@  OR owner  IN (SELECT uid2 FROM friend WHERE uid1 = %@)) ORDER BY created DESC LIMIT 1,18", _uid,_uid];

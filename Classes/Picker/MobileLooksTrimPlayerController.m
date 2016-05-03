@@ -427,7 +427,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 #endif
 	
 	mPlayer = [[AVPlayer allocWithZone:[self zone]] initWithURL:mURL];
-	[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:AVPlayerRateObservationContext];
+	[mPlayer addObserver:self forKeyPath:@"rate" options:0 context:(__bridge void * _Nullable)(AVPlayerRateObservationContext)];
 	[mPlaybackView setPlayer:mPlayer];
 
 	mPlayTimeObserver = [[mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, 600) queue:dispatch_get_main_queue() usingBlock:
@@ -1215,7 +1215,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 
 - (void)observeValueForKeyPath:(NSString*) path ofObject:(id) object change:(NSDictionary*)change context:(void*)context
 {
-	if (context == AVPlayerRateObservationContext)
+	if (context == (__bridge void * _Nullable)(AVPlayerRateObservationContext))
 	{
 		dispatch_async(dispatch_get_main_queue(),
 					   ^{

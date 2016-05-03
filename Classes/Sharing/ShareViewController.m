@@ -373,133 +373,133 @@
 	[self addHorizontalSeparator:buttonsView :yPos];
 
 
-	facebookSettingsView = [self initSettingsViewWithFrame:settingsRect :@"facebook_48x48.png" :FACEBOOK_LOGOUT_TAG :FACEBOOK_UPLOAD_TAG :[self getFacebookPrivacyItems]];
-	facebookSettingsView.hidden = YES;
-	[contentView addSubview:facebookSettingsView];
-	[self _updateFacebookSettings];
-	
-	youtubeSettingsView = [self initSettingsViewWithFrame:settingsRect :@"youtube2_48x48.png" :YOUTUBE_LOGOUT_TAG :YOUTUBE_UPLOAD_TAG :[self getYoutubePrivacyItems]];
-	youtubeSettingsView.hidden = YES;
-	[contentView addSubview:youtubeSettingsView];
-	[self _updateYoutubeSettings];
+//	facebookSettingsView = [self settingsViewWithFrame:settingsRect :@"facebook_48x48.png" :FACEBOOK_LOGOUT_TAG :FACEBOOK_UPLOAD_TAG :[self getFacebookPrivacyItems]];
+//	facebookSettingsView.hidden = YES;
+//	[contentView addSubview:facebookSettingsView];
+//	[self _updateFacebookSettings];
+//	
+//	youtubeSettingsView = [self settingsViewWithFrame:settingsRect :@"youtube2_48x48.png" :YOUTUBE_LOGOUT_TAG :YOUTUBE_UPLOAD_TAG :[self getYoutubePrivacyItems]];
+//	youtubeSettingsView.hidden = YES;
+//	[contentView addSubview:youtubeSettingsView];
+//	[self _updateYoutubeSettings];
 	
 	[self setCurrentSubView:buttonsView];
 }
 #endif
--(UIView *) initSettingsViewWithFrame:(CGRect)frameRect :(NSString*)imgpath :(NSInteger)logoutTag :(NSInteger)uploadTag :(NSArray*)privacyItems
-{
-#if 0
-    NSInteger pad = 8;
-	NSInteger textHeight = 28;
-	NSInteger buttonHeight = 32;
-	NSInteger logoutButtonHeight = 24;
-
-	NSInteger xPos = 0;
-	NSInteger yPos = frameRect.size.height - buttonHeight;
-	NSInteger btnWidth = frameRect.size.width / 2 - pad;
-
-	UIView *view = [[UIView alloc] initWithFrame:frameRect];
-	view.backgroundColor = [UIColor clearColor];
-
-	UIImage *iconImage = [UIImage imageNamed:imgpath];
-	UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-	iconView.image = iconImage;
-	[view addSubview:iconView];
-	[iconView release];
-	[iconImage release];
-
-	CGRect titleLabelBounds = CGRectMake(32+pad, 0, frameRect.size.width/2, textHeight);
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleLabelBounds];
-	titleLabel.text = NSLocalizedString(@"Upload Settings", nil);
-	titleLabel.font = [UIFont systemFontOfSize:16];
-	titleLabel.backgroundColor = [UIColor clearColor];
-	titleLabel.textColor = [UIColor whiteColor];
-	titleLabel.shadowColor = [UIColor blackColor];
-	[view addSubview:titleLabel];
-	[titleLabel release];
-
-	CGRect userBounds = CGRectMake(0, logoutButtonHeight, frameRect.size.width - btnWidth/2 - pad, logoutButtonHeight);
-	UILabel *userLabel = [[UILabel alloc] initWithFrame:userBounds];
-	userLabel.tag = SETTINGS_USERNAME_TAG;
-	userLabel.text = NSLocalizedString(@"", nil);
-	userLabel.font = [UIFont systemFontOfSize:12];
-	userLabel.backgroundColor = [UIColor clearColor];
-	userLabel.textColor = [UIColor whiteColor];
-	userLabel.shadowColor = [UIColor blackColor];
-	userLabel.textAlignment = UITextAlignmentRight;
-	[view addSubview:userLabel];
-	[userLabel release];
-
-	UIButton *btnLogout = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	btnLogout.frame = CGRectMake(frameRect.size.width-btnWidth/2, logoutButtonHeight, btnWidth/2 , logoutButtonHeight);
-	btnLogout.backgroundColor = [UIColor clearColor];
-	btnLogout.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
-	btnLogout.tag = logoutTag;
-	[btnLogout setBackgroundImage:[UIImage imageNamed:@"btn_up.png"] forState:UIControlStateNormal];
-	[btnLogout setTitle:NSLocalizedString(@"Sign Out", nil) forState:UIControlStateNormal];
-	[btnLogout setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-	[btnLogout setBackgroundImage:[UIImage imageNamed:@"btn_down.png"] forState:UIControlStateHighlighted];
-	[btnLogout setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
-	[btnLogout addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-	[view addSubview:btnLogout];
-	[btnLogout release];
-
-	UISegmentedControl *privacyControl = [[UISegmentedControl alloc] initWithItems:privacyItems];
-	privacyControl.tag = SETTINGS_PRIVACY_TAG;
-	privacyControl.frame = CGRectMake(0, 56+pad, frameRect.size.width, buttonHeight);
-	privacyControl.segmentedControlStyle = UISegmentedControlStylePlain;
-	privacyControl.selectedSegmentIndex = 1;
-	[view addSubview:privacyControl];
-	[privacyControl release];
-
-	UIButton *btnCancel = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	btnCancel.frame = CGRectMake(xPos, yPos, btnWidth, buttonHeight);
-	btnCancel.backgroundColor = [UIColor clearColor];
-	btnCancel.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
-	btnCancel.tag = SETTINGS_CANCEL_TAG;
-	[btnCancel setBackgroundImage:[UIImage imageNamed:@"btn_up.png"] forState:UIControlStateNormal];
-	[btnCancel setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
-	[btnCancel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-	[btnCancel setBackgroundImage:[UIImage imageNamed:@"btn_down.png"] forState:UIControlStateHighlighted];
-	[btnCancel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
-	[btnCancel addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-	[view addSubview:btnCancel];
-	[btnCancel release];
-	
-	xPos = view.bounds.size.width / 2 + pad;
-
-	UIButton *btnUpload = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	btnUpload.frame = CGRectMake(xPos, yPos, btnWidth, buttonHeight);
-	btnUpload.backgroundColor = [UIColor clearColor];
-	btnUpload.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
-	btnUpload.tag = uploadTag;
-	[btnUpload setBackgroundImage:[UIImage imageNamed:@"btn_up.png"] forState:UIControlStateNormal];
-	[btnUpload setTitle:NSLocalizedString(@"Upload Video", nil) forState:UIControlStateNormal];
-	[btnUpload setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-	[btnUpload setBackgroundImage:[UIImage imageNamed:@"btn_down.png"] forState:UIControlStateHighlighted];
-	[btnUpload setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
-	[btnUpload addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-	[view addSubview:btnUpload];
-	[btnUpload release];
-	return view;
-#endif
-    return nil;
-}
+//-(UIView *) settingsViewWithFrame:(CGRect)frameRect :(NSString*)imgpath :(NSInteger)logoutTag :(NSInteger)uploadTag :(NSArray*)privacyItems
+//{
+////#if 0
+////    NSInteger pad = 8;
+////	NSInteger textHeight = 28;
+////	NSInteger buttonHeight = 32;
+////	NSInteger logoutButtonHeight = 24;
+////
+////	NSInteger xPos = 0;
+////	NSInteger yPos = frameRect.size.height - buttonHeight;
+////	NSInteger btnWidth = frameRect.size.width / 2 - pad;
+////
+////	UIView *view = [[UIView alloc] initWithFrame:frameRect];
+////	view.backgroundColor = [UIColor clearColor];
+////
+////	UIImage *iconImage = [UIImage imageNamed:imgpath];
+////	UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+////	iconView.image = iconImage;
+////	[view addSubview:iconView];
+////	[iconView release];
+////	[iconImage release];
+////
+////	CGRect titleLabelBounds = CGRectMake(32+pad, 0, frameRect.size.width/2, textHeight);
+////	UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleLabelBounds];
+////	titleLabel.text = NSLocalizedString(@"Upload Settings", nil);
+////	titleLabel.font = [UIFont systemFontOfSize:16];
+////	titleLabel.backgroundColor = [UIColor clearColor];
+////	titleLabel.textColor = [UIColor whiteColor];
+////	titleLabel.shadowColor = [UIColor blackColor];
+////	[view addSubview:titleLabel];
+////	[titleLabel release];
+////
+////	CGRect userBounds = CGRectMake(0, logoutButtonHeight, frameRect.size.width - btnWidth/2 - pad, logoutButtonHeight);
+////	UILabel *userLabel = [[UILabel alloc] initWithFrame:userBounds];
+////	userLabel.tag = SETTINGS_USERNAME_TAG;
+////	userLabel.text = NSLocalizedString(@"", nil);
+////	userLabel.font = [UIFont systemFontOfSize:12];
+////	userLabel.backgroundColor = [UIColor clearColor];
+////	userLabel.textColor = [UIColor whiteColor];
+////	userLabel.shadowColor = [UIColor blackColor];
+////	userLabel.textAlignment = UITextAlignmentRight;
+////	[view addSubview:userLabel];
+////	[userLabel release];
+////
+////	UIButton *btnLogout = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+////	btnLogout.frame = CGRectMake(frameRect.size.width-btnWidth/2, logoutButtonHeight, btnWidth/2 , logoutButtonHeight);
+////	btnLogout.backgroundColor = [UIColor clearColor];
+////	btnLogout.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
+////	btnLogout.tag = logoutTag;
+////	[btnLogout setBackgroundImage:[UIImage imageNamed:@"btn_up.png"] forState:UIControlStateNormal];
+////	[btnLogout setTitle:NSLocalizedString(@"Sign Out", nil) forState:UIControlStateNormal];
+////	[btnLogout setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+////	[btnLogout setBackgroundImage:[UIImage imageNamed:@"btn_down.png"] forState:UIControlStateHighlighted];
+////	[btnLogout setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
+////	[btnLogout addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+////	[view addSubview:btnLogout];
+////	[btnLogout release];
+////
+////	UISegmentedControl *privacyControl = [[UISegmentedControl alloc] initWithItems:privacyItems];
+////	privacyControl.tag = SETTINGS_PRIVACY_TAG;
+////	privacyControl.frame = CGRectMake(0, 56+pad, frameRect.size.width, buttonHeight);
+////	privacyControl.segmentedControlStyle = UISegmentedControlStylePlain;
+////	privacyControl.selectedSegmentIndex = 1;
+////	[view addSubview:privacyControl];
+////	[privacyControl release];
+////
+////	UIButton *btnCancel = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+////	btnCancel.frame = CGRectMake(xPos, yPos, btnWidth, buttonHeight);
+////	btnCancel.backgroundColor = [UIColor clearColor];
+////	btnCancel.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
+////	btnCancel.tag = SETTINGS_CANCEL_TAG;
+////	[btnCancel setBackgroundImage:[UIImage imageNamed:@"btn_up.png"] forState:UIControlStateNormal];
+////	[btnCancel setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
+////	[btnCancel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+////	[btnCancel setBackgroundImage:[UIImage imageNamed:@"btn_down.png"] forState:UIControlStateHighlighted];
+////	[btnCancel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
+////	[btnCancel addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+////	[view addSubview:btnCancel];
+////	[btnCancel release];
+////	
+////	xPos = view.bounds.size.width / 2 + pad;
+////
+////	UIButton *btnUpload = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+////	btnUpload.frame = CGRectMake(xPos, yPos, btnWidth, buttonHeight);
+////	btnUpload.backgroundColor = [UIColor clearColor];
+////	btnUpload.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
+////	btnUpload.tag = uploadTag;
+////	[btnUpload setBackgroundImage:[UIImage imageNamed:@"btn_up.png"] forState:UIControlStateNormal];
+////	[btnUpload setTitle:NSLocalizedString(@"Upload Video", nil) forState:UIControlStateNormal];
+////	[btnUpload setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+////	[btnUpload setBackgroundImage:[UIImage imageNamed:@"btn_down.png"] forState:UIControlStateHighlighted];
+////	[btnUpload setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
+////	[btnUpload addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+////	[view addSubview:btnUpload];
+////	[btnUpload release];
+////	return view;
+////#endif
+//    return nil;
+//}
 
 - (void)shareButtonsAnimateToShow
 {
-#if 0
-    youtubePrivacyControl.hidden = YES;
-    facebookPrivacyControl.hidden = YES;
-    userLabel.hidden = YES;
-    btnLogout.hidden = YES;
-    progressView.hidden = NO;
-    [progressView updateProgress:0.5];
-    titleLabel.hidden = YES;
-    privacyLabel.hidden = YES;
-    titleInput.hidden = YES;
-    uploadingLabel.hidden = NO;
-#endif
+//#if 0
+//    youtubePrivacyControl.hidden = YES;
+//    facebookPrivacyControl.hidden = YES;
+//    userLabel.hidden = YES;
+//    btnLogout.hidden = YES;
+//    progressView.hidden = NO;
+//    [progressView updateProgress:0.5];
+//    titleLabel.hidden = YES;
+//    privacyLabel.hidden = YES;
+//    titleInput.hidden = YES;
+//    uploadingLabel.hidden = NO;
+//#endif
     //buttons to show
     if (userLabel.hidden == YES)
     {

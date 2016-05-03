@@ -23,7 +23,7 @@
   id<FacebookUserRequestDelegate> _userRequestDelegate;   
 }
 
-- (id) initializeWithDelegate: (id<FacebookUserRequestDelegate>)delegate; 
+- (id) initWithDelegate: (id<FacebookUserRequestDelegate>)delegate;
 
 @end
 
