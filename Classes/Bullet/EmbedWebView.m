@@ -27,7 +27,7 @@
 		mTitle.backgroundColor = [UIColor clearColor];
 		mTitle.textColor = [UIColor whiteColor];
 		mTitle.font = [UIFont boldSystemFontOfSize:14];
-		mTitle.textAlignment = UITextAlignmentCenter;
+		mTitle.textAlignment = NSTextAlignmentCenter;
 		[self addSubview:mTitle];
 		
 		mSearchField = [[UITextField alloc] initWithFrame:CGRectMake(70, 25, frame.size.width-80, 30)];

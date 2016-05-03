@@ -19,7 +19,7 @@
 		
 		groupNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 250, 18)];
 		groupNameLabel.font = [UIFont boldSystemFontOfSize:20];
-		groupNameLabel.textAlignment = UITextAlignmentRight;
+		groupNameLabel.textAlignment = NSTextAlignmentRight;
 		groupNameLabel.backgroundColor = [UIColor clearColor];
 		groupNameLabel.textColor = [UIColor whiteColor];
 		groupNameLabel.text = @" - ";

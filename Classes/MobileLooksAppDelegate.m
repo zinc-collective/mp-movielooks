@@ -175,8 +175,6 @@ void onUncaughtExceptionHandler(NSException *exception)
 	NSLog(@"uncaught exception: %@", [exception description]);
 	NSLog(@"\n\nstacks :\n\n %@", [exception callStackReturnAddresses]);
     NSLog(@"\n\nsymbols :\n\n %@", [exception callStackSymbols]);
-	
-	int dummy = 0;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {   
@@ -640,8 +638,8 @@ void onUncaughtExceptionHandler(NSException *exception)
 }
 
 - (void)connection:(NSURLConnection *)theConnection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse %@, %d", [(NSHTTPURLResponse *)response allHeaderFields],
-          [(NSHTTPURLResponse *)response statusCode]);
+//    NSLog(@"didReceiveResponse %@, %d", [(NSHTTPURLResponse *)response allHeaderFields],
+//          [(NSHTTPURLResponse *)response statusCode]);
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue: [NotiPusher sharedNotiPusher].deviceToken forKey: @"_UALastDeviceToken"];
     [userDefaults setValue: [NotiPusher sharedNotiPusher].deviceAlias forKey: @"_UALastAlias"];

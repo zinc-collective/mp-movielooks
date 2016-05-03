@@ -52,7 +52,7 @@
 
 GLuint loadTexture(const char *c_path)
 {
-	NSString *path = [[NSString alloc] initWithCString:c_path];
+	NSString *path = [NSString stringWithUTF8String:c_path];
 	
 	UIImage* image = [[UIImage alloc] initWithContentsOfFile:path];
 	
@@ -64,8 +64,8 @@ GLuint loadTexture(const char *c_path)
 		return 0;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	GLubyte *data = malloc(width * height * glPixelSize);
 	
 	CGContextRef context = CGBitmapContextCreate(data, width, height, 8, width * glPixelSize, CGImageGetColorSpace(imageRef), glImageAlphaNoneSkipLast);

@@ -90,8 +90,8 @@
 		return;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	
 #if 0
     videoMode = VideoModeTraditionalLandscape; //bret doesn't seem to be used
@@ -109,7 +109,7 @@
 	//NSLog(@"aspectRatio=%.3f", aspectRatio);
 	
 	frameSize = CGSizeMake(width, height);
-	NSLog(@"Frame Size:(%d,%d)",width, height);
+	NSLog(@"Frame Size:(%f,%f)", width, height);
 #if 0
 	if (aspectRatio > 1.77 && aspectRatio < 1.78) //16:9=1.777778
 	{

@@ -34,7 +34,7 @@
 			timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 1, 100, frame.size.height-4)];
 			timeLabel.font = [UIFont systemFontOfSize:28.0];
 			timeLabel.backgroundColor = [UIColor clearColor];
-			timeLabel.textAlignment = UITextAlignmentCenter;
+			timeLabel.textAlignment = NSTextAlignmentCenter;
 			timeLabel.textColor = [UIColor whiteColor];
 			timeLabel.text = @"0:00:00";
 			[self addSubview:timeLabel];
@@ -56,7 +56,7 @@
 			timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 1, 55, 22)];
 			timeLabel.font = [UIFont systemFontOfSize:16.0];
 			timeLabel.backgroundColor = [UIColor clearColor];
-			timeLabel.textAlignment = UITextAlignmentCenter;
+			timeLabel.textAlignment = NSTextAlignmentCenter;
 			timeLabel.textColor = [UIColor whiteColor];
 			timeLabel.text = @"0:00:00";
 			[self addSubview:timeLabel];

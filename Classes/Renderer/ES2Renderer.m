@@ -213,8 +213,8 @@ extern GLfloat texcoords[];
 		return;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);	
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
 	keyFrameData = malloc(frameWidth * frameHeight * 4);
 //	NSLog(@"loadKeyFrame::Alloca a Image Buffer(%d*%d)",width,height);
 	CGContextRef keyFrameContext = CGBitmapContextCreate(keyFrameData, frameWidth, frameHeight, 8, frameWidth * 4, CGImageGetColorSpace(imageRef), kCGImageAlphaNoneSkipLast);
@@ -246,8 +246,8 @@ extern GLfloat texcoords[];
 		return;
 	}
 	
-	GLsizei width = CGImageGetWidth(imageRef);
-	GLsizei height = CGImageGetHeight(imageRef);
+	CGFloat width = CGImageGetWidth(imageRef);
+	CGFloat height = CGImageGetHeight(imageRef);
     
     CGRect originalRect = CGRectMake (0,0,width,height);
     CGRect croppedRect = [Utilities squareCrop:originalRect];
