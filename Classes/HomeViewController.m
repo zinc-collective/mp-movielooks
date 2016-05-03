@@ -14,7 +14,6 @@
 #import "InfoViewController.h"
 #import "MobileLooksAppDelegate.h"
 #import "WebSiteCtrlor.h"
-#import "ShareViewController.h"
 
 #import "MovieProcessor.h"
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="lEX-fU-COX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="lEX-fU-COX">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller - Home-->
+        <!--Home-->
         <scene sceneID="0yf-PU-c8V">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="ske-F1-kfO" customClass="HomeViewController" sceneMemberID="viewController">
@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="1546" y="-138"/>
         </scene>
-        <!--Mobile Looks Video Picker Controller - Camera Roll-->
+        <!--Camera Roll-->
         <scene sceneID="Kmv-A6-H3N">
             <objects>
                 <viewController storyboardIdentifier="MobileLooksVideoPickerController" id="GaY-51-8FU" customClass="MobileLooksVideoPickerController" sceneMemberID="viewController">
@@ -79,7 +79,7 @@
             </objects>
             <point key="canvasLocation" x="3602" y="-138"/>
         </scene>
-        <!--Mobile Looks Trim Player Controller - Trim Your Movie-->
+        <!--Trim Your Movie-->
         <scene sceneID="z2E-zU-Vlf">
             <objects>
                 <viewController storyboardIdentifier="MobileLooksTrimPlayerController" id="u9K-Tl-3Vx" customClass="MobileLooksTrimPlayerController" sceneMemberID="viewController">
@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="4607" y="-130"/>
         </scene>
-        <!--Looks Browser View Controller - Select A Look-->
+        <!--Select A Look-->
         <scene sceneID="iSd-Ty-B2I">
             <objects>
                 <viewController storyboardIdentifier="LooksBrowserViewController" id="7VG-6f-Oq2" customClass="LooksBrowserViewController" sceneMemberID="viewController">
@@ -122,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="3602" y="1230"/>
         </scene>
-        <!--Look Preview Controller - Tweak Your Look-->
+        <!--Tweak Your Look-->
         <scene sceneID="Azm-va-u2b">
             <objects>
                 <viewController storyboardIdentifier="LookPreviewController" id="MIA-yY-eeF" customClass="LookPreviewController" sceneMemberID="viewController">
@@ -143,7 +143,7 @@
             </objects>
             <point key="canvasLocation" x="4543" y="1254"/>
         </scene>
-        <!--Bullet View Controller - Developing Your Movie-->
+        <!--Developing Your Movie-->
         <scene sceneID="mz4-CP-lDS">
             <objects>
                 <viewController storyboardIdentifier="BulletViewController" id="Sa7-rI-Cl4" customClass="BulletViewController" sceneMemberID="viewController">
@@ -156,15 +156,12 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="xgo-uz-jZX" kind="push" identifier="ShareViewController" id="fon-Dq-9ik"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNm-ey-COy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5493" y="1262"/>
         </scene>
-        <!--Info View Controller - Info-->
+        <!--Info-->
         <scene sceneID="wqO-nk-VGs">
             <objects>
                 <viewController storyboardIdentifier="InfoViewController" title="Info" id="pKa-1p-JP0" customClass="InfoViewController" sceneMemberID="viewController">
@@ -239,21 +236,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyx-3D-g8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2580" y="-146"/>
-        </scene>
-        <!--Share View Controller - Share Online-->
-        <scene sceneID="yFw-sx-ro8">
-            <objects>
-                <viewController storyboardIdentifier="ShareViewController" id="xgo-uz-jZX" customClass="ShareViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Share Online" id="978-DF-8Ts">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="fzz-wI-ehG"/>
-                    </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Ct-aQ-ic7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6410" y="1262"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hWL-n4-Xyh">

@@ -13,7 +13,6 @@
 #import "TimeView.h"
 #import "ComposeProgressView.h"
 #import "HomeViewController.h"
-#import "ShareViewController.h"
 #import "YoutubeActivity.h"
 #import <sys/time.h>
 
@@ -2020,19 +2019,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     [self.navigationController
      popToViewController:[self.navigationController.viewControllers
                           objectAtIndex:(noOfViewControllers-3)] animated:YES];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    //NSLog(@"seque id == %@",segue.identifier);
-    if ([[segue identifier] isEqualToString:@"ShareViewController"])
-    {
-        ShareViewController *shareViewController = (ShareViewController *)segue.destinationViewController;
-		shareViewController.useYouTube = useYouTube;
-        shareViewController.mThumbImage = mThumbImageView.image;
-        shareViewController.processedMoviePath = processedMoviePath;
-    }
-    
 }
 
 - (void) videoWasShared
