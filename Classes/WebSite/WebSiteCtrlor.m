@@ -140,7 +140,7 @@
 		[_webView setDelegate:self];
 	}
 	
-	if(self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+	if(self.statusBarOrientation == UIInterfaceOrientationPortrait || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[_webView changeFrameByRect:_webFramePortrait];
 	}
@@ -166,6 +166,10 @@
 	
 	
 	[super viewDidLoad];
+}
+
+-(UIInterfaceOrientation)statusBarOrientation {
+    return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -258,7 +262,7 @@
 	[_webView closeWeb];
 	
 	if (![[self modalViewController] isBeingDismissed]) {
-		[self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:^{}];
 	}
 	
 	//return to delegate

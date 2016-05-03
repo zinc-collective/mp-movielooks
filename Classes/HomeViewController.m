@@ -648,7 +648,7 @@
 	return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
 #if 0
 	NSUInteger mask = 0;

@@ -36,7 +36,7 @@
 		label.backgroundColor = [UIColor clearColor];
 		label.textColor = [UIColor whiteColor];
 		label.font = [UIFont systemFontOfSize:14];
-		label.textAlignment = UITextAlignmentLeft;
+		label.textAlignment = NSTextAlignmentLeft;
 		label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
 		label.tag = LABEL_TAG;
 		[self addSubview:label];

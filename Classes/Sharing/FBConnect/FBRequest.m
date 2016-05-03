@@ -135,7 +135,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
                        data:[NSString stringWithFormat:
                              @"Content-Disposition: form-data; filename=\"%@\"\r\n", key]];
         [self utfAppendBody:body
-                       data:[NSString stringWithString:@"Content-Type: image/png\r\n\r\n"]];
+                       data:@"Content-Type: image/png\r\n\r\n"];
         [body appendData:imageData];
       } else {
         NSAssert([dataParam isKindOfClass:[NSData class]], 
@@ -144,7 +144,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
                        data:[NSString stringWithFormat:
                              @"Content-Disposition: form-data; filename=\"%@\"\r\n", key]];
         [self utfAppendBody:body
-                       data:[NSString stringWithString:@"Content-Type: video/quicktime\r\n\r\n"]];//video/mov //content/unknown
+                       data:@"Content-Type: video/quicktime\r\n\r\n"];//video/mov //content/unknown
         [body appendData:(NSData*)dataParam];
       }
       [self utfAppendBody:body data:endLine];          
@@ -321,7 +321,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
  totalBytesWritten:(NSInteger)totalBytesWritten 
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-	NSLog(@"%d/%d", totalBytesWritten,totalBytesExpectedToWrite);
+	NSLog(@"%ld/%ld", (long)totalBytesWritten,(long)totalBytesExpectedToWrite);
 	
 	if(_delegate && [_delegate respondsToSelector:@selector(request:bytesWritten:totalBytes:)]){
 		[_delegate request:self bytesWritten:totalBytesWritten totalBytes:totalBytesExpectedToWrite];

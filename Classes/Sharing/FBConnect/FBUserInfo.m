@@ -109,9 +109,9 @@
 }
 
 - (void)facebookUserRequestFailed {
-  if ([self.userInfoDelegate respondsToSelector:@selector(userInfoFailToLoad)]) {
-    [_userInfoDelegate userInfoFailToLoad];
-  }
+//  if ([self.userInfoDelegate respondsToSelector:@selector(userInfoFailToLoad)]) {
+//    [_userInfoDelegate userInfoFailToLoad];
+//  }
 }
 
 /**
@@ -120,8 +120,8 @@
 
 - (void)facebookFeedRequestCompleteWithUid:(id)feed {
   	self.feed = feed;
-	if ([self.userInfoDelegate respondsToSelector:@selector(facebookUserInfoDidLoad)]) {
-		[_userInfoDelegate facebookUserInfoDidLoad];
+	if ([self.userInfoDelegate respondsToSelector:@selector(facebookUserDidLoad)]) {
+        [_userInfoDelegate facebookUserDidLoad];
 	}	
 }
 

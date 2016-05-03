@@ -37,7 +37,7 @@
 		[backGroundView release];
 
 		_version = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, w-30, 30)];
-		_version.textAlignment = UITextAlignmentCenter;
+		_version.textAlignment = NSTextAlignmentCenter;
 		_version.textColor = [UIColor whiteColor];
 		_version.backgroundColor = [UIColor clearColor];
 		_version.font = [UIFont systemFontOfSize:13];
@@ -81,7 +81,7 @@
 	sysctlbyname("hw.machine", name, &size, NULL, 0);
 	
 	// Place name into a string
-	NSString *machine = [NSString stringWithCString:name];
+    NSString *machine = [NSString stringWithUTF8String:name];
 	
 	// Done with this
 	free(name);

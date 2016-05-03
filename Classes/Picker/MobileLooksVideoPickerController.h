@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MobileLooksPickerItem.h"
+#import "MobileLooksTrimPlayerController.h"
 
 @class MobileLooksPickerSource;
 @class MobileLooksVideoPickerController;
@@ -23,7 +24,7 @@
 @interface MobileLooksVideoPickerController : UIViewController<MobileLooksPickerItemDelegate,UIScrollViewDelegate> {
     //UIScrollView* mScrollView; //storyboard
 	
-	id<MobileLooksVideoPickerControllerDelegate> _delegate;
+	id<MobileLooksVideoPickerControllerDelegate, MobileLooksTrimPlayerControllerDelegate> _delegate;
 	MobileLooksPickerSource* mSource;
 	NSInteger mLastSourceCount;
 	NSMutableArray* mURLs;
@@ -43,7 +44,7 @@
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *mScrollView;
 
-@property(nonatomic,assign) id<MobileLooksVideoPickerControllerDelegate> delegate;
+@property(nonatomic,assign) id<MobileLooksVideoPickerControllerDelegate, MobileLooksTrimPlayerControllerDelegate> delegate;
 @end
 
 extern NSString* const MobileLooksVideoPickerControllerDidPickURLNotification;

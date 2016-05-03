@@ -312,7 +312,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 
 -(void)pausePlayer
 {
-	if(mPlayerState = AVPlayerPlaying) //bret **if(mPlayerState = AVPlayerPlaying)
+	if(mPlayerState == AVPlayerPlaying) //bret **if(mPlayerState = AVPlayerPlaying)
 	{
 		[mPlayer pause];
 		mPlayerState = AVPlayerPaused;
@@ -330,7 +330,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
     goPauseButton.hidden = NO;
     goPlayButton.hidden = YES;
 
-	NSLog(@"Player Time(%d,%d)",[mPlayer currentTime].value,[mPlayer currentTime].timescale);
+	NSLog(@"Player Time(%lld,%d)",[mPlayer currentTime].value,[mPlayer currentTime].timescale);
 }
 
 #pragma mark - Player controll
@@ -395,7 +395,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 -(void)resumeFromMultiTask
 {
 	NSLog(@"resumeFromMultiTask");	
-	NSLog(@"Player error:%@(%d)",[mPlayer.error localizedDescription],mPlayer.status);
+	NSLog(@"Player error:%@(%ld)",[mPlayer.error localizedDescription],(long)mPlayer.status);
 	[mPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:mURL]];
 /*
 	if(mPlayer)
@@ -434,7 +434,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 							  if (mPlayer.rate==0.0) return;
 							  
 							  Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
-							  NSLog(@"Player factor:%f, Time(%d,%d)",factor,[mPlayer currentTime].value,[mPlayer currentTime].timescale);
+							  NSLog(@"Player factor:%f, Time(%lld,%d)",factor,[mPlayer currentTime].value,[mPlayer currentTime].timescale);
 							  if([mCustomTrimView.quartzTrimView isOverRange])
 							  {
 //								  factor = [mCustomTrimView.quartzTrimView getLeftPos];
@@ -495,7 +495,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
     {
         //self.navigationController.navigationBar.translucent = YES;
         //self.navigationController.navigationBar.barTintColor = [UIColor grayColor];
-        self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
         self.navigationController.navigationBar.topItem.title = @"";
         //self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
         [[self.navigationController.navigationBar.subviews lastObject] setTintColor:[UIColor whiteColor]];
@@ -663,15 +663,17 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	
 	//	[NSTimer scheduledTimerWithTimeInterval:0.2  target:self selector:@selector(loadAsset) userInfo:nil repeats:NO];
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{	
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+	{
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+		if(orientation ==UIInterfaceOrientationPortrait || orientation ==UIInterfaceOrientationPortraitUpsideDown)
 			[self layoutIPadForPortrait];
 		else 
 			[self layoutIPadForLandscape];
 	}
 	else
     {
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+		if(orientation==UIInterfaceOrientationPortrait || orientation==UIInterfaceOrientationPortraitUpsideDown)
             [self layoutIPhonePortrait];
         else
             [self layoutIPhoneLandscape];
@@ -1057,7 +1059,7 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 	[avAsset release];
 	
 	mIsTrimming = NO;
-	NSLog(@"Time(%d,%d)",mVideoDuration.timescale,mVideoDuration.value);
+	NSLog(@"Time(%d,%lld)",mVideoDuration.timescale,mVideoDuration.value);
 	NSLog(@"trimCompleteEvent End");	
 }
 
@@ -1175,7 +1177,8 @@ static NSString* const AVPlayerRateObservationContext = @"AVPlayerRateObservatio
 {
 	return YES;
 }
-- (NSUInteger)supportedInterfaceOrientations
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 }

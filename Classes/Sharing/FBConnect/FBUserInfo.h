@@ -20,7 +20,14 @@
 #import "FBFeedRequestResult.h"
 
 
-@protocol FacebookUserInfoLoadDelegate;
+@protocol FacebookUserInfoLoadDelegate <NSObject>
+
+@optional
+- (void)facebookUserDidLoad;
+
+- (void)facebookUserInfoFailToLoad;
+
+@end
 
 @interface FBUserInfo : NSObject<FacebookUserRequestDelegate, FacebookFeedRequestDelegate> {
 	NSString *_uid;
@@ -48,11 +55,3 @@
 
 @end
 
-@protocol FacebookUserInfoLoadDelegate <NSObject>
-
-@optional
-- (void)facebookUserDidLoad;
-
-- (void)facebookUserInfoFailToLoad;
-
-@end

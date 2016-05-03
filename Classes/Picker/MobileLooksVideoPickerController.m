@@ -497,9 +497,13 @@
 		//mThumbnailSize = CGSizeMake(73, 73);
 	}
 	NSUInteger duartion = [[asset valueForProperty:ALAssetPropertyDuration] doubleValue];
-	[item loadFromCache:thumbnailImage withDurationString:[NSString stringWithFormat:@"%02d:%02d",duartion/60,duartion%60]];
+	[item loadFromCache:thumbnailImage withDurationString:[NSString stringWithFormat:@"%02lu:%02d",duartion/60,duartion%60]];
 	[thumbnailImage release];
 	item.hasThumbnail = YES;
+}
+
+-(UIInterfaceOrientation)statusBarOrientation {
+    return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 -(void)loadItemThread:(NSNumber*)decelerateSpeed
@@ -509,7 +513,8 @@
         CGFloat rowHeight; // = 79;
         CGFloat screenDim = mScrollView.frame.size.width;
         NSInteger rowCount;  //= 6; //change
-    if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+        
+    if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
     {
         //NSInteger rowCount = 6;
         screenDim = mScrollView.frame.size.height;
@@ -519,14 +524,14 @@
 	{
         rowCount = VPICKER_THUMB_LANDSCAPE_ROWS;
 		rowHeight = VPICKER_THUMB_WIDTH+VPICKER_THUMB_WIDTH_OFFSET;
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
         {
 			rowCount = VPICKER_THUMB_PORTRAIT_COLS;
             rowHeight = VPICKER_THUMB_HEIGHT+VPICKER_THUMB_HEIGHT_OFFSET;
         }
 	}else //bret
     {
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
         {
             rowHeight = VPICKER_THUMB_HEIGHT_IPHONE+VPICKER_THUMB_HEIGHT_OFFSET_IPHONE;
             rowCount = VPICKER_THUMB_PORTRAIT_COLS_IPHONE;
@@ -545,7 +550,7 @@
 	CGFloat scrollDeta = [decelerateSpeed floatValue];
 	NSInteger startRowIndex = floor(mScrollView.contentOffset.x/rowHeight);
 	NSInteger endRowIndex = ceil((mScrollView.contentOffset.x+screenDim)/rowHeight);
-    if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
     {
         startRowIndex = floor(mScrollView.contentOffset.y/rowHeight);
         endRowIndex = ceil((mScrollView.contentOffset.y+screenDim)/rowHeight);
@@ -592,7 +597,7 @@
 	CGFloat screenDim = mScrollView.frame.size.width;
 	CGFloat screenOffset = mScrollView.contentOffset.x;
 	CGFloat screenDetaOffset = screenOffset-mLastScrollOffset;
-    if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
     {
         screenDim = mScrollView.frame.size.height;
         screenOffset = mScrollView.contentOffset.y;
@@ -605,14 +610,14 @@
 	{
 		rowCount = VPICKER_THUMB_LANDSCAPE_ROWS;
 		rowHeight = VPICKER_THUMB_WIDTH+VPICKER_THUMB_WIDTH_OFFSET;
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
         {
 			rowCount = VPICKER_THUMB_PORTRAIT_COLS;
             rowHeight = VPICKER_THUMB_HEIGHT+VPICKER_THUMB_HEIGHT_OFFSET;
         }
 	}else //bret
     {
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
         {
             rowHeight = VPICKER_THUMB_HEIGHT+VPICKER_THUMB_HEIGHT_OFFSET;
 			rowCount = VPICKER_THUMB_PORTRAIT_COLS_IPHONE;
@@ -629,13 +634,13 @@
     }
 
 	NSInteger startRowIndex;
-    if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+    if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
     {
         startRowIndex = floor(mScrollView.contentOffset.x/rowHeight);
 	
         if(mLastScrollAuto)
             mLastScrollIndex = ceil((mScrollView.contentOffset.x+screenDim)/rowHeight)*rowCount;
-        if(abs(screenDetaOffset)<10 && startRowIndex!=lastRowIndex)
+        if(fabs(screenDetaOffset)<10 && startRowIndex!=lastRowIndex)
         {
             lastRowIndex = startRowIndex;
             [self performSelectorInBackground:@selector(loadItemThread:) withObject:[NSNumber numberWithFloat:screenDetaOffset]];
@@ -646,7 +651,7 @@
         
         if(mLastScrollAuto)
             mLastScrollIndex = ceil((mScrollView.contentOffset.y+screenDim)/rowHeight)*rowCount;
-        if(abs(screenDetaOffset)<10 && startRowIndex!=lastRowIndex)
+        if(fabs(screenDetaOffset)<10 && startRowIndex!=lastRowIndex)
         {
             lastRowIndex = startRowIndex;
             [self performSelectorInBackground:@selector(loadItemThread:) withObject:[NSNumber numberWithFloat:screenDetaOffset]];
@@ -656,7 +661,7 @@
     //bret button scroll
     if (IS_IPAD)
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             bool leftScrollButtonState; //= leftScrollButton.hidden;
             bool rightScrollButtonState; //= rightScrollButton.hidden;
@@ -725,7 +730,7 @@
         }
     }else
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             int scrollWidth;
             scrollWidth = VPICKER_SCROLL_LANDSCAPE_FRAME_WIDTH_IPHONE_4;
@@ -808,12 +813,12 @@
 //	mScrollView.userInteractionEnabled = NO;
 	mLastScrollIndex = mLastSourceCount;
 	CGFloat firstOffset = mScrollView.contentSize.width-mScrollView.frame.size.width;
-    if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+    if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
         firstOffset = mScrollView.contentSize.height-mScrollView.frame.size.height;
     
 	if(firstOffset<0)
         firstOffset = 0;
-    if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+    if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         [mScrollView setContentOffset:CGPointMake(firstOffset,0)];
     else
         [mScrollView setContentOffset:CGPointMake(0, firstOffset)];
@@ -850,7 +855,7 @@
 	
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{	
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
 			[self layoutIPadForPortrait];
 		else 
 			[self layoutIPadForLandscape];
@@ -966,14 +971,14 @@
 	
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{	
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
 			[self layoutIPadForPortrait];
 		else 
 			[self layoutIPadForLandscape];
 	}
 	else
     {
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
             [self layoutIPhonePortrait];
         else
             [self layoutIPhoneLandscape];
@@ -1181,7 +1186,7 @@
     CGPoint currentScrollPoint = mScrollView.contentOffset;
     if (IS_IPAD)
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             //rowCount = VPICKER_THUMB_PORTRAIT_COLS;
             rowHeight = VPICKER_THUMB_WIDTH+VPICKER_THUMB_WIDTH_OFFSET;
@@ -1236,7 +1241,7 @@
 
     if (IS_IPAD)
     {
-        if(self.interfaceOrientation==UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation==UIInterfaceOrientationLandscapeRight)
+        if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
         {
             //rowCount = VPICKER_THUMB_PORTRAIT_COLS;
             rowHeight = VPICKER_THUMB_WIDTH+VPICKER_THUMB_WIDTH_OFFSET;
@@ -1498,14 +1503,14 @@
 	}
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{	
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
 			[self layoutIPadForPortrait];
 		else 
 			[self layoutIPadForLandscape];
 	}
 	else
     {
-		if(self.interfaceOrientation==UIInterfaceOrientationPortrait || self.interfaceOrientation==UIInterfaceOrientationPortraitUpsideDown)
+		if(self.statusBarOrientation==UIInterfaceOrientationPortrait || self.statusBarOrientation==UIInterfaceOrientationPortraitUpsideDown)
             [self layoutIPhonePortrait];
         else
             [self layoutIPhoneLandscape];

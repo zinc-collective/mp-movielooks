@@ -41,8 +41,8 @@
 
 
 - (void)request:(FBRequest*)request didFailWithError:(NSError*)error {
-  NSLog(@"%@",[error localizedDescription]);
-  [_feedRequestDelegate userRequestFailed];
+  NSLog(@" Feed Request Failed: %@",[error localizedDescription]);
+//  [_feedRequestDelegate userRequestFailed];
 }
 
 @end

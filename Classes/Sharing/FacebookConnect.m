@@ -264,7 +264,7 @@
 		limit = limit/1024;
 		NSString *str = @"";
 		
-		int l = [data length]/1024;
+		int l = (int)[data length]/1024;
 		
 		if(length > 60){
 			int m = length/60;
@@ -373,7 +373,7 @@
 	
 	SBJSON *jsonWriter = [[SBJSON new] autorelease];
 	
-	NSDictionary* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys: 
+	NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
 														   @"MovieLooks",@"text",@"http://www.facebook.com",@"href", nil], nil];
 	
 	NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];

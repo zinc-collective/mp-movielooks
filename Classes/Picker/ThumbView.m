@@ -97,7 +97,7 @@
 	NSInteger minIndex = ceil(fmax(0.f, time - 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
 	NSInteger maxIndex = floor(fmin(mDuration, time + 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
 	
-	NSLog(@"%d - %d", minIndex, maxIndex);
+	NSLog(@"%ld - %ld", (long)minIndex, (long)maxIndex);
 	for (NSInteger index = minIndex; index < maxIndex; index++)
 	{
 		NSTimeInterval thumbnailTime = mThumbnailInterval * index;
@@ -122,7 +122,7 @@
 	
 	NSInteger x = time*maxIndex/mDuration + minIndex;
 	
-	return x;
+	return (int)x;
 	
 }
 
@@ -134,7 +134,7 @@
 	NSInteger maxIndex = floor(fmin(mDuration, time + 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
 	
 	NSInteger x = time*maxIndex/mDuration + minIndex;
-	NSLog(@"%d",x);
+	NSLog(@"%ld",(long)x);
 	
 	CALayer *findlayer = nil;
 	
