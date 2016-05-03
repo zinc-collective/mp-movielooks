@@ -103,12 +103,12 @@
 - (void) trackMiddleKeyFrame{
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
 				   ^{
-					   AVAsset* asset = [[AVURLAsset allocWithZone:NULL] initWithURL:mURL options:nil];
+					   AVAsset* asset = [[AVURLAsset alloc] initWithURL:mURL options:nil];
 					   
 					   if (asset)
 					   {
 						   mDuration = asset.duration;
-						   mSize = asset.naturalSize;
+                           mSize = [[[asset tracksWithMediaType:AVMediaTypeVideo] firstObject] naturalSize];
 						   
 						   NSValue *requestedTime = [NSValue valueWithCMTime:CMTimeMake(mDuration.value/2.0, mDuration.timescale)];
 						   
@@ -139,7 +139,7 @@
 					   if (asset)
 					   {
 						   mDuration = asset.duration;
-						   mSize = asset.naturalSize;
+                           mSize = [[[asset tracksWithMediaType:AVMediaTypeVideo] firstObject] naturalSize];
 						   
 						   CGSize max = mSize;
 						   
