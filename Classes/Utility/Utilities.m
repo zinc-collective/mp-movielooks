@@ -123,12 +123,8 @@ static NSString* g_selectedVideoTitle = nil;
 		ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];
 		[library assetForURL:url resultBlock:^(ALAsset *asset) {
 			ALAssetRepresentation *rep = [asset defaultRepresentation];
-			NSString *assetFilepath = [rep url];
-			
-			NSURL *urlPath = [NSURL fileURLWithPath:[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]]; // URLByAppendingPathComponent:assetFilepath];
-
 			NSError *error2 = nil;
-			fileHandle = [NSFileHandle fileHandleForReadingFromURL:assetFilepath error:&error2];
+			fileHandle = [NSFileHandle fileHandleForReadingFromURL:[rep url] error:&error2];
 			
 		} failureBlock:^(NSError *error) {
 			NSLog(@"Failed to get fileHandleForReadingFromAssetURL");
