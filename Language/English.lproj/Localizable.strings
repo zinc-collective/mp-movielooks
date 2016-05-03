@@ -1,0 +1,154 @@
+//
+//  Localizable.strings
+//  MovieLooks
+//
+//  Created by jack on 21/5 10.
+//  Copyright 2010 RED/SAFI. All rights reserved.
+//
+
+
+"_LocaleLanguage" = "en";
+//-----------------------------------------------
+
+
+
+"Cancel"												= "Cancel";
+"OK"													= "OK";
+"YES"													= "YES";
+"NO"													= "NO";
+"Purchase"												= "Purchase";
+"Done"													= "Done";
+"Develop"												= "Develop";
+"Saving..."												= "Saving...";
+
+"Compose Error!"										= "Compose Error!";
+"These is some error in rendering movie, please retry!" = "These is some error in rendering movie, please retry!";
+
+"Developing Your Movie"									= "Developing Your Movie";
+"Terminate the Develop"									= "Cancel the Develop";
+"Are you sure you want to terminate the processing? You can't undo this action." = "Are you sure you want to cancel the processing? You can't undo this action." ;
+"Resume Process!"										= "Resume Process!";
+"Welcome Back! Movie Looks will resume rendering where it left off when you last quit the app." = "Welcome Back! Movie Looks will resume rendering where it left off when you last quit the app.";
+"The render process is interrupted by your iPod player. Do you want to resume rendering and stop the media playing?" = "The render process is interrupted by your iPod player. Do you want to resume rendering and stop the media playing?";
+
+
+"Upload Video"											= "Upload Video";
+"Video Title"											= "Video Title";
+"Untitled Video"										= "Untitled Video";
+"Select another look"									= "Select Another Look";
+"Select another video"									= "Select Another Movie";
+"Share Online"											= "Share Online";
+"Share"													= "Share";
+"Login"													= "Login";
+"Facebook"												= "Facebook";
+"Twitter"												= "Twitter";
+"Flickr"												= "Flickr";
+
+"Upload Settings"										= "Upload Settings";
+"Upload successful!"									= "Upload successful!";
+"Upload failed. Please try again."						= "Upload failed. Please try again.";
+"Cancel Upload"											= "Cancel Upload";
+"Are you sure you want to cancel this upload?"			= "Are you sure you want to cancel this upload?";
+"Please wait..."										= "Please wait...";
+
+"Cannot connect"										= "Cannot connect";
+"No network connection available, please check your device settings." = "No network connection available, please check your device settings.";
+
+"Home"													= "Home";
+"Select a Look"											= "Select a Look";
+
+"This Look is a part of the \"%@\" Look Pack. Do you wish to purchase it now for %@%@?" = "This Look is a part of the \"%@\" Look Pack. Do you wish to purchase it now for %@%@?";
+
+"NotSupport"											= "We do not support the output of 720p video on this device. Please develop at half resolution.";
+"EmailVideo"											= "The movie you selected has an unsupported format. For best results, choose a movie created with the built-in camera app.";
+"NoVideo"												= "There are no videos in your device's Camera Roll. Please shoot some video or add to the device.";
+"DeniedAccessTitle"										= "Movie Looks cannot access your devices.";
+"DeniedAccess"											= "Movie Looks cannot access your devices. Please go to Settings Location Services and set the Movie Looks switch to \"on.\" Don't worry, we won't use your location. We just need location services enabled so we can access the camera.";
+"Camera Roll"											= "Camera Roll";
+"Select Frame"											= "Select Frame";
+"Trim Your Movie"										= "Trim Your Movie";
+"Trim Video"											= "Trim Video";
+"Pick a Frame"											= "Pick a Frame";
+"Tweak Your Look"										= "Tweak Your Look";
+"Strength"												= "Strength";
+"Brightness"											= "Brightness";
+"Half"													= "Half";
+"Full"													= "Full";
+"Resolution"											= "Resolution";
+
+"Half Resolution"										= "Half Resolution";
+"Full Resolution"										= "Full Resolution";
+"Press the Develop button to create a new video with your Look." = "Press the Develop button to create a new video with your Look.";
+" This process can take some time, approximately %02d:%02d." = " This process can take some time, approximately %02d:%02d.";
+"Develop at %@?"										= "Develop at %@?";
+
+
+"The size of your video file is: %d MB.\nThe video should under %d MB and %d minutes."	= "The size of your video file is: %d MB.\nThe video should under %d MB and %d minutes.";
+"The size of your video file is: %d MB.\nThe video should under %d MB and %d seconds." = "The size of your video file is: %d MB.\nThe video should under %d MB and %d seconds.";
+"MovieLooks"											= "MovieLooks";
+"Share on Facebook"										= "Share on Facebook";
+"You need to like the page to finish your video submitting."	= "You need to like the page to finish your video submitting.";
+"Movie Looks cannot access your videos.\nTo enable access, go to Settings app, tap \"Location Services\" and set Movie Looks switch to \"On\"" = "Movie Looks cannot access your videos.\nTo enable access, go to Settings app, tap \"Location Services\" and set Movie Looks switch to \"On\"";
+"Sorry, we do not support portrait movies at this time."	= "Sorry, we do not support portrait movies at this time.";
+
+"Network error"											= "Network error";
+"Error registering with server"							= "Error registering with server";
+
+//LUT product
+"Quick"								= "Quick";
+"Black and White"					= "Black and White";
+"Cold Day"							= "Cold Day";
+"Face Light"						= "Face Light";
+"Mojito"							= "Mojito";
+"Pop"								= "Pop";
+"Soft Faded"						= "Soft Faded";
+"Sunset"							= "Sunset";
+"Vintage Color"						= "Vintage Color";
+
+"Essential"							= "Essential";
+"Bleach Bypass"						= "Bleach Bypass";
+"Bronze"							= "Bronze";
+"Cinematic"							= "Cinematic";
+"Cold Beauty"						= "Cold Beauty";
+"Cross Process"						= "Cross Process";
+"Warm Beauty"						= "Warm Beauty";
+"White Diffusion"					= "White Diffusion";
+
+"Popular Film"						= "Popular Film";
+"Crime Scene"						= "Crime Scene";
+"Curahee"							= "Curahee";
+"Epic"								= "Epic";
+"Hughes"							= "Hughes";
+"Neo"								= "Neo";
+"Night Vision"						= "Night Vision";
+"Ohio"								= "Ohio";
+"Warm and Fuzzy"					= "Warm and Fuzzy";
+
+"Black and White"					= "Black and White";
+"Auto Art"							= "Auto Art";
+"Blue Note"							= "Blue Note";
+"Crush"								= "Crush";
+"Gold Tone"							= "Gold Tone";
+"Hi Con Glow"						= "Hi Con Glow";
+"Platinum"							= "Platinum";
+"Selenium"							= "Selenium";
+"Sepia"								= "Sepia";
+
+"Blockbusters"						= "Blockbusters";
+"Action"							= "Action";
+"Connor"							= "Connor";
+"Garber"							= "Garber";
+"Jake"								= "Jake";
+"MC"								= "MC";
+"Optimus"							= "Optimus";
+"Resident"							= "Resident";
+"War"								= "War";
+
+
+
+
+
+
+
+
+

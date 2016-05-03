@@ -1,0 +1,63 @@
+//
+// Prefix header for all source files of the 'MobileLooks' target in the 'MobileLooks' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+	#import <AVFoundation/AVFoundation.h>
+	#import <CoreVideo/CoreVideo.h>
+	#import <CoreMedia/CoreMedia.h>
+	#import "Utilities.h"
+	#import "RenderDefs.h"
+	#import <AssetsLibrary/AssetsLibrary.h>
+	#import <CoreAudio/CoreAudioTypes.h>
+	#import <MediaPlayer/MediaPlayer.h>
+
+#define GTL_BUILT_AS_FRAMEWORK 0
+
+#define	kUserLooks	@"looks"
+
+#define	kProductIdentifier	@"identifier"
+#define	kProductName	@"name"
+#define	kProductLocked	@"locked"
+//#define	kProductFold	@"fold"
+#define	kProductLooks	@"items"
+
+#define	kLookName	@"name"
+#define	kLookDesc	@"desc"
+#define	kLookDesc1	@"desc1"
+#define	kLookFile	@"file"
+#define	kLookDiffusionSize				@"diffusion_size"
+#define	kLookDiffusionOpacity			@"diffusion_opacity"
+#define	kLookDiffusionHighlightsOnly	@"diffusion_highlights_only"
+#define	kLookPreDesatAmount				@"pre_desat_amount"
+#define	kLookVignetteAmount				@"vignette_amount"
+#define	kLookVignetteFalloff			@"vignette_falloff"
+#define	kLookOverlay					@"overlay"
+#define kLookQuickRender				@"quick"
+
+
+#define push_noti_active_link_url       @"active_link_url"
+#define push_noti_active_link_title		@"active_link_title"
+#define push_noti_active_time_from		@"active_time_from"
+#define push_noti_active_time_to		@"active_time_to"
+#define push_noti_facebook_page_id		@"facebook_page_id"
+#define push_noti_facebook_page_url		@"facebook_page_url"
+
+
+
+// prevent NSLog traces in release builds
+#ifndef DEBUG
+#undef NSLog
+#define NSLog(args, ...)
+#endif
+
+#ifdef NOTIFICATION
+#define TEST_NOTIFICATION 1
+#else
+#define TEST_NOTIFICATION 0
+#endif
+#endif
+
+

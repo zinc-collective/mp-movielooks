@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>identifier</key>
+		<string>com.redgiantsoftware.movielooks.quick</string>
+		<key>name</key>
+		<string>Quick</string>
+		<key>locked</key>
+		<false/>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Black and White</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Citizen Kane&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Citizen Kane&quot;</string>
+				<key>file</key>
+				<string>Black and White.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Cold Day</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Frozen Ground&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Frozen Ground&quot;</string>
+				<key>file</key>
+				<string>Cold Day.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Face Light</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Black Swan&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Black Swan&quot;</string>
+				<key>file</key>
+				<string>Face Light.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Mojito</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Django Unchained&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Django Unchained&quot;</string>
+				<key>file</key>
+				<string>Mojito.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Pop</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;School of Rock&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;School of Rock&quot;</string>
+				<key>file</key>
+				<string>Pop.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Soft Faded</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Chicago&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Chicago&quot;</string>
+				<key>file</key>
+				<string>Soft Faded.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Sunset</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Before Sunset&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Before Sunset&quot;</string>
+				<key>file</key>
+				<string>Sunset.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Vintage Color</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Wizard of OZ&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Wizard of OZ&quot;</string>
+				<key>file</key>
+				<string>Vintage Color.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>com.redgiantsoftware.movielooks.essential</string>
+		<key>name</key>
+		<string>Essential</string>
+		<key>locked</key>
+		<false/>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Bleach Bypass</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Footloose&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Footloose&quot;</string>
+				<key>file</key>
+				<string>Bleach Bypass.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>50</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Bronze</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Troy&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Troy&quot;</string>
+				<key>file</key>
+				<string>Bronze.3dl</string>
+				<key>diffusion_size</key>
+				<integer>50</integer>
+				<key>diffusion_opacity</key>
+				<integer>20</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>15</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Cinematic</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Star Wars&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Star Wars&quot;</string>
+				<key>file</key>
+				<string>Cinematic.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>15</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>overlay</key>
+				<string>13_overlayRGBA.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Cold Beauty</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Barry Lyndon&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Barry Lyndon&quot;</string>
+				<key>file</key>
+				<string>Cold Beauty.3dl</string>
+				<key>diffusion_size</key>
+				<integer>40</integer>
+				<key>diffusion_opacity</key>
+				<integer>70</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Cross Process</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Hunger Games&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Hunger Games&quot;</string>
+				<key>file</key>
+				<string>Cross Process.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>100</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Grunge</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Seven&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Seven&quot;</string>
+				<key>file</key>
+				<string>Grunge.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>10</integer>
+				<key>vignette_amount</key>
+				<integer>80</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Warm Beauty</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;American Beauty&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;American Beauty&quot;</string>
+				<key>file</key>
+				<string>Warm Beauty.3dl</string>
+				<key>diffusion_size</key>
+				<integer>20</integer>
+				<key>diffusion_opacity</key>
+				<integer>80</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>70</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>White Diffusion</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Titanic&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Titanic&quot;</string>
+				<key>file</key>
+				<string>White Diffusion.3dl</string>
+				<key>diffusion_size</key>
+				<integer>80</integer>
+				<key>diffusion_opacity</key>
+				<integer>75</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>20</integer>
+				<key>pre_desat_amount</key>
+				<integer>20</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>com.redgiantsoftware.movielooks.popularfilm</string>
+		<key>name</key>
+		<string>Popular Film</string>
+		<key>locked</key>
+		<false/>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Crime Scene</string>
+				<key>desc</key>
+				<string>Inspired by the show: &quot;CSI&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;CSI&quot;</string>
+				<key>file</key>
+				<string>Crime Scene.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>85</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Currahee</string>
+				<key>desc</key>
+				<string>Inspired by the show: &quot;Band of Brothers&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Band of Brothers&quot;</string>
+				<key>file</key>
+				<string>Curahee.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>60</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Epic</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Lord of the Rings&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Lord of the Rings&quot;</string>
+				<key>file</key>
+				<string>Epic.3dl</string>
+				<key>diffusion_size</key>
+				<integer>50</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>20</integer>
+				<key>vignette_amount</key>
+				<integer>30</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>overlay</key>
+				<string>13_overlayRGBA.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Hughes</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Aviator&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Aviator&quot;</string>
+				<key>file</key>
+				<string>Hughes.3dl</string>
+				<key>diffusion_size</key>
+				<integer>15</integer>
+				<key>diffusion_opacity</key>
+				<integer>90</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>15</integer>
+				<key>vignette_amount</key>
+				<integer>100</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>overlay</key>
+				<string>13_overlayRGBA.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Neo</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Matrix&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Matrix&quot;</string>
+				<key>file</key>
+				<string>Neo.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>80</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>overlay</key>
+				<string>13_overlayRGBA.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Night Vision</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Zero Dark Thirty&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Zero Dark Thirty&quot;</string>
+				<key>file</key>
+				<string>Night Vision.3dl</string>
+				<key>diffusion_size</key>
+				<integer>20</integer>
+				<key>diffusion_opacity</key>
+				<integer>50</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>40</integer>
+				<key>pre_desat_amount</key>
+				<integer>20</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>overlay</key>
+				<string>Night_vision_circle.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Ohio</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Twister&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Twister&quot;</string>
+				<key>file</key>
+				<string>Ohio.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>50</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Warm and Fuzzy</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;E.T.&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;E.T.&quot;</string>
+				<key>file</key>
+				<string>Warm and Fuzzy.3dl</string>
+				<key>diffusion_size</key>
+				<integer>40</integer>
+				<key>diffusion_opacity</key>
+				<integer>65</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>15</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>com.redgiantsoftware.movielooks.blackandwhite</string>
+		<key>name</key>
+		<string>Black and White</string>
+		<key>locked</key>
+		<false/>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Auto Art</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Wild One&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Wild One&quot;</string>
+				<key>file</key>
+				<string>Auto Art.3dl</string>
+				<key>diffusion_size</key>
+				<integer>60</integer>
+				<key>diffusion_opacity</key>
+				<integer>100</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>80</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Blue Note</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Casablanca&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Casablanca&quot;</string>
+				<key>file</key>
+				<string>Blue Note.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>80</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Crush</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Red River&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Red River&quot;</string>
+				<key>file</key>
+				<string>Crush.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>80</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Gold Tone</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;City Lights&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;City Lights&quot;</string>
+				<key>file</key>
+				<string>Gold Tone.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>90</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Hi Con Glow</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Batman&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Batman&quot;</string>
+				<key>file</key>
+				<string>Hi Con Glow.3dl</string>
+				<key>diffusion_size</key>
+				<integer>20</integer>
+				<key>diffusion_opacity</key>
+				<integer>60</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>70</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>overlay</key>
+				<string>Hi Con White Overlay.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Platinum</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Home Alone&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Home Alone&quot;</string>
+				<key>file</key>
+				<string>Platinum.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>70</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Selenium</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Star Trek&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Star Trek&quot;</string>
+				<key>file</key>
+				<string>Selenium.3dl</string>
+				<key>diffusion_size</key>
+				<integer>30</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>80</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Sepia</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Heaven&apos;s Gate&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Heaven&apos;s Gate&quot;</string>
+				<key>file</key>
+				<string>Sepia.3dl</string>
+				<key>diffusion_size</key>
+				<integer>40</integer>
+				<key>diffusion_opacity</key>
+				<integer>30</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>90</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>quick</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>com.redgiantsoftware.movielooks.blockbuster</string>
+		<key>name</key>
+		<string>Blockbusters</string>
+		<key>locked</key>
+		<false/>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Action</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Saving Private Ryan&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Saving Private Ryan&quot;</string>
+				<key>file</key>
+				<string>Action.3dl</string>
+				<key>diffusion_size</key>
+				<integer>4</integer>
+				<key>diffusion_opacity</key>
+				<integer>100</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>70</integer>
+				<key>pre_desat_amount</key>
+				<integer>30</integer>
+				<key>vignette_amount</key>
+				<integer>0</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>overlay</key>
+				<string>14_overlay_70mm_2-2to1.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Connor</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;The Terminator&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;The Terminator&quot;</string>
+				<key>file</key>
+				<string>Connor.3dl</string>
+				<key>diffusion_size</key>
+				<integer>6</integer>
+				<key>diffusion_opacity</key>
+				<integer>50</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>20</integer>
+				<key>vignette_amount</key>
+				<integer>80</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>overlay</key>
+				<string>14_overlay_70mm_2-2to1.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Garber</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Forest Gump&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Forest Gump&quot;</string>
+				<key>file</key>
+				<string>Garber.3dl</string>
+				<key>diffusion_size</key>
+				<integer>5</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>67</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>overlay</key>
+				<string>14_overlay_70mm_2-2to1.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Jake</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;China Town&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;China Town&quot;</string>
+				<key>file</key>
+				<string>Jake.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>50</integer>
+				<key>pre_desat_amount</key>
+				<integer>0</integer>
+				<key>vignette_amount</key>
+				<integer>100</integer>
+				<key>vignette_falloff</key>
+				<integer>2</integer>
+				<key>overlay</key>
+				<string>14_overlay_70mm_2-2to1.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>MC</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Skyfall&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Skyfall&quot;</string>
+				<key>file</key>
+				<string>MC.3dl</string>
+				<key>diffusion_size</key>
+				<integer>20</integer>
+				<key>diffusion_opacity</key>
+				<integer>40</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>5</integer>
+				<key>vignette_amount</key>
+				<integer>70</integer>
+				<key>vignette_falloff</key>
+				<integer>1</integer>
+				<key>overlay</key>
+				<string>13_overlayRGBA.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Optimus</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Transformers&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Transformers&quot;</string>
+				<key>file</key>
+				<string>Optimus.3dl</string>
+				<key>diffusion_size</key>
+				<integer>10</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>10</integer>
+				<key>vignette_amount</key>
+				<integer>40</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>overlay</key>
+				<string>13_overlayRGBA.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Resident</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Resident Evil&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Resident Evil&quot;</string>
+				<key>file</key>
+				<string>Resident.3dl</string>
+				<key>diffusion_size</key>
+				<integer>10</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>80</integer>
+				<key>pre_desat_amount</key>
+				<integer>10</integer>
+				<key>vignette_amount</key>
+				<integer>70</integer>
+				<key>vignette_falloff</key>
+				<integer>3</integer>
+				<key>overlay</key>
+				<string>13_overlayRGBA.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>War</string>
+				<key>desc</key>
+				<string>Inspired by the film: &quot;Full Metal Jacket&quot;</string>
+				<key>desc1</key>
+				<string>Inspired by &quot;Full Metal Jacket&quot;</string>
+				<key>file</key>
+				<string>War.3dl</string>
+				<key>diffusion_size</key>
+				<integer>0</integer>
+				<key>diffusion_opacity</key>
+				<integer>0</integer>
+				<key>diffusion_highlights_only</key>
+				<integer>33</integer>
+				<key>pre_desat_amount</key>
+				<integer>12</integer>
+				<key>vignette_amount</key>
+				<integer>60</integer>
+				<key>vignette_falloff</key>
+				<integer>4</integer>
+				<key>overlay</key>
+				<string>14_overlay_70mm_2-2to1.png</string>
+				<key>quick</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>
