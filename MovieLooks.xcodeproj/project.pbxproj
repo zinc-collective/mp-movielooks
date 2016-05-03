@@ -916,11 +916,11 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MobileLooksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileLooksAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MobileLooksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileLooksAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* MobileLooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileLooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* MovieLooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieLooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* MobileLooks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileLooks_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* MovieLooks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieLooks_Prefix.pch; sourceTree = "<group>"; };
 		5E19FDF812430DFB0062BE29 /* LooksBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksBrowserViewController.h; sourceTree = "<group>"; };
 		5E19FDF912430DFB0062BE29 /* LooksBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksBrowserViewController.m; sourceTree = "<group>"; };
 		5E19FDFC12430DFB0062BE29 /* LookThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookThumbnailView.h; sourceTree = "<group>"; };
@@ -1030,7 +1030,7 @@
 		74560846125EC25400963BDD /* vignette4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette4.png; sourceTree = "<group>"; };
 		74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookbrighten_01.png; sourceTree = "<group>"; };
 		74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookdarken_01.png; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* MobileLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MobileLooks-Info.plist"; path = "../MobileLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* MovieLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MovieLooks-Info.plist"; path = "../MovieLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C3D58CD134478590034F0BD /* background_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_landscape.png; path = "Resources-iPad/background_landscape.png"; sourceTree = "<group>"; };
 		9C3D58CE134478590034F0BD /* background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_portrait.png; path = "Resources-iPad/background_portrait.png"; sourceTree = "<group>"; };
 		9C3D58CF134478590034F0BD /* gear_wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear_wheel.png; path = "Resources-iPad/gear_wheel.png"; sourceTree = "<group>"; };
@@ -1665,7 +1665,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* MobileLooks.app */,
+				1D6058910D05DD3D006BFB54 /* MovieLooks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1690,7 +1690,7 @@
 			isa = PBXGroup;
 			children = (
 				1965683B1814B8C800FEA6CE /* Storyboard_ipad.storyboard */,
-				32CA4F630368D1EE00C91783 /* MobileLooks_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* MovieLooks_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				19148C8A180A1C3200F06F9A /* Storyboard.storyboard */,
 			);
@@ -1802,7 +1802,7 @@
 				06D6C92E1345711400CF3FE6 /* Skin */,
 				5EC1593E1223939600EFD56E /* LUT */,
 				5E9FF9161213C5730083E4E9 /* Images */,
-				8D1107310486CEB800E47090 /* MobileLooks-Info.plist */,
+				8D1107310486CEB800E47090 /* MovieLooks-Info.plist */,
 				5EE319B112ADD9180014F48A /* tips.plist */,
 			);
 			path = Resources;
@@ -2047,9 +2047,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* MobileLooks */ = {
+		1D6058900D05DD3D006BFB54 /* MovieLooks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MobileLooks" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MovieLooks" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -2059,9 +2059,9 @@
 			);
 			dependencies = (
 			);
-			name = MobileLooks;
+			name = MovieLooks;
 			productName = MobileLooks;
-			productReference = 1D6058910D05DD3D006BFB54 /* MobileLooks.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* MovieLooks.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2077,7 +2077,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MobileLooks" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MovieLooks" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -2097,7 +2097,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* MobileLooks */,
+				1D6058900D05DD3D006BFB54 /* MovieLooks */,
 			);
 		};
 /* End PBXProject section */
@@ -2702,21 +2702,21 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MobileLooks_Prefix.pch;
+				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				HEADER_SEARCH_PATHS = (
 					$SDKROOT/usr/include/libxml2,
 					Sharing/Facebook/FBConnect,
 					"GTL/**",
 				);
-				INFOPLIST_FILE = "MobileLooks-Info.plist";
+				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MobileLooks;
+				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2760,21 +2760,21 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MobileLooks_Prefix.pch;
+				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				HEADER_SEARCH_PATHS = (
 					$SDKROOT/usr/include/libxml2,
 					Sharing/Facebook/FBConnect,
 					"GTL/**",
 				);
-				INFOPLIST_FILE = "MobileLooks-Info.plist";
+				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MobileLooks;
+				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2798,7 +2798,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MobileLooks_Prefix.pch;
+				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				HEADER_SEARCH_PATHS = (
@@ -2806,14 +2806,14 @@
 					Sharing/Facebook/FBConnect,
 					"GTL/**",
 				);
-				INFOPLIST_FILE = "MobileLooks-Info.plist";
+				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MobileLooks;
+				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2834,21 +2834,21 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MobileLooks_Prefix.pch;
+				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				HEADER_SEARCH_PATHS = (
 					$SDKROOT/usr/include/libxml2,
 					Sharing/Facebook/FBConnect,
 					"GTL/**",
 				);
-				INFOPLIST_FILE = "MobileLooks-Info.plist";
+				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MobileLooks;
+				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2903,7 +2903,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MobileLooks" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MovieLooks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -2914,7 +2914,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MobileLooks" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MovieLooks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
