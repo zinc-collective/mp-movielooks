@@ -1246,7 +1246,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 
 - (void)dealloc
 {
-	
+    [mPlayer removeObserver:self forKeyPath:@"rate"];
     [self cleanController];
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
