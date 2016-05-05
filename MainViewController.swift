@@ -15,7 +15,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         #if DEBUG
             Debug.addDefaultVideoIfEmpty()
@@ -56,7 +55,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("cancel")
-        
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 //    
 //    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
@@ -67,7 +66,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print("GOT MEDIA")
 //        let chosenURL = info[UIImagePickerControllerMediaURL]
-        
-        
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }
