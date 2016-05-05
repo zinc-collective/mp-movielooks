@@ -15,7 +15,6 @@
 #import <OpenGLES/ES2/glext.h>
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
-#import "MobileLooksAppDelegate.h"
 
 #import "DeviceDetect.h"
 
@@ -1559,10 +1558,11 @@
 {
 	if (buttonIndex == 0)
 	{
+        // cancel button I think?
 //		self.overView.hidden = YES;
 //		[self.activityIndicator stopAnimating];
-		MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
-		[appDelegate endPurchaseMask];
+//		MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
+//		[appDelegate endPurchaseMask];
 	}
 	else
 	{
@@ -1622,8 +1622,8 @@
 {
 	[self hiddenNetworkActivityIndicator];
 
-	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
-	[appDelegate endPurchaseMask];
+//	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
+//	[appDelegate endPurchaseMask];
 
 	UIAlertView *alerView =  [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Cannot connect",nil)
 														message:NSLocalizedString(@"No network connection available, please check your device settings.",nil)
@@ -1639,20 +1639,20 @@
 
 -(void)faliedTransaction:(NSNotification *) notification
 {
-	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
-	[appDelegate endPurchaseMask];
+//	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
+//	[appDelegate endPurchaseMask];
 }
 
 -(void)cancelTransaction:(NSNotification *) notification
 {
-	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
-	[appDelegate endPurchaseMask];
+//	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
+//	[appDelegate endPurchaseMask];
 }
 
 - (void) purchaseSuccess:(NSNotification *) notification
 {
-	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
-	[appDelegate endPurchaseMask];
+//	MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
+//	[appDelegate endPurchaseMask];
 
 	if ([[notification name] isEqualToString:@"purchaseSuccess"])
 	{
@@ -1762,8 +1762,8 @@
 	BOOL locked = [[groupDic objectForKey:kProductLocked] boolValue];
 	if (locked)
 	{
-		MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
-		[appDelegate startPurchaseMask];
+//		MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
+//		[appDelegate startPurchaseMask];
 		
 		NSString *identifier = [groupDic objectForKey:kProductIdentifier];
 		NSString *lookName = [lookDic objectForKey:kLookName];

@@ -9,10 +9,10 @@
 #import "LookPreviewController.h"
 #import "BulletViewController.h"
 #import "UICustomSwitch.h"
-#import "MobileLooksAppDelegate.h"
 #import "AVAssetUtilities.h"
 
 #import "DeviceDetect.h"
+#import "Memory.h"
 
 #define DEFAULT_STRENGTH	1.0
 #define DEFAULT_BRIGHTNESS	0.5

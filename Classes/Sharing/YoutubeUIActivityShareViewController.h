@@ -8,8 +8,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MobileLooksVideoPickerController.h"
-#import "MobileLooksTrimPlayerController.h"
 #import "YoutubeConnect.h"
 #import "MProgressView.h"
 

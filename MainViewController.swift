@@ -67,5 +67,107 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         print("GOT MEDIA")
 //        let chosenURL = info[UIImagePickerControllerMediaURL]
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        
+        //    appDelegate.videoSize = [AVAssetUtilities naturalSize:avAsset];
+        //	appDelegate.videoDuration = CMTimeGetSeconds([avAsset duration]);
     }
 }
+
+
+
+/*
+ 
+ 
+ 
+ - (void)saveKeyFrame{
+	AVAsset* avAsset = [[AVURLAsset alloc] initWithURL:mURL options:nil];
+	AVAssetImageGenerator* avImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:avAsset];
+	[avImageGenerator setAppliesPreferredTrackTransform:YES];
+	
+	CGSize maximumSize;
+	//bret check
+ //if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	//	maximumSize = CGSizeMake(800, 450);
+	//else
+	//	maximumSize = CGSizeMake(320, 180);
+ 
+ if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+ maximumSize = CGSizeMake(800, 450);
+	else
+ maximumSize = CGSizeMake(640, 360);
+	
+	if(mAssetMode==VideoModePortrait)
+ maximumSize = CGSizeMake(maximumSize.height, maximumSize.width);
+	
+	
+	[avImageGenerator setMaximumSize:maximumSize];
+	
+	MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
+ appDelegate.videoSize = [AVAssetUtilities naturalSize:avAsset];
+	appDelegate.videoDuration = CMTimeGetSeconds([avAsset duration]);
+	NSLog(@"Video Time:%f",CMTimeGetSeconds([avAsset duration]));
+	
+	NSError* err = nil;
+	CMTime currentTime = [mPlayer currentTime];
+	CGImageRef keyFrameRef =  [avImageGenerator copyCGImageAtTime:currentTime actualTime:NULL error:&err];
+	
+	if(err)
+ NSLog(@"%@",[err localizedDescription]);
+	
+	UIImage* keyFrame = [UIImage imageWithCGImage:keyFrameRef];
+	NSData *imageData = UIImagePNGRepresentation(keyFrame);
+	NSString *imagePath = [Utilities savedKeyFrameImagePath];
+	[imageData writeToFile:imagePath atomically:NO];
+	CGImageRelease(keyFrameRef);
+ }
+ 
+ - (void)saveVideo{
+	[Utilities selectedVideoPathWithURL:mURL];
+ }
+ 
+ - (void)saveKeyFrameAndVideo{
+	[Utilities selectedVideoPathWithURL:mURL];
+	
+	AVAsset* avAsset = [[AVURLAsset alloc] initWithURL:mURL options:nil];
+	AVAssetImageGenerator* avImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:avAsset];
+	[avImageGenerator setAppliesPreferredTrackTransform:YES];
+	
+	CGSize maximumSize;
+	//bret check
+ //if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	//	maximumSize = CGSizeMake(800, 450);
+	//else
+	//	maximumSize = CGSizeMake(320, 180);
+	
+ if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+ maximumSize = CGSizeMake(800, 450);
+	else
+ maximumSize = CGSizeMake(640, 360);
+ 
+	if(mAssetMode==VideoModePortrait)
+ maximumSize = CGSizeMake(maximumSize.height, maximumSize.width);
+ 
+ 
+	[avImageGenerator setMaximumSize:maximumSize];
+ 
+	MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
+ appDelegate.videoSize = [AVAssetUtilities naturalSize:avAsset];
+	appDelegate.videoDuration = CMTimeGetSeconds([avAsset duration]);
+	NSLog(@"Video Time:%f",CMTimeGetSeconds([avAsset duration]));
+	
+	NSError* err = nil;
+	CMTime currentTime = [mPlayer currentTime];
+	CGImageRef keyFrameRef =  [avImageGenerator copyCGImageAtTime:currentTime actualTime:NULL error:&err];
+ 
+	if(err)
+ NSLog(@"%@",[err localizedDescription]);
+	
+	UIImage* keyFrame = [UIImage imageWithCGImage:keyFrameRef];
+	NSData *imageData = UIImagePNGRepresentation(keyFrame);
+	NSString *imagePath = [Utilities savedKeyFrameImagePath];
+	[imageData writeToFile:imagePath atomically:NO];
+	CGImageRelease(keyFrameRef);
+ }
+ 
+
+ */

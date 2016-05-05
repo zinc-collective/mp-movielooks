@@ -7,7 +7,6 @@
 //
 
 #import "YoutubeUIActivityShareViewController.h"
-#import "MobileLooksAppDelegate.h"
 #import "WebSiteCtrlor.h"
 
 #import "DeviceDetect.h"

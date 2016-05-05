@@ -7,12 +7,10 @@
 //
 
 #import "BulletViewController.h"
-#import "MobileLooksAppDelegate.h"
 #import "ScrollViewEnhancer.h"
 #import "TipView.h"
 #import "TimeView.h"
 #import "ComposeProgressView.h"
-#import "HomeViewController.h"
 #import "YoutubeActivity.h"
 #import <sys/time.h>
 
@@ -231,7 +229,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
             [movieAdvanceSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
             [movieAdvanceSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
 
-            if ( movieAdvanceSlider.hidden != YES && mPlayerState == AVPlayerPaused)
+            if ( movieAdvanceSlider.hidden != YES && mPlayerState == bAVPlayerPaused)
             {
                 Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
                 movieAdvanceSlider.value = factor;
@@ -398,7 +396,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
             [movieAdvanceSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
             [movieAdvanceSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
 
-            if ( movieAdvanceSlider.hidden != YES && mPlayerState == AVPlayerPaused)
+            if ( movieAdvanceSlider.hidden != YES && mPlayerState == bAVPlayerPaused)
             {
                 Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
                 movieAdvanceSlider.value = factor;
@@ -550,7 +548,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
             [movieAdvanceSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
             [movieAdvanceSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
 
-            if ( movieAdvanceSlider.hidden != YES && mPlayerState == AVPlayerPaused)
+            if ( movieAdvanceSlider.hidden != YES && mPlayerState == bAVPlayerPaused)
             {
                 Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
                 movieAdvanceSlider.value = factor;
@@ -691,7 +689,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
             [movieAdvanceSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
             [movieAdvanceSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
 
-            if ( movieAdvanceSlider.hidden != YES && mPlayerState == AVPlayerPaused)
+            if ( movieAdvanceSlider.hidden != YES && mPlayerState == bAVPlayerPaused)
             {
                 Float64 factor = CMTimeGetSeconds([mPlayer currentTime])/CMTimeGetSeconds(mVideoDuration);
                 movieAdvanceSlider.value = factor;
@@ -2473,7 +2471,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	{
 		dispatch_async(dispatch_get_main_queue(),
 					   ^{
-						   if([mPlayer rate]==0.0 && mPlayerState==AVPlayerPlaying)
+						   if([mPlayer rate]==0.0 && mPlayerState==bAVPlayerPlaying)
 						   {
 							   [self resetPlayer];
 							   [self displayPlayerButton];

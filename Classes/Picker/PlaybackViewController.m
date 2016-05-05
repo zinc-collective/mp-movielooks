@@ -12,7 +12,6 @@
 #import "ThumbView.h"
 #import "FileCache.h"
 #import "LooksBrowserViewController.h"
-#import "MobileLooksAppDelegate.h"
 #import "AVAssetUtilities.h"
 
 @interface PlaybackViewController()
@@ -86,8 +85,8 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 {
 	if (mURL != URL)
 	{       
-		MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
-
+//		MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
+//
 		mURL = [URL copyWithZone:nil];
 		
 		[mPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:URL]];
@@ -97,7 +96,7 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 		
 		AVAsset* aasset = [[mPlayer currentItem] asset];
 		if(aasset){
-            appDelegate.videoDuration = CMTimeGetSeconds([aasset duration]);
+//            appDelegate.videoDuration = CMTimeGetSeconds([aasset duration]);
 			[mThumbView setAsset:aasset];
 		}
 		else {
@@ -107,8 +106,8 @@ static NSString* const PlayerPlaybackViewControllerDurationObservationContext = 
 			
 			if (mAvAsset)
 			{
-                appDelegate.videoSize = [AVAssetUtilities naturalSize:mAvAsset];
-				appDelegate.videoDuration = CMTimeGetSeconds([mAvAsset duration]);
+//                appDelegate.videoSize = [AVAssetUtilities naturalSize:mAvAsset];
+//				appDelegate.videoDuration = CMTimeGetSeconds([mAvAsset duration]);
 			}
 		}
 		
