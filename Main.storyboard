@@ -14,13 +14,44 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-background" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-bx-ESj">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-vW-kSc">
+                                <rect key="frame" x="270" y="275" width="202" height="37"/>
+                                <state key="normal" image="home-find-button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSP-2z-Wy8">
+                                <rect key="frame" x="443" y="28" width="29" height="29"/>
+                                <state key="normal" image="home-info-button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MZT-vW-kSc" secondAttribute="bottom" constant="8" id="3wK-BL-vut"/>
+                            <constraint firstItem="CSP-2z-Wy8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="MI5-bf-NaH"/>
+                            <constraint firstAttribute="trailing" secondItem="CSP-2z-Wy8" secondAttribute="trailing" constant="8" id="ZSk-wk-2zD"/>
+                            <constraint firstAttribute="trailing" secondItem="MZT-vW-kSc" secondAttribute="trailing" constant="8" id="Zdk-Xr-jfG"/>
+                            <constraint firstAttribute="trailing" secondItem="m6a-bx-ESj" secondAttribute="trailing" id="dZs-c8-qb9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="m6a-bx-ESj" secondAttribute="bottom" id="erS-pj-JYz"/>
+                            <constraint firstItem="m6a-bx-ESj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gCL-iP-EvT"/>
+                            <constraint firstItem="m6a-bx-ESj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mz8-Zu-gGe"/>
+                        </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="260" y="379"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home-background" width="1024" height="768"/>
+        <image name="home-find-button" width="202" height="37"/>
+        <image name="home-info-button" width="29" height="29"/>
+    </resources>
 </document>

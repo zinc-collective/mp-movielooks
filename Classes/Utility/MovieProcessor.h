@@ -65,7 +65,7 @@
     CMTime currentStartTime; //bret movielooks update
     CMTime totalDurationTime; //bret movielooks update
     BOOL backfromPause; //bret movielooks update
-	NSUInteger subMovieIndex;
+	int subMovieIndex;
 	CMTime subMovieStarts[4096];
 	id<MovieProcessorDelegate> __weak _delegate;
 }

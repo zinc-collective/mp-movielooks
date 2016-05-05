@@ -977,12 +977,12 @@
 	avVideoProcessCheckPoint = NO;
 	avAudioProcessCheckPoint = NO;
 	
-	tempWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]];
+	tempWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%i_%@", subMovieIndex, @"bullet_movie.mov"]];
 	NSLog(@"Resume render %@",tempWriteMoviePath);
     //bret movielooks update
     if (subMovieIndex > 1 )
     {
-        prevWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",subMovieIndex-1,@"bullet_movie.mov"]];
+        prevWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%i_%@",subMovieIndex-1,@"bullet_movie.mov"]];
     }
     
 	NSFileManager *manager = [NSFileManager defaultManager];

@@ -424,6 +424,7 @@
 		785F73311CDB969A009BCB5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785F73301CDB969A009BCB5A /* Main.storyboard */; };
 		785F73331CDB96A7009BCB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */; };
 		785F73351CDB96BE009BCB5A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F73341CDB96BE009BCB5A /* MainViewController.swift */; };
+		785F73371CDB97F5009BCB5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 785F73361CDB97F5009BCB5A /* Assets.xcassets */; };
 		788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788310621CD944A4003DDBBD /* AVAssetUtilities.m */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
@@ -993,6 +994,7 @@
 		785F73301CDB969A009BCB5A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		785F73341CDB96BE009BCB5A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		785F73361CDB97F5009BCB5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7883105E1CD93903003DDBBD /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		788310611CD944A4003DDBBD /* AVAssetUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetUtilities.h; sourceTree = "<group>"; };
 		788310621CD944A4003DDBBD /* AVAssetUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetUtilities.m; sourceTree = "<group>"; };
@@ -1625,6 +1627,7 @@
 				785F73301CDB969A009BCB5A /* Main.storyboard */,
 				785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */,
 				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
+				785F73361CDB97F5009BCB5A /* Assets.xcassets */,
 				9CA89FC31352CBF4006F93B2 /* redsafiversion */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				5E9FF91C1213C5730083E4E9 /* Shaders */,
@@ -2188,6 +2191,7 @@
 				19CDFDD21857BE2C00B2472B /* tweak_slider_min_track_ipad@2x.png in Resources */,
 				06D6C99D1345711400CF3FE6 /* home_background_l@2x.png in Resources */,
 				19717F43183EC1B500C9B604 /* looksbrowser_normal_button22x27_iphone.png in Resources */,
+				785F73371CDB97F5009BCB5A /* Assets.xcassets in Resources */,
 				06D6C99E1345711400CF3FE6 /* home_background_p.png in Resources */,
 				19717F591841523D00C9B604 /* looktweak_selectlook_button106x33_iphone.png in Resources */,
 				19CDFD7A1856A8AE00B2472B /* develop_youtube_button127x126@2x.png in Resources */,

@@ -189,7 +189,7 @@
 		//NSUInteger videoSeconds = CMTimeGetSeconds(avAsset.duration); 
 		
 		labelView.backgroundColor = [UIColor clearColor];
-		labelView.text = [NSString stringWithFormat:@"%02lu:%02lu",videoSeconds/60,videoSeconds%60];
+		labelView.text = [NSString stringWithFormat:@"%i:%i",(int)videoSeconds/60,(int)videoSeconds%60];
 		labelView.font = [UIFont boldSystemFontOfSize:12];
 		labelView.textColor	= [UIColor whiteColor];
 		labelView.textAlignment = NSTextAlignmentRight;

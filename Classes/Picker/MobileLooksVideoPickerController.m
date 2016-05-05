@@ -493,8 +493,8 @@
 		thumbnailImage = [[UIImage alloc] initWithCGImage:asset.thumbnail];
 		//mThumbnailSize = CGSizeMake(73, 73);
 	}
-	NSUInteger duartion = [[asset valueForProperty:ALAssetPropertyDuration] doubleValue];
-	[item loadFromCache:thumbnailImage withDurationString:[NSString stringWithFormat:@"%02lu:%02lu",duartion/60,duartion%60]];
+	int duartion = [[asset valueForProperty:ALAssetPropertyDuration] doubleValue];
+	[item loadFromCache:thumbnailImage withDurationString:[NSString stringWithFormat:@"%i:%i",duartion/60,duartion%60]];
 	item.hasThumbnail = YES;
 }
 
