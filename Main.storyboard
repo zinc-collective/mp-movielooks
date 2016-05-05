@@ -54,6 +54,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="findButton" destination="MZT-vW-kSc" id="Wt7-Od-Y7V"/>
+                        <segue destination="I0R-aS-aF1" kind="show" identifier="InfoViewController" id="fT4-5b-FTA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -105,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTa-3S-vUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="630" y="379"/>
+            <point key="canvasLocation" x="661" y="379"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XuK-Pf-KaU">
@@ -123,6 +124,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tM-LA-cIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-147" y="379"/>
+        </scene>
+        <!--Select A Look-->
+        <scene sceneID="NQw-07-qdj">
+            <objects>
+                <viewController storyboardIdentifier="LooksBrowserViewController" id="dee-mW-Ud5" customClass="LooksBrowserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Nd-T3-oJ5"/>
+                        <viewControllerLayoutGuide type="bottom" id="aMA-eX-2jB"/>
+                    </layoutGuides>
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="6Ea-bb-MiU">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Select A Look" id="QWU-3S-11H">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="nkJ-90-iqz">
+                            <color key="tintColor" red="0.091623773650000004" green="0.30149059350000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="QTE-7h-Gfz" kind="push" identifier="LookPreviewController" id="trF-22-Ys0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Kz-5s-MRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-153" y="1056"/>
+        </scene>
+        <!--Tweak Your Look-->
+        <scene sceneID="qCb-0J-6kS">
+            <objects>
+                <viewController storyboardIdentifier="LookPreviewController" id="QTE-7h-Gfz" customClass="LookPreviewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nIr-zr-ESK"/>
+                        <viewControllerLayoutGuide type="bottom" id="B0I-Xo-FOo"/>
+                    </layoutGuides>
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="oEy-Um-51I">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Tweak Your Look" id="2hB-dx-cpd"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="yzE-ne-2Sy" kind="push" identifier="BulletViewController" id="NnR-Es-SId"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YeH-l0-qoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="260" y="1056"/>
+        </scene>
+        <!--Developing Your Movie-->
+        <scene sceneID="b2n-1M-Zpg">
+            <objects>
+                <viewController storyboardIdentifier="BulletViewController" id="yzE-ne-2Sy" customClass="BulletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W3m-Tc-0gQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Cy-vl-71X"/>
+                    </layoutGuides>
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="5m7-2e-yom">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Developing Your Movie" id="VC9-mB-nES"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctX-pd-dLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="661" y="1056"/>
         </scene>
     </scenes>
     <resources>

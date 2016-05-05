@@ -29,11 +29,12 @@ class MainViewController: UIViewController {
     
     @IBAction func tappedInfo() {
         print("tapped info")
-        if let info = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InfoViewController") as? InfoViewController {
-            
-            print("info!")
-            self.navigationController?.pushViewController(info, animated: true)
-        }
+        self.performSegueWithIdentifier("InfoViewController", sender: self)
+//        if let info = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InfoViewController") as? InfoViewController {
+//            
+//            print("info!")
+//            self.navigationController?.pushViewController(info, animated: true)
+//        }
         
     }
     
