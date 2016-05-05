@@ -327,7 +327,6 @@
 		19EEBC4A18383D0B0059BFC6 /* slider_pause_iphone_32x33.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EEBC3F18383D0B0059BFC6 /* slider_pause_iphone_32x33.png */; };
 		19EEBC4B18383D0B0059BFC6 /* slider_play_iphone_32x33.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EEBC4018383D0B0059BFC6 /* slider_play_iphone_32x33.png */; };
 		1D3623260D0F684500981E51 /* MobileLooksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MobileLooksAppDelegate.m */; };
-		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -421,6 +420,10 @@
 		7456084A125EC25400963BDD /* vignette4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560846125EC25400963BDD /* vignette4.png */; };
 		74B8AAF51241CE43009D1B80 /* mobileLookbrighten_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */; };
 		74B8AAF61241CE43009D1B80 /* mobileLookdarken_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */; };
+		785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F732A1CDB9638009BCB5A /* AppDelegate.swift */; };
+		785F73311CDB969A009BCB5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785F73301CDB969A009BCB5A /* Main.storyboard */; };
+		785F73331CDB96A7009BCB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */; };
+		785F73351CDB96BE009BCB5A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F73341CDB96BE009BCB5A /* MainViewController.swift */; };
 		788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788310621CD944A4003DDBBD /* AVAssetUtilities.m */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
@@ -872,7 +875,6 @@
 		1D6058910D05DD3D006BFB54 /* MovieLooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieLooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieLooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA4F630368D1EE00C91783 /* MovieLooks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieLooks_Prefix.pch; sourceTree = "<group>"; };
 		5E19FDF812430DFB0062BE29 /* LooksBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksBrowserViewController.h; sourceTree = "<group>"; };
@@ -986,6 +988,11 @@
 		74560846125EC25400963BDD /* vignette4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette4.png; sourceTree = "<group>"; };
 		74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookbrighten_01.png; sourceTree = "<group>"; };
 		74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookdarken_01.png; sourceTree = "<group>"; };
+		785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MovieLooks-Bridging-Header.h"; path = "Classes/MovieLooks-Bridging-Header.h"; sourceTree = "<group>"; };
+		785F732A1CDB9638009BCB5A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
+		785F73301CDB969A009BCB5A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		785F73341CDB96BE009BCB5A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7883105E1CD93903003DDBBD /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		788310611CD944A4003DDBBD /* AVAssetUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetUtilities.h; sourceTree = "<group>"; };
 		788310621CD944A4003DDBBD /* AVAssetUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetUtilities.m; sourceTree = "<group>"; };
@@ -1613,6 +1620,11 @@
 			isa = PBXGroup;
 			children = (
 				7883105E1CD93903003DDBBD /* todo.md */,
+				785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */,
+				785F732A1CDB9638009BCB5A /* AppDelegate.swift */,
+				785F73301CDB969A009BCB5A /* Main.storyboard */,
+				785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */,
+				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
 				9CA89FC31352CBF4006F93B2 /* redsafiversion */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				5E9FF91C1213C5730083E4E9 /* Shaders */,
@@ -1631,7 +1643,6 @@
 			children = (
 				1965683B1814B8C800FEA6CE /* Storyboard_ipad.storyboard */,
 				32CA4F630368D1EE00C91783 /* MovieLooks_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 				19148C8A180A1C3200F06F9A /* Storyboard.storyboard */,
 			);
 			name = "Other Sources";
@@ -2015,6 +2026,7 @@
 				19EEBC35183829D80059BFC6 /* slider_next_blue_ipad_100x72.png in Resources */,
 				19CDFDB61857BDE400B2472B /* develop_grad_ipad_320x568.png in Resources */,
 				5E7100C8129BAA9A001F9D79 /* Blue Note.3dl in Resources */,
+				785F73331CDB96A7009BCB5A /* LaunchScreen.storyboard in Resources */,
 				5E7100C9129BAA9A001F9D79 /* Bronze.3dl in Resources */,
 				5E7100CA129BAA9A001F9D79 /* Cinematic.3dl in Resources */,
 				5E7100CB129BAA9A001F9D79 /* Cold Beauty.3dl in Resources */,
@@ -2240,6 +2252,7 @@
 				19CDFD491855372400B2472B /* home_background_l_480.png in Resources */,
 				06D6C9C71345711400CF3FE6 /* preview_decrease@2x.png in Resources */,
 				06D6C9C81345711400CF3FE6 /* preview_develop.png in Resources */,
+				785F73311CDB969A009BCB5A /* Main.storyboard in Resources */,
 				19CDFD951856C70300B2472B /* develop_change_button58x58_iphone@2x.png in Resources */,
 				06D6C9C91345711400CF3FE6 /* preview_develop@2x.png in Resources */,
 				19717F36183D9DA200C9B604 /* looksbrowser_next_button225x72.png in Resources */,
@@ -2438,7 +2451,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* MobileLooksAppDelegate.m in Sources */,
 				9C6FC9481223963E00E9F2AC /* HomeViewController.m in Sources */,
 				5E19FE0A12430DFB0062BE29 /* LooksBrowserViewController.m in Sources */,
@@ -2456,10 +2468,12 @@
 				5E8618DE12797F40003ED275 /* ProgressView.m in Sources */,
 				5E8618E912797F65003ED275 /* LookPreviewController.m in Sources */,
 				5E8618F412797F89003ED275 /* FileCache.m in Sources */,
+				785F73351CDB96BE009BCB5A /* MainViewController.swift in Sources */,
 				5E8618F512797F89003ED275 /* Utilities.m in Sources */,
 				5EFDDC971283B4CF00EC208E /* Renderer.m in Sources */,
 				5E7EED8612914AD600D862FA /* TipView.m in Sources */,
 				5EE02D59129238D800B8008C /* TimeView.m in Sources */,
+				785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */,
 				5EEA637612BA1FF900AE1334 /* InfoViewController.m in Sources */,
 				068D412412E693AA00B1B20E /* MovieProcessor.m in Sources */,
 				06880F5312E82B8B001D3CB3 /* ComposeProgressView.m in Sources */,
@@ -2540,6 +2554,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70A7258FBFF222862E714C72 /* Pods-MovieLooks.ad hoc.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2549,10 +2565,12 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2581,6 +2599,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E70126454921E1326E71395 /* Pods-MovieLooks.distribution.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2590,10 +2610,12 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2603,6 +2625,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F17B776F3517F5E2752EAE23 /* Pods-MovieLooks.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2614,10 +2638,13 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2626,6 +2653,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BEFFA679D9CE31CF48E870D /* Pods-MovieLooks.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2635,10 +2664,12 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
