@@ -425,6 +425,7 @@
 		785F73331CDB96A7009BCB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */; };
 		785F73351CDB96BE009BCB5A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F73341CDB96BE009BCB5A /* MainViewController.swift */; };
 		785F73371CDB97F5009BCB5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 785F73361CDB97F5009BCB5A /* Assets.xcassets */; };
+		785F733A1CDB9E63009BCB5A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F73391CDB9E63009BCB5A /* InfoViewController.swift */; };
 		788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788310621CD944A4003DDBBD /* AVAssetUtilities.m */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
@@ -995,6 +996,7 @@
 		785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		785F73341CDB96BE009BCB5A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		785F73361CDB97F5009BCB5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		785F73391CDB9E63009BCB5A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7883105E1CD93903003DDBBD /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		788310611CD944A4003DDBBD /* AVAssetUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetUtilities.h; sourceTree = "<group>"; };
 		788310621CD944A4003DDBBD /* AVAssetUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetUtilities.m; sourceTree = "<group>"; };
@@ -1622,12 +1624,11 @@
 			isa = PBXGroup;
 			children = (
 				7883105E1CD93903003DDBBD /* todo.md */,
-				785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */,
 				785F732A1CDB9638009BCB5A /* AppDelegate.swift */,
-				785F73301CDB969A009BCB5A /* Main.storyboard */,
-				785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */,
-				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
 				785F73361CDB97F5009BCB5A /* Assets.xcassets */,
+				785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */,
+				785F733D1CDBA015009BCB5A /* Launch */,
+				785F73381CDB9E4C009BCB5A /* Home */,
 				9CA89FC31352CBF4006F93B2 /* redsafiversion */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				5E9FF91C1213C5730083E4E9 /* Shaders */,
@@ -1850,6 +1851,24 @@
 				5EC392CD12264FF000F9E44B /* looks.plist */,
 			);
 			path = LUT;
+			sourceTree = "<group>";
+		};
+		785F73381CDB9E4C009BCB5A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				785F73301CDB969A009BCB5A /* Main.storyboard */,
+				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
+				785F73391CDB9E63009BCB5A /* InfoViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		785F733D1CDBA015009BCB5A /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */,
+			);
+			name = Launch;
 			sourceTree = "<group>";
 		};
 		9C93ED1C134EA8290049C450 /* icon */ = {
@@ -2486,6 +2505,7 @@
 				788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */,
 				06CA1F9C13406465005B56DE /* CustomTrimView.m in Sources */,
 				19DABD2C187B8B0400DD85DF /* YoutubeActivity.m in Sources */,
+				785F733A1CDB9E63009BCB5A /* InfoViewController.swift in Sources */,
 				06CA1F9D13406465005B56DE /* QuartzView.m in Sources */,
 				06CA1F9E13406465005B56DE /* ToggleButton.m in Sources */,
 				06CA1F9F13406465005B56DE /* UICustomSwitch.m in Sources */,

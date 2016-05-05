@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eQq-VV-aok">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,19 +14,25 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-background" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-bx-ESj">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-vW-kSc">
-                                <rect key="frame" x="270" y="275" width="202" height="37"/>
+                                <rect key="frame" x="110" y="435" width="202" height="37"/>
                                 <state key="normal" image="home-find-button"/>
+                                <connections>
+                                    <action selector="tappedFind" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Si-hO-uYq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSP-2z-Wy8">
-                                <rect key="frame" x="443" y="28" width="29" height="29"/>
+                                <rect key="frame" x="283" y="8" width="29" height="29"/>
                                 <state key="normal" image="home-info-button"/>
+                                <connections>
+                                    <action selector="tappedInfo" destination="BYZ-38-t0r" eventType="touchUpInside" id="Az9-I7-mu0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -41,17 +47,88 @@
                             <constraint firstItem="m6a-bx-ESj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mz8-Zu-gGe"/>
                         </constraints>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationItem key="navigationItem" id="sRL-SF-n3S"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="findButton" destination="MZT-vW-kSc" id="Wt7-Od-Y7V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="260" y="379"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="pJd-RR-y7x">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewController" title="Info" id="I0R-aS-aF1" customClass="InfoViewController" customModule="MovieLooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C2j-Qn-7eg"/>
+                        <viewControllerLayoutGuide type="bottom" id="kfz-DQ-Ot6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yvV-p2-T8u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uzw-lP-SUK">
+                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info-detail" translatesAutoresizingMaskIntoConstraints="NO" id="iiG-UE-ges">
+                                        <rect key="frame" x="25" y="-40" width="270" height="833"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="833" id="CW4-jP-hBe"/>
+                                            <constraint firstAttribute="width" constant="270" id="fgZ-mW-Oc7"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="iiG-UE-ges" secondAttribute="bottom" id="Md5-uP-3pi"/>
+                                    <constraint firstItem="iiG-UE-ges" firstAttribute="centerX" secondItem="Uzw-lP-SUK" secondAttribute="centerX" id="RCE-C0-nH6"/>
+                                    <constraint firstAttribute="trailing" secondItem="iiG-UE-ges" secondAttribute="trailing" id="oFV-6J-qYI"/>
+                                    <constraint firstItem="iiG-UE-ges" firstAttribute="top" secondItem="Uzw-lP-SUK" secondAttribute="top" constant="-40" id="tcZ-DF-EQn"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Uzw-lP-SUK" secondAttribute="trailing" id="UNe-SK-pRM"/>
+                            <constraint firstItem="kfz-DQ-Ot6" firstAttribute="top" secondItem="Uzw-lP-SUK" secondAttribute="bottom" id="a9R-cm-5TY"/>
+                            <constraint firstItem="Uzw-lP-SUK" firstAttribute="top" secondItem="C2j-Qn-7eg" secondAttribute="bottom" id="kb6-6S-ru3"/>
+                            <constraint firstItem="Uzw-lP-SUK" firstAttribute="leading" secondItem="yvV-p2-T8u" secondAttribute="leading" id="wF7-MA-16Y"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GTa-3S-vUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630" y="379"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XuK-Pf-KaU">
+            <objects>
+                <navigationController id="eQq-VV-aok" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Rez-JO-AwA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5YP-i0-1KZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2tM-LA-cIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-147" y="379"/>
         </scene>
     </scenes>
     <resources>
         <image name="home-background" width="1024" height="768"/>
         <image name="home-find-button" width="202" height="37"/>
         <image name="home-info-button" width="29" height="29"/>
+        <image name="info-detail" width="270" height="833"/>
     </resources>
 </document>
