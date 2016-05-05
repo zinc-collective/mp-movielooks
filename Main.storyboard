@@ -55,6 +55,7 @@
                     <connections>
                         <outlet property="findButton" destination="MZT-vW-kSc" id="Wt7-Od-Y7V"/>
                         <segue destination="I0R-aS-aF1" kind="show" identifier="InfoViewController" id="fT4-5b-FTA"/>
+                        <segue destination="dee-mW-Ud5" kind="show" identifier="LooksBrowserViewController" id="kne-hK-vbr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -100,6 +101,7 @@
                             <constraint firstItem="Uzw-lP-SUK" firstAttribute="leading" secondItem="yvV-p2-T8u" secondAttribute="leading" id="wF7-MA-16Y"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Info" id="cB9-Z1-dEa"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -149,12 +151,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <segue destination="QTE-7h-Gfz" kind="push" identifier="LookPreviewController" id="trF-22-Ys0"/>
+                        <segue destination="QTE-7h-Gfz" kind="show" identifier="LookPreviewController" id="trF-22-Ys0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Kz-5s-MRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-153" y="1056"/>
+            <point key="canvasLocation" x="260" y="1023"/>
         </scene>
         <!--Tweak Your Look-->
         <scene sceneID="qCb-0J-6kS">
@@ -176,12 +178,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <segue destination="yzE-ne-2Sy" kind="push" identifier="BulletViewController" id="NnR-Es-SId"/>
+                        <segue destination="yzE-ne-2Sy" kind="show" identifier="BulletViewController" id="NnR-Es-SId"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YeH-l0-qoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="1056"/>
+            <point key="canvasLocation" x="673" y="1023"/>
         </scene>
         <!--Developing Your Movie-->
         <scene sceneID="b2n-1M-Zpg">
@@ -205,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctX-pd-dLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="661" y="1056"/>
+            <point key="canvasLocation" x="1074" y="1023"/>
         </scene>
     </scenes>
     <resources>

@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var findButton: UIButton!
     
@@ -42,10 +42,28 @@ class MainViewController: UIViewController {
         let picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
         picker.allowsEditing = true
+        picker.delegate = self
         picker.modalPresentationStyle = .Popover
         picker.popoverPresentationController?.sourceView = self.view
         picker.popoverPresentationController?.sourceRect = self.findButton.frame
         picker.mediaTypes = [kUTTypeMovie as String]
         self.navigationController?.presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        
+    }
+//    
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+//        print("GOT image", image, )
+//        
+//    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        print("GOT MEDIA")
+//        let fileURL = 
+        let chosenURL = info[UIImagePickerControllerMediaURL]
+        
+        
     }
 }
