@@ -6,7 +6,7 @@
 //  Copyright 2010 RED/SAFI. All rights reserved.
 //
 
-#import "LooksBrowserViewController.h"
+#import "LooksBrowserViewControllerOld.h"
 //#import "ScrollViewEnhancer.h"
 #import "ES2Renderer.h"
 #import "ToggleButton.h"
@@ -42,7 +42,7 @@
 //need fix to dynamic value
 #define GROUP_COUNT 8
 
-@interface LooksBrowserViewController(Private)
+@interface LooksBrowserViewControllerOld(Private)
 
 - (void)layoutBackButton:(UIInterfaceOrientation)orientation;
 - (void)layoutViewsForOrientation:(UIInterfaceOrientation)orientation;
@@ -50,7 +50,7 @@
 @end
 
 
-@implementation LooksBrowserViewController
+@implementation LooksBrowserViewControllerOld
 
 @synthesize isRenderThreadStop = mRenderThreadStop;
 

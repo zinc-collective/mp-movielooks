@@ -130,7 +130,7 @@
         <!--Select A Look-->
         <scene sceneID="NQw-07-qdj">
             <objects>
-                <viewController storyboardIdentifier="LooksBrowserViewController" id="dee-mW-Ud5" customClass="LooksBrowserViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LooksBrowserViewController" id="dee-mW-Ud5" customClass="LooksBrowserViewController" customModule="MovieLooks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Nd-T3-oJ5"/>
                         <viewControllerLayoutGuide type="bottom" id="aMA-eX-2jB"/>

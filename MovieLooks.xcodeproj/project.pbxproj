@@ -34,8 +34,6 @@
 		06CA1FD61340657B005B56DE /* MobileLooksPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FC21340657B005B56DE /* MobileLooksPickerItem.m */; };
 		06CA1FD71340657B005B56DE /* MobileLooksPickerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FC41340657B005B56DE /* MobileLooksPickerSource.m */; };
 		06CA1FDC1340657B005B56DE /* PlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FCC1340657B005B56DE /* PlaybackView.m */; };
-		06CA1FDD1340657B005B56DE /* PlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FCE1340657B005B56DE /* PlaybackViewController.m */; };
-		06CA1FDE1340657B005B56DE /* PlaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06CA1FCF1340657B005B56DE /* PlaybackViewController.xib */; };
 		06CA1FDF1340657B005B56DE /* ThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FD11340657B005B56DE /* ThumbView.m */; };
 		06CA1FE01340657B005B56DE /* VideoFrameTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FD31340657B005B56DE /* VideoFrameTrack.m */; };
 		06CA1FE11340657B005B56DE /* WaitDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FD51340657B005B56DE /* WaitDialog.m */; };
@@ -312,7 +310,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		5E19FE0A12430DFB0062BE29 /* LooksBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDF912430DFB0062BE29 /* LooksBrowserViewController.m */; };
+		5E19FE0A12430DFB0062BE29 /* LooksBrowserViewControllerOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDF912430DFB0062BE29 /* LooksBrowserViewControllerOld.m */; };
 		5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFD12430DFB0062BE29 /* LookThumbnailView.m */; };
 		5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFF12430DFB0062BE29 /* MyStoreObserver.m */; };
 		5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0112430DFB0062BE29 /* Debug.c */; };
@@ -401,6 +399,8 @@
 		7456084A125EC25400963BDD /* vignette4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560846125EC25400963BDD /* vignette4.png */; };
 		74B8AAF51241CE43009D1B80 /* mobileLookbrighten_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */; };
 		74B8AAF61241CE43009D1B80 /* mobileLookdarken_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */; };
+		78538E001CDCF5AA00BC737C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538DFF1CDCF5AA00BC737C /* Video.swift */; };
+		78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */; };
 		785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F732A1CDB9638009BCB5A /* AppDelegate.swift */; };
 		785F73311CDB969A009BCB5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785F73301CDB969A009BCB5A /* Main.storyboard */; };
 		785F73331CDB96A7009BCB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785F73321CDB96A7009BCB5A /* LaunchScreen.storyboard */; };
@@ -412,6 +412,7 @@
 		785F73451CDBBED9009BCB5A /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 785F73441CDBBED9009BCB5A /* Memory.m */; };
 		785F73491CDBBF58009BCB5A /* PurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 785F73481CDBBF58009BCB5A /* PurchaseManager.m */; };
 		788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788310621CD944A4003DDBBD /* AVAssetUtilities.m */; };
+		7892C2BD1CDD042900AE0D51 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7892C2BC1CDD042900AE0D51 /* PurchaseManager.swift */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
 		9C3D58F0134478590034F0BD /* gear_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CF134478590034F0BD /* gear_wheel.png */; };
@@ -475,7 +476,6 @@
 		9CACD9B9135021CA00717286 /* pop_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CACD9B7135021CA00717286 /* pop_background.png */; };
 		9CACD9BA135021CA00717286 /* pop_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CACD9B8135021CA00717286 /* pop_button.png */; };
 		9CACD9C11350221C00717286 /* CustomPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CACD9C01350221C00717286 /* CustomPopView.m */; };
-		9CCCBD4C13408188005FBBD5 /* PlaybackViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CCCBD4B13408188005FBBD5 /* PlaybackViewController-iPad.xib */; };
 		9CDF04581361203F00EA163D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CDF04571361203F00EA163D /* CoreLocation.framework */; };
 		9CF0533B121516AA00130D07 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF0533A121516AA00130D07 /* MediaPlayer.framework */; };
 		9CF40FB3135EA7630066C911 /* bullet_ready_button_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF40FB1135EA7630066C911 /* bullet_ready_button_h.png */; };
@@ -536,9 +536,6 @@
 		06CA1FC41340657B005B56DE /* MobileLooksPickerSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileLooksPickerSource.m; sourceTree = "<group>"; };
 		06CA1FCB1340657B005B56DE /* PlaybackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackView.h; sourceTree = "<group>"; };
 		06CA1FCC1340657B005B56DE /* PlaybackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackView.m; sourceTree = "<group>"; };
-		06CA1FCD1340657B005B56DE /* PlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackViewController.h; sourceTree = "<group>"; };
-		06CA1FCE1340657B005B56DE /* PlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackViewController.m; sourceTree = "<group>"; };
-		06CA1FCF1340657B005B56DE /* PlaybackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaybackViewController.xib; sourceTree = "<group>"; };
 		06CA1FD01340657B005B56DE /* ThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbView.h; sourceTree = "<group>"; };
 		06CA1FD11340657B005B56DE /* ThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbView.m; sourceTree = "<group>"; };
 		06CA1FD21340657B005B56DE /* VideoFrameTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFrameTrack.h; sourceTree = "<group>"; };
@@ -825,8 +822,8 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieLooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA4F630368D1EE00C91783 /* MovieLooks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieLooks_Prefix.pch; sourceTree = "<group>"; };
-		5E19FDF812430DFB0062BE29 /* LooksBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksBrowserViewController.h; sourceTree = "<group>"; };
-		5E19FDF912430DFB0062BE29 /* LooksBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksBrowserViewController.m; sourceTree = "<group>"; };
+		5E19FDF812430DFB0062BE29 /* LooksBrowserViewControllerOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksBrowserViewControllerOld.h; sourceTree = "<group>"; };
+		5E19FDF912430DFB0062BE29 /* LooksBrowserViewControllerOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksBrowserViewControllerOld.m; sourceTree = "<group>"; };
 		5E19FDFC12430DFB0062BE29 /* LookThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookThumbnailView.h; sourceTree = "<group>"; };
 		5E19FDFD12430DFB0062BE29 /* LookThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookThumbnailView.m; sourceTree = "<group>"; };
 		5E19FDFE12430DFB0062BE29 /* MyStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStoreObserver.h; sourceTree = "<group>"; };
@@ -934,6 +931,8 @@
 		74560846125EC25400963BDD /* vignette4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette4.png; sourceTree = "<group>"; };
 		74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookbrighten_01.png; sourceTree = "<group>"; };
 		74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookdarken_01.png; sourceTree = "<group>"; };
+		78538DFF1CDCF5AA00BC737C /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksBrowserViewController.swift; sourceTree = "<group>"; };
 		785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MovieLooks-Bridging-Header.h"; path = "Classes/MovieLooks-Bridging-Header.h"; sourceTree = "<group>"; };
 		785F732A1CDB9638009BCB5A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
 		785F73301CDB969A009BCB5A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -950,6 +949,7 @@
 		7883105E1CD93903003DDBBD /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		788310611CD944A4003DDBBD /* AVAssetUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetUtilities.h; sourceTree = "<group>"; };
 		788310621CD944A4003DDBBD /* AVAssetUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetUtilities.m; sourceTree = "<group>"; };
+		7892C2BC1CDD042900AE0D51 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MovieLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MovieLooks-Info.plist"; path = "../MovieLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C3D58CD134478590034F0BD /* background_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_landscape.png; path = "Resources-iPad/background_landscape.png"; sourceTree = "<group>"; };
 		9C3D58CE134478590034F0BD /* background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_portrait.png; path = "Resources-iPad/background_portrait.png"; sourceTree = "<group>"; };
@@ -1017,7 +1017,6 @@
 		9CACD9B8135021CA00717286 /* pop_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pop_button.png; path = "Resources-iPad/pop_button.png"; sourceTree = "<group>"; };
 		9CACD9BF1350221C00717286 /* CustomPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPopView.h; sourceTree = "<group>"; };
 		9CACD9C01350221C00717286 /* CustomPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPopView.m; sourceTree = "<group>"; };
-		9CCCBD4B13408188005FBBD5 /* PlaybackViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "PlaybackViewController-iPad.xib"; sourceTree = "<group>"; };
 		9CDF04571361203F00EA163D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9CF0533A121516AA00130D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9CF40FB1135EA7630066C911 /* bullet_ready_button_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_ready_button_h.png; sourceTree = "<group>"; };
@@ -1260,10 +1259,6 @@
 				06CA1FC41340657B005B56DE /* MobileLooksPickerSource.m */,
 				06CA1FCB1340657B005B56DE /* PlaybackView.h */,
 				06CA1FCC1340657B005B56DE /* PlaybackView.m */,
-				06CA1FCD1340657B005B56DE /* PlaybackViewController.h */,
-				06CA1FCE1340657B005B56DE /* PlaybackViewController.m */,
-				06CA1FCF1340657B005B56DE /* PlaybackViewController.xib */,
-				9CCCBD4B13408188005FBBD5 /* PlaybackViewController-iPad.xib */,
 				06CA1FD01340657B005B56DE /* ThumbView.h */,
 				06CA1FD11340657B005B56DE /* ThumbView.m */,
 				06CA1FD21340657B005B56DE /* VideoFrameTrack.h */,
@@ -1571,8 +1566,8 @@
 		5E19FDF512430DFB0062BE29 /* LooksBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				5E19FDF812430DFB0062BE29 /* LooksBrowserViewController.h */,
-				5E19FDF912430DFB0062BE29 /* LooksBrowserViewController.m */,
+				5E19FDF812430DFB0062BE29 /* LooksBrowserViewControllerOld.h */,
+				5E19FDF912430DFB0062BE29 /* LooksBrowserViewControllerOld.m */,
 				5E19FDFC12430DFB0062BE29 /* LookThumbnailView.h */,
 				5E19FDFD12430DFB0062BE29 /* LookThumbnailView.m */,
 				5E19FDFE12430DFB0062BE29 /* MyStoreObserver.h */,
@@ -1640,6 +1635,7 @@
 				788310621CD944A4003DDBBD /* AVAssetUtilities.m */,
 				785F73431CDBBED9009BCB5A /* Memory.h */,
 				785F73441CDBBED9009BCB5A /* Memory.m */,
+				78538DFF1CDCF5AA00BC737C /* Video.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1752,6 +1748,7 @@
 				785F73301CDB969A009BCB5A /* Main.storyboard */,
 				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
 				785F73391CDB9E63009BCB5A /* InfoViewController.swift */,
+				78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1776,6 +1773,7 @@
 		785F734A1CDBBF6B009BCB5A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				7892C2BC1CDD042900AE0D51 /* PurchaseManager.swift */,
 				785F73471CDBBF58009BCB5A /* PurchaseManager.h */,
 				785F73481CDBBF58009BCB5A /* PurchaseManager.m */,
 			);
@@ -2006,8 +2004,6 @@
 				19CDFDCA1857BE2C00B2472B /* tweak_brightness_ipad@2x.png in Resources */,
 				1946D3F818319AB10055C811 /* camera_roll_background_1136x596@2x.png in Resources */,
 				19717F8018441FA900C9B604 /* develop_change_button127x126.png in Resources */,
-				06CA1FDE1340657B005B56DE /* PlaybackViewController.xib in Resources */,
-				9CCCBD4C13408188005FBBD5 /* PlaybackViewController-iPad.xib in Resources */,
 				19717F46183EF33B00C9B604 /* looksbrowser_cancel_button225x72.png in Resources */,
 				9C3D58EE134478590034F0BD /* background_landscape.png in Resources */,
 				9C3D58EF134478590034F0BD /* background_portrait.png in Resources */,
@@ -2370,7 +2366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E19FE0A12430DFB0062BE29 /* LooksBrowserViewController.m in Sources */,
+				5E19FE0A12430DFB0062BE29 /* LooksBrowserViewControllerOld.m in Sources */,
 				5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */,
 				5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */,
 				5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */,
@@ -2382,6 +2378,7 @@
 				5EDE894B127675E600232758 /* FastRenderer.m in Sources */,
 				5E8618DC12797F40003ED275 /* BulletViewController.m in Sources */,
 				785F73421CDBB4CC009BCB5A /* Debug.swift in Sources */,
+				78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */,
 				5E8618DD12797F40003ED275 /* EmbedWebView.m in Sources */,
 				5E8618DE12797F40003ED275 /* ProgressView.m in Sources */,
 				5E8618E912797F65003ED275 /* LookPreviewController.m in Sources */,
@@ -2391,6 +2388,7 @@
 				5EFDDC971283B4CF00EC208E /* Renderer.m in Sources */,
 				5E7EED8612914AD600D862FA /* TipView.m in Sources */,
 				5EE02D59129238D800B8008C /* TimeView.m in Sources */,
+				7892C2BD1CDD042900AE0D51 /* PurchaseManager.swift in Sources */,
 				785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */,
 				068D412412E693AA00B1B20E /* MovieProcessor.m in Sources */,
 				06880F5312E82B8B001D3CB3 /* ComposeProgressView.m in Sources */,
@@ -2402,10 +2400,10 @@
 				06CA1F9F13406465005B56DE /* UICustomSwitch.m in Sources */,
 				785F73491CDBBF58009BCB5A /* PurchaseManager.m in Sources */,
 				06CA1FA013406465005B56DE /* UIView-AlertAnimations.m in Sources */,
+				78538E001CDCF5AA00BC737C /* Video.swift in Sources */,
 				06CA1FD61340657B005B56DE /* MobileLooksPickerItem.m in Sources */,
 				06CA1FD71340657B005B56DE /* MobileLooksPickerSource.m in Sources */,
 				06CA1FDC1340657B005B56DE /* PlaybackView.m in Sources */,
-				06CA1FDD1340657B005B56DE /* PlaybackViewController.m in Sources */,
 				06CA1FDF1340657B005B56DE /* ThumbView.m in Sources */,
 				06CA1FE01340657B005B56DE /* VideoFrameTrack.m in Sources */,
 				06CA1FE11340657B005B56DE /* WaitDialog.m in Sources */,
