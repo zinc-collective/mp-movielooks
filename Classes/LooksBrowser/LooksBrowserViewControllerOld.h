@@ -7,7 +7,7 @@
 //
 
 #import <StoreKit/StoreKit.h>
-#import "LookPreviewController.h"
+#import "LookPreviewControllerOld.h"
 #import "LookThumbnailView.h"
 #import "ScrollViewEnhancer.h"
 

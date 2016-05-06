@@ -16,19 +16,19 @@ class PurchaseManager: NSObject {
     let kUserLooks = "looks"
     let	kProductLocked = "locked"
     
-    func updatePurchaseWithLooks(newVersionLooks:NSArray) {
+    func updatePurchaseWithLooks(newVersionLooks:[NSDictionary]) {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         let userDefaultLooks = defaults.arrayForKey(kUserLooks) ?? []
         let looks :NSMutableArray = []
         let maxLooksCount = max(newVersionLooks.count, userDefaultLooks.count)
         
-        for index in 0...maxLooksCount
+        for index in 0...(maxLooksCount-1)
         {
             let newVersionDic = newVersionLooks[index]
             let userDefaultDic = userDefaultLooks[index]
             
-            let newVersionIsLocked = newVersionDic.boolForKey(kProductLocked)
+            let newVersionIsLocked :Bool = newVersionDic.objectForKey(kProductLocked)!.boolValue
             if newVersionIsLocked {
                 looks.addObject(userDefaultDic)
             }
@@ -56,7 +56,7 @@ class PurchaseManager: NSObject {
             defaults.synchronize()
         }
         else {
-            let bundleLooks = NSArray(contentsOfURL: bundleLooksURL)!
+            let bundleLooks = NSArray(contentsOfURL: bundleLooksURL) as! [NSDictionary]
             self.updatePurchaseWithLooks(bundleLooks)
         }
     }

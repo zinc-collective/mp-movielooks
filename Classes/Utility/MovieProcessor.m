@@ -693,7 +693,7 @@
 			CMTimeRange clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
             if(clipTimeRange.duration.value<20) continue;
 			
-			NSString* subMovieName = [NSString stringWithFormat:@"Sub%d_%@",i,@"bullet_movie.mov"];
+			NSString* subMovieName = [NSString stringWithFormat:@"Sub%i_%@",i,@"bullet_movie.mov"];
 			//bret
             //AVMutableVideoComposition's frameDuration
             NSDictionary *options = @{AVURLAssetPreferPreciseDurationAndTimingKey:@YES};
@@ -722,11 +722,13 @@
         CMTimeRange clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
         if(clipTimeRange.duration.value<20) continue;
         
-        NSString* subMovieName = [NSString stringWithFormat:@"Sub%d_%@",i,@"bullet_movie.mov"];
+        NSString* subMovieName = [NSString stringWithFormat:@"Sub%i_%@",i,@"bullet_movie.mov"];
         //bret
         //AVMutableVideoComposition's frameDuration
         NSDictionary *options = @{AVURLAssetPreferPreciseDurationAndTimingKey:@YES};
         AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[Utilities documentsPath:subMovieName]] options:options];
+        
+        NSLog(@"ASSETS %@", movieAsset);
         
         //bret debug test
         //AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mURL options:nil];
@@ -913,7 +915,7 @@
 	
 	movieRenderState = MovieStateRendering;
 	
-	tempWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]];
+	tempWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%i_%@", subMovieIndex,@"bullet_movie.mov"]];
 	NSFileManager *manager = [NSFileManager defaultManager];
 	NSLog(@"Start render%@",tempWriteMoviePath);
 	if([manager fileExistsAtPath:tempWriteMoviePath])
@@ -962,7 +964,7 @@
 	backfromPause = NO;
     movieRenderState = MovieStateResume;
 	{	
-		NSString* lastWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]];
+		NSString* lastWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%i_%@",subMovieIndex,@"bullet_movie.mov"]];
 		AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:lastWriteMoviePath] options:nil];	
 		if(![self checkVideoTrack:movieAsset])
         {
@@ -1020,7 +1022,7 @@
 		movieRenderState = MovieStateComplete;
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString* path = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%lu_%@",(unsigned long)subMovieIndex,@"bullet_movie.mov"]];
+            NSString* path = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%i_%@",subMovieIndex,@"bullet_movie.mov"]];
             [self.delegate finishProcessMovieEvent:path];
         });
 	}

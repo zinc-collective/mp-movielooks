@@ -7,3 +7,4 @@
 #import "LooksBrowserViewControllerOld.h"
 #import "Utilities.h"
 #import "MyStoreObserver.h"
+#import "LookPreviewControllerOld.h"

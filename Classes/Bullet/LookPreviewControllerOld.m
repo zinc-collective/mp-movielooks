@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "LookPreviewController.h"
+#import "LookPreviewControllerOld.h"
 #import "BulletViewController.h"
 #import "UICustomSwitch.h"
 #import "AVAssetUtilities.h"
@@ -18,7 +18,7 @@
 #define DEFAULT_BRIGHTNESS	0.5
 #define HALF_FRAMERATE_ENABLED  false
 
-@implementation LookPreviewController
+@implementation LookPreviewControllerOld
 //@synthesize renderedImg;
 @synthesize lookDic=mLookDic;
 @synthesize renderer;

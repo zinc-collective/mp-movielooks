@@ -77,10 +77,15 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "LooksBrowserViewController" {
             if let looksViewController = segue.destinationViewController as? LooksBrowserViewController, movieURL = sender as? NSURL {
-//                print("GOT LOOKS!", vc, movieURL)
-                looksViewController.loadVideo(movieURL)
+                
+                // crash if this doesn't work
+                try! looksViewController.loadVideo(movieURL)
             }
         }
+    }
+    
+    @IBAction func unwind(segue:UIStoryboardSegue) {
+        
     }
 }
 

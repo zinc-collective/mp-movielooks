@@ -367,7 +367,7 @@
 		5E8618DC12797F40003ED275 /* BulletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618C712797F40003ED275 /* BulletViewController.m */; };
 		5E8618DD12797F40003ED275 /* EmbedWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618C912797F40003ED275 /* EmbedWebView.m */; };
 		5E8618DE12797F40003ED275 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618CB12797F40003ED275 /* ProgressView.m */; };
-		5E8618E912797F65003ED275 /* LookPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618E812797F65003ED275 /* LookPreviewController.m */; };
+		5E8618E912797F65003ED275 /* LookPreviewControllerOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618E812797F65003ED275 /* LookPreviewControllerOld.m */; };
 		5E8618F412797F89003ED275 /* FileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618F112797F89003ED275 /* FileCache.m */; };
 		5E8618F512797F89003ED275 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618F312797F89003ED275 /* Utilities.m */; };
 		5E9FF92B1213C5730083E4E9 /* darkenLUT.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9FF9171213C5730083E4E9 /* darkenLUT.png */; };
@@ -399,6 +399,7 @@
 		7456084A125EC25400963BDD /* vignette4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560846125EC25400963BDD /* vignette4.png */; };
 		74B8AAF51241CE43009D1B80 /* mobileLookbrighten_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */; };
 		74B8AAF61241CE43009D1B80 /* mobileLookdarken_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */; };
+		7805EF001CDD3C89007FCE11 /* LookPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */; };
 		78538E001CDCF5AA00BC737C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538DFF1CDCF5AA00BC737C /* Video.swift */; };
 		78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */; };
 		785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F732A1CDB9638009BCB5A /* AppDelegate.swift */; };
@@ -891,8 +892,8 @@
 		5E8618C912797F40003ED275 /* EmbedWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmbedWebView.m; sourceTree = "<group>"; };
 		5E8618CA12797F40003ED275 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		5E8618CB12797F40003ED275 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
-		5E8618E712797F65003ED275 /* LookPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookPreviewController.h; sourceTree = "<group>"; };
-		5E8618E812797F65003ED275 /* LookPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookPreviewController.m; sourceTree = "<group>"; };
+		5E8618E712797F65003ED275 /* LookPreviewControllerOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookPreviewControllerOld.h; sourceTree = "<group>"; };
+		5E8618E812797F65003ED275 /* LookPreviewControllerOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookPreviewControllerOld.m; sourceTree = "<group>"; };
 		5E8618F012797F89003ED275 /* FileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCache.h; sourceTree = "<group>"; };
 		5E8618F112797F89003ED275 /* FileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCache.m; sourceTree = "<group>"; };
 		5E8618F212797F89003ED275 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -931,6 +932,7 @@
 		74560846125EC25400963BDD /* vignette4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette4.png; sourceTree = "<group>"; };
 		74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookbrighten_01.png; sourceTree = "<group>"; };
 		74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookdarken_01.png; sourceTree = "<group>"; };
+		7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookPreviewController.swift; sourceTree = "<group>"; };
 		78538DFF1CDCF5AA00BC737C /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksBrowserViewController.swift; sourceTree = "<group>"; };
 		785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MovieLooks-Bridging-Header.h"; path = "Classes/MovieLooks-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1603,8 +1605,8 @@
 		5E8618C512797F40003ED275 /* Bullet */ = {
 			isa = PBXGroup;
 			children = (
-				5E8618E712797F65003ED275 /* LookPreviewController.h */,
-				5E8618E812797F65003ED275 /* LookPreviewController.m */,
+				5E8618E712797F65003ED275 /* LookPreviewControllerOld.h */,
+				5E8618E812797F65003ED275 /* LookPreviewControllerOld.m */,
 				5E8618C612797F40003ED275 /* BulletViewController.h */,
 				5E8618C712797F40003ED275 /* BulletViewController.m */,
 				5E8618C812797F40003ED275 /* EmbedWebView.h */,
@@ -1749,6 +1751,7 @@
 				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
 				785F73391CDB9E63009BCB5A /* InfoViewController.swift */,
 				78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */,
+				7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2381,7 +2384,7 @@
 				78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */,
 				5E8618DD12797F40003ED275 /* EmbedWebView.m in Sources */,
 				5E8618DE12797F40003ED275 /* ProgressView.m in Sources */,
-				5E8618E912797F65003ED275 /* LookPreviewController.m in Sources */,
+				5E8618E912797F65003ED275 /* LookPreviewControllerOld.m in Sources */,
 				5E8618F412797F89003ED275 /* FileCache.m in Sources */,
 				785F73351CDB96BE009BCB5A /* MainViewController.swift in Sources */,
 				5E8618F512797F89003ED275 /* Utilities.m in Sources */,
@@ -2391,6 +2394,7 @@
 				7892C2BD1CDD042900AE0D51 /* PurchaseManager.swift in Sources */,
 				785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */,
 				068D412412E693AA00B1B20E /* MovieProcessor.m in Sources */,
+				7805EF001CDD3C89007FCE11 /* LookPreviewController.swift in Sources */,
 				06880F5312E82B8B001D3CB3 /* ComposeProgressView.m in Sources */,
 				788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */,
 				19DABD2C187B8B0400DD85DF /* YoutubeActivity.m in Sources */,

@@ -314,7 +314,7 @@
     {
         //bret test
         [renderer unloadKeyFrame];
-        LookPreviewController *previewController = (LookPreviewController *)segue.destinationViewController;
+        LookPreviewControllerOld *previewController = (LookPreviewControllerOld *)segue.destinationViewController;
         NSDictionary *groupDic = [self.products objectAtIndex:selectedGroupIndex];
         NSArray *looks = [groupDic objectForKey:kProductLooks];
         NSDictionary *lookDic = [looks objectAtIndex:selectedLookIndex];
@@ -1033,16 +1033,9 @@
     [super viewDidLoad];
 	
     mScrollViewHackFirstTime = YES;
-    [self.navigationItem setHidesBackButton:YES];
-    self.navigationItem.leftBarButtonItem = nil;
+    
 	renderQueue = [[NSMutableArray alloc] init];
 	//self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:41/255.0 green:41/255.0 blue:41/255.0 alpha:1];
-	UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backToTrimAction:)];
-	self.navigationItem.leftBarButtonItem = backButton;
-
-	//UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home",nil) style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
-	//**self.navigationItem.leftBarButtonItem = backButton;
-
 	
 	[self loadData];
 	

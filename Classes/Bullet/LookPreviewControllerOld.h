@@ -22,7 +22,7 @@ typedef enum
 @class BulletViewController;
 @class ES2Renderer;
 
-@interface LookPreviewController : UIViewController
+@interface LookPreviewControllerOld : UIViewController
 {
 @private
 	RendererStatus			mRendererStatus;
