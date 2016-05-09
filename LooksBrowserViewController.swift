@@ -10,6 +10,7 @@ import UIKit
 import BButton
 
 let LookCellIdentifier = "LookCell"
+let LookGroupHeaderIdentifier = "LookGroupHeader"
 
 class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -18,31 +19,20 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     var keyFrame : UIImage?
     
+    let lookGroups = PurchaseManager.sharedManager.looks
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        looksView.registerClass(LookCell.self, forCellWithReuseIdentifier: LookCellIdentifier)
-        
         nextButton.setType(.Primary)
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        
-//        // HACK: remove when we update the UI
-//        if (UI_USER_INTERFACE_IDIOM() == .Phone) {
-//            // find the smaller of the two
-//            let size = self.view.frame.size
-//            let scale = min(size.width, size.height) / CGFloat(320)
-//            self.view.transform = CGAffineTransformMakeScale(scale, scale)
-//        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // needs to be called BEFORE loading
@@ -72,12 +62,15 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         print("NEXT")
     }
     
+    //// Collection View //////////////////////////////////////////////////////
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return lookGroups.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        let group = lookGroups[section]
+        return group.items.count
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -85,12 +78,15 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(LookCellIdentifier, forIndexPath: indexPath) as? LookCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(LookCellIdentifier, forIndexPath: indexPath) as! LookCell
         
+        let group = lookGroups[indexPath.section]
+        let look = group.items[indexPath.item]
         // configure it here!
-        cell?.imageView.image = self.keyFrame
+        cell.imageView.image = self.keyFrame
+        cell.label.text = look.name
         
-        return cell!
+        return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -102,6 +98,13 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         }
         
         return CGSizeZero
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: LookGroupHeaderIdentifier, forIndexPath: indexPath) as! LookGroupHeader
+        let group = lookGroups[indexPath.section]
+        header.label.text = group.name
+        return header
     }
 
 }
