@@ -11,7 +11,7 @@ import BButton
 
 let LookCellIdentifier = "LookCell"
 
-class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var nextButton: BButton!
     @IBOutlet weak var looksView: UICollectionView!
@@ -91,6 +91,17 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         cell?.imageView.image = self.keyFrame
         
         return cell!
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let width:CGFloat = 170
+        if let keyFrame = self.keyFrame {
+            let ratio = keyFrame.size.height / keyFrame.size.width
+            let height = width * ratio
+            return CGSize(width: width, height: height)
+        }
+        
+        return CGSizeZero
     }
 
 }
