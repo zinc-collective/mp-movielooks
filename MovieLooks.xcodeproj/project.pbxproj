@@ -414,6 +414,7 @@
 		785F73491CDBBF58009BCB5A /* PurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 785F73481CDBBF58009BCB5A /* PurchaseManager.m */; };
 		788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788310621CD944A4003DDBBD /* AVAssetUtilities.m */; };
 		7892C2BD1CDD042900AE0D51 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7892C2BC1CDD042900AE0D51 /* PurchaseManager.swift */; };
+		78D75F801CE12EC800895BA1 /* LookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F7F1CE12EC800895BA1 /* LookCell.swift */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
 		9C3D58F0134478590034F0BD /* gear_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CF134478590034F0BD /* gear_wheel.png */; };
@@ -952,6 +953,7 @@
 		788310611CD944A4003DDBBD /* AVAssetUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetUtilities.h; sourceTree = "<group>"; };
 		788310621CD944A4003DDBBD /* AVAssetUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetUtilities.m; sourceTree = "<group>"; };
 		7892C2BC1CDD042900AE0D51 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		78D75F7F1CE12EC800895BA1 /* LookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookCell.swift; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MovieLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MovieLooks-Info.plist"; path = "../MovieLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C3D58CD134478590034F0BD /* background_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_landscape.png; path = "Resources-iPad/background_landscape.png"; sourceTree = "<group>"; };
 		9C3D58CE134478590034F0BD /* background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_portrait.png; path = "Resources-iPad/background_portrait.png"; sourceTree = "<group>"; };
@@ -1516,8 +1518,10 @@
 				785F732A1CDB9638009BCB5A /* AppDelegate.swift */,
 				785F73361CDB97F5009BCB5A /* Assets.xcassets */,
 				785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */,
+				785F73301CDB969A009BCB5A /* Main.storyboard */,
 				785F733D1CDBA015009BCB5A /* Launch */,
 				785F73381CDB9E4C009BCB5A /* Home */,
+				78D75F7E1CE12B4900895BA1 /* Looks */,
 				785F734A1CDBBF6B009BCB5A /* Data */,
 				785F733E1CDBB49C009BCB5A /* Debug */,
 				080E96DDFE201D6D7F000001 /* Legacy Classes */,
@@ -1747,10 +1751,8 @@
 		785F73381CDB9E4C009BCB5A /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				785F73301CDB969A009BCB5A /* Main.storyboard */,
 				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
 				785F73391CDB9E63009BCB5A /* InfoViewController.swift */,
-				78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */,
 				7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */,
 			);
 			name = Home;
@@ -1781,6 +1783,15 @@
 				785F73481CDBBF58009BCB5A /* PurchaseManager.m */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		78D75F7E1CE12B4900895BA1 /* Looks */ = {
+			isa = PBXGroup;
+			children = (
+				78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */,
+				78D75F7F1CE12EC800895BA1 /* LookCell.swift */,
+			);
+			name = Looks;
 			sourceTree = "<group>";
 		};
 		9C93ED1C134EA8290049C450 /* icon */ = {
@@ -2405,6 +2416,7 @@
 				785F73491CDBBF58009BCB5A /* PurchaseManager.m in Sources */,
 				06CA1FA013406465005B56DE /* UIView-AlertAnimations.m in Sources */,
 				78538E001CDCF5AA00BC737C /* Video.swift in Sources */,
+				78D75F801CE12EC800895BA1 /* LookCell.swift in Sources */,
 				06CA1FD61340657B005B56DE /* MobileLooksPickerItem.m in Sources */,
 				06CA1FD71340657B005B56DE /* MobileLooksPickerSource.m in Sources */,
 				06CA1FDC1340657B005B56DE /* PlaybackView.m in Sources */,

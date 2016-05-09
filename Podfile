@@ -8,5 +8,6 @@ target 'MovieLooks' do
     pod 'GoogleAPIClient/YouTube', '~> 1.0.3'
     pod 'GTMHTTPFetcher', '~> 2.0.0'
     pod 'GTMOAuth2', '~> 1.1.0'
+    pod 'BButton', '~> 4.0'
 end
 
