@@ -1521,10 +1521,7 @@
 				785F732A1CDB9638009BCB5A /* AppDelegate.swift */,
 				785F73361CDB97F5009BCB5A /* Assets.xcassets */,
 				785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */,
-				785F73301CDB969A009BCB5A /* Main.storyboard */,
-				785F733D1CDBA015009BCB5A /* Launch */,
-				785F73381CDB9E4C009BCB5A /* Home */,
-				78D75F7E1CE12B4900895BA1 /* Looks */,
+				78D75F941CE2397000895BA1 /* UI */,
 				78D75F851CE136AA00895BA1 /* Data */,
 				785F733E1CDBB49C009BCB5A /* Debug */,
 				080E96DDFE201D6D7F000001 /* Legacy Classes */,
@@ -1757,7 +1754,6 @@
 			children = (
 				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
 				785F73391CDB9E63009BCB5A /* InfoViewController.swift */,
-				7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1796,6 +1792,26 @@
 				78D75F891CE136AA00895BA1 /* PurchaseManager.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		78D75F931CE2391B00895BA1 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */,
+			);
+			name = Preview;
+			sourceTree = "<group>";
+		};
+		78D75F941CE2397000895BA1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				785F73301CDB969A009BCB5A /* Main.storyboard */,
+				785F733D1CDBA015009BCB5A /* Launch */,
+				785F73381CDB9E4C009BCB5A /* Home */,
+				78D75F7E1CE12B4900895BA1 /* Looks */,
+				78D75F931CE2391B00895BA1 /* Preview */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		9C93ED1C134EA8290049C450 /* icon */ = {
