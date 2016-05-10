@@ -35,7 +35,6 @@ class LookCell: UICollectionViewCell{
     override var selected: Bool {
         didSet {
             if selected {
-                
                 let color = UIColor(red: 0.592, green: 0.757, blue: 0.953, alpha: 1.0) // #97C1F3
                 self.layer.borderColor = color.CGColor
                 self.layer.borderWidth = 2.0

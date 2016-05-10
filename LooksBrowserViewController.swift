@@ -98,11 +98,16 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     func renderLoop() {
         // create all the look states
-        print("RENDER LOOP")
         
-        lookStates.forEach { (look, state) in
+        var renderStates = Array(lookStates.values)
+        
+        // NOTE: the first one fails for some reason (this was there in the legacy code uncommented)
+        // so render it twice
+        renderStates = renderStates + [renderStates[0]]
+        
+        renderStates.forEach { (state) in
             
-            print("RENDERING", look.name)
+            let look = state.look
             self.renderer.loadLookParam(look.data, withMode: VideoModeTraditionalLandscape)
 			renderer.looksStrengthValue = 1.0
 			renderer.looksBrightnessValue = 0.5
