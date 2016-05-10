@@ -11,6 +11,7 @@ import UIKit
 class LookCell: UICollectionViewCell{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let animationDuration = 0.100
     
@@ -20,17 +21,19 @@ class LookCell: UICollectionViewCell{
         
         state.onRender = { image in
             self.imageView.image = image
+            self.activityIndicator.stopAnimating()
         }
         
         if let image = state.image {
             self.imageView.image = image
         }
+        else {
+            self.activityIndicator.startAnimating()
+        }
     }
     
     override var selected: Bool {
         didSet {
-            print("SELECTED", selected)
-            
             if selected {
                 
                 let color = UIColor(red: 0.592, green: 0.757, blue: 0.953, alpha: 1.0) // #97C1F3
@@ -55,7 +58,6 @@ class LookCell: UICollectionViewCell{
 
 class LookCellState : NSObject {
     var look: Look
-    var rendering: Bool = false
     var image: UIImage?
     var onRender : (UIImage) -> Void = {_ in}
     

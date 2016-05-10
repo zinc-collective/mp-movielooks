@@ -199,19 +199,25 @@
                                                         <constraint firstAttribute="height" constant="22" id="olz-Mg-lhQ"/>
                                                     </constraints>
                                                 </view>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="d8d-KA-Nsw">
+                                                    <rect key="frame" x="75" y="65" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="d8d-KA-Nsw" firstAttribute="centerY" secondItem="xuW-ku-A3h" secondAttribute="centerY" id="0S2-yD-lVj"/>
                                             <constraint firstAttribute="bottom" secondItem="0o9-fv-Nc4" secondAttribute="bottom" id="7Gr-JK-gRk"/>
                                             <constraint firstAttribute="trailing" secondItem="0o9-fv-Nc4" secondAttribute="trailing" id="EHu-eO-3uL"/>
                                             <constraint firstItem="0o9-fv-Nc4" firstAttribute="top" secondItem="xuW-ku-A3h" secondAttribute="top" id="H1z-qH-TAr"/>
                                             <constraint firstItem="3Rt-bR-jGQ" firstAttribute="leading" secondItem="xuW-ku-A3h" secondAttribute="leading" id="TGp-z1-j8k"/>
+                                            <constraint firstItem="d8d-KA-Nsw" firstAttribute="centerX" secondItem="xuW-ku-A3h" secondAttribute="centerX" id="TJ9-zh-toA"/>
                                             <constraint firstItem="0o9-fv-Nc4" firstAttribute="leading" secondItem="xuW-ku-A3h" secondAttribute="leading" id="WOx-Tk-7i4"/>
                                             <constraint firstAttribute="trailing" secondItem="3Rt-bR-jGQ" secondAttribute="trailing" id="ir5-mt-ngm"/>
                                             <constraint firstItem="3Rt-bR-jGQ" firstAttribute="top" secondItem="xuW-ku-A3h" secondAttribute="top" id="s3g-xY-QAh"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="d8d-KA-Nsw" id="DwZ-kl-KGG"/>
                                             <outlet property="imageView" destination="0o9-fv-Nc4" id="HbN-SQ-d0H"/>
                                             <outlet property="label" destination="Uvh-Sa-rjc" id="Dkk-xA-YlJ"/>
                                         </connections>

@@ -103,7 +103,6 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         lookStates.forEach { (look, state) in
             
             print("RENDERING", look.name)
-            state.rendering = true
             self.renderer.loadLookParam(look.data, withMode: VideoModeTraditionalLandscape)
 			renderer.looksStrengthValue = 1.0
 			renderer.looksBrightnessValue = 0.5
@@ -124,7 +123,6 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
             dispatch_async(dispatch_get_main_queue()) {
                 print(" - set image", look.name)
                 state.image = processedImage
-                state.rendering = false
                 state.onRender(processedImage)
             }
         }
@@ -165,6 +163,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         cell.label.text = look.name
         
         if let state = lookStates[look] {
+            print("Got cell", look.name)
             cell.update(state)
         }
         
