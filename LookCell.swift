@@ -8,11 +8,24 @@
 
 import UIKit
 
-class LookCell: UICollectionViewCell {
+class LookCell: UICollectionViewCell{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     let animationDuration = 0.100
+    
+    func update(state:LookCellState) {
+        let look = state.look
+        self.label.text = look.name
+        
+        state.onRender = { image in
+            self.imageView.image = image
+        }
+        
+        if let image = state.image {
+            self.imageView.image = image
+        }
+    }
     
     override var selected: Bool {
         didSet {
@@ -37,5 +50,17 @@ class LookCell: UICollectionViewCell {
                 })
             }
         }
+    }
+}
+
+class LookCellState : NSObject {
+    var look: Look
+    var rendering: Bool = false
+    var image: UIImage?
+    var onRender : (UIImage) -> Void = {_ in}
+    
+    init(look:Look) {
+        self.look = look
+        super.init()
     }
 }

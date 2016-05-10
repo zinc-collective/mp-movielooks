@@ -17,9 +17,12 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var nextButton: BButton!
     @IBOutlet weak var looksView: UICollectionView!
     
-    var keyFrame : UIImage?
+    var keyFrame : UIImage!
+    var renderer : ES2Renderer!
+    var cellSize : CGSize!
     
     let lookGroups = PurchaseManager.sharedManager.looks
+    var lookStates : [Look : LookCellState] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,19 +35,30 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
 
     override func didReceiveMemoryWarning() {
+//        lookStates = [:]
         super.didReceiveMemoryWarning()
     }
     
     // needs to be called BEFORE loading
     func loadVideo(videoURL:NSURL) throws {
         keyFrame = try Video.sharedManager.keyFrame(videoURL, atTime: kCMTimeZero)
-
-//        // save the key frame
-//        if let imageData = UIImagePNGRepresentation(keyFrame) {
-//            let imagePath = Utilities.savedKeyFrameImagePath()
-//            imageData.writeToFile(imagePath, atomically: false)
-//        }
-//        
+        cellSize = cellSize(keyFrame)
+        lookStates = lookStates(lookGroups)
+        
+        // save the key frame
+        // the renderer requires this, because it is retarted
+        // TODO fix ES2Renderer
+        if let imageData = UIImagePNGRepresentation(keyFrame) {
+            let imagePath = Utilities.savedKeyFrameImagePath()
+            imageData.writeToFile(imagePath, atomically: false)
+        }
+        
+        // I need to keep track of it
+        renderer = ES2Renderer(frameSize: cellSize, outputFrameSize: cellSize)
+        renderer.loadKeyFrameCrop()
+        
+        startRender()
+//
 //        // stupid global state
 //        let videoDestURL = NSURL(fileURLWithPath: Utilities.savedVideoPath())
 //        let files = NSFileManager.defaultManager()
@@ -56,6 +70,71 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
 //        try NSFileManager.defaultManager().copyItemAtURL(videoURL, toURL: videoDestURL)
 //        
 //        Utilities.selectedVideoPathWithURL(videoDestURL)
+    }
+    
+    func startRender() {
+        renderer.resetFrameSize(cellSize, outputFrameSize: cellSize)
+        renderer.resetRenderBuffer()
+        renderer.loadKeyFrameCrop()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.renderLoop()
+        }
+    }
+    
+    func lookStates(lookGroups: [LookGroup]) -> [Look : LookCellState] {
+        var states : [Look : LookCellState] = [:]
+        lookGroups
+            .flatMap({group in
+                return group.items.map({look in
+                    return LookCellState(look: look)
+                })
+            })
+            .forEach({(state : LookCellState) in
+                states[state.look] = state
+            })
+       
+        return states
+    }
+    
+    func renderLoop() {
+        // create all the look states
+        print("RENDER LOOP")
+        
+        lookStates.forEach { (look, state) in
+            
+            print("RENDERING", look.name)
+            state.rendering = true
+            self.renderer.loadLookParam(look.data, withMode: VideoModeTraditionalLandscape)
+			renderer.looksStrengthValue = 1.0
+			renderer.looksBrightnessValue = 0.5
+            
+			let processedCGImageRef = renderer.frameProcessingAndReturnImage(nil, flipPixel:false)
+            
+//			if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
+//				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef  scale:1.0 orientation:UIImageOrientationRight];
+//			}
+//			else {
+//				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
+//			}
+            
+            
+            let processedImage = UIImage(CGImage: processedCGImageRef.takeUnretainedValue())
+            print(" - got image", look.name)
+			
+            dispatch_async(dispatch_get_main_queue()) {
+                print(" - set image", look.name)
+                state.image = processedImage
+                state.rendering = false
+                state.onRender(processedImage)
+            }
+        }
+    }
+    
+    func cellSize(keyFrame:UIImage) -> CGSize {
+        let width:CGFloat = 170
+        let ratio = keyFrame.size.height / keyFrame.size.width
+        let height = width * ratio
+        return CGSize(width: width, height: height)
     }
     
     @IBAction func tappedNext() {
@@ -82,22 +161,18 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         
         let group = lookGroups[indexPath.section]
         let look = group.items[indexPath.item]
-        // configure it here!
-        cell.imageView.image = self.keyFrame
+        
         cell.label.text = look.name
+        
+        if let state = lookStates[look] {
+            cell.update(state)
+        }
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width:CGFloat = 170
-        if let keyFrame = self.keyFrame {
-            let ratio = keyFrame.size.height / keyFrame.size.width
-            let height = width * ratio
-            return CGSize(width: width, height: height)
-        }
-        
-        return CGSizeZero
+        return cellSize
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {

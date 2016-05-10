@@ -18,7 +18,7 @@
 
 #import "DeviceDetect.h"
 
-#define BAR_OPAQUE //uncomment for semi-opaque bars
+#define BAR_OPAQUE //uncomment for semi-opeque bars
 
 //#define FRAME_BACKGROUND_VIEW_PORTRAIT	CGRectMake(0, 0, 320, 416)
 //#define FRAME_BACKGROUND_VIEW_LANDSCAPE	CGRectMake(0, 0, 480, 224)
@@ -284,7 +284,6 @@
 		if(thumbnail.renderingState==RenderingStateRendering)
 			thumbnail.renderingState = RenderingStateNone;
 	}
-	
 	
 	[self layoutAfterorientation:[[UIApplication sharedApplication] statusBarOrientation]];
 	renderThreadCancel = NO;
