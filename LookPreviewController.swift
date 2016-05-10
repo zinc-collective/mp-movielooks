@@ -8,29 +8,70 @@
 
 import UIKit
 
+let kLookName = "name"
+
 class LookPreviewController: LookPreviewControllerOld {
-
+    
+    // to be set before loading
+    var videoURL:NSURL!
+    var keyFrame:UIImage!
+    var look:Look!
+    
     override func viewDidLoad() {
+        
+        do {
+            try self.hackSaveGlobalVideo()
+            self.hackSetupGlobalLook()
+        }
+        catch let err as NSError {
+            print("ERROR LOADING", err.description)
+        }
+        
+		self.lookDic = look.data
+        
+        let outputSize = self.frameSize
+        let originalOutputSize = self.frameSize
+		//previewController.outputSize = outputSize;
+		self.outputSizeCropped = outputSize
+		self.outputSize = originalOutputSize
+        
+        let renderer = ES2Renderer(frameSize: outputSize, outputFrameSize: outputSize)
+        renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
+        renderer.resetRenderBuffer()
+        renderer.loadKeyFrame(keyFrame)
+        self.renderer = renderer
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-
+    
+    func hackSaveGlobalVideo() throws {
+        // HACK: stupid global state, required by LookPreviewController and beyond
+        let videoDestURL = NSURL(fileURLWithPath: Utilities.savedVideoPath())
+        let files = NSFileManager.defaultManager()
+        
+        if files.fileExistsAtPath(videoDestURL.path!) {
+            try files.removeItemAtURL(videoDestURL)
+        }
+        
+        try NSFileManager.defaultManager().copyItemAtURL(videoURL, toURL: videoDestURL)
+        
+        Utilities.selectedVideoPathWithURL(videoDestURL)
+    }
+    
+    
+    func hackSetupGlobalLook() {
+//    	let lookDic = look.data
+        NSUserDefaults.standardUserDefaults().setObject(look.name, forKey: kLookName)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+        
+    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     
     override func viewWillAppear(animated: Bool) {

@@ -956,7 +956,7 @@
 		78D75F861CE136AA00895BA1 /* Look.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Look.swift; sourceTree = "<group>"; };
 		78D75F891CE136AA00895BA1 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookGroupHeader.swift; sourceTree = "<group>"; };
-		78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES2Renderer.swift; sourceTree = "<group>"; };
+		78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ES2Renderer.swift; path = ../../ES2Renderer.swift; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MovieLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MovieLooks-Info.plist"; path = "../MovieLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C3D58CD134478590034F0BD /* background_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_landscape.png; path = "Resources-iPad/background_landscape.png"; sourceTree = "<group>"; };
 		9C3D58CE134478590034F0BD /* background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_portrait.png; path = "Resources-iPad/background_portrait.png"; sourceTree = "<group>"; };
@@ -1596,6 +1596,7 @@
 				5E19FE0212430DFB0062BE29 /* Debug.h */,
 				5EFDDC941283B45800EC208E /* Renderer.h */,
 				5EFDDC961283B4CF00EC208E /* Renderer.m */,
+				78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */,
 				5E19FE0312430DFB0062BE29 /* ES2RendererOld.h */,
 				5E19FE0412430DFB0062BE29 /* ES2RendererOld.m */,
 				5EDE8949127675E600232758 /* FastRenderer.h */,
@@ -1784,7 +1785,6 @@
 				78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */,
 				78D75F7F1CE12EC800895BA1 /* LookCell.swift */,
 				78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */,
-				78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */,
 			);
 			name = Looks;
 			sourceTree = "<group>";

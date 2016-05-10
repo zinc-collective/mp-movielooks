@@ -20,6 +20,8 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     var keyFrame : UIImage!
     var renderer : ES2Renderer!
     var cellSize : CGSize!
+    var selectedLook : Look?
+    var videoURL: NSURL?
     
     let lookGroups = PurchaseManager.sharedManager.looks
     var lookStates : [Look : LookCellState] = [:]
@@ -41,6 +43,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     // needs to be called BEFORE loading
     func loadVideo(videoURL:NSURL) throws {
+        self.videoURL = videoURL
         keyFrame = try Video.sharedManager.keyFrame(videoURL, atTime: kCMTimeZero)
         cellSize = cellSize(keyFrame)
         lookStates = lookStates(lookGroups)
@@ -48,18 +51,6 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         // I need to keep track of it
         renderer = ES2Renderer(frameSize: cellSize, outputFrameSize: cellSize)
         startRender(keyFrame)
-//
-//        // stupid global state
-//        let videoDestURL = NSURL(fileURLWithPath: Utilities.savedVideoPath())
-//        let files = NSFileManager.defaultManager()
-//        
-//        if files.fileExistsAtPath(videoDestURL.path!) {
-//            try files.removeItemAtURL(videoDestURL)
-//        }
-//        
-//        try NSFileManager.defaultManager().copyItemAtURL(videoURL, toURL: videoDestURL)
-//        
-//        Utilities.selectedVideoPathWithURL(videoDestURL)
     }
     
     func startRender(keyFrame:UIImage) {
@@ -132,6 +123,20 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     @IBAction func tappedNext() {
         print("NEXT")
+        
+        self.performSegueWithIdentifier("LookPreviewController", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let preview = segue.destinationViewController as? LookPreviewController {
+            preview.videoURL = videoURL
+            preview.look = selectedLook
+            preview.keyFrame = keyFrame
+            preview.frameSize = cellSize
+            // originalVideoMode
+            preview.videoMode = VideoModeTraditionalLandscape
+            
+        }
     }
     
     //// Collection View //////////////////////////////////////////////////////
@@ -146,7 +151,9 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("SELECT", indexPath)
+        let group = lookGroups[indexPath.section]
+        selectedLook = group.items[indexPath.item]
+        nextButton.enabled = true
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
