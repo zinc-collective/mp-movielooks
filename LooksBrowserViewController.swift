@@ -45,19 +45,9 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         cellSize = cellSize(keyFrame)
         lookStates = lookStates(lookGroups)
         
-        // save the key frame
-        // the renderer requires this, because it is retarted
-        // TODO fix ES2Renderer
-        if let imageData = UIImagePNGRepresentation(keyFrame) {
-            let imagePath = Utilities.savedKeyFrameImagePath()
-            imageData.writeToFile(imagePath, atomically: false)
-        }
-        
         // I need to keep track of it
         renderer = ES2Renderer(frameSize: cellSize, outputFrameSize: cellSize)
-        renderer.loadKeyFrameCrop()
-        
-        startRender()
+        startRender(keyFrame)
 //
 //        // stupid global state
 //        let videoDestURL = NSURL(fileURLWithPath: Utilities.savedVideoPath())
@@ -72,10 +62,10 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
 //        Utilities.selectedVideoPathWithURL(videoDestURL)
     }
     
-    func startRender() {
+    func startRender(keyFrame:UIImage) {
         renderer.resetFrameSize(cellSize, outputFrameSize: cellSize)
         renderer.resetRenderBuffer()
-        renderer.loadKeyFrameCrop()
+        renderer.loadKeyFrame(keyFrame)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.renderLoop()
         }
@@ -108,7 +98,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         renderStates.forEach { (state) in
             
             let look = state.look
-            self.renderer.loadLookParam(look.data, withMode: VideoModeTraditionalLandscape)
+            renderer.loadLookParam(look.data, withMode: VideoModeTraditionalLandscape)
 			renderer.looksStrengthValue = 1.0
 			renderer.looksBrightnessValue = 0.5
             

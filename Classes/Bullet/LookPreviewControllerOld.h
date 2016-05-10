@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <OpenGLES/ES2/gl.h>
-#import "ES2Renderer.h"
+#import "ES2RendererOld.h"
 
 typedef enum
 {
@@ -26,7 +26,7 @@ typedef enum
 {
 @private
 	RendererStatus			mRendererStatus;
-	ES2Renderer				*__weak renderer;
+	ES2RendererOld				*__weak renderer;
 	CGSize					frameSize;
 	CGSize					outputSize;
 	CGSize					outputSizeCropped;
@@ -70,7 +70,7 @@ typedef enum
 
 //@property (nonatomic, retain) UIImage *renderedImg;
 @property (nonatomic, weak) NSDictionary *lookDic;
-@property (nonatomic, weak) ES2Renderer *renderer;
+@property (nonatomic, weak) ES2RendererOld *renderer;
 @property (nonatomic) CGSize frameSize;
 @property (nonatomic) CGSize outputSize;
 @property (nonatomic) CGSize outputSizeCropped;

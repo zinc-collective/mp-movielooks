@@ -8,7 +8,7 @@
 
 #import "LooksBrowserViewControllerOld.h"
 //#import "ScrollViewEnhancer.h"
-#import "ES2Renderer.h"
+#import "ES2RendererOld.h"
 #import "ToggleButton.h"
 
 #import <OpenGLES/ES2/gl.h>
@@ -268,7 +268,7 @@
 	
 	thumbnailRequred = YES;
 	
-	renderer = [[ES2Renderer alloc] initWithFrameSize:outputSize outputFrameSize:outputSize];
+	renderer = [[ES2RendererOld alloc] initWithFrameSize:outputSize outputFrameSize:outputSize];
 //	[renderer loadKeyFrame];
 	//	isRenderAlready = YES;
 }

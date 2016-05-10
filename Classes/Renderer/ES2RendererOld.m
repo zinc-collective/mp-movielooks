@@ -6,7 +6,7 @@
 //  Copyright RED/SAFI 2010. All rights reserved.
 //
 //bret hd
-#import "ES2Renderer.h"
+#import "ES2RendererOld.h"
 #import "fastBlur.h"
 #import "DeviceDetect.h"
 
@@ -74,7 +74,7 @@ GLuint degenTexture, degenFBO;
 extern GLfloat vertices[];
 extern GLfloat texcoords[];
 
-@implementation ES2Renderer
+@implementation ES2RendererOld
 
 @synthesize diffusionSize;
 @synthesize diffusionOpacity;

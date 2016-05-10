@@ -10,8 +10,8 @@
 #import "LookPreviewControllerOld.h"
 #import "LookThumbnailView.h"
 #import "ScrollViewEnhancer.h"
+#import "ES2RendererOld.h"
 
-@class ES2Renderer;
 //@class FootView;
 
 @interface LooksBrowserViewControllerOld : UIViewController <SKProductsRequestDelegate, LooksBrowserEventDelegate, UIScrollViewDelegate, UIAlertViewDelegate>
@@ -31,7 +31,7 @@
 	UIScrollView *looksScrollView;
 	NSMutableDictionary *requestDictionary;
 	
-	ES2Renderer *renderer;
+	ES2RendererOld *renderer;
 	CGSize frameSize;
 	CGSize outputSize; //bret now cropped
 	CGSize originalOutputSize; //

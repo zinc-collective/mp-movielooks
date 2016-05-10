@@ -314,7 +314,7 @@
 		5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFD12430DFB0062BE29 /* LookThumbnailView.m */; };
 		5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFF12430DFB0062BE29 /* MyStoreObserver.m */; };
 		5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0112430DFB0062BE29 /* Debug.c */; };
-		5E19FE0F12430DFB0062BE29 /* ES2Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0412430DFB0062BE29 /* ES2Renderer.m */; };
+		5E19FE0F12430DFB0062BE29 /* ES2RendererOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0412430DFB0062BE29 /* ES2RendererOld.m */; };
 		5E19FE1012430DFB0062BE29 /* fastBlur.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0512430DFB0062BE29 /* fastBlur.c */; };
 		5E19FE1112430DFB0062BE29 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0812430DFB0062BE29 /* Texture.m */; };
 		5E3144DD122DFA6F00D67E0D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3144DC122DFA6F00D67E0D /* StoreKit.framework */; };
@@ -416,6 +416,7 @@
 		78D75F8A1CE136AA00895BA1 /* Look.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F861CE136AA00895BA1 /* Look.swift */; };
 		78D75F8C1CE136AA00895BA1 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F891CE136AA00895BA1 /* PurchaseManager.swift */; };
 		78D75F8E1CE140BC00895BA1 /* LookGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */; };
+		78D75F901CE1E88900895BA1 /* ES2Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
 		9C3D58F0134478590034F0BD /* gear_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CF134478590034F0BD /* gear_wheel.png */; };
@@ -833,8 +834,8 @@
 		5E19FDFF12430DFB0062BE29 /* MyStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStoreObserver.m; sourceTree = "<group>"; };
 		5E19FE0112430DFB0062BE29 /* Debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Debug.c; sourceTree = "<group>"; };
 		5E19FE0212430DFB0062BE29 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
-		5E19FE0312430DFB0062BE29 /* ES2Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES2Renderer.h; sourceTree = "<group>"; };
-		5E19FE0412430DFB0062BE29 /* ES2Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES2Renderer.m; sourceTree = "<group>"; };
+		5E19FE0312430DFB0062BE29 /* ES2RendererOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES2RendererOld.h; sourceTree = "<group>"; };
+		5E19FE0412430DFB0062BE29 /* ES2RendererOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES2RendererOld.m; sourceTree = "<group>"; };
 		5E19FE0512430DFB0062BE29 /* fastBlur.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fastBlur.c; sourceTree = "<group>"; };
 		5E19FE0612430DFB0062BE29 /* fastBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastBlur.h; sourceTree = "<group>"; };
 		5E19FE0712430DFB0062BE29 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
@@ -955,6 +956,7 @@
 		78D75F861CE136AA00895BA1 /* Look.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Look.swift; sourceTree = "<group>"; };
 		78D75F891CE136AA00895BA1 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookGroupHeader.swift; sourceTree = "<group>"; };
+		78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES2Renderer.swift; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MovieLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MovieLooks-Info.plist"; path = "../MovieLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C3D58CD134478590034F0BD /* background_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_landscape.png; path = "Resources-iPad/background_landscape.png"; sourceTree = "<group>"; };
 		9C3D58CE134478590034F0BD /* background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_portrait.png; path = "Resources-iPad/background_portrait.png"; sourceTree = "<group>"; };
@@ -1594,8 +1596,8 @@
 				5E19FE0212430DFB0062BE29 /* Debug.h */,
 				5EFDDC941283B45800EC208E /* Renderer.h */,
 				5EFDDC961283B4CF00EC208E /* Renderer.m */,
-				5E19FE0312430DFB0062BE29 /* ES2Renderer.h */,
-				5E19FE0412430DFB0062BE29 /* ES2Renderer.m */,
+				5E19FE0312430DFB0062BE29 /* ES2RendererOld.h */,
+				5E19FE0412430DFB0062BE29 /* ES2RendererOld.m */,
 				5EDE8949127675E600232758 /* FastRenderer.h */,
 				5EDE894A127675E600232758 /* FastRenderer.m */,
 				5E19FE0512430DFB0062BE29 /* fastBlur.c */,
@@ -1782,6 +1784,7 @@
 				78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */,
 				78D75F7F1CE12EC800895BA1 /* LookCell.swift */,
 				78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */,
+				78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */,
 			);
 			name = Looks;
 			sourceTree = "<group>";
@@ -2386,7 +2389,7 @@
 				78D75F8C1CE136AA00895BA1 /* PurchaseManager.swift in Sources */,
 				5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */,
 				5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */,
-				5E19FE0F12430DFB0062BE29 /* ES2Renderer.m in Sources */,
+				5E19FE0F12430DFB0062BE29 /* ES2RendererOld.m in Sources */,
 				5E19FE1012430DFB0062BE29 /* fastBlur.c in Sources */,
 				5E19FE1112430DFB0062BE29 /* Texture.m in Sources */,
 				5EB5DDB01248A9DB009DC56E /* ScrollViewEnhancer.m in Sources */,
@@ -2394,6 +2397,7 @@
 				5EDE894B127675E600232758 /* FastRenderer.m in Sources */,
 				5E8618DC12797F40003ED275 /* BulletViewController.m in Sources */,
 				785F73421CDBB4CC009BCB5A /* Debug.swift in Sources */,
+				78D75F901CE1E88900895BA1 /* ES2Renderer.swift in Sources */,
 				78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */,
 				5E8618DD12797F40003ED275 /* EmbedWebView.m in Sources */,
 				5E8618DE12797F40003ED275 /* ProgressView.m in Sources */,

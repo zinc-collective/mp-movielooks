@@ -18,7 +18,7 @@
 #define QUICK_FULL_FACTOR_IPAD2		0.207
 #define COMPLEX_FULL_FACTOR_IPAD2	0.457
 
-@interface ES2Renderer : Renderer
+@interface ES2RendererOld : Renderer
 {
 @private
 	int		diffusionSize;

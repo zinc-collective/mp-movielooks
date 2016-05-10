@@ -12,7 +12,7 @@
 #import "MProgressView.h"
 #import "CustomPopView.h"
 #import "WebSiteCtrlor.h"
-#import "ES2Renderer.h"
+#import "ES2RendererOld.h"
 
 #import "PlaybackView.h" //bret
 
@@ -59,7 +59,7 @@ typedef enum
 	
 	CGSize				videoSize_;
 	CGSize				outputSize;
-	ES2Renderer			*__weak renderer;
+	ES2RendererOld			*__weak renderer;
 	MovieProcessor*		movieProcessor;
 	NSString*			processedMoviePath;
 	int 				_curInputFrameIdx;		// input frame idx from reader (may not match _completed frames if we are only rendering at half frame rate)
@@ -134,7 +134,7 @@ typedef enum
 }
 
 @property (nonatomic) VideoMode videoMode;
-@property (nonatomic, weak) ES2Renderer *renderer;
+@property (nonatomic, weak) ES2RendererOld *renderer;
 @property (nonatomic) float fStrengthValue;
 @property (nonatomic) float fBrightnessValue;
 @property (nonatomic) NSTimeInterval renderStartTime;
