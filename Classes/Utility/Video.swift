@@ -31,6 +31,19 @@ class Video {
         return keyFrame
     }
     
+    func renderSize(originalSize: CGSize, displaySize: CGSize) -> CGSize {
+        let ratio = originalSize.height / originalSize.width
+        
+        if ratio < 1 {
+            let height = displaySize.width * ratio
+            return CGSize(width: displaySize.width, height: height)
+        }
+        else {
+            let width = displaySize.height / ratio
+            return CGSize(width: width, height: displaySize.height)
+        }
+    }
+    
 //        let imageData = UIImagePNGRepresentation(keyFrame)
 //        var imagePath: String = Utilities.savedKeyFrameImagePath()
 //        imageData.writeToFile(imagePath, atomically: false)

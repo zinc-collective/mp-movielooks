@@ -23,12 +23,16 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     var selectedLook : Look?
     var videoURL: NSURL?
     
+    var videoMode = VideoModeWideSceenLandscape
+    
     let lookGroups = PurchaseManager.sharedManager.looks
     var lookStates : [Look : LookCellState] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.setType(.Primary)
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Change Look", style: .Done, target: nil, action: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -89,7 +93,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         renderStates.forEach { (state) in
             
             let look = state.look
-            renderer.loadLookParam(look.data, withMode: VideoModeTraditionalLandscape)
+            renderer.loadLookParam(look.data, withMode: self.videoMode)
 			renderer.looksStrengthValue = 1.0
 			renderer.looksBrightnessValue = 0.5
             
@@ -115,10 +119,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func cellSize(keyFrame:UIImage) -> CGSize {
-        let width:CGFloat = 170
-        let ratio = keyFrame.size.height / keyFrame.size.width
-        let height = width * ratio
-        return CGSize(width: width, height: height)
+        return Video.sharedManager.renderSize(keyFrame.size, displaySize: CGSize(width: 170, height: 170))
     }
     
     @IBAction func tappedNext() {
@@ -132,10 +133,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
             preview.videoURL = videoURL
             preview.look = selectedLook
             preview.keyFrame = keyFrame
-            preview.frameSize = cellSize
-            // originalVideoMode
-            preview.videoMode = VideoModeTraditionalLandscape
-            
+            preview.videoMode = self.videoMode
         }
     }
     
