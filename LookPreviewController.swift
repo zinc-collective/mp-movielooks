@@ -28,6 +28,7 @@ class LookPreviewController: UIViewController {
     @IBOutlet weak var hdSwitch: UISwitch!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var developButton: BButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
@@ -37,6 +38,12 @@ class LookPreviewController: UIViewController {
         developButton.setType(.Primary)
         strengthSlider.value = lookStrength
         brightnessSlider.value = lookBrightness
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        spinner.hidden = false
+        spinner.startAnimating()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -53,6 +60,9 @@ class LookPreviewController: UIViewController {
         
         let image = self.renderImage(self.look, strength: self.lookStrength, brightness: self.lookBrightness)
         self.imageView.image = image
+        
+        spinner.stopAnimating()
+        spinner.hidden = true
     }
     
     func renderImage(look:Look, strength: Float, brightness: Float) -> UIImage {
@@ -137,7 +147,7 @@ class LookPreviewController: UIViewController {
     }
     
 //    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-//        
+//
 //    }
     
 //    override func viewWillAppear(animated: Bool) {
