@@ -44,6 +44,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func tappedFind() {
         let picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
+        picker.videoQuality = .TypeHigh
         picker.allowsEditing = true
         picker.delegate = self
         picker.modalPresentationStyle = .Popover

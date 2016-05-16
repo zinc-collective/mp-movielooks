@@ -68,7 +68,6 @@ class LookPreviewController: UIViewController {
     }
     
     func renderImage(look:Look, strength: Float, brightness: Float) -> UIImage {
-        print("VIDEO MODE", self.videoMode)
         renderer.loadLookParam(look.data, withMode: self.videoMode)
 		renderer.looksStrengthValue = strength
 		renderer.looksBrightnessValue = brightness

@@ -32,7 +32,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         super.viewDidLoad()
         nextButton.setType(.Primary)
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Change Look", style: .Done, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Done, target: nil, action: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
