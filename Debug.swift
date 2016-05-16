@@ -10,14 +10,15 @@ import UIKit
 import Photos
 
 class Debug: NSObject {
+    
     static func addDefaultVideoIfEmpty() {
         if !hasVideos() {
             print("Copying default video")
             let baseURL = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath)
-            let pathURL = baseURL.URLByAppendingPathComponent("IMG_0646.MOV")
             
             PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(pathURL)
+                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("IMG_0646.MOV"))
+                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("IMG_2994.MOV"))
             }, completionHandler: { (success, error) in
                 print("copied", success, error)
             })

@@ -52,12 +52,13 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         cellSize = cellSize(keyFrame)
         lookStates = lookStates(lookGroups)
         
-        // I need to keep track of it
         renderer = ES2Renderer(frameSize: cellSize, outputFrameSize: cellSize)
         startRender(keyFrame)
     }
     
     func startRender(keyFrame:UIImage) {
+        // no matter what you put in for the size, the renderer will create a square image and fill the space
+        // that you give it. So make sure this is square
         renderer.resetFrameSize(cellSize, outputFrameSize: cellSize)
         renderer.resetRenderBuffer()
         renderer.loadKeyFrame(keyFrame)
@@ -119,7 +120,8 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func cellSize(keyFrame:UIImage) -> CGSize {
-        return Video.sharedManager.renderSize(keyFrame.size, displaySize: CGSize(width: 170, height: 170))
+        // these should always be square
+        return CGSize(width: 170, height: 170)
     }
     
     @IBAction func tappedNext() {

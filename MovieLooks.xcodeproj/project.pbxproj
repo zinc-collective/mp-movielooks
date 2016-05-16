@@ -417,6 +417,7 @@
 		78D75F8C1CE136AA00895BA1 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F891CE136AA00895BA1 /* PurchaseManager.swift */; };
 		78D75F8E1CE140BC00895BA1 /* LookGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */; };
 		78D75F901CE1E88900895BA1 /* ES2Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */; };
+		78D9FD351CEA25F100745DDE /* IMG_2994.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 78D9FD341CEA25F100745DDE /* IMG_2994.MOV */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
 		9C3D58F0134478590034F0BD /* gear_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CF134478590034F0BD /* gear_wheel.png */; };
@@ -958,6 +959,7 @@
 		78D75F891CE136AA00895BA1 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookGroupHeader.swift; sourceTree = "<group>"; };
 		78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ES2Renderer.swift; path = ../../ES2Renderer.swift; sourceTree = "<group>"; };
+		78D9FD341CEA25F100745DDE /* IMG_2994.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = IMG_2994.MOV; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MovieLooks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MovieLooks-Info.plist"; path = "../MovieLooks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C3D58CD134478590034F0BD /* background_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_landscape.png; path = "Resources-iPad/background_landscape.png"; sourceTree = "<group>"; };
 		9C3D58CE134478590034F0BD /* background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_portrait.png; path = "Resources-iPad/background_portrait.png"; sourceTree = "<group>"; };
@@ -1772,6 +1774,7 @@
 			isa = PBXGroup;
 			children = (
 				785F733F1CDBB4C1009BCB5A /* IMG_0646.MOV */,
+				78D9FD341CEA25F100745DDE /* IMG_2994.MOV */,
 				785F73411CDBB4CC009BCB5A /* Debug.swift */,
 			);
 			name = Debug;
@@ -2309,6 +2312,7 @@
 				197BB0971847FE5D00A28AD5 /* develop_cameraroll_button58x58_iphone.png in Resources */,
 				04D48F5F134EBBFA002A5ECE /* news@2x.png in Resources */,
 				04D48F61134EBC0E002A5ECE /* news-iPad.png in Resources */,
+				78D9FD351CEA25F100745DDE /* IMG_2994.MOV in Resources */,
 				042D17E8134F1A6400E73C80 /* Entitlements.plist in Resources */,
 				9CACD9B9135021CA00717286 /* pop_background.png in Resources */,
 				9CACD9BA135021CA00717286 /* pop_button.png in Resources */,

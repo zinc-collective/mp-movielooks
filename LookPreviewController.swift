@@ -50,7 +50,9 @@ class LookPreviewController: UIViewController {
         super.viewDidAppear(animated)
         
         let displaySize = imageView.frame.size
-        let outputSize = Video.sharedManager.renderSize(keyFrame.size, displaySize: displaySize)
+        let minAxis = min(displaySize.width, displaySize.height)
+        let outputSize = CGSize(width: minAxis, height: minAxis)
+        // Video.sharedManager.renderSize(keyFrame.size, displaySize: displaySize)
         
         let renderer = ES2Renderer(frameSize: outputSize, outputFrameSize: outputSize)
         renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
