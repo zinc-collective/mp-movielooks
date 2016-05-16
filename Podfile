@@ -9,5 +9,6 @@ target 'MovieLooks' do
     pod 'GTMHTTPFetcher', '~> 2.0.0'
     pod 'GTMOAuth2', '~> 1.1.0'
     pod 'BButton', '~> 4.0'
+    pod 'Crashlytics', '~> 3.7.0'
 end
 

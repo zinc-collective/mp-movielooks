@@ -1876,6 +1876,7 @@
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				4E430B719680C7F65567CD17 /* Embed Pods Frameworks */,
 				6810D1B72E371F505CAC0EF0 /* Copy Pods Resources */,
+				78D9FD331CEA249400745DDE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2400,6 +2401,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		78D9FD331CEA249400745DDE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6a09c19815c2f7f42d12f74f97f8f87c0f139e62 d29b37ba3305e7a136158c7684175a69995c401705890454f260b5b758d91816";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2504,6 +2518,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
@@ -2546,6 +2561,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
@@ -2571,6 +2587,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2599,6 +2616,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
