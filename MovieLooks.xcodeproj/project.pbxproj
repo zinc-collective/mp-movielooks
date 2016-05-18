@@ -401,6 +401,7 @@
 		74B8AAF61241CE43009D1B80 /* mobileLookdarken_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */; };
 		7805EF001CDD3C89007FCE11 /* LookPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */; };
 		7841FAAC1CECBB18007CADBC /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */; };
+		7841FAAF1CECCB85007CADBC /* VideoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841FAAE1CECCB85007CADBC /* VideoRenderer.swift */; };
 		78538E001CDCF5AA00BC737C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538DFF1CDCF5AA00BC737C /* Video.swift */; };
 		78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */; };
 		785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F732A1CDB9638009BCB5A /* AppDelegate.swift */; };
@@ -940,6 +941,7 @@
 		7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookPreviewController.swift; sourceTree = "<group>"; };
 		781C462A1CE650FB0041DE34 /* MovieLooks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MovieLooks.entitlements; sourceTree = "<group>"; };
 		7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
+		7841FAAE1CECCB85007CADBC /* VideoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRenderer.swift; sourceTree = "<group>"; };
 		78538DFF1CDCF5AA00BC737C /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksBrowserViewController.swift; sourceTree = "<group>"; };
 		785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MovieLooks-Bridging-Header.h"; path = "Classes/MovieLooks-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1759,6 +1761,7 @@
 			isa = PBXGroup;
 			children = (
 				7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */,
+				7841FAAE1CECCB85007CADBC /* VideoRenderer.swift */,
 			);
 			name = Movie;
 			sourceTree = "<group>";
@@ -2438,6 +2441,7 @@
 			files = (
 				5E19FE0A12430DFB0062BE29 /* LooksBrowserViewControllerOld.m in Sources */,
 				5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */,
+				7841FAAF1CECCB85007CADBC /* VideoRenderer.swift in Sources */,
 				78D75F8C1CE136AA00895BA1 /* PurchaseManager.swift in Sources */,
 				5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */,
 				5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */,

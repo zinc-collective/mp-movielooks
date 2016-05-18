@@ -153,6 +153,10 @@ class LookPreviewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let player = segue.destinationViewController as? VideoPlayerController {
             player.renderedKeyFrame = imageView.image
+            player.sourceVideoURL = videoURL
+            player.look = look
+            player.lookBrightness = lookBrightness
+            player.lookStrength = lookStrength
         }
     }
     

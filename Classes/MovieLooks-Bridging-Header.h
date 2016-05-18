@@ -9,3 +9,5 @@
 #import "MyStoreObserver.h"
 #import "LookPreviewControllerOld.h"
 #import "ES2RendererOld.h"
+#import "MovieProcessor.h"
+#import "RenderDefs.h"

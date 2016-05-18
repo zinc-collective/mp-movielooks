@@ -62,6 +62,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	[renderer loadLookParam:lookDic withMode:videoMode];
 	[renderer freeRenderBuffer];
 }
+
 -(NSUInteger)estimateProcessingTimebyFrame:(NSUInteger)numFramesRemainingToProcess;
 {
 	float fps = 30.0f;
@@ -1445,34 +1446,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
                 
                 //timeScale is totalframes
                 //_completedFrames is the current frame index
-#if 0
-                //curve method 1
-                float timeoffsetcos = cos(_completedFrames/(timeScale/2));
-                timeoffsetcos = fabs(timeoffsetcos);
-                
-                float timeoffsetl = screenwidthl * (_completedFrames/timeScale);
-                float timeoffsetp = screenwidthp * (_completedFrames/timeScale);
-                
-                float timestepl = (screenwidthl/timeScale)*timeoffsetcos;
-                float timestepp = (screenwidthp/timeScale)*timeoffsetcos;
-
-                timeoffsetl = timeoffsetl+timestepl; //comment out for linear
-                timeoffsetp = timeoffsetp+timestepp; //comment out for linear
-                
-                NSLog(@"bret timestepl == %f",timestepl);
-                
-                timeElapsedLandscape = timeoffsetl; //these are for rotation during render
-                timeElapsedPortrait = timeoffsetp;
-
-                CGRect frame;
-                frame = mOpaqueViewLandscape.frame;
-                frame.origin.x = timeoffsetl;
-                mOpaqueViewLandscape.frame = frame;
-                frame = mOpaqueViewPortrait.frame;
-                frame.origin.x = timeoffsetp;
-                mOpaqueViewPortrait.frame = frame;
-                //end curve method 1
-#endif
                 //curve method 2
                 float timeoffsetl = screenwidthl/timeScale;
                 float timeoffsetp = screenwidthp/timeScale;
