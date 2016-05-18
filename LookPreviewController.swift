@@ -34,6 +34,8 @@ class LookPreviewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Done, target: nil, action: nil)
+        
 //        imageView.image = keyFrame
         developButton.setType(.Primary)
         strengthSlider.value = lookStrength
@@ -144,7 +146,14 @@ class LookPreviewController: UIViewController {
     }
     
     @IBAction func onDevelop(sender: AnyObject) {
-        
+        print("DEVELOP")
+        self.performSegueWithIdentifier("VideoPlayerController", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let player = segue.destinationViewController as? VideoPlayerController {
+            player.renderedKeyFrame = imageView.image
+        }
     }
     
 //    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

@@ -10,5 +10,6 @@ target 'MovieLooks' do
     pod 'GTMOAuth2', '~> 1.1.0'
     pod 'BButton', '~> 4.0'
     pod 'Crashlytics', '~> 3.7.0'
+    pod 'DAProgressOverlayLayeredView', '~> 1.2'
 end
 
