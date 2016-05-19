@@ -49,9 +49,8 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         isPlaying = false
-        self.navigationItem.rightBarButtonItems = [actionItem]
         self.videoRenderer.reset()
-//        navigationBar.topItem?.rightBarButtonItems = [playItem, actionItem]
+//        navigationItem.rightBarButtonItems = [playItem, actionItem]
     }
     
     override func viewWillLayoutSubviews() {
@@ -66,8 +65,9 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         playButton.hidden = true
         self.navigationItem.rightBarButtonItems = []
         self.progressView.displayOperationWillTriggerAnimation()
-
-        self.progressView.progress = 0.5
+//        self.progressView.animationCompletionHandler = {_ in
+//            self.progressView.progress = 0.0
+//        }
         
         self.videoRenderer = VideoRenderer()
         self.videoRenderer.delegate = self
@@ -97,9 +97,6 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     }
     
     func play() {
-        
-        hideNavbar()
-        
         if isFinished {
             isFinished = false
             player.seekToTime(kCMTimeZero)
@@ -109,20 +106,20 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         player.play()
         
         playButton.hidden = true
-//        navigationBar.topItem?.rightBarButtonItems = [pauseItem, actionItem]
+        navigationItem.rightBarButtonItems = [pauseItem, actionItem]
     }
     
     func pause() {
         isPlaying = false
         player.pause()
         playButton.hidden = false
-//        navigationBar.topItem?.rightBarButtonItems = [playItem, actionItem]
+        navigationItem.rightBarButtonItems = [playItem, actionItem]
     }
     
     func didFinishPlaying() {
         isFinished = true
         pause()
-        showNavbar()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
 
@@ -134,24 +131,8 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     }
     
     @IBAction func viewTapped(sender: AnyObject) {
-//        if navigationBar.alpha == 1.0 {
-//            hideNavbar()
-//        }
-//        else {
-//            showNavbar()
-//        }
-    }
-    
-    func showNavbar() {
-//        UIView.animateWithDuration(0.300, animations: {
-//            self.navigationBar.alpha = 1.0
-//        })
-    }
-    
-    func hideNavbar() {
-//        UIView.animateWithDuration(0.300, animations: {
-//            self.navigationBar.alpha = 0.0
-//        })
+        let isHidden = self.navigationController?.navigationBarHidden
+        self.navigationController?.setNavigationBarHidden(isHidden != true, animated: true)
     }
     
     func rendererFinished(videoURL: NSURL) {
@@ -162,23 +143,23 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
         
-        player.play()
-        
-        self.processingView.hidden = true
+        UIView.animateWithDuration(0.300, animations: {
+            self.processingView.alpha = 0.0
+        }, completion: {_ in
+            self.processingView.hidden = true
+        })
+    
+        self.navigationItem.rightBarButtonItems = [playItem, actionItem]
+        self.navigationItem.title = "Share Your Movie"
+        playButton.hidden = false
     }
     
     func videoFinishedProcessing(url: NSURL!) {
         self.rendererFinished(url)
     }
     
-    func videoTimeRemaining(time: Int32) {
-//        print("Time remaining", time)
-    }
-    
-    func videoTimeElapsed(portrait: Float, landscape: Float) {
-        print("Time elapsed", portrait, landscape, videoRenderer.estimateTotalRenderTime)
-        let percent = portrait / Float(videoRenderer.estimateTotalRenderTime)
-        print("UMMM", percent)
+    func videoCompletedFrames(completed: Int32, ofTotal total: Int32) {
+        let percent = Float(completed) / Float(total)
         dispatch_async(dispatch_get_main_queue()) {
             self.progressView.progress = CGFloat(percent)
         }

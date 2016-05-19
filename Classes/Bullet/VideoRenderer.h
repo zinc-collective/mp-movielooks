@@ -40,8 +40,9 @@ typedef enum
 
 @protocol VideoRenderDelegate
 -(void)videoFinishedProcessing:(NSURL*)url;
--(void)videoTimeRemaining:(int)time;
--(void)videoTimeElapsed:(float)portrait landscape:(float)landscape;
+-(void)videoCompletedFrames:(int)completed ofTotal:(int)total;
+//-(void)videoTimeRemaining:(int)time;
+//-(void)videoTimeElapsed:(float)portrait landscape:(float)landscape;
 @end
 
 @interface VideoRenderer : NSObject <MovieProcessorDelegate, MProgressViewDelegate> {

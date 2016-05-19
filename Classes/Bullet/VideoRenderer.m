@@ -226,7 +226,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		//timeScale = timeRemaining;
         timeScale = _totalFrames;
         //[timeView setTimeRemaining:timeRemaining isInit:YES];
-        [self.delegate videoTimeRemaining:timeRemaining];
 	}
 }
 
@@ -238,7 +237,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	if(timeRemaining<0)
         timeRemaining=0;
     
-    [self.delegate videoTimeRemaining:timeRemaining];
 	//[timeView setTimeRemaining:timeRemaining isInit:NO];
 }
 
@@ -306,109 +304,42 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	@autoreleasepool { //bret
         CVPixelBufferRef pixelBuffer = NULL;
 		
-	// check if we are only rendering even frames.
-	if (renderFullFramerate || (_curInputFrameIdx % 2) == 0) {
-	
-		CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-		// CGSize bufferSize = CVImageBufferGetEncodedSize(imageBuffer);
-		// NSLog(@"Buffer Size(%f,%f)",bufferSize.width,bufferSize.height);
-	
-		// Lock the base address of the pixel buffer
-		CVPixelBufferLockBaseAddress(imageBuffer,0);
-		void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-		// size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    	// check if we are only rendering even frames.
+    	if (renderFullFramerate || (_curInputFrameIdx % 2) == 0) {
+    	
+    		CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    		// CGSize bufferSize = CVImageBufferGetEncodedSize(imageBuffer);
+    		// NSLog(@"Buffer Size(%f,%f)",bufferSize.width,bufferSize.height);
+    	
+    		// Lock the base address of the pixel buffer
+    		CVPixelBufferLockBaseAddress(imageBuffer,0);
+    		void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+    		// size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
 
-		[renderer frameProcessing:baseAddress toDest:baseAddress flipPixel:YES];
-	
-		CVPixelBufferCreateWithBytes(NULL,outputSize.width,outputSize.height,
-								 kCVPixelFormatType_32BGRA,baseAddress,
-								 outputSize.width*glPixelSize,
-								 NULL,0,NULL,&pixelBuffer);
-		CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-		_completedFrames++;
-		framePastedFromPause++;
-	
-		// with higher resolution, we want to hold fewer frames in the checkpoint buffer.
-		NSInteger CheckPointFrameCount = (renderType==RendererTypeFull)?30:60;
-		if(framePastedFromPause>CheckPointFrameCount && (sampleTime.value%300<20) && needCheckPoint)
-		{
-			framePastedFromPause = 0;
-			[movieProcessor checkPointRenderMovie];
-		}
-	}
-	
-	_curInputFrameIdx++;
-        
-	dispatch_async(dispatch_get_main_queue(),
-        ^{
-            if ( _completedFrames != lastTimeRemaining)
-            {
-                lastTimeRemaining = _completedFrames;
-                int screenwidthl, screenwidthp;
-                if (IS_IPAD)
-                {
-                    screenwidthl = 1024;
-                    screenwidthp = 768;
-                }else
-                {
-                    if (IS_IPHONE_5)
-                    {
-                        screenwidthl = 568;
-                        screenwidthp = 320;
-                    }else
-                    {
-                        screenwidthl = 480;
-                        screenwidthp = 320;
-                    }
-                }
-                
-                //timeScale is totalframes
-                //_completedFrames is the current frame index
-                //curve method 2
-                float timeoffsetl = screenwidthl/timeScale;
-                float timeoffsetp = screenwidthp/timeScale;
-                float timezone = timeScale/8;
-                if (_completedFrames < (timezone*1) )
-                {
-                    timeoffsetl = timeoffsetl * 1.50;
-                    timeoffsetp = timeoffsetp * 1.50;
-                }else if ( _completedFrames < (timezone*2) )
-                {
-                    timeoffsetl = timeoffsetl * 1.25;
-                    timeoffsetp = timeoffsetp * 1.25;
-                }else if ( _completedFrames < (timezone*3) )
-                {
-                    timeoffsetl = timeoffsetl * 0.75;
-                    timeoffsetp = timeoffsetp * 0.75;
-                }else if ( _completedFrames < (timezone*4) )
-                {
-                    timeoffsetl = timeoffsetl * 0.50;
-                    timeoffsetp = timeoffsetp * 0.50;
-                }else if ( _completedFrames < (timezone*5) )
-                {
-                    timeoffsetl = timeoffsetl * 0.50;
-                    timeoffsetp = timeoffsetp * 0.50;
-                }else if ( _completedFrames < (timezone*6) )
-                {
-                    timeoffsetl = timeoffsetl * 0.75;
-                    timeoffsetp = timeoffsetp * 0.75;
-                }else if ( _completedFrames < (timezone*7) )
-                {
-                    timeoffsetl = timeoffsetl * 1.25;
-                    timeoffsetp = timeoffsetp * 1.25;
-                }else
-                {
-                    timeoffsetl = timeoffsetl * 1.50;
-                    timeoffsetp = timeoffsetp * 1.50;
-                }
-                
-                timeElapsedLandscape = timeElapsedLandscape + timeoffsetl; //these are for rotation during render
-                timeElapsedPortrait = timeElapsedLandscape + timeoffsetp;
-                
-                [self.delegate videoTimeElapsed:timeElapsedPortrait landscape:timeElapsedLandscape];
-            }
-        });
-	return pixelBuffer;
+    		[renderer frameProcessing:baseAddress toDest:baseAddress flipPixel:YES];
+    	
+    		CVPixelBufferCreateWithBytes(NULL,outputSize.width,outputSize.height,
+    								 kCVPixelFormatType_32BGRA,baseAddress,
+    								 outputSize.width*glPixelSize,
+    								 NULL,0,NULL,&pixelBuffer);
+    		CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    		_completedFrames++;
+    		framePastedFromPause++;
+    	
+    		// with higher resolution, we want to hold fewer frames in the checkpoint buffer.
+    		NSInteger CheckPointFrameCount = (renderType==RendererTypeFull)?30:60;
+    		if(framePastedFromPause>CheckPointFrameCount && (sampleTime.value%300<20) && needCheckPoint)
+    		{
+    			framePastedFromPause = 0;
+    			[movieProcessor checkPointRenderMovie];
+    		}
+    	}
+    	
+    	_curInputFrameIdx++;
+            
+        [self.delegate videoCompletedFrames:_completedFrames ofTotal:(int)_totalFrames];
+            
+    	return pixelBuffer;
 	}
 }
 
@@ -550,6 +481,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	NSLog(@"Video Clip Check Point!");
 	CMTimeRange processRange = [movieProcessor getProcessRange];
 	_completedFrames = (int)(processRange.start.value/20);
+    [self.delegate videoCompletedFrames:_completedFrames ofTotal:(int)_totalFrames];
 }
 
 -(void)cancelRenderMovieEvent
