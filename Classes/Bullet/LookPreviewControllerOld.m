@@ -920,12 +920,6 @@
         
         
 		RendererType type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeHalf:RendererTypeFull;
-#if 0
-        if ([modeSwitcher isOn])
-		{
-			type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeFull:RendererTypeHalf;
-		}
-#endif
         bool modeSwitcherHD;
         if (modeSwitcher.on)
         {
@@ -935,18 +929,6 @@
             modeSwitcherHD = false;
 		}
         
-#if 0
-        if (modeSwitcherHD)
-        {
-            type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeFull:RendererTypeHalf;
-        }
-            
-		BOOL fullFramerate = YES;
-		if (HALF_FRAMERATE_ENABLED && type == RendererTypeHalf) {
-			// NOTE: fullFramerate is currently tied to the same UI toggle switch as the render resolution
-			fullFramerate = NO;
-		}
-#endif
 
         if (modeSwitcherHD) {
             type = RendererTypeFull;

@@ -16,15 +16,6 @@
 
 #import "PlaybackView.h" //bret
 
-
-typedef enum
-{
-	bAVPlayerReady,
-	bAVPlayerPlaying,
-	bAVPlayerPaused,
-} bAVPlayerState;
-
-
 typedef enum VIDEO_WRITING_STATUS{
 	
 	Video_Ready_Writing = 0,
@@ -47,15 +38,15 @@ typedef enum
 	RendererTypeFull
 } RendererType;
 
-@class TimeView;
-@class ComposeProgressView;
-@class ScrollViewEnhancer;
+@protocol VideoRenderDelegate
+-(void)videoFinishedProcessing:(NSURL*)url;
+@end
 
-@interface BulletViewController : UIViewController <UIAlertViewDelegate,
-	MovieProcessorDelegate, MProgressViewDelegate, CustomPopViewDelegate, WebSiteCtrlorDelegate>{
+@interface BulletViewController : NSObject <MovieProcessorDelegate, MProgressViewDelegate> {
 	
 	RendererType renderType;
 	BOOL		 renderFullFramerate;
+    BOOL         isAppActive;
 	
 	CGSize				videoSize_;
 	CGSize				outputSize;
@@ -72,64 +63,20 @@ typedef enum
     float               timeScale;
 	int					framePastedFromPause;
 	
-	//UIImageView			*framesView;
-	UIButton			*cancelButton;
-	//UIButton			*readyButton;
-	
 	struct timeval		lastUpdate;
-	//TimeView			*timeView;
-	//ComposeProgressView *composeProgressView;
 	NSTimer				*timer;
 	
 	float				fStrengthValue;
 	float				fBrightnessValue;
-	BOOL				isAppActive;
 	BOOL				needCheckPoint;
-	BOOL				isAlertViewShown;
-    BOOL                isVideoSavedorShared;
-    BOOL                blockCameraRollSave;
-    BOOL                useYouTube;
-	UIAlertView*		mAlertView;
-	
-	
-	//UIScrollView *scrollView;
-	//ScrollViewEnhancer *scrollEnhancer;
-	//int tipsCount;
 	
 	NSTimeInterval 			renderStartTime;
 	NSTimeInterval			estimateFrameProcessTime;		// amount of time a single frame is expected to endure
 	NSTimeInterval			estimateClipProcessTime;		// adjustment factor applied to estimates for a single frame
 	NSTimeInterval			estimateTotalRenderTime;		// initial estimate of total render time
-	NSTimeInterval 			measuredTotalRenderTime;		// the actual render time once  calculated 
-    UIImageView				*mThumbImageView;
-    UIView					*mThumbView;
-    UIView					*mOpaqueViewLandscape;
-    UIView					*mOpaqueViewPortrait;
-    UIImage                 *mThumbImage;
-    UIImageView             *mMessage1;
-    UIImageView             *mMessage2;
-    //UIImageView             *mMessage3;
-    //bret video section
-    UIButton* mPlayButton;
-    AVPlayer*       mPlayer;
-    PlaybackView*   mPlaybackView;
-    id				mPlayTimeObserver;
-    bAVPlayerState	mPlayerState;
+	NSTimeInterval 			measuredTotalRenderTime;		// the actual render time once  calculated
+	CGSize					estimateOutputSize;
     CMTime			mVideoDuration;
-    UIButton* goBackButton;
-    UIButton* goPlayButton;
-    UIButton* goPauseButton;
-    UIButton*    goChangeButton;
-    UIButton*    goFacebookButton;
-    UIButton*    goYoutubeButton;
-    UIButton*    goShareButton;     //ios 7
-    UIButton*    goCameraRollButton;
-    
-    UIButton* movieAdvanceSliderBackground;
-    UISlider* movieAdvanceSlider;
-    UIActivityIndicatorView *activityIndicator;
-        
-    //end video section
 	VideoMode				videoMode;
 }
 
@@ -144,6 +91,11 @@ typedef enum
 @property (nonatomic) NSTimeInterval measuredTotalRenderTime;
 @property (nonatomic, strong) UIImage *mThumbImage;
 
+@property id<VideoRenderDelegate> __weak delegate;
+
 -(void)setRendererType:(RendererType)type withFullFramerate:(BOOL)fullFramerate andLookParam:(NSDictionary*)lookDic;
+- (void)load:(NSURL*)sourceVideoURL renderer:(ES2RendererOld*)rend videoMode:(VideoMode)mode brightness:(float)brightness strength:(float)strength rendererType:(RendererType)type fullFramerate:(BOOL)fullFramerate lookParam:(NSDictionary*)lookDic;
+- (void)startRenderInBackground;
+- (void)reset;
 
 @end

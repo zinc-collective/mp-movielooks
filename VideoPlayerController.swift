@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 import DAProgressOverlayLayeredView
 
-class VideoPlayerController : UIViewController, VideoRendererDelegate {
+class VideoPlayerController : UIViewController, VideoRenderDelegate {
     
     var sourceVideoURL: NSURL!
     var renderedKeyFrame: UIImage!
@@ -27,8 +27,9 @@ class VideoPlayerController : UIViewController, VideoRendererDelegate {
     
     var renderedVideoURL: NSURL?
     
-    var videoRenderer:VideoRenderer!
     var renderer: ES2Renderer!
+    var videoRenderer: BulletViewController!
+    var videoMode:VideoMode = VideoModeTraditionalLandscape
     
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -49,6 +50,7 @@ class VideoPlayerController : UIViewController, VideoRendererDelegate {
         super.viewWillAppear(animated)
         isPlaying = false
         self.navigationItem.rightBarButtonItems = [actionItem]
+        self.videoRenderer.reset()
 //        navigationBar.topItem?.rightBarButtonItems = [playItem, actionItem]
     }
     
@@ -89,11 +91,11 @@ class VideoPlayerController : UIViewController, VideoRendererDelegate {
         self.progressView.displayOperationWillTriggerAnimation()
 
         self.progressView.progress = 0.5
-
-        videoRenderer = VideoRenderer(videoURL: sourceVideoURL)
-        videoRenderer.renderer = renderer
-        videoRenderer.delegate = self
-        videoRenderer.startRender(strength: lookStrength, brightness: lookBrightness, look: look, videoMode: VideoModeTraditionalLandscape)
+        
+        self.videoRenderer = BulletViewController()
+        self.videoRenderer.delegate = self
+        self.videoRenderer.load(self.sourceVideoURL, renderer: self.renderer, videoMode: videoMode, brightness: lookBrightness, strength: lookStrength, rendererType: RendererTypeFull, fullFramerate: true, lookParam: look.data)
+        self.videoRenderer.startRenderInBackground()
 
         playerLayer = AVPlayerLayer(player: player)
         playerView.layer.insertSublayer(playerLayer, atIndex: 0)
@@ -175,6 +177,9 @@ class VideoPlayerController : UIViewController, VideoRendererDelegate {
 //        })
     }
     
+    func videoFinishedProcessing(url: NSURL!) {
+        self.rendererFinished(url)
+    }
     
     func rendererFinished(videoURL: NSURL) {
         self.renderedVideoURL = videoURL
