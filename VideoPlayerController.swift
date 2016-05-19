@@ -28,7 +28,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     var renderedVideoURL: NSURL?
     
     var renderer: ES2Renderer!
-    var videoRenderer: BulletViewController!
+    var videoRenderer: VideoRenderer!
     var videoMode:VideoMode = VideoModeTraditionalLandscape
     
     @IBOutlet weak var playerView: UIView!
@@ -59,29 +59,6 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         playerLayer.frame = playerView.bounds
     }
     
-//    override func viewWillDisappear(animated: Bool) {
-//        if let preview = self.navigationController?.viewControllers.last as? LookPreviewController {
-//            print("going back")
-//            if var views = self.navigationController?.viewControllers {
-//                views.removeLast()
-//                if let newPreview = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LookPreviewController") as? LookPreviewController {
-//                    print("new preview")
-//                    newPreview.videoURL = preview.videoURL
-//                    newPreview.look = preview.look
-//                    newPreview.keyFrame = preview.keyFrame
-//                    newPreview.videoMode = preview.videoMode
-//                    newPreview.lookBrightness = preview.lookBrightness
-//                    newPreview.lookStrength = preview.lookStrength
-////                    views.append(newPreview)
-//                }
-//                
-//                self.navigationController?.setViewControllers(views, animated: true)
-//            }
-//        }
-//        
-//        super.viewWillDisappear(false)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,7 +69,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 
         self.progressView.progress = 0.5
         
-        self.videoRenderer = BulletViewController()
+        self.videoRenderer = VideoRenderer()
         self.videoRenderer.delegate = self
         self.videoRenderer.load(self.sourceVideoURL, renderer: self.renderer, videoMode: videoMode, brightness: lookBrightness, strength: lookStrength, rendererType: RendererTypeFull, fullFramerate: true, lookParam: look.data)
         self.videoRenderer.startRenderInBackground()
@@ -177,10 +154,6 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 //        })
     }
     
-    func videoFinishedProcessing(url: NSURL!) {
-        self.rendererFinished(url)
-    }
-    
     func rendererFinished(videoURL: NSURL) {
         self.renderedVideoURL = videoURL
         
@@ -193,4 +166,22 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         
         self.processingView.hidden = true
     }
+    
+    func videoFinishedProcessing(url: NSURL!) {
+        self.rendererFinished(url)
+    }
+    
+    func videoTimeRemaining(time: Int32) {
+//        print("Time remaining", time)
+    }
+    
+    func videoTimeElapsed(portrait: Float, landscape: Float) {
+        print("Time elapsed", portrait, landscape, videoRenderer.estimateTotalRenderTime)
+        let percent = portrait / Float(videoRenderer.estimateTotalRenderTime)
+        print("UMMM", percent)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.progressView.progress = CGFloat(percent)
+        }
+    }
+    
 }

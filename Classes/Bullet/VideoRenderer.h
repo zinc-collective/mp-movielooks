@@ -1,5 +1,5 @@
 //
-//  BulletViewController.h
+//  VideoRenderer
 //  MobileLooks
 //
 //  Created by jack on 8/12/10.
@@ -40,9 +40,11 @@ typedef enum
 
 @protocol VideoRenderDelegate
 -(void)videoFinishedProcessing:(NSURL*)url;
+-(void)videoTimeRemaining:(int)time;
+-(void)videoTimeElapsed:(float)portrait landscape:(float)landscape;
 @end
 
-@interface BulletViewController : NSObject <MovieProcessorDelegate, MProgressViewDelegate> {
+@interface VideoRenderer : NSObject <MovieProcessorDelegate, MProgressViewDelegate> {
 	
 	RendererType renderType;
 	BOOL		 renderFullFramerate;

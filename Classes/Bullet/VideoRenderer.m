@@ -1,5 +1,5 @@
 //
-//  MobileLooksViewController.m
+//  VideoRenderer
 //  MobileLooks
 //
 //  Created by jack on 8/12/10.
@@ -48,7 +48,7 @@
 //
 //        [bulletViewController setRendererType:type withFullFramerate:fullFramerate andLookParam:mLookDic];
 
-#import "BulletViewController.h"
+#import "VideoRenderer.h"
 #import <sys/time.h>
 
 #import "DeviceDetect.h"
@@ -61,7 +61,7 @@
 static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObservationContextBullet";
 
 
-@implementation BulletViewController
+@implementation VideoRenderer
 //@synthesize outputUrl_;
 @synthesize videoMode;
 @synthesize fBrightnessValue;
@@ -224,8 +224,9 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 
 		timeRemaining = estimateFrameProcessTime*_totalFrames + ceil(_totalFrames/frameFPS)*estimateClipProcessTime;
 		//timeScale = timeRemaining;
-    timeScale = _totalFrames;
-    //[timeView setTimeRemaining:timeRemaining isInit:YES];
+        timeScale = _totalFrames;
+        //[timeView setTimeRemaining:timeRemaining isInit:YES];
+        [self.delegate videoTimeRemaining:timeRemaining];
 	}
 }
 
@@ -236,6 +237,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	timeRemaining = (int)[self estimateProcessingTimebyFrame:(NSUInteger)(_totalFrames-_completedFrames)];
 	if(timeRemaining<0)
         timeRemaining=0;
+    
+    [self.delegate videoTimeRemaining:timeRemaining];
 	//[timeView setTimeRemaining:timeRemaining isInit:NO];
 }
 
@@ -401,6 +404,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
                 
                 timeElapsedLandscape = timeElapsedLandscape + timeoffsetl; //these are for rotation during render
                 timeElapsedPortrait = timeElapsedLandscape + timeoffsetp;
+                
+                [self.delegate videoTimeElapsed:timeElapsedPortrait landscape:timeElapsedLandscape];
             }
         });
 	return pixelBuffer;

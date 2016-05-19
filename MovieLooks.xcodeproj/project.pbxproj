@@ -310,7 +310,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		5E19FE0A12430DFB0062BE29 /* LooksBrowserViewControllerOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDF912430DFB0062BE29 /* LooksBrowserViewControllerOld.m */; };
 		5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFD12430DFB0062BE29 /* LookThumbnailView.m */; };
 		5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFF12430DFB0062BE29 /* MyStoreObserver.m */; };
 		5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0112430DFB0062BE29 /* Debug.c */; };
@@ -364,10 +363,9 @@
 		5E7100EA129BAA9A001F9D79 /* Warm Beauty.3dl in Resources */ = {isa = PBXBuildFile; fileRef = 5E7100C2129BAA9A001F9D79 /* Warm Beauty.3dl */; };
 		5E7100EB129BAA9A001F9D79 /* White Diffusion.3dl in Resources */ = {isa = PBXBuildFile; fileRef = 5E7100C3129BAA9A001F9D79 /* White Diffusion.3dl */; };
 		5E7EED8612914AD600D862FA /* TipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7EED8512914AD600D862FA /* TipView.m */; };
-		5E8618DC12797F40003ED275 /* BulletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618C712797F40003ED275 /* BulletViewController.m */; };
+		5E8618DC12797F40003ED275 /* VideoRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618C712797F40003ED275 /* VideoRenderer.m */; };
 		5E8618DD12797F40003ED275 /* EmbedWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618C912797F40003ED275 /* EmbedWebView.m */; };
 		5E8618DE12797F40003ED275 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618CB12797F40003ED275 /* ProgressView.m */; };
-		5E8618E912797F65003ED275 /* LookPreviewControllerOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618E812797F65003ED275 /* LookPreviewControllerOld.m */; };
 		5E8618F412797F89003ED275 /* FileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618F112797F89003ED275 /* FileCache.m */; };
 		5E8618F512797F89003ED275 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8618F312797F89003ED275 /* Utilities.m */; };
 		5E9FF92B1213C5730083E4E9 /* darkenLUT.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9FF9171213C5730083E4E9 /* darkenLUT.png */; };
@@ -401,7 +399,6 @@
 		74B8AAF61241CE43009D1B80 /* mobileLookdarken_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */; };
 		7805EF001CDD3C89007FCE11 /* LookPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */; };
 		7841FAAC1CECBB18007CADBC /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */; };
-		7841FAAF1CECCB85007CADBC /* VideoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841FAAE1CECCB85007CADBC /* VideoRenderer.swift */; };
 		78538E001CDCF5AA00BC737C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538DFF1CDCF5AA00BC737C /* Video.swift */; };
 		78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */; };
 		785F732B1CDB9638009BCB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F732A1CDB9638009BCB5A /* AppDelegate.swift */; };
@@ -892,8 +889,8 @@
 		5E7100C3129BAA9A001F9D79 /* White Diffusion.3dl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "White Diffusion.3dl"; sourceTree = "<group>"; };
 		5E7EED8412914AD600D862FA /* TipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipView.h; sourceTree = "<group>"; };
 		5E7EED8512914AD600D862FA /* TipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipView.m; sourceTree = "<group>"; };
-		5E8618C612797F40003ED275 /* BulletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletViewController.h; sourceTree = "<group>"; };
-		5E8618C712797F40003ED275 /* BulletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletViewController.m; sourceTree = "<group>"; };
+		5E8618C612797F40003ED275 /* VideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoRenderer.h; path = ../Bullet/VideoRenderer.h; sourceTree = "<group>"; };
+		5E8618C712797F40003ED275 /* VideoRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoRenderer.m; path = ../Bullet/VideoRenderer.m; sourceTree = "<group>"; };
 		5E8618C812797F40003ED275 /* EmbedWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmbedWebView.h; sourceTree = "<group>"; };
 		5E8618C912797F40003ED275 /* EmbedWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmbedWebView.m; sourceTree = "<group>"; };
 		5E8618CA12797F40003ED275 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
@@ -941,7 +938,6 @@
 		7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookPreviewController.swift; sourceTree = "<group>"; };
 		781C462A1CE650FB0041DE34 /* MovieLooks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MovieLooks.entitlements; sourceTree = "<group>"; };
 		7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
-		7841FAAE1CECCB85007CADBC /* VideoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRenderer.swift; sourceTree = "<group>"; };
 		78538DFF1CDCF5AA00BC737C /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksBrowserViewController.swift; sourceTree = "<group>"; };
 		785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MovieLooks-Bridging-Header.h"; path = "Classes/MovieLooks-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1620,8 +1616,6 @@
 			children = (
 				5E8618E712797F65003ED275 /* LookPreviewControllerOld.h */,
 				5E8618E812797F65003ED275 /* LookPreviewControllerOld.m */,
-				5E8618C612797F40003ED275 /* BulletViewController.h */,
-				5E8618C712797F40003ED275 /* BulletViewController.m */,
 				5E8618C812797F40003ED275 /* EmbedWebView.h */,
 				5E8618C912797F40003ED275 /* EmbedWebView.m */,
 				5E8618CA12797F40003ED275 /* ProgressView.h */,
@@ -1651,6 +1645,8 @@
 				785F73431CDBBED9009BCB5A /* Memory.h */,
 				785F73441CDBBED9009BCB5A /* Memory.m */,
 				78538DFF1CDCF5AA00BC737C /* Video.swift */,
+				5E8618C612797F40003ED275 /* VideoRenderer.h */,
+				5E8618C712797F40003ED275 /* VideoRenderer.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1761,7 +1757,6 @@
 			isa = PBXGroup;
 			children = (
 				7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */,
-				7841FAAE1CECCB85007CADBC /* VideoRenderer.swift */,
 			);
 			name = Movie;
 			sourceTree = "<group>";
@@ -2439,9 +2434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E19FE0A12430DFB0062BE29 /* LooksBrowserViewControllerOld.m in Sources */,
 				5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */,
-				7841FAAF1CECCB85007CADBC /* VideoRenderer.swift in Sources */,
 				78D75F8C1CE136AA00895BA1 /* PurchaseManager.swift in Sources */,
 				5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */,
 				5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */,
@@ -2451,13 +2444,12 @@
 				5EB5DDB01248A9DB009DC56E /* ScrollViewEnhancer.m in Sources */,
 				5E579BC4126C4DCF0024E0D8 /* FootView.m in Sources */,
 				5EDE894B127675E600232758 /* FastRenderer.m in Sources */,
-				5E8618DC12797F40003ED275 /* BulletViewController.m in Sources */,
+				5E8618DC12797F40003ED275 /* VideoRenderer.m in Sources */,
 				785F73421CDBB4CC009BCB5A /* Debug.swift in Sources */,
 				78D75F901CE1E88900895BA1 /* ES2Renderer.swift in Sources */,
 				78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */,
 				5E8618DD12797F40003ED275 /* EmbedWebView.m in Sources */,
 				5E8618DE12797F40003ED275 /* ProgressView.m in Sources */,
-				5E8618E912797F65003ED275 /* LookPreviewControllerOld.m in Sources */,
 				5E8618F412797F89003ED275 /* FileCache.m in Sources */,
 				785F73351CDB96BE009BCB5A /* MainViewController.swift in Sources */,
 				5E8618F512797F89003ED275 /* Utilities.m in Sources */,
