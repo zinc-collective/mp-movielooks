@@ -25,7 +25,8 @@ class VideoRenderer: NSObject, MovieProcessorDelegate {
 //    var renderFullFramerate: Bool = true
 //    var videoMode:VideoMode = VideoModeWideSceenLandscape
     
-    let renderer = ES2Renderer(frameSize: CGSizeZero, outputFrameSize: CGSizeZero)
+//    let renderer = ES2Renderer(frameSize: CGSizeZero, outputFrameSize: CGSizeZero)
+    var renderer : ES2Renderer!
     let movieProcessor : MovieProcessor!
     let outputSize: CGSize = CGSize(width: 100, height: 100)
     var needCheckPoint = true
@@ -39,6 +40,7 @@ class VideoRenderer: NSObject, MovieProcessorDelegate {
     }
     
     func startRender(strength strength:Float, brightness:Float, look:Look, videoMode:VideoMode) {
+        renderer.unloadKeyFrame()
 		renderer.looksStrengthValue = strength
 		renderer.looksBrightnessValue = brightness
     	renderer.loadLookParam(look.data, withMode:videoMode)

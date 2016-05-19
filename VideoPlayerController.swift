@@ -28,6 +28,7 @@ class VideoPlayerController : UIViewController, VideoRendererDelegate {
     var renderedVideoURL: NSURL?
     
     var videoRenderer:VideoRenderer!
+    var renderer: ES2Renderer!
     
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -56,6 +57,29 @@ class VideoPlayerController : UIViewController, VideoRendererDelegate {
         playerLayer.frame = playerView.bounds
     }
     
+//    override func viewWillDisappear(animated: Bool) {
+//        if let preview = self.navigationController?.viewControllers.last as? LookPreviewController {
+//            print("going back")
+//            if var views = self.navigationController?.viewControllers {
+//                views.removeLast()
+//                if let newPreview = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LookPreviewController") as? LookPreviewController {
+//                    print("new preview")
+//                    newPreview.videoURL = preview.videoURL
+//                    newPreview.look = preview.look
+//                    newPreview.keyFrame = preview.keyFrame
+//                    newPreview.videoMode = preview.videoMode
+//                    newPreview.lookBrightness = preview.lookBrightness
+//                    newPreview.lookStrength = preview.lookStrength
+////                    views.append(newPreview)
+//                }
+//                
+//                self.navigationController?.setViewControllers(views, animated: true)
+//            }
+//        }
+//        
+//        super.viewWillDisappear(false)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,29 +87,16 @@ class VideoPlayerController : UIViewController, VideoRendererDelegate {
         playButton.hidden = true
         self.navigationItem.rightBarButtonItems = []
         self.progressView.displayOperationWillTriggerAnimation()
-        
+
         self.progressView.progress = 0.5
-        
+
         videoRenderer = VideoRenderer(videoURL: sourceVideoURL)
+        videoRenderer.renderer = renderer
         videoRenderer.delegate = self
         videoRenderer.startRender(strength: lookStrength, brightness: lookBrightness, look: look, videoMode: VideoModeTraditionalLandscape)
-        
+
         playerLayer = AVPlayerLayer(player: player)
         playerView.layer.insertSublayer(playerLayer, atIndex: 0)
-        
-//        if let title = movieTitle {
-//            self.title = title
-//            navigationBar.topItem?.title = title
-//        }
-//        
-//        if let url = fullVideoURL {
-//            let playerItem = AVPlayerItem(URL: url)
-//            player.replaceCurrentItemWithPlayerItem(playerItem)
-//            
-//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
-//        }
-        
-        
     }
     
     @IBAction func sharePressed(){

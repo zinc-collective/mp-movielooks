@@ -52,14 +52,18 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         cellSize = cellSize(keyFrame)
         lookStates = lookStates(lookGroups)
         
-        renderer = ES2Renderer(frameSize: cellSize, outputFrameSize: cellSize)
+        let scale = UIScreen.mainScreen().scale
+        let outputSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
+        renderer = ES2Renderer(frameSize: outputSize, outputFrameSize: outputSize)
         startRender(keyFrame)
     }
     
     func startRender(keyFrame:UIImage) {
         // no matter what you put in for the size, the renderer will create a square image and fill the space
         // that you give it. So make sure this is square
-        renderer.resetFrameSize(cellSize, outputFrameSize: cellSize)
+        let scale = UIScreen.mainScreen().scale
+        let outputSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
+        renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
         renderer.resetRenderBuffer()
         renderer.loadKeyFrame(keyFrame)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
