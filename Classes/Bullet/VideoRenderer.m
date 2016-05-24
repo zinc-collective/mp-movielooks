@@ -478,9 +478,9 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 
 -(void)checkPointRenderMovieEvent
 {
-	NSLog(@"Video Clip Check Point!");
 	CMTimeRange processRange = [movieProcessor getProcessRange];
 	_completedFrames = (int)(processRange.start.value/20);
+    NSLog(@"Video Clip Check Point! %i %lld", _completedFrames, processRange.start.value);
     [self.delegate videoCompletedFrames:_completedFrames ofTotal:(int)_totalFrames];
 }
 
