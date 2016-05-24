@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042D17E8134F1A6400E73C80 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042D17E7134F1A6400E73C80 /* Entitlements.plist */; };
 		04D48F5E134EBBFA002A5ECE /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D48F5C134EBBFA002A5ECE /* news.png */; };
 		04D48F5F134EBBFA002A5ECE /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D48F5D134EBBFA002A5ECE /* news@2x.png */; };
 		04D48F61134EBC0E002A5ECE /* news-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D48F60134EBC0E002A5ECE /* news-iPad.png */; };
@@ -310,6 +309,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		367EC8E3FEAFC025B5AB4C62 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */; };
 		5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFD12430DFB0062BE29 /* LookThumbnailView.m */; };
 		5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFF12430DFB0062BE29 /* MyStoreObserver.m */; };
 		5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0112430DFB0062BE29 /* Debug.c */; };
@@ -637,6 +637,7 @@
 		06D6C9841345711400CF3FE6 /* trimMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trimMask.png; sourceTree = "<group>"; };
 		06D6C9851345711400CF3FE6 /* trimPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trimPicker.png; sourceTree = "<group>"; };
 		06D6C9861345711400CF3FE6 /* trimUnselectedControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trimUnselectedControl.png; sourceTree = "<group>"; };
+		131E83CE67D5CB3B6F7688EE /* Pods-MovieLooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.release.xcconfig"; sourceTree = "<group>"; };
 		1912F1CB187F21130078372A /* YoutubeUIActivityShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YoutubeUIActivityShareViewController.h; path = Sharing/YoutubeUIActivityShareViewController.h; sourceTree = "<group>"; };
 		1912F1CC187F21130078372A /* YoutubeUIActivityShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YoutubeUIActivityShareViewController.m; path = Sharing/YoutubeUIActivityShareViewController.m; sourceTree = "<group>"; };
 		1912F1D2187F80440078372A /* youtube_ui_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_ui_iphone.png; sourceTree = "<group>"; };
@@ -824,6 +825,7 @@
 		1D6058910D05DD3D006BFB54 /* MovieLooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieLooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2F9978A41300CC69B94059BA /* Pods-MovieLooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.debug.xcconfig"; sourceTree = "<group>"; };
 		3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieLooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA4F630368D1EE00C91783 /* MovieLooks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieLooks_Prefix.pch; sourceTree = "<group>"; };
 		5E19FDF812430DFB0062BE29 /* LooksBrowserViewControllerOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksBrowserViewControllerOld.h; sourceTree = "<group>"; };
@@ -1032,6 +1034,7 @@
 		9CF40FB1135EA7630066C911 /* bullet_ready_button_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_ready_button_h.png; sourceTree = "<group>"; };
 		9CF40FB2135EA7630066C911 /* bullet_ready_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_ready_button.png; sourceTree = "<group>"; };
 		9E70126454921E1326E71395 /* Pods-MovieLooks.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.distribution.xcconfig"; sourceTree = "<group>"; };
+		AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieLooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80C94A717B163B700C10D5E /* btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_down.png; sourceTree = "<group>"; };
 		D80C94A817B163B700C10D5E /* btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_up.png; sourceTree = "<group>"; };
 		D80C94A917B163B700C10D5E /* btn_up2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_up2.png; sourceTree = "<group>"; };
@@ -1048,7 +1051,9 @@
 		D8E2371D17AAF324004BC514 /* bullet_share_button_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet_share_button_h@2x.png"; sourceTree = "<group>"; };
 		D8E2371E17AAF324004BC514 /* bullet_share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_share_button.png; sourceTree = "<group>"; };
 		D8E2371F17AAF324004BC514 /* bullet_share_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet_share_button@2x.png"; sourceTree = "<group>"; };
+		EB338DA71F414ACA78DE97FB /* Pods-MovieLooks.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.distribution.xcconfig"; sourceTree = "<group>"; };
 		F17B776F3517F5E2752EAE23 /* Pods-MovieLooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.debug.xcconfig"; sourceTree = "<group>"; };
+		F9609011683EE28441D091E9 /* Pods-MovieLooks.ad hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.ad hoc.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.ad hoc.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1073,6 +1078,7 @@
 				5E3144DD122DFA6F00D67E0D /* StoreKit.framework in Frameworks */,
 				9CDF04581361203F00EA163D /* CoreLocation.framework in Frameworks */,
 				6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */,
+				367EC8E3FEAFC025B5AB4C62 /* Pods_MovieLooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1516,6 +1522,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		256E7B55A145604958379CAE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2F9978A41300CC69B94059BA /* Pods-MovieLooks.debug.xcconfig */,
+				131E83CE67D5CB3B6F7688EE /* Pods-MovieLooks.release.xcconfig */,
+				F9609011683EE28441D091E9 /* Pods-MovieLooks.ad hoc.xcconfig */,
+				EB338DA71F414ACA78DE97FB /* Pods-MovieLooks.distribution.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1529,6 +1546,8 @@
 				7896C8041CF4ABC400AE804F /* Legacy */,
 				5E9FF91C1213C5730083E4E9 /* Shaders */,
 				7896C8051CF4ABCB00AE804F /* Build Stuff */,
+				256E7B55A145604958379CAE /* Pods */,
+				ED3D8C73FBAF79ECBE9578C3 /* Frameworks */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1890,6 +1909,14 @@
 			name = Sharing;
 			sourceTree = "<group>";
 		};
+		ED3D8C73FBAF79ECBE9578C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1897,12 +1924,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MovieLooks" */;
 			buildPhases = (
-				1AB918481CEA0EDDC9DB111A /* Check Pods Manifest.lock */,
+				1AB918481CEA0EDDC9DB111A /* 📦 Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				4E430B719680C7F65567CD17 /* Embed Pods Frameworks */,
-				6810D1B72E371F505CAC0EF0 /* Copy Pods Resources */,
+				4E430B719680C7F65567CD17 /* 📦 Embed Pods Frameworks */,
+				6810D1B72E371F505CAC0EF0 /* 📦 Copy Pods Resources */,
 				78D9FD331CEA249400745DDE /* ShellScript */,
 			);
 			buildRules = (
@@ -2337,7 +2364,6 @@
 				04D48F5F134EBBFA002A5ECE /* news@2x.png in Resources */,
 				04D48F61134EBC0E002A5ECE /* news-iPad.png in Resources */,
 				78D9FD351CEA25F100745DDE /* IMG_2994.MOV in Resources */,
-				042D17E8134F1A6400E73C80 /* Entitlements.plist in Resources */,
 				9CACD9B9135021CA00717286 /* pop_background.png in Resources */,
 				9CACD9BA135021CA00717286 /* pop_button.png in Resources */,
 				19EEBC4118383D0B0059BFC6 /* slider_back_iphone_74x33.png in Resources */,
@@ -2384,14 +2410,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1AB918481CEA0EDDC9DB111A /* Check Pods Manifest.lock */ = {
+		1AB918481CEA0EDDC9DB111A /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2399,14 +2425,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4E430B719680C7F65567CD17 /* Embed Pods Frameworks */ = {
+		4E430B719680C7F65567CD17 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2414,14 +2440,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6810D1B72E371F505CAC0EF0 /* Copy Pods Resources */ = {
+		6810D1B72E371F505CAC0EF0 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

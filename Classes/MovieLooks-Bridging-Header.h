@@ -12,3 +12,4 @@
 #import "MovieProcessor.h"
 #import "RenderDefs.h"
 #import "VideoRenderer.h"
+#import "YoutubeActivity.h"

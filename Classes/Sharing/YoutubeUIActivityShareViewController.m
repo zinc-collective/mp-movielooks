@@ -904,6 +904,13 @@
 	{
 		[self layoutForLandscape];
 	}
+    
+    // HACK: for larger devices, just blow it up
+    // this was designed for iPhone 5 max
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        CGFloat scale = self.view.frame.size.width / 320.0f;
+        self.view.transform = CGAffineTransformMakeScale(scale, scale);
+    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
