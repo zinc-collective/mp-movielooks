@@ -81,6 +81,12 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         playerView.layer.insertSublayer(playerLayer, atIndex: 0)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        videoRenderer.cancel()
+    }
+    
     @IBAction func sharePressed(){
         pause()
         displayShareSheet()

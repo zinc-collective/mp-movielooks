@@ -100,5 +100,6 @@ typedef enum
 - (void)load:(NSURL*)sourceVideoURL renderer:(ES2RendererOld*)rend videoMode:(VideoMode)mode brightness:(float)brightness strength:(float)strength rendererType:(RendererType)type fullFramerate:(BOOL)fullFramerate lookParam:(NSDictionary*)lookDic;
 - (void)startRenderInBackground;
 - (void)reset;
+- (void)cancel;
 
 @end

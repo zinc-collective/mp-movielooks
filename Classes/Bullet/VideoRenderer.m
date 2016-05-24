@@ -743,6 +743,15 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 }
 */
 
+
+- (void)cancel {
+    NSLog(@"CANCEL");
+	if ([movieProcessor getProcessState]==MovieStateRendering  || [movieProcessor getProcessState]==MovieStateResume)
+		[movieProcessor stopRenderMovie];
+	else if([movieProcessor getProcessState]==MovieStateCompose)
+		[movieProcessor stopComposeMovie];
+}
+
 - (void)errorSamplerMovieEvent {
     // don't know what this means
     NSLog(@"ERROR: sampler movie event");
