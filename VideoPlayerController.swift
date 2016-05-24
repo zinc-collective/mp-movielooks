@@ -40,7 +40,8 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     @IBOutlet var actionItem: UIBarButtonItem!
     
     @IBOutlet weak var processingView: UIView!
-    @IBOutlet weak var progressView: DAProgressOverlayView!
+    @IBOutlet weak var progressContainer: UIView!
+    var progressView: DAProgressOverlayView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -56,6 +57,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         playerLayer.frame = playerView.bounds
+        progressView.frame = progressContainer.bounds
     }
     
     override func viewDidLoad() {
@@ -64,10 +66,11 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         imageView.image = renderedKeyFrame
         playButton.hidden = true
         self.navigationItem.rightBarButtonItems = []
-        self.progressView.displayOperationWillTriggerAnimation()
-//        self.progressView.animationCompletionHandler = {_ in
-//            self.progressView.progress = 0.0
-//        }
+        
+        let progressView = DAProgressOverlayView(frame: progressContainer.bounds)
+        progressContainer.addSubview(progressView)
+        progressView.displayOperationWillTriggerAnimation()
+        self.progressView = progressView
         
         self.videoRenderer = VideoRenderer()
         self.videoRenderer.delegate = self

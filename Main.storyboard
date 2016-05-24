@@ -440,7 +440,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5FD-T0-oeW">
                                         <rect key="frame" x="0.0" y="0.0" width="667" height="331"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzN-FI-1Sh" customClass="DAProgressOverlayView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzN-FI-1Sh" customClass="I">
                                         <rect key="frame" x="167.5" y="0.5" width="331" height="331"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="PzN-FI-1Sh" secondAttribute="height" multiplier="1:1" id="pKq-JP-Xhj"/>
@@ -530,7 +530,7 @@
                         <outlet property="playItem" destination="6y3-gT-ZJv" id="6qU-t4-lRp"/>
                         <outlet property="playerView" destination="UR2-Jb-bmq" id="rSi-ed-CkG"/>
                         <outlet property="processingView" destination="kHF-m6-AbL" id="sYJ-cx-8QA"/>
-                        <outlet property="progressView" destination="PzN-FI-1Sh" id="iHS-qz-zK2"/>
+                        <outlet property="progressContainer" destination="PzN-FI-1Sh" id="4TA-Rb-J6H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ltr-Aw-Phe" userLabel="First Responder" sceneMemberID="firstResponder"/>
