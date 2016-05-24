@@ -1478,7 +1478,7 @@
 			path = Skin;
 			sourceTree = "<group>";
 		};
-		080E96DDFE201D6D7F000001 /* Legacy Classes */ = {
+		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				D8E2372417AAF511004BC514 /* Sharing */,
@@ -1494,7 +1494,6 @@
 				9CACD9BF1350221C00717286 /* CustomPopView.h */,
 				9CACD9C01350221C00717286 /* CustomPopView.m */,
 			);
-			name = "Legacy Classes";
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -1524,18 +1523,12 @@
 				7883105E1CD93903003DDBBD /* todo.md */,
 				785F732A1CDB9638009BCB5A /* AppDelegate.swift */,
 				785F73361CDB97F5009BCB5A /* Assets.xcassets */,
-				785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */,
 				78D75F941CE2397000895BA1 /* UI */,
 				78D75F851CE136AA00895BA1 /* Data */,
 				785F733E1CDBB49C009BCB5A /* Debug */,
-				080E96DDFE201D6D7F000001 /* Legacy Classes */,
+				7896C8041CF4ABC400AE804F /* Legacy */,
 				5E9FF91C1213C5730083E4E9 /* Shaders */,
-				5E9FF9151213C5730083E4E9 /* Resources */,
-				04F2D1E4134035F400851388 /* Resources-iPad */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				19C28FACFE9D520D11CA2CBB /* Products */,
-				16D64DA889B8B78148F475C7 /* Pods */,
+				7896C8051CF4ABCB00AE804F /* Build Stuff */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1786,6 +1779,28 @@
 				785F73411CDBB4CC009BCB5A /* Debug.swift */,
 			);
 			name = Debug;
+			sourceTree = "<group>";
+		};
+		7896C8041CF4ABC400AE804F /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				785F73291CDB9637009BCB5A /* MovieLooks-Bridging-Header.h */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				5E9FF9151213C5730083E4E9 /* Resources */,
+				04F2D1E4134035F400851388 /* Resources-iPad */,
+			);
+			name = Legacy;
+			sourceTree = "<group>";
+		};
+		7896C8051CF4ABCB00AE804F /* Build Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				16D64DA889B8B78148F475C7 /* Pods */,
+			);
+			name = "Build Stuff";
 			sourceTree = "<group>";
 		};
 		78D75F7E1CE12B4900895BA1 /* Looks */ = {
