@@ -125,6 +125,10 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 
     func displayShareSheet(){
         if let url = renderedVideoURL {
+//            let youtube = YoutubeActivity()
+//            youtube.mThumbImage = renderedKeyFrame
+//            youtube.processedMoviePath = url.path
+//            let youtube = KMYoutubeActivity()
             let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: {})
         }
@@ -166,3 +170,67 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     }
     
 }
+//    NSURL *url = [NSURL fileURLWithPath:processedMoviePath];
+//    NSArray* dataToShare = [NSArray arrayWithObjects:url,nil];
+//    
+//    YoutubeActivity *youtubeactivity = [[YoutubeActivity alloc]init];
+//    youtubeactivity.mThumbImage = mThumbImageView.image;
+//    youtubeactivity.processedMoviePath = processedMoviePath;
+//    
+//    NSArray* customactivities = [NSArray arrayWithObjects:youtubeactivity,nil];
+//
+//    UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
+//                                                                                         applicationActivities:customactivities];
+//
+//
+//    [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray * returnedItems, NSError * error)
+//    {
+//        bool activityTypeFound = false;
+//        NSString *notificationString;
+//        if (completed)
+//        {
+//            isVideoSavedorShared  = YES;
+//            
+//            if ([activityType rangeOfString:@"cameraroll" options:NSCaseInsensitiveSearch].location != NSNotFound)
+//            {
+//                activityTypeFound = true;
+//                notificationString = @"Your movie was saved to the Camera Roll.";
+//                //if (!isVideoSavedorShared)
+//                //    [self finishSaveToCameraRollEvent];
+//                NSLog(@"bret Camera Roll");
+//            }
+//            if ([activityType rangeOfString:@"facebook" options:NSCaseInsensitiveSearch].location != NSNotFound)
+//            {
+//                notificationString = @"Your movie was uploaded to Facebook.";
+//                activityTypeFound = true;
+//                NSLog(@"bret Camera Roll");
+//            }
+//            if ([activityType rangeOfString:@"youtube" options:NSCaseInsensitiveSearch].location != NSNotFound)
+//            {
+//                notificationString = @"Your movie was uploaded to Youtube.";
+//                activityTypeFound = true;
+//                NSLog(@"bret Camera Roll");
+//            }
+//            if ([activityType rangeOfString:@"vimeo" options:NSCaseInsensitiveSearch].location != NSNotFound)
+//            {
+//                notificationString = @"Your movie was uploaded to Vimeo.";
+//                activityTypeFound = true;
+//                NSLog(@"bret Camera Roll");
+//            }
+//            if ([activityType rangeOfString:@"flickr" options:NSCaseInsensitiveSearch].location != NSNotFound)
+//            {
+//                notificationString = @"Your movie was uploaded to Flickr.";
+//                activityTypeFound = true;
+//                NSLog(@"bret Camera Roll");
+//            }
+//            if ([activityType rangeOfString:@"weibo" options:NSCaseInsensitiveSearch].location != NSNotFound)
+//            {
+//                notificationString = @"Your movie was uploaded to Weibo.";
+//                activityTypeFound = true;
+//                NSLog(@"bret Camera Roll");
+//            }
+//            if (!activityTypeFound)
+//            {
+//                notificationString = @"Your movie was sucessfully uploaded.";
+//            }
+//        }

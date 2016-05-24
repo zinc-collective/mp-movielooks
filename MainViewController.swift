@@ -16,6 +16,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        
         #if DEBUG
             Debug.addDefaultVideoIfEmpty()
         #endif

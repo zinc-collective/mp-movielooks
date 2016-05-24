@@ -127,7 +127,6 @@
 		06D6C9DC1345711400CF3FE6 /* trimMask.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D6C9841345711400CF3FE6 /* trimMask.png */; };
 		06D6C9DD1345711400CF3FE6 /* trimPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D6C9851345711400CF3FE6 /* trimPicker.png */; };
 		06D6C9DE1345711400CF3FE6 /* trimUnselectedControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D6C9861345711400CF3FE6 /* trimUnselectedControl.png */; };
-		1912F1CD187F21140078372A /* YoutubeUIActivityShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912F1CC187F21130078372A /* YoutubeUIActivityShareViewController.m */; };
 		1912F1D4187F80440078372A /* youtube_ui_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1912F1D2187F80440078372A /* youtube_ui_iphone.png */; };
 		1912F1D5187F80450078372A /* youtube_ui_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1912F1D3187F80440078372A /* youtube_ui_iphone@2x.png */; };
 		1912F1D8187F80620078372A /* youtube_ui_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1912F1D6187F80620078372A /* youtube_ui_ipad.png */; };
@@ -282,7 +281,6 @@
 		19CDFDE8185A805700B2472B /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CDFDDE185A805700B2472B /* Icon-120.png */; };
 		19CDFDE9185A805700B2472B /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CDFDDF185A805700B2472B /* Icon-144.png */; };
 		19CDFDEA185A805700B2472B /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CDFDE0185A805700B2472B /* Icon-152.png */; };
-		19DABD2C187B8B0400DD85DF /* YoutubeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DABD2B187B8B0400DD85DF /* YoutubeActivity.m */; };
 		19EEBC221836FD700059BFC6 /* slider_back_ipad_226x71.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EEBC1A1836FD700059BFC6 /* slider_back_ipad_226x71.png */; };
 		19EEBC231836FD700059BFC6 /* slider_background_ipad_463x71.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EEBC1B1836FD700059BFC6 /* slider_background_ipad_463x71.png */; };
 		19EEBC241836FD700059BFC6 /* slider_button_ipad_28x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EEBC1C1836FD700059BFC6 /* slider_button_ipad_28x30.png */; };
@@ -487,7 +485,6 @@
 		D80C94AA17B163B700C10D5E /* btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = D80C94A717B163B700C10D5E /* btn_down.png */; };
 		D80C94AB17B163B700C10D5E /* btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = D80C94A817B163B700C10D5E /* btn_up.png */; };
 		D80C94AC17B163B700C10D5E /* btn_up2.png in Resources */ = {isa = PBXBuildFile; fileRef = D80C94A917B163B700C10D5E /* btn_up2.png */; };
-		D882BBED17CCFC2A007C47E7 /* YoutubeConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D882BBEC17CCFC2A007C47E7 /* YoutubeConnect.m */; };
 		D882BF3D17CD12A7007C47E7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6FC9E712239C9000E9F2AC /* MobileCoreServices.framework */; };
 		D882C0B217CD5CAE007C47E7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D882BE2517CD05C0007C47E7 /* Security.framework */; };
 		D882C0B317CD5CB5007C47E7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D882BE2717CD05C8007C47E7 /* SystemConfiguration.framework */; };
@@ -638,8 +635,6 @@
 		06D6C9851345711400CF3FE6 /* trimPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trimPicker.png; sourceTree = "<group>"; };
 		06D6C9861345711400CF3FE6 /* trimUnselectedControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trimUnselectedControl.png; sourceTree = "<group>"; };
 		131E83CE67D5CB3B6F7688EE /* Pods-MovieLooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.release.xcconfig"; sourceTree = "<group>"; };
-		1912F1CB187F21130078372A /* YoutubeUIActivityShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YoutubeUIActivityShareViewController.h; path = Sharing/YoutubeUIActivityShareViewController.h; sourceTree = "<group>"; };
-		1912F1CC187F21130078372A /* YoutubeUIActivityShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YoutubeUIActivityShareViewController.m; path = Sharing/YoutubeUIActivityShareViewController.m; sourceTree = "<group>"; };
 		1912F1D2187F80440078372A /* youtube_ui_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_ui_iphone.png; sourceTree = "<group>"; };
 		1912F1D3187F80440078372A /* youtube_ui_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube_ui_iphone@2x.png"; sourceTree = "<group>"; };
 		1912F1D6187F80620078372A /* youtube_ui_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = youtube_ui_ipad.png; path = "Resources-iPad/youtube_ui_ipad.png"; sourceTree = "<group>"; };
@@ -796,8 +791,6 @@
 		19CDFDDE185A805700B2472B /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		19CDFDDF185A805700B2472B /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
 		19CDFDE0185A805700B2472B /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-152.png"; sourceTree = "<group>"; };
-		19DABD2A187B8B0400DD85DF /* YoutubeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YoutubeActivity.h; path = Sharing/YoutubeActivity.h; sourceTree = "<group>"; };
-		19DABD2B187B8B0400DD85DF /* YoutubeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YoutubeActivity.m; path = Sharing/YoutubeActivity.m; sourceTree = "<group>"; };
 		19EEBC1A1836FD700059BFC6 /* slider_back_ipad_226x71.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slider_back_ipad_226x71.png; path = "Resources-iPad/slider_back_ipad_226x71.png"; sourceTree = "<group>"; };
 		19EEBC1B1836FD700059BFC6 /* slider_background_ipad_463x71.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slider_background_ipad_463x71.png; path = "Resources-iPad/slider_background_ipad_463x71.png"; sourceTree = "<group>"; };
 		19EEBC1C1836FD700059BFC6 /* slider_button_ipad_28x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slider_button_ipad_28x30.png; path = "Resources-iPad/slider_button_ipad_28x30.png"; sourceTree = "<group>"; };
@@ -1039,8 +1032,6 @@
 		D80C94A817B163B700C10D5E /* btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_up.png; sourceTree = "<group>"; };
 		D80C94A917B163B700C10D5E /* btn_up2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_up2.png; sourceTree = "<group>"; };
 		D8388B6E177547E100233CB9 /* RenderDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderDefs.h; sourceTree = "<group>"; };
-		D882BBEB17CCFC2A007C47E7 /* YoutubeConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YoutubeConnect.h; path = Sharing/YoutubeConnect.h; sourceTree = "<group>"; };
-		D882BBEC17CCFC2A007C47E7 /* YoutubeConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YoutubeConnect.m; path = Sharing/YoutubeConnect.m; sourceTree = "<group>"; };
 		D882BE2517CD05C0007C47E7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D882BE2717CD05C8007C47E7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D882BF3917CD0E3A007C47E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1487,7 +1478,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D8E2372417AAF511004BC514 /* Sharing */,
 				9C89A502134D950F00598959 /* MProgressView.h */,
 				9C89A503134D950F00598959 /* MProgressView.m */,
 				04E7AF67134C19BE00E4F4E2 /* WebSite */,
@@ -1894,19 +1884,6 @@
 				D8A39DC517B29D7D008D05F5 /* youtube2_48x48.png */,
 			);
 			path = Social;
-			sourceTree = "<group>";
-		};
-		D8E2372417AAF511004BC514 /* Sharing */ = {
-			isa = PBXGroup;
-			children = (
-				1912F1CB187F21130078372A /* YoutubeUIActivityShareViewController.h */,
-				1912F1CC187F21130078372A /* YoutubeUIActivityShareViewController.m */,
-				19DABD2A187B8B0400DD85DF /* YoutubeActivity.h */,
-				19DABD2B187B8B0400DD85DF /* YoutubeActivity.m */,
-				D882BBEB17CCFC2A007C47E7 /* YoutubeConnect.h */,
-				D882BBEC17CCFC2A007C47E7 /* YoutubeConnect.m */,
-			);
-			name = Sharing;
 			sourceTree = "<group>";
 		};
 		ED3D8C73FBAF79ECBE9578C3 /* Frameworks */ = {
@@ -2503,7 +2480,6 @@
 				7805EF001CDD3C89007FCE11 /* LookPreviewController.swift in Sources */,
 				06880F5312E82B8B001D3CB3 /* ComposeProgressView.m in Sources */,
 				788310631CD944A4003DDBBD /* AVAssetUtilities.m in Sources */,
-				19DABD2C187B8B0400DD85DF /* YoutubeActivity.m in Sources */,
 				785F733A1CDB9E63009BCB5A /* InfoViewController.swift in Sources */,
 				06CA1F9D13406465005B56DE /* QuartzView.m in Sources */,
 				06CA1F9E13406465005B56DE /* ToggleButton.m in Sources */,
@@ -2524,9 +2500,7 @@
 				06746DC1134F23E10040C602 /* VideoThumbnailOperation.m in Sources */,
 				78D75F8E1CE140BC00895BA1 /* LookGroupHeader.swift in Sources */,
 				9CACD9C11350221C00717286 /* CustomPopView.m in Sources */,
-				D882BBED17CCFC2A007C47E7 /* YoutubeConnect.m in Sources */,
 				785F73451CDBBED9009BCB5A /* Memory.m in Sources */,
-				1912F1CD187F21140078372A /* YoutubeUIActivityShareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2548,7 +2522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "GTL_USE_SESSION_FETCHER=0";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2591,7 +2565,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "GTL_USE_SESSION_FETCHER=0";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2690,8 +2664,10 @@
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					"GTL_USE_SESSION_FETCHER=0",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2708,7 +2684,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "GTL_USE_SESSION_FETCHER=0";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;

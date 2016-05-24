@@ -21,7 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        print(PurchaseManager.sharedManager.looks)
         Fabric.with([Crashlytics.self])
         
+//        self.defaultAppearance()
+        
         return true
+    }
+    
+    func defaultAppearance() {
+//        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
     }
     
     func applicationWillResignActive(application: UIApplication) {
