@@ -308,8 +308,10 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     	if (renderFullFramerate || (_curInputFrameIdx % 2) == 0) {
     	
     		CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+            
     		// CGSize bufferSize = CVImageBufferGetEncodedSize(imageBuffer);
     		// NSLog(@"Buffer Size(%f,%f)",bufferSize.width,bufferSize.height);
+            [self.delegate videoDebugImage:[self screenshotOfVideoStream:imageBuffer]];
     	
     		// Lock the base address of the pixel buffer
     		CVPixelBufferLockBaseAddress(imageBuffer,0);
@@ -341,6 +343,21 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
             
     	return pixelBuffer;
 	}
+}
+
+-(UIImage*)screenshotOfVideoStream:(CVImageBufferRef)imageBuffer
+{
+    CIImage *ciImage = [CIImage imageWithCVPixelBuffer:imageBuffer];
+    CIContext *temporaryContext = [CIContext contextWithOptions:nil];
+    CGImageRef videoImage = [temporaryContext
+                             createCGImage:ciImage
+                             fromRect:CGRectMake(0, 0,
+                                                 CVPixelBufferGetWidth(imageBuffer),
+                                                 CVPixelBufferGetHeight(imageBuffer))];
+    
+    UIImage *image = [[UIImage alloc] initWithCGImage:videoImage];
+    CGImageRelease(videoImage);
+    return image;
 }
 
 -(CGSize)knownVideoInfoEvent:(CGSize)videoSize withDuration:(CMTime)duration;
@@ -573,77 +590,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     // otherwise say "Are you sure?" to tell them it isn't saved
 }
 
-// Example of using share controller with custom youtube sharing
-//- (void) shareAction:(id)sender
-//{
-//    NSURL *url = [NSURL fileURLWithPath:processedMoviePath];
-//    NSArray* dataToShare = [NSArray arrayWithObjects:url,nil];
-//    
-//    YoutubeActivity *youtubeactivity = [[YoutubeActivity alloc]init];
-//    youtubeactivity.mThumbImage = mThumbImageView.image;
-//    youtubeactivity.processedMoviePath = processedMoviePath;
-//    
-//    NSArray* customactivities = [NSArray arrayWithObjects:youtubeactivity,nil];
-//
-//    UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
-//                                                                                         applicationActivities:customactivities];
-//
-//
-//    [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray * returnedItems, NSError * error)
-//    {
-//        bool activityTypeFound = false;
-//        NSString *notificationString;
-//        if (completed)
-//        {
-//            isVideoSavedorShared  = YES;
-//            
-//            if ([activityType rangeOfString:@"cameraroll" options:NSCaseInsensitiveSearch].location != NSNotFound)
-//            {
-//                activityTypeFound = true;
-//                notificationString = @"Your movie was saved to the Camera Roll.";
-//                //if (!isVideoSavedorShared)
-//                //    [self finishSaveToCameraRollEvent];
-//                NSLog(@"bret Camera Roll");
-//            }
-//            if ([activityType rangeOfString:@"facebook" options:NSCaseInsensitiveSearch].location != NSNotFound)
-//            {
-//                notificationString = @"Your movie was uploaded to Facebook.";
-//                activityTypeFound = true;
-//                NSLog(@"bret Camera Roll");
-//            }
-//            if ([activityType rangeOfString:@"youtube" options:NSCaseInsensitiveSearch].location != NSNotFound)
-//            {
-//                notificationString = @"Your movie was uploaded to Youtube.";
-//                activityTypeFound = true;
-//                NSLog(@"bret Camera Roll");
-//            }
-//            if ([activityType rangeOfString:@"vimeo" options:NSCaseInsensitiveSearch].location != NSNotFound)
-//            {
-//                notificationString = @"Your movie was uploaded to Vimeo.";
-//                activityTypeFound = true;
-//                NSLog(@"bret Camera Roll");
-//            }
-//            if ([activityType rangeOfString:@"flickr" options:NSCaseInsensitiveSearch].location != NSNotFound)
-//            {
-//                notificationString = @"Your movie was uploaded to Flickr.";
-//                activityTypeFound = true;
-//                NSLog(@"bret Camera Roll");
-//            }
-//            if ([activityType rangeOfString:@"weibo" options:NSCaseInsensitiveSearch].location != NSNotFound)
-//            {
-//                notificationString = @"Your movie was uploaded to Weibo.";
-//                activityTypeFound = true;
-//                NSLog(@"bret Camera Roll");
-//            }
-//            if (!activityTypeFound)
-//            {
-//                notificationString = @"Your movie was sucessfully uploaded.";
-//            }
-//        }
-//    }];
-//    
-//    [self presentViewController:activityViewController animated:TRUE completion:nil];
-//}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

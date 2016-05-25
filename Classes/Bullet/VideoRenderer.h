@@ -41,6 +41,7 @@ typedef enum
 @protocol VideoRenderDelegate
 -(void)videoFinishedProcessing:(NSURL*)url;
 -(void)videoCompletedFrames:(int)completed ofTotal:(int)total;
+-(void)videoDebugImage:(UIImage*)image;
 //-(void)videoTimeRemaining:(int)time;
 //-(void)videoTimeElapsed:(float)portrait landscape:(float)landscape;
 @end

@@ -179,6 +179,13 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         }
     }
     
+    func videoDebugImage(image: UIImage!) {
+        dispatch_async(dispatch_get_main_queue()) {
+            print("SET IMAGE")
+            self.imageView.image = image
+        }
+    }
+    
 }
 //    NSURL *url = [NSURL fileURLWithPath:processedMoviePath];
 //    NSArray* dataToShare = [NSArray arrayWithObjects:url,nil];
