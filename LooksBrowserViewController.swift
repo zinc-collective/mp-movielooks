@@ -140,6 +140,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
             preview.look = selectedLook
             preview.keyFrame = keyFrame
             preview.videoMode = self.videoMode
+            preview.renderer = self.renderer
         }
     }
     

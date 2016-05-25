@@ -40,8 +40,8 @@ class LookPreviewController: UIViewController {
         strengthSlider.value = lookStrength
         brightnessSlider.value = lookBrightness
         
-        let outputSize = imageOutputSize()
-        self.renderer = ES2Renderer(frameSize: outputSize, outputFrameSize: outputSize)
+//        let outputSize = imageOutputSize()
+//        self.renderer = ES2Renderer(frameSize: outputSize, outputFrameSize: outputSize)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,6 +51,9 @@ class LookPreviewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let outputSize = imageOutputSize()
+        
+        self.renderer.loadLookParam(look.data, withMode: videoMode)
+        self.renderer.freeRenderBuffer()
         self.renderer.resetRenderBuffer()
         self.renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
         self.renderer.loadKeyFrame(self.keyFrame)

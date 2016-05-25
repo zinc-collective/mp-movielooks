@@ -22,7 +22,7 @@
 //		// grab the current time interval for measuring total duration later
 //		bulletViewController.renderStartTime = [NSDate timeIntervalSinceReferenceDate];
 //        
-//        
+//
 //		RendererType type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeHalf:RendererTypeFull;
 //        bool modeSwitcherHD;
 //        if (modeSwitcher.on)
