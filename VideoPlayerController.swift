@@ -134,11 +134,12 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 
     func displayShareSheet(){
         if let url = renderedVideoURL {
-//            let youtube = YoutubeActivity()
+//            let youtube = KM()
 //            youtube.mThumbImage = renderedKeyFrame
 //            youtube.processedMoviePath = url.path
 //            let youtube = KMYoutubeActivity()
-            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+//            let instagram = DMActivityInstagram()
+            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
             self.presentViewController(activityViewController, animated: true, completion: {})
         }
     }

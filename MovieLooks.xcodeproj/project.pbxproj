@@ -307,7 +307,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		367EC8E3FEAFC025B5AB4C62 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */; };
 		5E19FE0C12430DFB0062BE29 /* LookThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFD12430DFB0062BE29 /* LookThumbnailView.m */; };
 		5E19FE0D12430DFB0062BE29 /* MyStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FDFF12430DFB0062BE29 /* MyStoreObserver.m */; };
 		5E19FE0E12430DFB0062BE29 /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E19FE0112430DFB0062BE29 /* Debug.c */; };
@@ -416,6 +415,7 @@
 		78D75F8E1CE140BC00895BA1 /* LookGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */; };
 		78D75F901CE1E88900895BA1 /* ES2Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */; };
 		78D9FD351CEA25F100745DDE /* IMG_2994.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 78D9FD341CEA25F100745DDE /* IMG_2994.MOV */; };
+		834B2F299F093ED0FA5C5834 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
 		9C3D58F0134478590034F0BD /* gear_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CF134478590034F0BD /* gear_wheel.png */; };
@@ -1071,7 +1071,7 @@
 				5E3144DD122DFA6F00D67E0D /* StoreKit.framework in Frameworks */,
 				9CDF04581361203F00EA163D /* CoreLocation.framework in Frameworks */,
 				6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */,
-				367EC8E3FEAFC025B5AB4C62 /* Pods_MovieLooks.framework in Frameworks */,
+				834B2F299F093ED0FA5C5834 /* Pods_MovieLooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
