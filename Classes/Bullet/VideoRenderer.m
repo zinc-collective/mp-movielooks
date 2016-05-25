@@ -309,21 +309,22 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     	
     		CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
             
-    		// CGSize bufferSize = CVImageBufferGetEncodedSize(imageBuffer);
-    		// NSLog(@"Buffer Size(%f,%f)",bufferSize.width,bufferSize.height);
-            [self.delegate videoDebugImage:[self screenshotOfVideoStream:imageBuffer]];
-    	
-    		// Lock the base address of the pixel buffer
     		CVPixelBufferLockBaseAddress(imageBuffer,0);
+            size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+            size_t width = CVPixelBufferGetWidth(imageBuffer);
+            size_t height = CVPixelBufferGetHeight(imageBuffer);
     		void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-    		// size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+            
+//            [self.delegate videoDebugImage:[self screenshotOfVideoStream:imageBuffer]];
 
     		[renderer frameProcessing:baseAddress toDest:baseAddress flipPixel:YES];
-    	
-    		CVPixelBufferCreateWithBytes(NULL,outputSize.width,outputSize.height,
-    								 kCVPixelFormatType_32BGRA,baseAddress,
-    								 outputSize.width*glPixelSize,
+            
+            // this has to match the pixel buffer base address
+    		CVPixelBufferCreateWithBytes(NULL, width, height,
+    								 kCVPixelFormatType_32BGRA, baseAddress,
+    								 bytesPerRow,
     								 NULL,0,NULL,&pixelBuffer);
+            
     		CVPixelBufferUnlockBaseAddress(imageBuffer,0);
     		_completedFrames++;
     		framePastedFromPause++;
