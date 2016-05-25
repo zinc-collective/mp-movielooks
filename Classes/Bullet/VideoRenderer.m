@@ -421,6 +421,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
         renderType = RendererTypeHalf;
     }
     
+    // we need to use the final size here, for portrait and landscape
+    // but see below for fitting it into the right frame
     [renderer resetFrameSize:videoSize_ outputFrameSize:outputSize];
 	
 	_totalFrames = seconds*fps;
@@ -429,8 +431,19 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		// if we are only rendering half of the frames, then adjust the total
 		_totalFrames = ceil(_totalFrames/2.0);
 	}
-	
-	return outputSize;
+    
+    if ([self isPortrait:outputSize]) {
+        // portrait videos are actually in landscape with a rotation flag
+        // so they are squished if you don't flip this here:
+        return CGSizeMake(outputSize.height, outputSize.width);
+    }
+    else {
+        return outputSize;
+    }
+}
+
+- (BOOL)isPortrait:(CGSize)size {
+    return (outputSize.height > outputSize.width);
 }
 
 -(void)finishRenderMovieEvent
