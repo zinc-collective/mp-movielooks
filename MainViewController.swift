@@ -21,6 +21,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         findButton.color = UIColor(red: 0.204, green: 0.451, blue: 0.690, alpha: 0.8) // #3473B0
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().barStyle = .Black
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
         
         #if DEBUG
@@ -72,14 +75,11 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 //    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        print("GOT MEDIA")
         let chosenURL = info[UIImagePickerControllerMediaURL]
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
         
+        // this order is required to get the animation right
         self.performSegueWithIdentifier("LooksBrowserViewController", sender: chosenURL)
-        
-        //    appDelegate.videoSize = [AVAssetUtilities naturalSize:avAsset];
-        //	appDelegate.videoDuration = CMTimeGetSeconds([avAsset duration]);
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -92,7 +92,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    @IBAction func unwind(segue:UIStoryboardSegue) {
+    @IBAction func unwindHome(segue:UIStoryboardSegue) {
         
     }
 }

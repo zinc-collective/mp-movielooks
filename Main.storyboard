@@ -274,7 +274,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="nkJ-90-iqz" userLabel="Cancel">
                             <color key="tintColor" red="0.091623773650000004" green="0.30149059350000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="Mv4-qF-Sp6" kind="unwind" unwindAction="unwind:" id="zkb-41-uTt"/>
+                                <segue destination="Mv4-qF-Sp6" kind="unwind" unwindAction="unwindHome:" id="6M0-wo-kkd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -479,7 +479,7 @@
                                     <barButtonItem systemItem="add" id="Xqf-iv-SOj">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <action selector="newMoviePressed:" destination="uVm-Bb-o1k" id="D8z-7Z-2TJ"/>
+                                            <segue destination="vzk-JY-UJf" kind="unwind" unwindAction="unwindHome:" id="qGn-Bj-gW0"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="8UP-I1-2Ms"/>
@@ -554,6 +554,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ltr-Aw-Phe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vzk-JY-UJf" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="yfR-Bu-wy9">
                     <connections>
                         <action selector="viewTapped:" destination="uVm-Bb-o1k" id="RIg-ec-XXD"/>

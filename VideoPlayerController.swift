@@ -93,10 +93,6 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         videoRenderer.cancel()
     }
     
-    @IBAction func newMoviePressed(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
-    }
-    
     @IBAction func sharePressed(){
         pause()
         displayShareSheet()
