@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+
 @protocol MovieProcessorDelegate
 -(CVPixelBufferRef)processVideoFrame:(CMSampleBufferRef)sampleBuffer atTime:(CMTime)sampleTime;
 -(CGSize)knownVideoInfoEvent:(CGSize)videoSize withDuration:(CMTime)duration;
@@ -16,6 +18,7 @@
 -(void)errorSamplerMovieEvent;
 -(void)finishProcessMovieEvent:(NSString*)composeFilePath;
 -(void)finishSaveToCameraRollEvent;
+-(void)exportError:(NSError*)error status:(AVAssetExportSessionStatus)status;
 @end
 
 

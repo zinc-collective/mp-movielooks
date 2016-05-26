@@ -717,4 +717,8 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     NSLog(@"ERROR: sampler movie event");
 }
 
+- (void)exportError:(NSError *)error status:(AVAssetExportSessionStatus)status {
+    [self.delegate videoError:[NSString stringWithFormat:@"Error Code: %li, %@", (long)status, error]];
+}
+
 @end

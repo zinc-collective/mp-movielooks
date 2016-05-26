@@ -186,6 +186,10 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         }
     }
     
+    func videoError(description: String!) {
+        print("VIDEO ERROR!", description)
+    }
+    
 }
 //    NSURL *url = [NSURL fileURLWithPath:processedMoviePath];
 //    NSArray* dataToShare = [NSArray arrayWithObjects:url,nil];

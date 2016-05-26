@@ -227,7 +227,8 @@
 		}
 		else if(lastSampleTimeRange.duration.value<20)
         {
-			NSLog(@"Video Rendering last Time(%lld,%d)!",lastSampleTimeRange.duration.value,lastSampleTimeRange.duration.timescale);
+			NSLog(@"Video Rendering last Time(%lld,%d)!",lastSampleTimeRange.duration.value, lastSampleTimeRange.duration.timescale);
+            
             [avVideoWriterInput markAsFinished];
 
             [avMovieCondition lock];
@@ -718,10 +719,16 @@
 			nextClipStartTime = CMTimeAdd(nextClipStartTime, clipTimeRange.duration);			
 		}
 #endif
+    int skipped = 0;
     for (int i=1; i <= subMovieIndex; ++i)
     {
         CMTimeRange clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
-        if(clipTimeRange.duration.value<20) continue;
+        
+        // skip tiny ones at the end
+        if(clipTimeRange.duration.value<20) {
+            skipped++;
+            continue;
+        }
         
         NSString* subMovieName = [NSString stringWithFormat:@"Sub%i_%@",i,@"bullet_movie.mov"];
         //bret
@@ -753,7 +760,7 @@
     }
 		
 		CMTime audioClipStartTime = CMTimeMake(0, 600);
-		CMTimeRange clipTimeRange = CMTimeRangeMake(audioClipStartTime,CMTimeMake(subMovieStarts[subMovieIndex].value-subMovieStarts[0].value, 600));
+		CMTimeRange clipTimeRange = CMTimeRangeMake(audioClipStartTime,CMTimeMake(subMovieStarts[subMovieIndex-skipped].value-subMovieStarts[0].value, 600));
 
         //AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:readMovieURL options:nil];
 		AVAssetTrack *clipVideoTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
@@ -807,8 +814,13 @@
 		avComposeSession.outputURL = [NSURL fileURLWithPath:tempWriteMoviePath];
 		avComposeSession.outputFileType = AVFileTypeQuickTimeMovie;
 		[avComposeSession exportAsynchronouslyWithCompletionHandler:^{
-			NSLog(@"export result: %@ %ld",[avComposeSession.error localizedDescription],(long)avComposeSession.status);
-			if(movieRenderState == MovieStateCompose)	
+			NSLog(@"export result: %ld %@", (long)avComposeSession.status, avComposeSession.error );
+            
+            if(avComposeSession.error) {
+                [self.delegate exportError:avComposeSession.error status:avComposeSession.status];
+            }
+            
+			else if(movieRenderState == MovieStateCompose)
 			{
 				movieRenderState = MovieStateComplete;
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -844,11 +856,13 @@
 //		NSLog(@"%@",[exc reason]); return NO;
 //	}
 	
-	if(avMovieReader.status == AVAssetReaderStatusFailed)
+    if(avMovieReader.status == AVAssetReaderStatusFailed) {
 		NSLog(@"Reader Error:%@",[avMovieReader.error localizedDescription]);
-	if(avMovieWriter.status == AVAssetWriterStatusFailed)
+    }
+    
+    if(avMovieWriter.status == AVAssetWriterStatusFailed) {
 		NSLog(@"Writer Error:%@",[avMovieWriter.error localizedDescription]);
-	
+    }
 	
 	avVideoReaderOutput = nil;
 	avVideoWriterInput = nil;
