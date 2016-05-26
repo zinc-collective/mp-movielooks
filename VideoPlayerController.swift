@@ -39,6 +39,9 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     @IBOutlet var pauseItem: UIBarButtonItem!
     @IBOutlet var actionItem: UIBarButtonItem!
     
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var toolbarBottom: NSLayoutConstraint!
+    
     @IBOutlet weak var processingView: UIView!
     @IBOutlet weak var progressContainer: UIView!
     var progressView: DAProgressOverlayView!
@@ -63,6 +66,9 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hide it
+        toolbarBottom.constant = -toolbar.frame.size.height
+        
         imageView.image = renderedKeyFrame
         playButton.hidden = true
         self.navigationItem.rightBarButtonItems = []
@@ -85,6 +91,10 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         super.viewWillDisappear(animated)
         
         videoRenderer.cancel()
+    }
+    
+    @IBAction func newMoviePressed(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     @IBAction func sharePressed(){
@@ -128,7 +138,21 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     func didFinishPlaying() {
         isFinished = true
         pause()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.animateBarsHidden(false)
+    }
+    
+    func animateBarsHidden(hidden:Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(hidden, animated: true)
+        
+        let bottom : CGFloat = (self.navigationController?.navigationBarHidden == true) ? -toolbar.frame.size.height : 0
+        self.toolbarBottom.constant = bottom
+        self.view.setNeedsUpdateConstraints()
+        
+        // animate with the same duration...
+        UIView.animateWithDuration(0.200, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
     
 
@@ -146,7 +170,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     
     @IBAction func viewTapped(sender: AnyObject) {
         let isHidden = self.navigationController?.navigationBarHidden
-        self.navigationController?.setNavigationBarHidden(isHidden != true, animated: true)
+        self.animateBarsHidden(isHidden != true)
     }
     
     func rendererFinished(videoURL: NSURL) {
@@ -159,6 +183,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         
         UIView.animateWithDuration(0.300, animations: {
             self.processingView.alpha = 0.0
+            self.toolbarBottom.constant = 0
         }, completion: {_ in
             self.processingView.hidden = true
         })

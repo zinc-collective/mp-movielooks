@@ -8,13 +8,17 @@
 
 import UIKit
 import MobileCoreServices
+import BButton
 
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var findButton: UIButton!
+    @IBOutlet weak var findButton: BButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        findButton.setType(.Primary)
+        findButton.color = UIColor(red: 0.204, green: 0.451, blue: 0.690, alpha: 0.8) // #3473B0
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()

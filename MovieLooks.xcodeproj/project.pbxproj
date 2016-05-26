@@ -395,6 +395,7 @@
 		74B8AAF51241CE43009D1B80 /* mobileLookbrighten_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */; };
 		74B8AAF61241CE43009D1B80 /* mobileLookdarken_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */; };
 		7805EF001CDD3C89007FCE11 /* LookPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */; };
+		780D10F21CF74F530055C743 /* info.html in Resources */ = {isa = PBXBuildFile; fileRef = 780D10F11CF74F530055C743 /* info.html */; };
 		7841FAAC1CECBB18007CADBC /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */; };
 		78538E001CDCF5AA00BC737C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538DFF1CDCF5AA00BC737C /* Video.swift */; };
 		78538E021CDCFDF100BC737C /* LooksBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78538E011CDCFDF100BC737C /* LooksBrowserViewController.swift */; };
@@ -931,6 +932,7 @@
 		74B8AAF31241CE43009D1B80 /* mobileLookbrighten_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookbrighten_01.png; sourceTree = "<group>"; };
 		74B8AAF41241CE43009D1B80 /* mobileLookdarken_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobileLookdarken_01.png; sourceTree = "<group>"; };
 		7805EEFF1CDD3C89007FCE11 /* LookPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookPreviewController.swift; sourceTree = "<group>"; };
+		780D10F11CF74F530055C743 /* info.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = info.html; sourceTree = "<group>"; };
 		781C462A1CE650FB0041DE34 /* MovieLooks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MovieLooks.entitlements; sourceTree = "<group>"; };
 		7841FAAB1CECBB18007CADBC /* VideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
 		78538DFF1CDCF5AA00BC737C /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -1768,6 +1770,7 @@
 			children = (
 				785F73341CDB96BE009BCB5A /* MainViewController.swift */,
 				785F73391CDB9E63009BCB5A /* InfoViewController.swift */,
+				780D10F11CF74F530055C743 /* info.html */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2246,6 +2249,7 @@
 				19CDFD951856C70300B2472B /* develop_change_button58x58_iphone@2x.png in Resources */,
 				06D6C9C91345711400CF3FE6 /* preview_develop@2x.png in Resources */,
 				19717F36183D9DA200C9B604 /* looksbrowser_next_button225x72.png in Resources */,
+				780D10F21CF74F530055C743 /* info.html in Resources */,
 				06D6C9CA1345711400CF3FE6 /* preview_develop_h.png in Resources */,
 				197BB0911847FE0100A28AD5 /* develop_cameraroll_button127x126.png in Resources */,
 				1946D3FA18319AB10055C811 /* camera_roll_button_left_iphone@2x.png in Resources */,
