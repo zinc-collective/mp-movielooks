@@ -22,10 +22,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().barStyle = .Black
-        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
-        
         #if DEBUG
             Debug.addDefaultVideoIfEmpty()
         #endif

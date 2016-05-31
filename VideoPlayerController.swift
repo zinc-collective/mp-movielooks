@@ -170,7 +170,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 //            let youtube = KMYoutubeActivity()
 //            let instagram = DMActivityInstagram()
             let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
-            self.presentViewController(activityViewController, animated: true, completion: {})
+            self.navigationController?.presentViewController(activityViewController, animated: true, completion: {})
         }
     }
     
