@@ -166,9 +166,13 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     func displayShareSheet(){
         if let url = renderedVideoURL {
             let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
-            activityViewController.completionWithItemsHandler = { _, completed, _, _ in
+            activityViewController.completionWithItemsHandler = { activity, completed, _, _ in
                 if completed {
                     self.didShare = true
+                }
+                
+                if activity == UIActivityTypeSaveToCameraRoll && completed {
+                    self.savePhotoFeedback()
                 }
             }
             self.navigationController?.presentViewController(activityViewController, animated: true, completion: {})
@@ -242,6 +246,16 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
             alert.addAction(saveFirstAction)
             self.navigationController?.presentViewController(alert, animated: true, completion: {})
         }
+    }
+    
+    func savePhotoFeedback() {
+        let alert = UIAlertController(title: "Saved in your Photos library", message: nil, preferredStyle: .Alert)
+        self.presentViewController(alert, animated: true, completion: { _ in
+            delay(0.8) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        })
+        
     }
     
 }
