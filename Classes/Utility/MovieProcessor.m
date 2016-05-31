@@ -751,7 +751,20 @@
         //end bret
         if(movieAsset==nil) NSLog(@"Sub clip %@ not exit!",subMovieName);
         NSLog(@"MOVIE ASSET %lu", (unsigned long)[[movieAsset tracksWithMediaType:AVMediaTypeVideo] count]);
-        if([[movieAsset tracksWithMediaType:AVMediaTypeVideo] count]<=0) {NSLog(@"Sub clip%d video render error!",i); return NO;}
+        
+        // if the track is missing video clips, we have an issue
+        if([[movieAsset tracksWithMediaType:AVMediaTypeVideo] count]<=0) {
+            NSLog(@"Sub clip%d video render error!",i);
+            
+            // unless it is the last track, which sometimes is tiny and created without anything in it
+            if (i == subMovieIndex) {
+                skipped++;
+                continue;
+            }
+            else {
+                return NO;
+            }
+        }
         
         AVAssetTrack *clipVideoTrack = [[movieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
         [compositionVideoTrack insertTimeRange:clipTimeRange ofTrack:clipVideoTrack atTime:nextClipStartTime error:nil];
