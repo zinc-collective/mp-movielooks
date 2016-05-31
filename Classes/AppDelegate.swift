@@ -16,18 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
-//        print(PurchaseManager.sharedManager.looks)
         Fabric.with([Crashlytics.self])
         
-//        self.defaultAppearance()
-        
         return true
-    }
-    
-    func defaultAppearance() {
-//        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
     }
     
     func applicationWillResignActive(application: UIApplication) {

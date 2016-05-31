@@ -11,6 +11,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import DAProgressOverlayLayeredView
+import BButton
 
 class VideoPlayerController : UIViewController, VideoRenderDelegate {
     
@@ -41,6 +42,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var toolbarBottom: NSLayoutConstraint!
+    @IBOutlet weak var newVideoButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var processingView: UIView!
     @IBOutlet weak var progressContainer: UIView!
@@ -85,6 +87,14 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 
         playerLayer = AVPlayerLayer(player: player)
         playerView.layer.insertSublayer(playerLayer, atIndex: 0)
+        
+        
+        let buttonFrame = CGRect(x: 0, y: 0, width: 150, height: 30)
+        let newVideoButton = BButton(frame: buttonFrame)
+        newVideoButton.setType(.Primary)
+        newVideoButton.setTitle(newVideoButtonItem.title, forState: .Normal)
+        newVideoButton.addTarget(self, action: #selector(didTapNewVideo), forControlEvents: .TouchUpInside)
+        newVideoButtonItem.customView = newVideoButton
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -209,6 +219,10 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     
     func videoError(description: String!) {
         print("VIDEO ERROR!", description)
+    }
+    
+    func didTapNewVideo() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
 }

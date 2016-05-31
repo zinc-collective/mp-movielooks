@@ -476,7 +476,7 @@
                                 <rect key="frame" x="0.0" y="331" width="667" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="w5f-o6-gXF"/>
-                                    <barButtonItem systemItem="add" id="Xqf-iv-SOj">
+                                    <barButtonItem title="New Video" id="Xqf-iv-SOj">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="vzk-JY-UJf" kind="unwind" unwindAction="unwindHome:" id="qGn-Bj-gW0"/>
@@ -543,6 +543,7 @@
                     <connections>
                         <outlet property="actionItem" destination="NvT-JN-g2j" id="IUZ-Ba-axl"/>
                         <outlet property="imageView" destination="5FD-T0-oeW" id="bkz-fT-blZ"/>
+                        <outlet property="newVideoButtonItem" destination="Xqf-iv-SOj" id="An3-nI-CRS"/>
                         <outlet property="pauseItem" destination="orC-Wy-5RB" id="aLR-Ah-AvU"/>
                         <outlet property="playButton" destination="j6K-Rp-Ccp" id="amc-5d-HRJ"/>
                         <outlet property="playItem" destination="6y3-gT-ZJv" id="6qU-t4-lRp"/>
