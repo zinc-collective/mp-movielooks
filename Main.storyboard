@@ -478,9 +478,6 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="w5f-o6-gXF"/>
                                     <barButtonItem title="New Video" id="Xqf-iv-SOj">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="vzk-JY-UJf" kind="unwind" unwindAction="unwindHome:" id="qGn-Bj-gW0"/>
-                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="8UP-I1-2Ms"/>
                                 </items>
@@ -555,7 +552,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ltr-Aw-Phe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="vzk-JY-UJf" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="yfR-Bu-wy9">
                     <connections>
                         <action selector="viewTapped:" destination="uVm-Bb-o1k" id="RIg-ec-XXD"/>

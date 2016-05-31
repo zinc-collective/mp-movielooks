@@ -25,6 +25,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     var playerLayer : AVPlayerLayer!
     var isPlaying = false
     var isFinished = false
+    var didShare = false
     
     var renderedVideoURL: NSURL?
     
@@ -164,12 +165,12 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 
     func displayShareSheet(){
         if let url = renderedVideoURL {
-//            let youtube = KM()
-//            youtube.mThumbImage = renderedKeyFrame
-//            youtube.processedMoviePath = url.path
-//            let youtube = KMYoutubeActivity()
-//            let instagram = DMActivityInstagram()
             let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
+            activityViewController.completionWithItemsHandler = { _, completed, _, _ in
+                if completed {
+                    self.didShare = true
+                }
+            }
             self.navigationController?.presentViewController(activityViewController, animated: true, completion: {})
         }
     }
@@ -222,7 +223,25 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     }
     
     func didTapNewVideo() {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        print("didShare", didShare)
+        if (didShare) {
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }
+        
+        else {
+            let alert = UIAlertController(title: "Not Saved", message: "Your processed video is not saved, are you sure you want a new video?", preferredStyle: .Alert)
+            let saveFirstAction = UIAlertAction(title: "Save Video", style: .Cancel, handler: { _ in
+                // dismiss the alert
+                alert.dismissViewControllerAnimated(true, completion: nil)
+                self.displayShareSheet()
+            })
+            let continueAction = UIAlertAction(title: "Continue", style: .Default, handler: { _ in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            })
+            alert.addAction(continueAction)
+            alert.addAction(saveFirstAction)
+            self.navigationController?.presentViewController(alert, animated: true, completion: {})
+        }
     }
     
 }
