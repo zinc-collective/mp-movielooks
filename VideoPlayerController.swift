@@ -166,6 +166,8 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     func displayShareSheet(){
         if let url = renderedVideoURL {
             let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
+            activityViewController.modalPresentationStyle = .Popover
+            activityViewController.popoverPresentationController?.barButtonItem = self.actionItem
             activityViewController.completionWithItemsHandler = { activity, completed, _, _ in
                 if completed {
                     self.didShare = true
