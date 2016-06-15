@@ -72,9 +72,6 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
         renderer.resetRenderBuffer()
         renderer.loadKeyFrame(keyFrame)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.renderLoop()
-        }
     }
     
     func lookStates(lookGroups: [LookGroup]) -> [Look : LookCellState] {
@@ -92,42 +89,66 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         return states
     }
     
-    func renderLoop() {
-        // create all the look states
-        
-        var renderStates = Array(lookStates.values)
-        
-        // NOTE: the first one fails for some reason (this was there in the legacy code uncommented)
-        // so render it twice
-        renderStates = renderStates + [renderStates[0]]
-        
-        renderStates.forEach { (state) in
-            
+    func queueRender(state:LookCellState) {
+        state.rendering = true
+        NSOperationQueue.currentQueue()?.addOperationWithBlock({
+            print("")
+            print("****************** RENDER!")
             let look = state.look
-            renderer.loadLookParam(look.data, withMode: self.videoMode)
-			renderer.looksStrengthValue = 1.0
-			renderer.looksBrightnessValue = 0.5
+            self.renderer.loadLookParam(look.data, withMode: self.videoMode)
+    		self.renderer.looksStrengthValue = 1.0
+    		self.renderer.looksBrightnessValue = 0.5
             
-			let processedCGImageRef = renderer.frameProcessingAndReturnImage(nil, flipPixel:false)
-            
-//			if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
-//				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef  scale:1.0 orientation:UIImageOrientationRight];
-//			}
-//			else {
-//				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
-//			}
-            
+			let processedCGImageRef = self.renderer.frameProcessingAndReturnImage(nil, flipPixel:false)
             
             let processedImage = UIImage(CGImage: processedCGImageRef.takeUnretainedValue())
             print(" - got image", look.name)
-			
-            dispatch_async(dispatch_get_main_queue()) {
-                print(" - set image", look.name)
-                state.image = processedImage
-                state.onRender(processedImage)
-            }
-        }
+            
+            state.image = processedImage
+            state.rendering = false
+            state.onRender(processedImage)
+        })
     }
+    
+//    // render forever?
+//    // render on a timer
+//    // use an operation queue!
+//    func renderLoop() {
+//        // create all the look states
+//        
+//        var renderStates = Array(lookStates.values)
+//        
+//        // NOTE: the first one fails for some reason (this was there in the legacy code uncommented)
+//        // so render it twice
+//        renderStates = renderStates + [renderStates[0]]
+//        
+//        renderStates.forEach { (state) in
+//            
+//            let look = state.look
+//            renderer.loadLookParam(look.data, withMode: self.videoMode)
+//			renderer.looksStrengthValue = 1.0
+//			renderer.looksBrightnessValue = 0.5
+//            
+//			let processedCGImageRef = renderer.frameProcessingAndReturnImage(nil, flipPixel:false)
+//            
+////			if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
+////				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef  scale:1.0 orientation:UIImageOrientationRight];
+////			}
+////			else {
+////				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
+////			}
+//            
+//            
+//            let processedImage = UIImage(CGImage: processedCGImageRef.takeUnretainedValue())
+//            print(" - got image", look.name)
+//			
+//            dispatch_async(dispatch_get_main_queue()) {
+//                print(" - set image", look.name)
+//                state.image = processedImage
+//                state.onRender(processedImage)
+//            }
+//        }
+//    }
     
     func cellSize(keyFrame:UIImage) -> CGSize {
         // these should always be square
@@ -178,6 +199,10 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         if let state = lookStates[look] {
             print("Got cell", look.name)
             cell.update(state)
+            
+            if state.image == nil && state.rendering == false {
+                queueRender(state)
+            }
         }
         
         return cell

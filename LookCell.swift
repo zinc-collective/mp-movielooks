@@ -20,8 +20,10 @@ class LookCell: UICollectionViewCell{
         self.label.text = look.name
         
         state.onRender = { image in
-            self.imageView.image = image
-            self.activityIndicator.stopAnimating()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.imageView.image = image
+                self.activityIndicator.stopAnimating()
+            }
         }
         
         if let image = state.image {
@@ -29,6 +31,7 @@ class LookCell: UICollectionViewCell{
         }
         else {
             self.activityIndicator.startAnimating()
+            self.imageView.image = nil
         }
     }
     
@@ -59,6 +62,7 @@ class LookCellState : NSObject {
     var look: Look
     var image: UIImage?
     var onRender : (UIImage) -> Void = {_ in}
+    var rendering = false
     
     init(look:Look) {
         self.look = look
