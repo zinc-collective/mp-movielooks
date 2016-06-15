@@ -74,7 +74,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         // I would rather crash than have this missing. I need it to operate
-        let chosenURL = info[UIImagePickerControllerMediaURL]
+        let chosenURL = info[UIImagePickerControllerReferenceURL]
         
         if chosenURL == nil {
             CLSLogv("Media URL Undefined: %@", getVaList([info]))
