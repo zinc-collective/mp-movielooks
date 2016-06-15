@@ -8,6 +8,7 @@
 
 import UIKit
 import BButton
+import Crashlytics
 
 let LookCellIdentifier = "LookCell"
 let LookGroupHeaderIdentifier = "LookGroupHeader"
@@ -19,7 +20,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     var keyFrame : UIImage!
     var renderer : ES2Renderer!
-    var cellSize : CGSize!
+    var cellSize : CGSize = CGSize(width: 170, height: 170)
     var selectedLook : Look?
     var videoURL: NSURL?
     
@@ -33,6 +34,11 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         nextButton.setType(.Primary)
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Done, target: nil, action: nil)
+        
+        if (videoURL == nil) {
+            CLSLogv("loadVideo not called before load", getVaList([]))
+            Crashlytics.sharedInstance().crash()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

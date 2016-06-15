@@ -9,6 +9,7 @@
 import UIKit
 import MobileCoreServices
 import BButton
+import Crashlytics
 
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -71,7 +72,14 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 //    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        // I would rather crash than have this missing. I need it to operate
         let chosenURL = info[UIImagePickerControllerMediaURL]
+        
+        if chosenURL == nil {
+            CLSLogv("Media URL Undefined: %@", getVaList([info]))
+            Crashlytics.sharedInstance().crash()
+        }
         
         // this order is required to get the animation right
         self.performSegueWithIdentifier("LooksBrowserViewController", sender: chosenURL)
@@ -80,7 +88,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "LooksBrowserViewController" {
-            if let looksViewController = segue.destinationViewController as? LooksBrowserViewController, movieURL = sender as? NSURL {
+            if let looksViewController = segue.destinationViewController as? LooksBrowserViewController {
+                let movieURL = sender as! NSURL
                 
                 // crash if this doesn't work
                 try! looksViewController.loadVideo(movieURL)

@@ -182,8 +182,8 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     }
     
     @IBAction func viewTapped(sender: AnyObject) {
-        let isHidden = self.navigationController?.navigationBarHidden
-        self.animateBarsHidden(isHidden != true)
+        let isHidden = (self.navigationController?.navigationBarHidden == true)
+        self.navigationController?.setNavigationBarHidden(isHidden, animated: true)
     }
     
     func rendererFinished(videoURL: NSURL) {
