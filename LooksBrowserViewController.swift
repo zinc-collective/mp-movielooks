@@ -110,46 +110,6 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         })
     }
     
-//    // render forever?
-//    // render on a timer
-//    // use an operation queue!
-//    func renderLoop() {
-//        // create all the look states
-//        
-//        var renderStates = Array(lookStates.values)
-//        
-//        // NOTE: the first one fails for some reason (this was there in the legacy code uncommented)
-//        // so render it twice
-//        renderStates = renderStates + [renderStates[0]]
-//        
-//        renderStates.forEach { (state) in
-//            
-//            let look = state.look
-//            renderer.loadLookParam(look.data, withMode: self.videoMode)
-//			renderer.looksStrengthValue = 1.0
-//			renderer.looksBrightnessValue = 0.5
-//            
-//			let processedCGImageRef = renderer.frameProcessingAndReturnImage(nil, flipPixel:false)
-//            
-////			if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
-////				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef  scale:1.0 orientation:UIImageOrientationRight];
-////			}
-////			else {
-////				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
-////			}
-//            
-//            
-//            let processedImage = UIImage(CGImage: processedCGImageRef.takeUnretainedValue())
-//            print(" - got image", look.name)
-//			
-//            dispatch_async(dispatch_get_main_queue()) {
-//                print(" - set image", look.name)
-//                state.image = processedImage
-//                state.onRender(processedImage)
-//            }
-//        }
-//    }
-    
     func cellSize(keyFrame:UIImage) -> CGSize {
         // these should always be square
         return CGSize(width: 170, height: 170)

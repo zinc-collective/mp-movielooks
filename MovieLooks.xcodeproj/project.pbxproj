@@ -416,7 +416,6 @@
 		78D75F8C1CE136AA00895BA1 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F891CE136AA00895BA1 /* PurchaseManager.swift */; };
 		78D75F8E1CE140BC00895BA1 /* LookGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8D1CE140BC00895BA1 /* LookGroupHeader.swift */; };
 		78D75F901CE1E88900895BA1 /* ES2Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D75F8F1CE1E88900895BA1 /* ES2Renderer.swift */; };
-		834B2F299F093ED0FA5C5834 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */; };
 		9C3D58EE134478590034F0BD /* background_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CD134478590034F0BD /* background_landscape.png */; };
 		9C3D58EF134478590034F0BD /* background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CE134478590034F0BD /* background_portrait.png */; };
 		9C3D58F0134478590034F0BD /* gear_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3D58CF134478590034F0BD /* gear_wheel.png */; };
@@ -1073,7 +1072,6 @@
 				5E3144DD122DFA6F00D67E0D /* StoreKit.framework in Frameworks */,
 				9CDF04581361203F00EA163D /* CoreLocation.framework in Frameworks */,
 				6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */,
-				834B2F299F093ED0FA5C5834 /* Pods_MovieLooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
