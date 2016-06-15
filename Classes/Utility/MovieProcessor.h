@@ -11,7 +11,7 @@
 
 @protocol MovieProcessorDelegate
 -(CVPixelBufferRef)processVideoFrame:(CMSampleBufferRef)sampleBuffer atTime:(CMTime)sampleTime;
--(CGSize)knownVideoInfoEvent:(CGSize)videoSize withDuration:(CMTime)duration;
+-(CGSize)knownVideoInfoEvent:(CGSize)videoSize withDuration:(CMTime)duration transform:(CGAffineTransform)transform;
 -(void)checkPointRenderMovieEvent;
 -(void)cancelRenderMovieEvent;
 -(void)finishRenderMovieEvent;

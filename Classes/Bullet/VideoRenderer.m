@@ -361,7 +361,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     return image;
 }
 
--(CGSize)knownVideoInfoEvent:(CGSize)videoSize withDuration:(CMTime)duration;
+-(CGSize)knownVideoInfoEvent:(CGSize)videoSize withDuration:(CMTime)duration transform:(CGAffineTransform)transform
 {
 	float fps = 30;
 	videoSize_ = videoSize;
@@ -432,7 +432,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 		_totalFrames = ceil(_totalFrames/2.0);
 	}
     
-    if ([self isPortrait:outputSize]) {
+    if ([self isPortrait:outputSize] && !CGAffineTransformIsIdentity(transform)) {
         // portrait videos are actually in landscape with a rotation flag
         // so they are squished if you don't flip this here:
         return CGSizeMake(outputSize.height, outputSize.width);

@@ -543,9 +543,10 @@
 
 //	if([[readMovieAsset tracksWithMediaType:AVMediaTypeVideo] count] == 0)return NO;
 //	sizeAVMediaInput =	[readMovieAsset naturalSize];
-	if(self.delegate)
-		sizeAVMediaOutput = [self.delegate knownVideoInfoEvent:sizeAVMediaInput withDuration:durationAVAsset];
-//	}
+    if(self.delegate) {
+		AVAssetTrack *clipVideoTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+		sizeAVMediaOutput = [self.delegate knownVideoInfoEvent:sizeAVMediaInput withDuration:durationAVAsset transform:clipVideoTrack.preferredTransform];
+	}
 //	@catch (NSException *exc) {
 //		NSLog(@"22222");
 //	}
