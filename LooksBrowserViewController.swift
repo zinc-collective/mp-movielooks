@@ -23,7 +23,6 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     var cellSize : CGSize = CGSize(width: 170, height: 170)
     var selectedLook : Look?
     var videoURL: NSURL?
-    var backgroundQueue : NSOperationQueue?
     
     var videoMode = VideoModeWideSceenLandscape
     
@@ -73,6 +72,9 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
         renderer.resetRenderBuffer()
         renderer.loadKeyFrame(keyFrame)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.renderLoop()
+        }
     }
     
     func lookStates(lookGroups: [LookGroup]) -> [Look : LookCellState] {
@@ -90,39 +92,41 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         return states
     }
     
-    func queueRender(state:LookCellState) {
-        // there's a bug with the renderer. When it runs in the background
-        // the first couple of them come out solid white
+    func renderLoop() {
+        // create all the look states
         
-        // so we'll start with the mainQueue, and when the first ones start to finish
-        // any new ones will get added to the background queue
-        let queue = backgroundQueue ?? NSOperationQueue.mainQueue()
+        var renderStates = Array(lookStates.values)
         
-        queue.addOperationWithBlock({
-            state.rendering = true
-            print("")
-            print("****************** RENDER!", (self.backgroundQueue != nil))
-            let look = state.look
-            self.renderer.loadLookParam(look.data, withMode: self.videoMode)
-    		self.renderer.looksStrengthValue = 1.0
-    		self.renderer.looksBrightnessValue = 0.5
+        // NOTE: the first one fails for some reason (this was there in the legacy code uncommented)
+        // so render it twice
+        renderStates = renderStates + [renderStates[0]]
+        
+        renderStates.forEach { (state) in
             
-			let processedCGImageRef = self.renderer.frameProcessingAndReturnImage(nil, flipPixel:false)
+            let look = state.look
+            renderer.loadLookParam(look.data, withMode: self.videoMode)
+			renderer.looksStrengthValue = 1.0
+			renderer.looksBrightnessValue = 0.5
+            
+			let processedCGImageRef = renderer.frameProcessingAndReturnImage(nil, flipPixel:false)
+            
+//			if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
+//				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef  scale:1.0 orientation:UIImageOrientationRight];
+//			}
+//			else {
+//				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
+//			}
+            
             
             let processedImage = UIImage(CGImage: processedCGImageRef.takeUnretainedValue())
             print(" - got image", look.name)
-            
-            state.image = processedImage
-            state.rendering = false
-            state.onRender(processedImage)
-            
-            // first one finished, let's initialize the background queue
-            if (self.backgroundQueue == nil) {
-                let queue = NSOperationQueue()
-                queue.maxConcurrentOperationCount = 1
-                self.backgroundQueue = queue
+			
+            dispatch_async(dispatch_get_main_queue()) {
+                print(" - set image", look.name)
+                state.image = processedImage
+                state.onRender(processedImage)
             }
-        })
+        }
     }
     
     func cellSize(keyFrame:UIImage) -> CGSize {
@@ -174,10 +178,6 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         if let state = lookStates[look] {
             print("Got cell", look.name)
             cell.update(state)
-            
-            if state.image == nil && state.rendering == false {
-                queueRender(state)
-            }
         }
         
         return cell
