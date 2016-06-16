@@ -8,9 +8,12 @@
 
 import UIKit
 
+let FullResolutionKey = "FullResolution"
+
 class InfoViewController : UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var fullResolutionSwitch: UISwitch!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -20,9 +23,13 @@ class InfoViewController : UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // full resolution switch on/off on load
+        let defaults = NSUserDefaults.standardUserDefaults()
+        fullResolutionSwitch.on = defaults.boolForKey(FullResolutionKey)
+        
         webView.backgroundColor = UIColor.clearColor()
         webView.opaque = false
-        webView.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        webView.scrollView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.showsHorizontalScrollIndicator = false
         webView.delegate = self
@@ -49,9 +56,9 @@ class InfoViewController : UIViewController, UIWebViewDelegate {
         return true
     }
     
-//    override func prefersStatusBarHidden() -> Bool {
-//        return true
-//    }
-    
-    
+    @IBAction func onFullResolutionChange(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(fullResolutionSwitch.on, forKey: FullResolutionKey)
+        defaults.synchronize()
+    }
 }

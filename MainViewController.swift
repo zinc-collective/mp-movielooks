@@ -48,13 +48,19 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     }
     
+    func isFullResolution() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(FullResolutionKey)
+    }
+    
     @IBAction func tappedFind() {
+        
         let picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
         picker.videoQuality = .TypeHigh
         // to get 1080p video, we need to use the Reference URL, which ignores edits
         // is there a way to use the MediaURL but get 1080p video?
-        picker.allowsEditing = false
+        // For now: only allow editing and use media url if not full resolution
+        picker.allowsEditing = !isFullResolution()
         picker.delegate = self
         picker.modalPresentationStyle = .Popover
         picker.popoverPresentationController?.sourceView = self.view
@@ -70,9 +76,15 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        // I would rather crash than have this missing. I need it to operate
-        let chosenURL = info[UIImagePickerControllerReferenceURL]
+        var chosenURL = info[UIImagePickerControllerMediaURL]
         
+        if isFullResolution() {
+            // if full resolution we need to use the original URL, not the 
+            // url of the edited / compressed video
+            chosenURL = info[UIImagePickerControllerReferenceURL]
+        }
+        
+        // I would rather crash than have this missing. I need it to operate
         if chosenURL == nil {
             CLSLogv("Media URL Undefined: %@", getVaList([info]))
             Crashlytics.sharedInstance().crash()

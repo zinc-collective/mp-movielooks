@@ -28,7 +28,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="202" id="AM5-3b-jcA"/>
                                 </constraints>
-                                <state key="normal" title="Start"/>
+                                <state key="normal" title="Get Video"/>
                                 <connections>
                                     <action selector="tappedFind" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Si-hO-uYq"/>
                                 </connections>
@@ -89,17 +89,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMh-pD-YK1">
+                                <rect key="frame" x="0.0" y="420" width="320" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Resolution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJR-7Y-7zy">
+                                        <rect key="frame" x="20" y="12" width="112" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pW3-71-Hwx">
+                                        <rect key="frame" x="251" y="14" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.20392156862745098" green="0.45098039215686275" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="onFullResolutionChange:" destination="I0R-aS-aF1" eventType="valueChanged" id="jsZ-eI-pJT"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Disables trimming)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFg-z3-LXT">
+                                        <rect key="frame" x="20" y="28" width="149" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.086274509803921567" green="0.090196078431372548" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pW3-71-Hwx" secondAttribute="trailing" constant="20" id="50T-ci-Sso"/>
+                                    <constraint firstItem="AJR-7Y-7zy" firstAttribute="top" secondItem="LMh-pD-YK1" secondAttribute="top" constant="12" id="C0x-lN-GhW"/>
+                                    <constraint firstItem="AJR-7Y-7zy" firstAttribute="leading" secondItem="LMh-pD-YK1" secondAttribute="leading" constant="20" id="icm-fT-v84"/>
+                                    <constraint firstAttribute="height" constant="60" id="jk1-tg-7Be"/>
+                                    <constraint firstItem="pW3-71-Hwx" firstAttribute="centerY" secondItem="LMh-pD-YK1" secondAttribute="centerY" id="pYw-Lq-PVA"/>
+                                </constraints>
+                            </view>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afN-bW-fMB">
-                                <rect key="frame" x="20" y="44" width="280" height="436"/>
+                                <rect key="frame" x="16" y="44" width="288" height="376"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" red="0.17647058823529413" green="0.20000000000000001" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="kfz-DQ-Ot6" firstAttribute="top" secondItem="afN-bW-fMB" secondAttribute="bottom" id="KWS-3L-0tj"/>
-                            <constraint firstItem="afN-bW-fMB" firstAttribute="top" secondItem="C2j-Qn-7eg" secondAttribute="bottom" id="S4o-rP-3Jg"/>
-                            <constraint firstItem="afN-bW-fMB" firstAttribute="leading" secondItem="yvV-p2-T8u" secondAttribute="leading" constant="20" id="fHv-XC-LFE"/>
-                            <constraint firstAttribute="trailing" secondItem="afN-bW-fMB" secondAttribute="trailing" constant="20" id="fIn-yF-xal"/>
+                            <constraint firstItem="LMh-pD-YK1" firstAttribute="top" secondItem="afN-bW-fMB" secondAttribute="bottom" id="Wwv-Tx-oJT"/>
+                            <constraint firstItem="afN-bW-fMB" firstAttribute="top" secondItem="C2j-Qn-7eg" secondAttribute="bottom" id="aAt-yy-lxt"/>
+                            <constraint firstAttribute="trailing" secondItem="LMh-pD-YK1" secondAttribute="trailing" id="cnL-6p-W3l"/>
+                            <constraint firstItem="afN-bW-fMB" firstAttribute="trailing" secondItem="yvV-p2-T8u" secondAttribute="trailingMargin" id="qvG-a4-RWm"/>
+                            <constraint firstItem="LMh-pD-YK1" firstAttribute="leading" secondItem="yvV-p2-T8u" secondAttribute="leading" id="uja-z6-l3L"/>
+                            <constraint firstAttribute="bottom" secondItem="LMh-pD-YK1" secondAttribute="bottom" id="yih-Rd-iOP"/>
+                            <constraint firstItem="afN-bW-fMB" firstAttribute="leading" secondItem="yvV-p2-T8u" secondAttribute="leadingMargin" id="zxn-f5-CSI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Info" id="cB9-Z1-dEa"/>
@@ -107,6 +142,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="fullResolutionSwitch" destination="pW3-71-Hwx" id="teF-HA-TFW"/>
                         <outlet property="webView" destination="afN-bW-fMB" id="COm-1z-cvG"/>
                     </connections>
                 </viewController>
