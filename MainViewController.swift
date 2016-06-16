@@ -52,7 +52,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
         picker.videoQuality = .TypeHigh
-        picker.allowsEditing = true
+        // to get 1080p video, we need to use the Reference URL, which ignores edits
+        // is there a way to use the MediaURL but get 1080p video?
+        picker.allowsEditing = false
         picker.delegate = self
         picker.modalPresentationStyle = .Popover
         picker.popoverPresentationController?.sourceView = self.view
@@ -65,11 +67,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         print("cancel")
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
-//    
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-//        print("GOT image", image, )
-//        
-//    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
