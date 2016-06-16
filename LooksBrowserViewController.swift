@@ -23,6 +23,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     var cellSize : CGSize = CGSize(width: 170, height: 170)
     var selectedLook : Look?
     var videoURL: NSURL?
+    var backgroundQueue : NSOperationQueue?
     
     var videoMode = VideoModeWideSceenLandscape
     
@@ -90,10 +91,17 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func queueRender(state:LookCellState) {
-        state.rendering = true
-        NSOperationQueue.currentQueue()?.addOperationWithBlock({
+        // there's a bug with the renderer. When it runs in the background
+        // the first couple of them come out solid white
+        
+        // so we'll start with the mainQueue, and when the first ones start to finish
+        // any new ones will get added to the background queue
+        let queue = backgroundQueue ?? NSOperationQueue.mainQueue()
+        
+        queue.addOperationWithBlock({
+            state.rendering = true
             print("")
-            print("****************** RENDER!")
+            print("****************** RENDER!", (self.backgroundQueue != nil))
             let look = state.look
             self.renderer.loadLookParam(look.data, withMode: self.videoMode)
     		self.renderer.looksStrengthValue = 1.0
@@ -107,6 +115,13 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
             state.image = processedImage
             state.rendering = false
             state.onRender(processedImage)
+            
+            // first one finished, let's initialize the background queue
+            if (self.backgroundQueue == nil) {
+                let queue = NSOperationQueue()
+                queue.maxConcurrentOperationCount = 1
+                self.backgroundQueue = queue
+            }
         })
     }
     
