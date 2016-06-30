@@ -89,8 +89,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMh-pD-YK1">
-                                <rect key="frame" x="0.0" y="420" width="320" height="60"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMh-pD-YK1">
+                                <rect key="frame" x="0.0" y="480" width="320" height="0.0"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Resolution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJR-7Y-7zy">
                                         <rect key="frame" x="20" y="12" width="112" height="21"/>
@@ -99,7 +99,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pW3-71-Hwx">
-                                        <rect key="frame" x="251" y="14" width="51" height="31"/>
+                                        <rect key="frame" x="251" y="-16" width="51" height="31"/>
                                         <color key="onTintColor" red="0.20392156862745098" green="0.45098039215686275" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="onFullResolutionChange:" destination="I0R-aS-aF1" eventType="valueChanged" id="jsZ-eI-pJT"/>
@@ -117,12 +117,12 @@
                                     <constraint firstAttribute="trailing" secondItem="pW3-71-Hwx" secondAttribute="trailing" constant="20" id="50T-ci-Sso"/>
                                     <constraint firstItem="AJR-7Y-7zy" firstAttribute="top" secondItem="LMh-pD-YK1" secondAttribute="top" constant="12" id="C0x-lN-GhW"/>
                                     <constraint firstItem="AJR-7Y-7zy" firstAttribute="leading" secondItem="LMh-pD-YK1" secondAttribute="leading" constant="20" id="icm-fT-v84"/>
-                                    <constraint firstAttribute="height" constant="60" id="jk1-tg-7Be"/>
+                                    <constraint firstAttribute="height" id="jk1-tg-7Be"/>
                                     <constraint firstItem="pW3-71-Hwx" firstAttribute="centerY" secondItem="LMh-pD-YK1" secondAttribute="centerY" id="pYw-Lq-PVA"/>
                                 </constraints>
                             </view>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afN-bW-fMB">
-                                <rect key="frame" x="16" y="44" width="288" height="376"/>
+                                <rect key="frame" x="16" y="44" width="288" height="436"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
