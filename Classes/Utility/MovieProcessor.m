@@ -418,6 +418,8 @@
     {
         CMTimeRange clipTimeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
         
+        NSLog(@"Compose clip: start=%lli duration=%lli", clipTimeRange.start.value, clipTimeRange.duration.value);
+        
         // skip tiny ones at the end
         if(clipTimeRange.duration.value<20) {
             skipped++;
@@ -531,9 +533,9 @@
 //	NSTimeInterval renderTime = [NSDate timeIntervalSinceReferenceDate];
 	
 //	@try{
-		CMTime lastSampleTime = CMTimeMake(lastSampleTimeRange.start.value, 600);
+		CMTime lastSampleTime = CMTimeMake(lastSampleTimeRange.start.value, lastSampleTimeRange.start.timescale);
 		if(movieRenderState == MovieStatePause || movieRenderState == MovieStateCheckPoint || movieRenderState == MovieStateStop || movieRenderState == MovieStateSamplerError)
-			lastSampleTime = CMTimeMake(lastSampleTimeRange.start.value-(lastSampleTimeRange.start.value%300), 600);
+			lastSampleTime = CMTimeMake(lastSampleTimeRange.start.value-(lastSampleTimeRange.start.value%300), lastSampleTime.timescale);
 		lastSampleTimeRange = CMTimeRangeFromTimeToTime(lastSampleTime, CMTimeRangeGetEnd(lastSampleTimeRange));
 		
 		subMovieStarts[subMovieIndex] = lastSampleTimeRange.start;
@@ -670,17 +672,7 @@
 {
 	backfromPause = NO;
     movieRenderState = MovieStateResume;
-	{	
-//		NSString* lastWriteMoviePath = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%i_%@",subMovieIndex,@"bullet_movie.mov"]];
-//		AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:lastWriteMoviePath] options:nil];	
-//		if(![self checkVideoTrack:movieAsset])
-//        {
-//			lastSampleTimeRange =  CMTimeRangeFromTimeToTime(subMovieStarts[subMovieIndex-1], CMTimeRangeGetEnd(lastSampleTimeRange));
-//            backfromPause = YES;
-//        }
-//        else
-			++subMovieIndex;
-	}
+	subMovieIndex++;
 	avVideoProcessPaused = NO;
 	avAudioProcessPaused = NO;
 	avVideoProcessCheckPoint = NO;

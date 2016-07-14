@@ -331,6 +331,7 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
     	
     		// with higher resolution, we want to hold fewer frames in the checkpoint buffer.
     		NSInteger CheckPointFrameCount = (renderType==RendererTypeFull)?30:60;
+            
     		if(framePastedFromPause>CheckPointFrameCount && (sampleTime.value%300<20) && needCheckPoint)
     		{
     			framePastedFromPause = 0;
