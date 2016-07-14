@@ -19,6 +19,7 @@ class Debug: NSObject {
             PHPhotoLibrary.sharedPhotoLibrary().performChanges({
                 PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("IMG_0646.MOV"))
                 PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("IMG_3034.MOV"))
+                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("error.mp4"))
             }, completionHandler: { (success, error) in
                 print("copied", success, error)
             })

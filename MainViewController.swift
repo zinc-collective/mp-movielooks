@@ -91,7 +91,27 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // I would rather crash than have this missing. I need it to operate
         if chosenURL == nil {
             CLSLogv("Media URL Undefined: %@", getVaList([info]))
-            Crashlytics.sharedInstance().crash()
+            
+            // TEST: does this fix the crash?
+            // dismiss first
+            self.navigationController?.dismissViewControllerAnimated(true, completion: {
+                CLSLogv("Inside dismiss: %@", getVaList([info]))
+                if let chosenURL = info[UIImagePickerControllerMediaURL] {
+                    self.performSegueWithIdentifier("LooksBrowserViewController", sender: chosenURL)
+                }
+                else {
+                    let alert = UIAlertController(title: "Please help!", message: "You found a bug and we need your help. Will you contact support and tell us what kind of video you were picking? Our code can't locate it.", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {_ in
+                        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.momentpark.com/contact-us/")!)
+                        alert.dismissViewControllerAnimated(true, completion: {
+                            Crashlytics.sharedInstance().crash()
+                        })
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            })
+            
+            return
         }
         
         // this order is required to get the animation right
