@@ -16,43 +16,6 @@
 
 -(BOOL)checkFor720P:(float*)frameCount
 {
-#if 0
-    if(TooHighForDevice(sizeAVMediaInput))
-	{
-		float fps = 30.0f;
-		CMTime startTime = kCMTimeZero;
-		CMTime endTime = readMovieAsset.duration;
-		Float64 seconds =  CMTimeGetSeconds(endTime);
-		*frameCount = floor(seconds*fps);
-				
-		//new trim path	
-		NSString* tempTrimMoviePath = [[Utilities documentsPath:@"TempTrimMoviePath.mov"] retain];
-		NSFileManager *manager = [NSFileManager defaultManager];
-		if([manager fileExistsAtPath:tempTrimMoviePath])
-			[manager removeItemAtPath:tempTrimMoviePath error:nil];
-		
-		AVAssetExportSession* avTrimSession = [AVAssetExportSession exportSessionWithAsset:readMovieAsset presetName:AVAssetExportPreset640x480];
-		avTrimSession.timeRange = CMTimeRangeFromTimeToTime(startTime,endTime);
-		avTrimSession.outputURL = [NSURL fileURLWithPath:tempTrimMoviePath];
-		avTrimSession.outputFileType = AVFileTypeQuickTimeMovie;
-		//update trim URL
-		
-		[avTrimSession exportAsynchronouslyWithCompletionHandler:^{
-			NSLog(@"%@",[avTrimSession.error localizedDescription]);
-			tempWriteMoviePath = nil;
-			[readMovieURL release];
-			[readMovieAsset release];
-
-			readMovieURL = [[NSURL fileURLWithPath:tempTrimMoviePath] retain];
-			readMovieAsset = [[AVURLAsset alloc] initWithURL:readMovieURL options:nil];
-			sizeAVMediaInput =	[readMovieAsset naturalSize];
-			durationAVAsset = [readMovieAsset duration];
-			
-			[self performSelectorOnMainThread:@selector(startRenderMovie) withObject:nil waitUntilDone:YES];
-		}];
-		return YES;
-	}
-#endif
 	return NO;
 }
 
@@ -76,7 +39,7 @@
 	avMovieCondition = [[NSCondition alloc] init];
 	
 	subMovieIndex = 1;
-	subMovieStarts[0] = CMTimeMake(0,600);
+    subMovieStarts[0] = kCMTimeZero;
 	movieRenderState = MovieStateReady;
 	return self;
 }
@@ -84,25 +47,7 @@
 
 #pragma mark -
 #pragma mark MovieProcess
-/*
--(void)waitCompleteThread
-{
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-	[avMovieCondition lock];
-	while(!((avVideoProcessCompleted||avVideoProcessPaused) && (avAudioProcessCompleted||avAudioProcessPaused)))
-		[avMovieCondition wait];
-	if(avVideoProcessCompleted&&avAudioProcessCompleted)
-		[self finishRenderMovie:NO];
-		//		[self performSelectorOnMainThread:@selector(finishRenderMovie) withObject:nil waitUntilDone:NO];
-	else
-		[self stopMovieSession];
-//		[self performSelectorOnMainThread:@selector(stopMovieSession) withObject:nil waitUntilDone:NO];
-	[avMovieCondition unlock];	
-	
-	[pool release];
-}
-*/
 -(void)waitCompleteThreadWithoutAudio
 {
 	@autoreleasepool {
@@ -236,11 +181,6 @@
             [avMovieCondition signal];
             [avMovieCondition unlock];
         }
-
-//	}
-//	@catch (NSException* exc) {
-//		NSLog(@"%@",exc.reason);
-//	}	
 }
 
 -(void)setCondition:(void (^)(void))setBlock
@@ -320,220 +260,7 @@
 	}
 	
 }
-/*
--(BOOL)startMovieSession
-{
-	AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:readMoviePath] options:nil];	
-	if([[movieAsset tracksWithMediaType:AVMediaTypeVideo] count] == 0)return NO;
-	sizeAVMediaInput =	[movieAsset naturalSize];
-	sizeAVMediaOutput = [self.delegate knownVideoInfoEvent:sizeAVMediaInput withDuration:[movieAsset duration]];
-	
-	NSError* error=nil;	
-	NSString* stringAVMediaTypeVideo =	AVFileTypeQuickTimeMovie;//[[[movieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] mediaType];	
-	avMovieWriter = [[AVAssetWriter assetWriterWithURL:[NSURL fileURLWithPath:tempWriteMoviePath] fileType:stringAVMediaTypeVideo error:&error] retain];
-	if(error)
-	{	NSLog(@"AVAssetWriter setup error:%@",[error localizedFailureReason]);
-	}		
-	avMovieReader = [[AVAssetReader assetReaderWithAsset:movieAsset error:&error] retain];
-	if(error)
-	{	NSLog(@"AVAssetReader setup error:%@",[error localizedFailureReason]);
-	}
 
-	AVAssetTrack *clipVideoTrack = [[movieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-	AVAssetTrack *clipAudioTrack = [[movieAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
-	if(movieRenderState==MovieStateRendering)
-		lastSampleTimeRange = clipVideoTrack.timeRange;
-	[movieAsset release];
-	
-	NSLog(@"Start Render CMTime(%d,%d)---CMTimeDuration(%d,%d)",lastSampleTimeRange.start.value,lastSampleTimeRange.start.timescale,lastSampleTimeRange.duration.value,lastSampleTimeRange.duration.timescale);
-
-	avMovieReader.timeRange = lastSampleTimeRange;
-	{
-	NSDictionary *videoOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey,nil];
-	NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,nil];
-		
-	avVideoReaderOutput  = [[AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:clipVideoTrack outputSettings:videoOutputSettings] retain];
-	avAudioReaderOutput = [[AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:clipAudioTrack outputSettings:audioOutputSettings] retain];
-	if([avMovieReader canAddOutput:avVideoReaderOutput])
-		[avMovieReader addOutput:avVideoReaderOutput];
-	if([avMovieReader canAddOutput:avAudioReaderOutput])
-		[avMovieReader addOutput:avAudioReaderOutput];
-	}	
-	AudioChannelLayout* al = (AudioChannelLayout *) calloc(0, sizeof(AudioChannelLayout));
-	al->mChannelBitmap = 0;
-	al->mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
-	al->mNumberChannelDescriptions = 0;
-	{	
-	NSDictionary* videoOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264,	AVVideoCodecKey,
-										 [NSNumber numberWithInt:sizeAVMediaOutput.width],				AVVideoWidthKey,
-										 [NSNumber numberWithInt:sizeAVMediaOutput.height],				AVVideoHeightKey,nil];
-	NSDictionary* audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
-										 [NSNumber numberWithInt:44100.0],AVSampleRateKey,
-										 [NSNumber numberWithInt: 2],AVNumberOfChannelsKey,
-										 //[NSNumber numberWithInt:96],AVEncoderBitRateKey,
-										 //[NSNumber numberWithInt:16],AVEncoderBitDepthHintKey,
-										 [NSData dataWithBytes:al length:sizeof(AudioChannelLayout)+1],AVChannelLayoutKey, 
-										 //AVChannelLayoutKey,AVChannelLayoutKey,
-										 [NSNumber numberWithInt:16],	AVLinearPCMBitDepthKey,
-										 [NSNumber numberWithBool:NO],	AVLinearPCMIsBigEndianKey,
-										 [NSNumber numberWithBool:NO],	AVLinearPCMIsFloatKey,
-										 [NSNumber numberWithBool:NO],	AVLinearPCMIsNonInterleaved,nil];
-		
-		
-		avVideoWriterInput = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeVideo outputSettings:videoOutputSettings];
-		avAudioWriterInput = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeAudio outputSettings:audioOutputSettings];
-		avVideoWriterInput.expectsMediaDataInRealTime = NO;
-		avAudioWriterInput.expectsMediaDataInRealTime = NO;
-		if([avMovieWriter canAddInput:avVideoWriterInput])
-			[avMovieWriter addInput:avVideoWriterInput];
-		if([avMovieWriter canAddInput:avAudioWriterInput])
-			[avMovieWriter addInput:avAudioWriterInput];
-	}
-	avMoviePixelBufferAdaptor = [[AVAssetWriterInputPixelBufferAdaptor alloc] initWithAssetWriterInput:avVideoWriterInput sourcePixelBufferAttributes:NULL];
-
-	dispatch_queue_t avMovieSerialQueue = dispatch_queue_create("AVAssetWriterMovieQueue", 0);	
-	[avMovieReader startReading];	
-	if([avMovieWriter startWriting]){
-		[avMovieWriter startSessionAtSourceTime:lastSampleTimeRange.start];
-		
-		[avVideoWriterInput requestMediaDataWhenReadyOnQueue:avMovieSerialQueue usingBlock:^{			
-			while ([avVideoWriterInput isReadyForMoreMediaData])
-				[self renderNextVideoFrame];
-		}];
-		[avAudioWriterInput requestMediaDataWhenReadyOnQueue:avMovieSerialQueue usingBlock:^{
-			while ([avAudioWriterInput isReadyForMoreMediaData])
-				[self renderNextAudioFrame];
-		}];
-		[NSThread detachNewThreadSelector:@selector(waitCompleteThread) toTarget:self withObject:nil];
-		return YES;
-	}
-	else
-	{
-		if(avMovieReader.status == AVAssetReaderStatusFailed)
-			NSLog(@"Reader Error:%@", [avMovieReader.error description]);
-		if(avMovieWriter.status == AVAssetWriterStatusFailed)
-			NSLog(@"Writter Error:%@", [avMovieWriter.error description]);
-		return NO;
-	}
-}
-
--(BOOL)composeMovieSession
-{	
-	@try{
-		AVMutableComposition* compositionMovieAsset = [AVMutableComposition composition];
-		AVMutableCompositionTrack *compositionVideoTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-		AVMutableCompositionTrack *compositionAudioTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-		CMTime nextClipStartTime = CMTimeMake(0, 600);
-
-		for (int i=1; i <= subMovieIndex; ++i) {
-			CMTimeRange clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
-
-			NSString* subMovieName = [NSString stringWithFormat:@"Sub%d_%@",i,@"bullet_movie.mov"];
-			AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[Utilities documentsPath:subMovieName]] options:nil];
-
-			if(movieAsset==nil) NSLog(@"Sub clip %@ not exit!",subMovieName);
-			if([[movieAsset tracksWithMediaType:AVMediaTypeVideo] count]<=0) {NSLog(@"Sub clip%d video render error!",i); return NO;}
-			if([[movieAsset tracksWithMediaType:AVMediaTypeAudio] count]<=0) {NSLog(@"Sub clip%d audio render error!",i); return NO;}
-
-			AVAssetTrack *clipVideoTrack = [[movieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-			AVAssetTrack *clipAudioTrack = [[movieAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
-			[compositionVideoTrack insertTimeRange:clipTimeRange ofTrack:clipVideoTrack atTime:nextClipStartTime error:nil];
-			[compositionAudioTrack insertTimeRange:clipTimeRange ofTrack:clipAudioTrack atTime:nextClipStartTime error:nil];
-			NSLog(@"Clip %d:CMTime(%d,%d)---CMTimeDuration(%d,%d)",i,nextClipStartTime.value,nextClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
-			nextClipStartTime = CMTimeAdd(nextClipStartTime, clipTimeRange.duration);
-
-		}
-			
-		avComposeSession = [[AVAssetExportSession alloc] initWithAsset:compositionMovieAsset presetName:AVAssetExportPresetHighestQuality];
-		avComposeSession.outputURL = [NSURL fileURLWithPath:tempWriteMoviePath];
-		avComposeSession.outputFileType = AVFileTypeQuickTimeMovie;
-		[avComposeSession exportAsynchronouslyWithCompletionHandler:^{
-			if(movieRenderState == MovieStateCompose)	
-			{
-				movieRenderState = MovieStateComplete;
-				[self.delegate performSelectorOnMainThread:@selector(finishProcessMovieEvent:) withObject:tempWriteMoviePath waitUntilDone:NO];
-			}
-		}];
-	}
-	@catch(NSException* exc)
-	{
-		NSLog(@"%@",[exc reason]); return NO;
-	}
-	return YES;
-}
-
--(BOOL)stopMovieSession
-{
-	
-	@try{
-		CMTime lastSampleTime = CMTimeMake(lastSampleTimeRange.start.value, 600);
-		if(movieRenderState == MovieStatePause)
-			lastSampleTime = CMTimeMake(lastSampleTimeRange.start.value-(lastSampleTimeRange.start.value%300), 600);
-		lastSampleTimeRange = CMTimeRangeFromTimeToTime(lastSampleTime, CMTimeRangeGetEnd(lastSampleTimeRange));
-
-		subMovieStarts[subMovieIndex] = lastSampleTimeRange.start;
-		NSLog(@"Stop %d at（%d,%d） video frame!",subMovieIndex,subMovieStarts[subMovieIndex].value,subMovieStarts[subMovieIndex].timescale);
-		if(movieRenderState == MovieStatePause)
-			++subMovieIndex;
-		
-		[avMovieWriter finishWriting];
-		[avMovieReader cancelReading];
-	}
-	@catch (NSException* exc) {
-		NSLog(@"%@",[exc reason]); return NO;
-	}
-
-	if(avMovieReader.status == AVAssetReaderStatusFailed)
-		NSLog(@"Reader Error:%@",[avMovieReader.error localizedDescription]);
-	if(avMovieWriter.status == AVAssetWriterStatusFailed)
-		NSLog(@"Writer Error:%@",[avMovieWriter.error localizedDescription]);
-	
-	[avVideoReaderOutput release];
-	[avAudioReaderOutput release];
-	[avVideoWriterInput release];
-	[avAudioWriterInput release];
-	[avMovieReader release];
-	[avMovieWriter release];
-	[avMoviePixelBufferAdaptor release];
-	
-	avVideoReaderOutput = nil;
-	avAudioReaderOutput = nil;
-	avVideoWriterInput = nil;
-	avAudioWriterInput = nil;
-	avMovieReader = nil;
-	avMovieWriter = nil;
-
-
-	return YES;
-}
-
--(BOOL)cancelMovieSession
-{
-	@try{		//	BOOL canwStopWriteSession = [avMovieWriter finishWriting];
-		[avMovieWriter cancelWriting];
-		[avMovieReader cancelReading];
-	}
-	@catch (NSException* exc) {
-		NSLog(@"%@",[exc reason]);
-	}
-	[avVideoReaderOutput release];
-	[avAudioReaderOutput release];
-	[avVideoWriterInput release];
-	[avAudioWriterInput release];
-	[avMovieReader release];
-	[avMovieWriter release];
-	[avMoviePixelBufferAdaptor release];
-	
-	avVideoReaderOutput = nil;
-	avAudioReaderOutput = nil;
-	avVideoWriterInput = nil;
-	avAudioWriterInput = nil;
-	avMovieReader = nil;
-	avMovieWriter = nil;
-	return YES;
-}
-*/
 
 -(BOOL)startMovieSessionWithoutAudio
 {
@@ -678,52 +405,18 @@
 
 -(BOOL)composeMovieSessionWithoutAudio
 {	
-//	@try{
-		AVMutableComposition* compositionMovieAsset = [AVMutableComposition composition];
-		AVMutableCompositionTrack *compositionVideoTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-		AVMutableCompositionTrack *compositionAudioTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-		CMTime nextClipStartTime = CMTimeMake(0, 600);
-		
-        //
-        CMTime finalduration;
-        finalduration.value  = 0;
-        finalduration.timescale  = 600;
-        CMTime currentduration;
-        //
-#if 0
-        for (int i=1; i <= subMovieIndex; ++i)
-        {
-			CMTimeRange clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
-            if(clipTimeRange.duration.value<20) continue;
-			
-			NSString* subMovieName = [NSString stringWithFormat:@"Sub%i_%@",i,@"bullet_movie.mov"];
-			//bret
-            //AVMutableVideoComposition's frameDuration
-            NSDictionary *options = @{AVURLAssetPreferPreciseDurationAndTimingKey:@YES};
-            AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[Utilities documentsPath:subMovieName]] options:options];
-
-			//bret debug test
-            //AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mURL options:nil];
-            currentduration = movieAsset.duration;
-            finalduration.value += currentduration.value;
-            //
-            
-            //
-            //AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[Utilities documentsPath:subMovieName]] options:nil];
-            //end bret
-			if(movieAsset==nil) NSLog(@"Sub clip %@ not exit!",subMovieName);
-			if([[movieAsset tracksWithMediaType:AVMediaTypeVideo] count]<=0) {NSLog(@"Sub clip%d video render error!",i); return NO;}
-			
-			AVAssetTrack *clipVideoTrack = [[movieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-			[compositionVideoTrack insertTimeRange:clipTimeRange ofTrack:clipVideoTrack atTime:nextClipStartTime error:nil];
-			NSLog(@"Clip %d:CMTime(%d,%d)---CMTimeDuration(%d,%d)",i,nextClipStartTime.value,nextClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
-			nextClipStartTime = CMTimeAdd(nextClipStartTime, clipTimeRange.duration);			
-		}
-#endif
+	AVMutableComposition* compositionMovieAsset = [AVMutableComposition composition];
+	AVMutableCompositionTrack *compositionVideoTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+	AVMutableCompositionTrack *compositionAudioTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    CMTime nextClipStartTime = kCMTimeZero;
+	
+    CMTime finalduration = kCMTimeZero;
+    CMTime currentduration;
+    
     int skipped = 0;
     for (int i=1; i <= subMovieIndex; ++i)
     {
-        CMTimeRange clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
+        CMTimeRange clipTimeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMake(subMovieStarts[i].value-subMovieStarts[i-1].value, 600));
         
         // skip tiny ones at the end
         if(clipTimeRange.duration.value<20) {
@@ -743,9 +436,7 @@
         //AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mURL options:nil];
         currentduration = movieAsset.duration;
         finalduration.value += currentduration.value;
-        clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(currentduration.value, 600));
-        //clipTimeRange = CMTimeRangeMake(CMTimeMake(0, 600),CMTimeMake(currentduration.value - 20, 600)); //remove one frame
-        //
+        clipTimeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMake(currentduration.value, 600));
         
         //overrideo
         //AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[Utilities documentsPath:subMovieName]] options:nil];
@@ -773,27 +464,27 @@
         nextClipStartTime = CMTimeAdd(nextClipStartTime, clipTimeRange.duration);
     }
 		
-		CMTime audioClipStartTime = CMTimeMake(0, 600);
-		CMTimeRange clipTimeRange = CMTimeRangeMake(audioClipStartTime,CMTimeMake(subMovieStarts[subMovieIndex-skipped].value-subMovieStarts[0].value, 600));
+    CMTime audioClipStartTime = kCMTimeZero;
+	CMTimeRange clipTimeRange = CMTimeRangeMake(audioClipStartTime,CMTimeMake(subMovieStarts[subMovieIndex-skipped].value-subMovieStarts[0].value, 600));
 
-        //AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:readMovieURL options:nil];
-		AVAssetTrack *clipVideoTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-		compositionVideoTrack.preferredTransform = clipVideoTrack.preferredTransform;
-//#if 0
-        if([[readMovieAsset tracksWithMediaType:AVMediaTypeAudio] count]>0)
-		{
-			AVAssetTrack *clipAudioTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
-			[compositionAudioTrack insertTimeRange:clipTimeRange ofTrack:clipAudioTrack atTime:CMTimeMake(0, 600) error:nil];
-			NSLog(@"Clip audio:CMTime(%lld,%d)---CMTimeDuration(%lld,%d)",audioClipStartTime.value,audioClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
-		}
-//#endif
-        //bret render issue force recode
-        //avComposeSession = [[AVAssetExportSession alloc] initWithAsset:compositionMovieAsset presetName:AVAssetExportPresetHighestQuality];
-        //CGSize sizeAVMediaInput;
-        //CGSize sizeAVMediaOutput;
-        NSString *outputsizeOption;
-        //NSLog(@"bret outputwidth == %f",sizeAVMediaOutput.width);
+    //AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:readMovieURL options:nil];
+	AVAssetTrack *clipVideoTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+	compositionVideoTrack.preferredTransform = clipVideoTrack.preferredTransform;
     
+    if([[readMovieAsset tracksWithMediaType:AVMediaTypeAudio] count]>0)
+	{
+		AVAssetTrack *clipAudioTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
+		[compositionAudioTrack insertTimeRange:clipTimeRange ofTrack:clipAudioTrack atTime:CMTimeMake(0, 600) error:nil];
+		NSLog(@"Clip audio:CMTime(%lld,%d)---CMTimeDuration(%lld,%d)",audioClipStartTime.value,audioClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
+	}
+    
+    //bret render issue force recode
+    //avComposeSession = [[AVAssetExportSession alloc] initWithAsset:compositionMovieAsset presetName:AVAssetExportPresetHighestQuality];
+    //CGSize sizeAVMediaInput;
+    //CGSize sizeAVMediaOutput;
+    NSString *outputsizeOption;
+    //NSLog(@"bret outputwidth == %f",sizeAVMediaOutput.width);
+
 //joe rendering issue 1080p
 //this line forces 1080p video to be recoded at 720p and fixes the frame rate issue (all devices)
 //#if 0
@@ -801,16 +492,6 @@
         outputsizeOption = AVAssetExportPreset1920x1080;
         //outputsizeOption = AVAssetExportPreset1280x720;
 //#endif
-//this would force 720p only on ipad
-#if 0
-    if (sizeAVMediaOutput.width == 1920.0 || sizeAVMediaOutput.height == 1920.0)
-    {
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            outputsizeOption = AVAssetExportPreset1280x720;
-        else
-            outputsizeOption = AVAssetExportPreset1920x1080;
-    }
-#endif
         else if (sizeAVMediaOutput.width == 1280.0 || sizeAVMediaOutput.height == 1280.0)
             outputsizeOption = AVAssetExportPresetHighestQuality;
         else if (sizeAVMediaOutput.width == 960.0 || sizeAVMediaOutput.height == 960.0)
@@ -842,12 +523,7 @@
                 });
 			}
 		}];
-//	}
-//	@catch(NSException* exc)
-//	{
-//		NSLog(@"%@",[exc reason]); return NO;
-//	}
-	return YES;	
+	return YES;
 }
 
 -(BOOL)stopMovieSessionWithoutAudioWithCompletionHandler:(void (^)(void))complete
