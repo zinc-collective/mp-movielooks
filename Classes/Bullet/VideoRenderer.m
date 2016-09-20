@@ -126,7 +126,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 //**	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseToMultiTask) name:@"MultiTaskPause" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeToActive) name:@"BecomeActiveResume" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseToDisactive) name:@"ResignActivePause" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoWasShared) name:@"VideoWasShared" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(monitorMusicPlayer:) name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:[MPMusicPlayerController systemMusicPlayer]];
 	[[MPMusicPlayerController systemMusicPlayer] beginGeneratingPlaybackNotifications];
     
@@ -288,7 +287,6 @@ static NSString* const AVPlayerRateObservationContextBullet = @"AVPlayerRateObse
 	//**[[NSNotificationCenter defaultCenter] removeObserver:self name:@"MultiTaskPause" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"BecomeActiveResume" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"ResignActivePause" object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"VideoWasShared" object:nil];
     
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:[MPMusicPlayerController systemMusicPlayer]];
 	[[MPMusicPlayerController systemMusicPlayer] endGeneratingPlaybackNotifications];

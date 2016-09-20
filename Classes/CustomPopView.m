@@ -13,9 +13,9 @@
 @synthesize delegate_;
 
 - (void)deviceOrientationDidChange:(void*)object {
-	UIDeviceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 	
-	if(UIDeviceOrientationIsPortrait(orientation)){
+	if(UIInterfaceOrientationIsPortrait(orientation)){
 		self.frame = CGRectMake(0, 0, framePortraitSize.width, framePortraitSize.height);
 		UIView *v = [self viewWithTag:1];
 		v.frame = self.frame;

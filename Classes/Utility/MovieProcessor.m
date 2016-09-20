@@ -709,21 +709,9 @@
     	//bret movielooks update
     	prevWriteMoviePath = nil;
         
-        //	if(subMovieIndex>1)
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate finishRenderMovieEvent];
         });
-        
-    	//else
-    	if(NO)
-    	{	
-    		movieRenderState = MovieStateComplete;
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSString* path = [Utilities documentsPath:[NSString stringWithFormat:@"Sub%i_%@",subMovieIndex,@"bullet_movie.mov"]];
-                [self.delegate finishProcessMovieEvent:path];
-            });
-    	}
     }];
 }
 

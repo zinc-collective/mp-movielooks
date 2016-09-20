@@ -127,7 +127,7 @@ const GLfloat texcoords[] =
 									32,
 									sourceRect.size.width*glPixelSize,
 									CGColorSpaceCreateDeviceRGB(),
-									glImageAlphaLast,
+									(CGBitmapInfo) glImageAlphaLast,
 									provider,
 									NULL,
 									NO,
