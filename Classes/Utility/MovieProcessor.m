@@ -407,7 +407,6 @@
 {	
 	AVMutableComposition* compositionMovieAsset = [AVMutableComposition composition];
 	AVMutableCompositionTrack *compositionVideoTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-	AVMutableCompositionTrack *compositionAudioTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
     CMTime nextClipStartTime = kCMTimeZero;
 	
     CMTime finalduration = kCMTimeZero;
@@ -475,6 +474,8 @@
     
     if([[readMovieAsset tracksWithMediaType:AVMediaTypeAudio] count]>0)
 	{
+        // Fix: do not add an audio track unless we have audio to fill it with, or the movie will not export
+        AVMutableCompositionTrack *compositionAudioTrack = [compositionMovieAsset addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
 		AVAssetTrack *clipAudioTrack = [[readMovieAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
 		[compositionAudioTrack insertTimeRange:clipTimeRange ofTrack:clipAudioTrack atTime:CMTimeMake(0, 600) error:nil];
 		NSLog(@"Clip audio:CMTime(%lld,%d)---CMTimeDuration(%lld,%d)",audioClipStartTime.value,audioClipStartTime.timescale,clipTimeRange.duration.value,clipTimeRange.duration.timescale);
