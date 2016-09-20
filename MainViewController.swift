@@ -18,17 +18,17 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        findButton.setType(.Primary)
+        findButton.setType(.primary)
         findButton.color = UIColor(red: 0.204, green: 0.451, blue: 0.690, alpha: 0.8) // #3473B0
         
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         #if DEBUG
             Debug.addDefaultVideoIfEmpty()
         #endif
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func tappedInfo() {
         print("tapped info")
-        self.performSegueWithIdentifier("InfoViewController", sender: self)
+        self.performSegue(withIdentifier: "InfoViewController", sender: self)
 //        if let info = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InfoViewController") as? InfoViewController {
 //            
 //            print("info!")
@@ -55,8 +55,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func tappedFind() {
         
         let picker = UIImagePickerController()
-        picker.sourceType = .PhotoLibrary
-        picker.videoQuality = .TypeHigh
+        picker.sourceType = .photoLibrary
+        picker.videoQuality = .typeHigh
         
         // NOTE: disabling this feature to see if it fixes not finishing errors
         // to get 1080p video, we need to use the Reference URL, which ignores edits
@@ -66,19 +66,19 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.allowsEditing = true
         
         picker.delegate = self
-        picker.modalPresentationStyle = .Popover
+        picker.modalPresentationStyle = .popover
         picker.popoverPresentationController?.sourceView = self.view
         picker.popoverPresentationController?.sourceRect = self.findButton.frame
         picker.mediaTypes = [kUTTypeMovie as String]
-        self.navigationController?.presentViewController(picker, animated: true, completion: nil)
+        self.navigationController?.present(picker, animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("cancel")
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let chosenURL = info[UIImagePickerControllerMediaURL]
         
@@ -94,20 +94,20 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             // TEST: does this fix the crash?
             // dismiss first
-            self.navigationController?.dismissViewControllerAnimated(true, completion: {
+            self.navigationController?.dismiss(animated: true, completion: {
                 CLSLogv("Inside dismiss: %@", getVaList([info]))
                 if let chosenURL = info[UIImagePickerControllerMediaURL] {
-                    self.performSegueWithIdentifier("LooksBrowserViewController", sender: chosenURL)
+                    self.performSegue(withIdentifier: "LooksBrowserViewController", sender: chosenURL)
                 }
                 else {
-                    let alert = UIAlertController(title: "Please help!", message: "You found a bug and we need your help. Will you contact support and tell us what kind of video you were picking? Our code can't locate it.", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {_ in
-                        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.momentpark.com/contact-us/")!)
-                        alert.dismissViewControllerAnimated(true, completion: {
+                    let alert = UIAlertController(title: "Please help!", message: "You found a bug and we need your help. Will you contact support and tell us what kind of video you were picking? Our code can't locate it.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+                        UIApplication.shared.openURL(URL(string: "http://www.momentpark.com/contact-us/")!)
+                        alert.dismiss(animated: true, completion: {
                             Crashlytics.sharedInstance().crash()
                         })
                     }))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                 }
             })
             
@@ -115,14 +115,14 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
         // this order is required to get the animation right
-        self.performSegueWithIdentifier("LooksBrowserViewController", sender: chosenURL)
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.performSegue(withIdentifier: "LooksBrowserViewController", sender: chosenURL)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LooksBrowserViewController" {
-            if let looksViewController = segue.destinationViewController as? LooksBrowserViewController {
-                let movieURL = sender as! NSURL
+            if let looksViewController = segue.destination as? LooksBrowserViewController {
+                let movieURL = sender as! URL
                 
                 // crash if this doesn't work
                 try! looksViewController.loadVideo(movieURL)
@@ -130,7 +130,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    @IBAction func unwindHome(segue:UIStoryboardSegue) {
+    @IBAction func unwindHome(_ segue:UIStoryboardSegue) {
         
     }
 }

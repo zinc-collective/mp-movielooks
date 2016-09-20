@@ -17,7 +17,7 @@ class Look: NSObject {
     
     var data: [String : AnyObject] = [:]
     
-    static func parse(data:[String: AnyObject]) -> Look {
+    static func parse(_ data:[String: AnyObject]) -> Look {
         let look = Look()
         
         look.name = data["name"] as? String ?? ""
@@ -39,9 +39,9 @@ class LookGroup: NSObject {
     
     var data: [String : AnyObject] = [:]
     
-    static func parse(dictionary:[String : AnyObject]) -> LookGroup? {
+    static func parse(_ dictionary:[String : AnyObject]) -> LookGroup? {
         
-        if let id = dictionary["identifier"] as? String, name = dictionary["name"] as? String, locked = dictionary["locked"] as? NSNumber, items = dictionary["items"] as? [[String: AnyObject]] {
+        if let id = dictionary["identifier"] as? String, let name = dictionary["name"] as? String, let locked = dictionary["locked"] as? NSNumber, let items = dictionary["items"] as? [[String: AnyObject]] {
             
             let group = LookGroup()
             group.identifier = id

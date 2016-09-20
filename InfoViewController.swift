@@ -15,7 +15,7 @@ class InfoViewController : UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var fullResolutionSwitch: UISwitch!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
@@ -24,20 +24,20 @@ class InfoViewController : UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         // full resolution switch on/off on load
-        let defaults = NSUserDefaults.standardUserDefaults()
-        fullResolutionSwitch.on = defaults.boolForKey(FullResolutionKey)
+        let defaults = UserDefaults.standard
+        fullResolutionSwitch.isOn = defaults.bool(forKey: FullResolutionKey)
         
-        webView.backgroundColor = UIColor.clearColor()
-        webView.opaque = false
+        webView.backgroundColor = UIColor.clear
+        webView.isOpaque = false
         webView.scrollView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.showsHorizontalScrollIndicator = false
         webView.delegate = self
         
-        if let url = NSBundle.mainBundle().URLForResource("info", withExtension: "html"), path = url.path {
+        if let url = Bundle.main.url(forResource: "info", withExtension: "html") {
         
             do {
-                let string = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
+                let string = try String(contentsOfFile: url.path)
                 webView.loadHTMLString(string, baseURL: nil)
             }
             catch let err as NSError {
@@ -46,19 +46,19 @@ class InfoViewController : UIViewController, UIWebViewDelegate {
         }
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        if let url = request.URL where navigationType == .LinkClicked {
-            UIApplication.sharedApplication().openURL(url)
+        if let url = request.url , navigationType == .linkClicked {
+            UIApplication.shared.openURL(url)
             return false
         }
         
         return true
     }
     
-    @IBAction func onFullResolutionChange(sender: AnyObject) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(fullResolutionSwitch.on, forKey: FullResolutionKey)
+    @IBAction func onFullResolutionChange(_ sender: AnyObject) {
+        let defaults = UserDefaults.standard
+        defaults.set(fullResolutionSwitch.isOn, forKey: FullResolutionKey)
         defaults.synchronize()
     }
 }

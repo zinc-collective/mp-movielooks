@@ -29,7 +29,6 @@
 		06CA1F9D13406465005B56DE /* QuartzView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1F9313406465005B56DE /* QuartzView.m */; };
 		06CA1F9E13406465005B56DE /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1F9513406465005B56DE /* ToggleButton.m */; };
 		06CA1F9F13406465005B56DE /* UICustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1F9713406465005B56DE /* UICustomSwitch.m */; };
-		06CA1FA013406465005B56DE /* UIView-AlertAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1F9913406465005B56DE /* UIView-AlertAnimations.m */; };
 		06CA1FD61340657B005B56DE /* MobileLooksPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FC21340657B005B56DE /* MobileLooksPickerItem.m */; };
 		06CA1FD71340657B005B56DE /* MobileLooksPickerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FC41340657B005B56DE /* MobileLooksPickerSource.m */; };
 		06CA1FDC1340657B005B56DE /* PlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FCC1340657B005B56DE /* PlaybackView.m */; };
@@ -528,8 +527,6 @@
 		06CA1F9513406465005B56DE /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
 		06CA1F9613406465005B56DE /* UICustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomSwitch.h; sourceTree = "<group>"; };
 		06CA1F9713406465005B56DE /* UICustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomSwitch.m; sourceTree = "<group>"; };
-		06CA1F9813406465005B56DE /* UIView-AlertAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView-AlertAnimations.h"; sourceTree = "<group>"; };
-		06CA1F9913406465005B56DE /* UIView-AlertAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView-AlertAnimations.m"; sourceTree = "<group>"; };
 		06CA1FC11340657B005B56DE /* MobileLooksPickerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileLooksPickerItem.h; sourceTree = "<group>"; };
 		06CA1FC21340657B005B56DE /* MobileLooksPickerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileLooksPickerItem.m; sourceTree = "<group>"; };
 		06CA1FC31340657B005B56DE /* MobileLooksPickerSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileLooksPickerSource.h; sourceTree = "<group>"; };
@@ -1246,8 +1243,6 @@
 				06CA1F9513406465005B56DE /* ToggleButton.m */,
 				06CA1F9613406465005B56DE /* UICustomSwitch.h */,
 				06CA1F9713406465005B56DE /* UICustomSwitch.m */,
-				06CA1F9813406465005B56DE /* UIView-AlertAnimations.h */,
-				06CA1F9913406465005B56DE /* UIView-AlertAnimations.m */,
 			);
 			path = Customize;
 			sourceTree = "<group>";
@@ -1926,6 +1921,7 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = G8R2KJ59DE;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 0;
@@ -2482,7 +2478,6 @@
 				06CA1F9D13406465005B56DE /* QuartzView.m in Sources */,
 				06CA1F9E13406465005B56DE /* ToggleButton.m in Sources */,
 				06CA1F9F13406465005B56DE /* UICustomSwitch.m in Sources */,
-				06CA1FA013406465005B56DE /* UIView-AlertAnimations.m in Sources */,
 				78538E001CDCF5AA00BC737C /* Video.swift in Sources */,
 				78D75F801CE12EC800895BA1 /* LookCell.swift in Sources */,
 				06CA1FD61340657B005B56DE /* MobileLooksPickerItem.m in Sources */,
@@ -2554,6 +2549,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2597,6 +2593,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2627,6 +2624,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2652,6 +2650,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/MovieLooks-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

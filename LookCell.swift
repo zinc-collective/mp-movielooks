@@ -15,12 +15,12 @@ class LookCell: UICollectionViewCell{
     
     let animationDuration = 0.100
     
-    func update(state:LookCellState) {
+    func update(_ state:LookCellState) {
         let look = state.look
         self.label.text = look.name
         
         state.onRender = { image in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.imageView.image = image
                 self.activityIndicator.stopAnimating()
             }
@@ -35,23 +35,23 @@ class LookCell: UICollectionViewCell{
         }
     }
     
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
-            if selected {
+            if isSelected {
                 let color = UIColor(red: 0.592, green: 0.757, blue: 0.953, alpha: 1.0) // #97C1F3
-                self.layer.borderColor = color.CGColor
+                self.layer.borderColor = color.cgColor
                 self.layer.borderWidth = 2.0
                 
-                UIView.animateWithDuration(animationDuration, animations: {
-                    self.transform = CGAffineTransformMakeScale(1.1, 1.1)
+                UIView.animate(withDuration: animationDuration, animations: {
+                    self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
                 })
                 
             }
             else {
                 self.layer.borderWidth = 0.0
                 
-                UIView.animateWithDuration(animationDuration, animations: {
-                    self.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                UIView.animate(withDuration: animationDuration, animations: {
+                    self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 })
             }
         }

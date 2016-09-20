@@ -13,8 +13,8 @@ class Video {
     
     static let sharedManager = Video()
     
-    func keyFrame(videoURL:NSURL, atTime: CMTime) throws -> UIImage {
-        let avAsset = AVURLAsset(URL: videoURL, options: nil)
+    func keyFrame(_ videoURL:URL, atTime: CMTime) throws -> UIImage {
+        let avAsset = AVURLAsset(url: videoURL, options: nil)
         let avImageGenerator = AVAssetImageGenerator(asset: avAsset)
         avImageGenerator.appliesPreferredTrackTransform = true
         avImageGenerator.maximumSize = CGSize(width: 800, height: 800)
@@ -25,13 +25,13 @@ class Video {
         
         // where do I get this?
 //        var currentTime: CMTime = mPlayer.currentTime()
-        let keyFrameRef: CGImageRef = try avImageGenerator.copyCGImageAtTime(atTime, actualTime: nil)
+        let keyFrameRef: CGImage = try avImageGenerator.copyCGImage(at: atTime, actualTime: nil)
         
-        let keyFrame = UIImage(CGImage: keyFrameRef)
+        let keyFrame = UIImage(cgImage: keyFrameRef)
         return keyFrame
     }
     
-    func renderSize(originalSize: CGSize, displaySize: CGSize) -> CGSize {
+    func renderSize(_ originalSize: CGSize, displaySize: CGSize) -> CGSize {
         let ratio = originalSize.height / originalSize.width
         
         if ratio < 1 {

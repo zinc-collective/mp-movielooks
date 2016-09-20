@@ -22,7 +22,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     var renderer : ES2Renderer!
     var cellSize : CGSize = CGSize(width: 170, height: 170)
     var selectedLook : Look?
-    var videoURL: NSURL?
+    var videoURL: URL?
     
     var videoMode = VideoModeWideSceenLandscape
     
@@ -31,9 +31,9 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nextButton.setType(.Primary)
+        nextButton.setType(.primary)
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Done, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         
         if (videoURL == nil) {
             CLSLogv("loadVideo not called before load", getVaList([]))
@@ -41,7 +41,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
@@ -52,32 +52,32 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     // needs to be called BEFORE loading
-    func loadVideo(videoURL:NSURL) throws {
+    func loadVideo(_ videoURL:URL) throws {
         self.videoURL = videoURL
         keyFrame = try Video.sharedManager.keyFrame(videoURL, atTime: kCMTimeZero)
         cellSize = cellSize(keyFrame)
         lookStates = lookStates(lookGroups)
         
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         let outputSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
         renderer = ES2Renderer(frameSize: outputSize, outputFrameSize: outputSize)
         startRender(keyFrame)
     }
     
-    func startRender(keyFrame:UIImage) {
+    func startRender(_ keyFrame:UIImage) {
         // no matter what you put in for the size, the renderer will create a square image and fill the space
         // that you give it. So make sure this is square
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         let outputSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
         renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
         renderer.resetRenderBuffer()
         renderer.loadKeyFrame(keyFrame)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global().async {
             self.renderLoop()
         }
     }
     
-    func lookStates(lookGroups: [LookGroup]) -> [Look : LookCellState] {
+    func lookStates(_ lookGroups: [LookGroup]) -> [Look : LookCellState] {
         var states : [Look : LookCellState] = [:]
         lookGroups
             .flatMap({group in
@@ -104,7 +104,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         renderStates.forEach { (state) in
             
             let look = state.look
-            renderer.loadLookParam(look.data, withMode: self.videoMode)
+            renderer.loadLookParam(look.data, with: self.videoMode)
 			renderer.looksStrengthValue = 1.0
 			renderer.looksBrightnessValue = 0.5
             
@@ -118,10 +118,10 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
 //			}
             
             
-            let processedImage = UIImage(CGImage: processedCGImageRef.takeUnretainedValue())
+            let processedImage = UIImage(cgImage: (processedCGImageRef?.takeUnretainedValue())!)
             print(" - got image", look.name)
 			
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 print(" - set image", look.name)
                 state.image = processedImage
                 state.onRender(processedImage)
@@ -129,7 +129,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         }
     }
     
-    func cellSize(keyFrame:UIImage) -> CGSize {
+    func cellSize(_ keyFrame:UIImage) -> CGSize {
         // these should always be square
         return CGSize(width: 170, height: 170)
     }
@@ -137,11 +137,11 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     @IBAction func tappedNext() {
         print("NEXT")
         
-        self.performSegueWithIdentifier("LookPreviewController", sender: nil)
+        self.performSegue(withIdentifier: "LookPreviewController", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let preview = segue.destinationViewController as? LookPreviewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let preview = segue.destination as? LookPreviewController {
             preview.videoURL = videoURL
             preview.look = selectedLook
             preview.keyFrame = keyFrame
@@ -152,25 +152,25 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     //// Collection View //////////////////////////////////////////////////////
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return lookGroups.count
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let group = lookGroups[section]
         return group.items.count
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let group = lookGroups[indexPath.section]
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let group = lookGroups[indexPath.row]
         selectedLook = group.items[indexPath.item]
-        nextButton.enabled = true
+        nextButton.isEnabled = true
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(LookCellIdentifier, forIndexPath: indexPath) as! LookCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LookCellIdentifier, for: indexPath) as! LookCell
         
-        let group = lookGroups[indexPath.section]
+        let group = lookGroups[indexPath.row]
         let look = group.items[indexPath.item]
         
         cell.label.text = look.name
@@ -183,13 +183,13 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return cellSize
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: LookGroupHeaderIdentifier, forIndexPath: indexPath) as! LookGroupHeader
-        let group = lookGroups[indexPath.section]
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LookGroupHeaderIdentifier, for: indexPath) as! LookGroupHeader
+        let group = lookGroups[indexPath.row]
         header.label.text = group.name
         return header
     }

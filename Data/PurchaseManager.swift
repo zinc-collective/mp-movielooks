@@ -18,14 +18,14 @@ class PurchaseManager: NSObject {
     let observer = MyStoreObserver()
     
     static func loadLooks() -> [LookGroup] {
-        let bundleLooksURL = NSBundle.mainBundle().URLForResource("looks", withExtension: "plist")!
-        let bundleLooks = NSArray(contentsOfURL: bundleLooksURL) as! [[String : AnyObject]]
+        let bundleLooksURL = Bundle.main.url(forResource: "looks", withExtension: "plist")!
+        let bundleLooks = NSArray(contentsOf: bundleLooksURL) as! [[String : AnyObject]]
         return bundleLooks.flatMap(LookGroup.parse)
     }
     
     override init() {
         super.init()
-        SKPaymentQueue.defaultQueue().addTransactionObserver(observer)
+        SKPaymentQueue.default().add(observer)
     }
     
 //    let kUserLooks = "looks"

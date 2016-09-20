@@ -14,7 +14,7 @@ let kLookName = "name"
 class LookPreviewController: UIViewController {
     
     // to be set before loading
-    var videoURL:NSURL!
+    var videoURL:URL!
     var keyFrame:UIImage!
     var look:Look!
     var lookStrength:Float = 1.0
@@ -34,9 +34,9 @@ class LookPreviewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Done, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         
-        developButton.setType(.Primary)
+        developButton.setType(.primary)
         strengthSlider.value = lookStrength
         brightnessSlider.value = lookBrightness
         
@@ -44,15 +44,15 @@ class LookPreviewController: UIViewController {
         self.renderer = ES2Renderer(frameSize: outputSize, outputFrameSize: outputSize)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let outputSize = imageOutputSize()
         
-        self.renderer.loadLookParam(look.data, withMode: videoMode)
+        self.renderer.loadLookParam(look.data, with: videoMode)
 //        self.renderer.freeRenderBuffer()
         self.renderer.resetRenderBuffer()
         self.renderer.resetFrameSize(outputSize, outputFrameSize: outputSize)
@@ -61,15 +61,15 @@ class LookPreviewController: UIViewController {
     }
     
     func loadImageWithSpinner() {
-        spinner.hidden = false
+        spinner.isHidden = false
         spinner.startAnimating()
         let image = self.renderImage(self.look, strength: self.lookStrength, brightness: self.lookBrightness)
         self.imageView.image = image
         self.spinner.stopAnimating()
-        self.spinner.hidden = true
+        self.spinner.isHidden = true
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 //        renderer.unloadKeyFrame()
 //        renderer.resetRenderBuffer()
@@ -78,14 +78,14 @@ class LookPreviewController: UIViewController {
     func imageOutputSize() -> CGSize {
 //        let displaySize = imageView.frame.size
 //        let minAxis = min(displaySize.width, displaySize.height)
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         let iPhone6PlusMinAxis:CGFloat = 414.0
 //        return CGSize(width: minAxis * scale, height: minAxis * scale)
         return CGSize(width: iPhone6PlusMinAxis * scale, height: iPhone6PlusMinAxis * scale)
     }
     
-    func renderImage(look:Look, strength: Float, brightness: Float) -> UIImage {
-        renderer.loadLookParam(look.data, withMode: self.videoMode)
+    func renderImage(_ look:Look, strength: Float, brightness: Float) -> UIImage {
+        renderer.loadLookParam(look.data, with: self.videoMode)
 		renderer.looksStrengthValue = strength
 		renderer.looksBrightnessValue = brightness
         
@@ -98,7 +98,7 @@ class LookPreviewController: UIViewController {
 //				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
 //			}
         
-        let processedImage = UIImage(CGImage: processedCGImageRef.takeUnretainedValue(), scale: 1.0, orientation: keyFrame.imageOrientation)
+        let processedImage = UIImage(cgImage: (processedCGImageRef?.takeUnretainedValue())!, scale: 1.0, orientation: keyFrame.imageOrientation)
         
 //            CGImage: processedCGImageRef.takeUnretainedValue(), scale: 0.5)
         
@@ -106,9 +106,9 @@ class LookPreviewController: UIViewController {
     }
     
     func render() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global().async {
             let image = self.renderImage(self.look, strength: self.lookStrength, brightness: self.lookBrightness)
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.imageView.image = image
             }
         }
@@ -144,29 +144,29 @@ class LookPreviewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onStrength(sender: AnyObject) {
+    @IBAction func onStrength(_ sender: AnyObject) {
         lookStrength = strengthSlider.value
     }
         
-    @IBAction func onBrightness(sender: AnyObject) {
+    @IBAction func onBrightness(_ sender: AnyObject) {
         lookBrightness = brightnessSlider.value
     }
     
-    @IBAction func onSlideEnd(sender: AnyObject) {
+    @IBAction func onSlideEnd(_ sender: AnyObject) {
         self.render()
     }
     
-    @IBAction func onHD(sender: AnyObject) {
+    @IBAction func onHD(_ sender: AnyObject) {
         
     }
     
-    @IBAction func onDevelop(sender: AnyObject) {
+    @IBAction func onDevelop(_ sender: AnyObject) {
         print("DEVELOP")
-        self.performSegueWithIdentifier("VideoPlayerController", sender: self)
+        self.performSegue(withIdentifier: "VideoPlayerController", sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let player = segue.destinationViewController as? VideoPlayerController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let player = segue.destination as? VideoPlayerController {
             player.renderedKeyFrame = imageView.image
             player.sourceVideoURL = videoURL
             player.look = look

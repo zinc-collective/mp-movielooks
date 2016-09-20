@@ -16,7 +16,7 @@ class Debug: NSObject {
             print("Copying default video")
 //            let baseURL = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath)
             
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
+            PHPhotoLibrary.shared().performChanges({
 //                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("IMG_0646.MOV"))
 //                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("IMG_3034.MOV"))
 //                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("error.mp4"))
@@ -32,7 +32,7 @@ class Debug: NSObject {
     static func hasVideos() -> Bool {
         let options = PHFetchOptions()
 //        options.fetchLimit = 1
-        let result = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
+        let result = PHAsset.fetchAssets(with: .video, options: options)
         return result.count > 0
     }
 }

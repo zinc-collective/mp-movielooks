@@ -15,7 +15,7 @@ import BButton
 
 class VideoPlayerController : UIViewController, VideoRenderDelegate {
     
-    var sourceVideoURL: NSURL!
+    var sourceVideoURL: URL!
     var renderedKeyFrame: UIImage!
     var lookStrength:Float!
     var lookBrightness:Float!
@@ -27,7 +27,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     var isFinished = false
     var didShare = false
     
-    var renderedVideoURL: NSURL?
+    var renderedVideoURL: URL?
     
     var renderer: ES2Renderer!
     var videoRenderer: VideoRenderer!
@@ -53,7 +53,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         super.init(coder: aDecoder)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isPlaying = false
         self.videoRenderer.reset()
@@ -73,7 +73,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         toolbarBottom.constant = -toolbar.frame.size.height
         
         imageView.image = renderedKeyFrame
-        playButton.hidden = true
+        playButton.isHidden = true
         self.navigationItem.rightBarButtonItems = []
         
         let progressView = DAProgressOverlayView(frame: progressContainer.bounds)
@@ -87,18 +87,18 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         self.videoRenderer.startRenderInBackground()
 
         playerLayer = AVPlayerLayer(player: player)
-        playerView.layer.insertSublayer(playerLayer, atIndex: 0)
+        playerView.layer.insertSublayer(playerLayer, at: 0)
         
         
         let buttonFrame = CGRect(x: 0, y: 0, width: 150, height: 30)
         let newVideoButton = BButton(frame: buttonFrame)
-        newVideoButton.setType(.Primary)
-        newVideoButton.setTitle(newVideoButtonItem.title, forState: .Normal)
-        newVideoButton.addTarget(self, action: #selector(didTapNewVideo), forControlEvents: .TouchUpInside)
+        newVideoButton.setType(.primary)
+        newVideoButton.setTitle(newVideoButtonItem.title, for: UIControlState())
+        newVideoButton.addTarget(self, action: #selector(didTapNewVideo), for: .touchUpInside)
         newVideoButtonItem.customView = newVideoButton
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         videoRenderer.cancel()
@@ -111,34 +111,34 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     
     @IBAction func donePressed() {
         pause()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func playPressed(sender: AnyObject) {
+    @IBAction func playPressed(_ sender: AnyObject) {
         play()
     }
     
-    @IBAction func pausePressed(sender: AnyObject) {
+    @IBAction func pausePressed(_ sender: AnyObject) {
         pause()
     }
     
     func play() {
         if isFinished {
             isFinished = false
-            player.seekToTime(kCMTimeZero)
+            player.seek(to: kCMTimeZero)
         }
         
         isPlaying = true
         player.play()
         
-        playButton.hidden = true
+        playButton.isHidden = true
         navigationItem.rightBarButtonItems = [pauseItem, actionItem]
     }
     
     func pause() {
         isPlaying = false
         player.pause()
-        playButton.hidden = false
+        playButton.isHidden = false
         navigationItem.rightBarButtonItems = [playItem, actionItem]
     }
     
@@ -148,16 +148,16 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         self.animateBarsHidden(false)
     }
     
-    func animateBarsHidden(hidden:Bool) {
+    func animateBarsHidden(_ hidden:Bool) {
         
         self.navigationController?.setNavigationBarHidden(hidden, animated: true)
         
-        let bottom : CGFloat = (self.navigationController?.navigationBarHidden == true) ? -toolbar.frame.size.height : 0
+        let bottom : CGFloat = (self.navigationController?.isNavigationBarHidden == true) ? -toolbar.frame.size.height : 0
         self.toolbarBottom.constant = bottom
         self.view.setNeedsUpdateConstraints()
         
         // animate with the same duration...
-        UIView.animateWithDuration(0.200, animations: {
+        UIView.animate(withDuration: 0.200, animations: {
             self.view.layoutIfNeeded()
         })
     }
@@ -166,95 +166,95 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     func displayShareSheet(){
         if let url = renderedVideoURL {
             let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
-            activityViewController.modalPresentationStyle = .Popover
+            activityViewController.modalPresentationStyle = .popover
             activityViewController.popoverPresentationController?.barButtonItem = self.actionItem
             activityViewController.completionWithItemsHandler = { activity, completed, _, _ in
                 if completed {
                     self.didShare = true
                 }
                 
-                if activity == UIActivityTypeSaveToCameraRoll && completed {
+                if activity == UIActivityType.saveToCameraRoll && completed {
                     self.savePhotoFeedback()
                 }
             }
-            self.navigationController?.presentViewController(activityViewController, animated: true, completion: {})
+            self.navigationController?.present(activityViewController, animated: true, completion: {})
         }
     }
     
-    @IBAction func viewTapped(sender: AnyObject) {
-        let isHidden = (self.navigationController?.navigationBarHidden == true)
+    @IBAction func viewTapped(_ sender: AnyObject) {
+        let isHidden = (self.navigationController?.isNavigationBarHidden == true)
         self.navigationController?.setNavigationBarHidden(isHidden, animated: true)
     }
     
-    func rendererFinished(videoURL: NSURL) {
+    func rendererFinished(_ videoURL: URL) {
         self.renderedVideoURL = videoURL
         
-        let playerItem = AVPlayerItem(URL: videoURL)
-        player.replaceCurrentItemWithPlayerItem(playerItem)
+        let playerItem = AVPlayerItem(url: videoURL)
+        player.replaceCurrentItem(with: playerItem)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(didFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
         
-        UIView.animateWithDuration(0.300, animations: {
+        UIView.animate(withDuration: 0.300, animations: {
             self.processingView.alpha = 0.0
             self.toolbarBottom.constant = 0
         }, completion: {_ in
-            self.processingView.hidden = true
+            self.processingView.isHidden = true
         })
     
         self.navigationItem.rightBarButtonItems = [playItem, actionItem]
         self.navigationItem.title = "Share Your Movie"
-        playButton.hidden = false
+        playButton.isHidden = false
     }
     
-    func videoFinishedProcessing(url: NSURL!) {
+    func videoFinishedProcessing(_ url: URL!) {
         self.rendererFinished(url)
     }
     
-    func videoCompletedFrames(completed: Int32, ofTotal total: Int32) {
+    func videoCompletedFrames(_ completed: Int32, ofTotal total: Int32) {
         let percent = Float(completed) / Float(total)
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.progressView.progress = CGFloat(percent)
         }
     }
     
-    func videoDebugImage(image: UIImage!) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func videoDebugImage(_ image: UIImage!) {
+        DispatchQueue.main.async {
             print("SET IMAGE")
             self.imageView.image = image
         }
     }
     
-    func videoError(description: String!) {
+    func videoError(_ description: String!) {
         print("VIDEO ERROR!", description)
     }
     
     func didTapNewVideo() {
         print("didShare", didShare)
         if (didShare) {
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            _ = self.navigationController?.popToRootViewController(animated: true)
         }
         
         else {
-            let alert = UIAlertController(title: "Not Saved", message: "Your processed video is not saved, are you sure you want a new video?", preferredStyle: .Alert)
-            let saveFirstAction = UIAlertAction(title: "Save Video", style: .Cancel, handler: { _ in
+            let alert = UIAlertController(title: "Not Saved", message: "Your processed video is not saved, are you sure you want a new video?", preferredStyle: .alert)
+            let saveFirstAction = UIAlertAction(title: "Save Video", style: .cancel, handler: { _ in
                 // dismiss the alert
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
                 self.displayShareSheet()
             })
-            let continueAction = UIAlertAction(title: "Continue", style: .Default, handler: { _ in
-                self.navigationController?.popToRootViewControllerAnimated(true)
+            let continueAction = UIAlertAction(title: "Continue", style: .default, handler: { _ in
+                _ = self.navigationController?.popToRootViewController(animated: true)
             })
             alert.addAction(continueAction)
             alert.addAction(saveFirstAction)
-            self.navigationController?.presentViewController(alert, animated: true, completion: {})
+            self.navigationController?.present(alert, animated: true, completion: {})
         }
     }
     
     func savePhotoFeedback() {
-        let alert = UIAlertController(title: "Saved in your Photos library", message: nil, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true, completion: { _ in
+        let alert = UIAlertController(title: "Saved in your Photos library", message: nil, preferredStyle: .alert)
+        self.present(alert, animated: true, completion: { _ in
             delay(0.8) {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         })
         
