@@ -99,7 +99,7 @@ static NSString* g_selectedVideoTitle = nil;
 	
 	if (asset) {
 		ALAssetRepresentation *rep = [asset defaultRepresentation];
-		NSUInteger bufferSize = rep.size;
+		NSUInteger bufferSize = (NSUInteger) rep.size;
 		if (bufferSize > 0) {
 			Byte *buffer = (Byte*)malloc(bufferSize);
 			NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:bufferSize error:nil];

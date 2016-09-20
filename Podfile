@@ -10,9 +10,12 @@ target 'MovieLooks' do
     pod 'DAProgressOverlayLayeredView', '~> 1.2'
 end
 
-#    pod 'DMActivityInstagram', '0.0.3'
-#    pod 'GoogleAPIClient/YouTube', '~> 1.0.3'
-#    pod 'GTMHTTPFetcher', '~> 2.0.0'
-#    pod 'GTMOAuth2', '~> 1.1.0'
-#    pod 'KMYoutubeActivity', '~> 1.0.3'
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['ENABLE_BITCODE'] = 'NO'
+        end
+    end
+end
 

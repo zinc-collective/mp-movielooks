@@ -30,7 +30,6 @@
 		06CA1F9E13406465005B56DE /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1F9513406465005B56DE /* ToggleButton.m */; };
 		06CA1F9F13406465005B56DE /* UICustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1F9713406465005B56DE /* UICustomSwitch.m */; };
 		06CA1FD61340657B005B56DE /* MobileLooksPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FC21340657B005B56DE /* MobileLooksPickerItem.m */; };
-		06CA1FD71340657B005B56DE /* MobileLooksPickerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FC41340657B005B56DE /* MobileLooksPickerSource.m */; };
 		06CA1FDC1340657B005B56DE /* PlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FCC1340657B005B56DE /* PlaybackView.m */; };
 		06CA1FDF1340657B005B56DE /* ThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FD11340657B005B56DE /* ThumbView.m */; };
 		06CA1FE01340657B005B56DE /* VideoFrameTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CA1FD31340657B005B56DE /* VideoFrameTrack.m */; };
@@ -387,6 +386,7 @@
 		5EE319B212ADD9180014F48A /* tips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EE319B112ADD9180014F48A /* tips.plist */; };
 		5EFDDC971283B4CF00EC208E /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFDDC961283B4CF00EC208E /* Renderer.m */; };
 		6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */; };
+		6BB91E431B72F0BE799BEC75 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */; };
 		74560847125EC25400963BDD /* vignette1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560843125EC25400963BDD /* vignette1.png */; };
 		74560848125EC25400963BDD /* vignette2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560844125EC25400963BDD /* vignette2.png */; };
 		74560849125EC25400963BDD /* vignette3.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560845125EC25400963BDD /* vignette3.png */; };
@@ -529,8 +529,6 @@
 		06CA1F9713406465005B56DE /* UICustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomSwitch.m; sourceTree = "<group>"; };
 		06CA1FC11340657B005B56DE /* MobileLooksPickerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileLooksPickerItem.h; sourceTree = "<group>"; };
 		06CA1FC21340657B005B56DE /* MobileLooksPickerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileLooksPickerItem.m; sourceTree = "<group>"; };
-		06CA1FC31340657B005B56DE /* MobileLooksPickerSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileLooksPickerSource.h; sourceTree = "<group>"; };
-		06CA1FC41340657B005B56DE /* MobileLooksPickerSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileLooksPickerSource.m; sourceTree = "<group>"; };
 		06CA1FCB1340657B005B56DE /* PlaybackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackView.h; sourceTree = "<group>"; };
 		06CA1FCC1340657B005B56DE /* PlaybackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackView.m; sourceTree = "<group>"; };
 		06CA1FD01340657B005B56DE /* ThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbView.h; sourceTree = "<group>"; };
@@ -1065,6 +1063,7 @@
 				5E3144DD122DFA6F00D67E0D /* StoreKit.framework in Frameworks */,
 				9CDF04581361203F00EA163D /* CoreLocation.framework in Frameworks */,
 				6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */,
+				6BB91E431B72F0BE799BEC75 /* Pods_MovieLooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,8 +1254,6 @@
 				06746DC0134F23E10040C602 /* VideoThumbnailOperation.m */,
 				06CA1FC11340657B005B56DE /* MobileLooksPickerItem.h */,
 				06CA1FC21340657B005B56DE /* MobileLooksPickerItem.m */,
-				06CA1FC31340657B005B56DE /* MobileLooksPickerSource.h */,
-				06CA1FC41340657B005B56DE /* MobileLooksPickerSource.m */,
 				06CA1FCB1340657B005B56DE /* PlaybackView.h */,
 				06CA1FCC1340657B005B56DE /* PlaybackView.m */,
 				06CA1FD01340657B005B56DE /* ThumbView.h */,
@@ -2481,7 +2478,6 @@
 				78538E001CDCF5AA00BC737C /* Video.swift in Sources */,
 				78D75F801CE12EC800895BA1 /* LookCell.swift in Sources */,
 				06CA1FD61340657B005B56DE /* MobileLooksPickerItem.m in Sources */,
-				06CA1FD71340657B005B56DE /* MobileLooksPickerSource.m in Sources */,
 				06CA1FDC1340657B005B56DE /* PlaybackView.m in Sources */,
 				7841FAAC1CECBB18007CADBC /* VideoPlayerController.swift in Sources */,
 				06CA1FDF1340657B005B56DE /* ThumbView.m in Sources */,
