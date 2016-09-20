@@ -162,7 +162,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let group = lookGroups[indexPath.row]
+        let group = lookGroups[indexPath.section]
         selectedLook = group.items[indexPath.item]
         nextButton.isEnabled = true
     }
@@ -170,7 +170,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LookCellIdentifier, for: indexPath) as! LookCell
         
-        let group = lookGroups[indexPath.row]
+        let group = lookGroups[indexPath.section]
         let look = group.items[indexPath.item]
         
         cell.label.text = look.name
@@ -189,7 +189,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LookGroupHeaderIdentifier, for: indexPath) as! LookGroupHeader
-        let group = lookGroups[indexPath.row]
+        let group = lookGroups[indexPath.section]
         header.label.text = group.name
         return header
     }
