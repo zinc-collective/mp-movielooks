@@ -21,7 +21,7 @@ class Debug: NSObject {
 //                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("IMG_3034.MOV"))
 //                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(baseURL.URLByAppendingPathComponent("error.mp4"))
             }, completionHandler: { (success, error) in
-                print("copied", success, error)
+                print("copied", success, error as Any)
             })
         }
         else {

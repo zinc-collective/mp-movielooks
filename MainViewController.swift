@@ -58,12 +58,10 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.sourceType = .photoLibrary
         picker.videoQuality = .typeHigh
         
-        // NOTE: disabling this feature to see if it fixes not finishing errors
         // to get 1080p video, we need to use the Reference URL, which ignores edits
         // is there a way to use the MediaURL but get 1080p video?
-        // For now: only allow editing and use media url if not full resolution
-//        picker.allowsEditing = !isFullResolution()
-        picker.allowsEditing = true
+        // For now: never allow editing, and use Reference URL
+        picker.allowsEditing = false
         
         picker.delegate = self
         picker.modalPresentationStyle = .popover
@@ -80,7 +78,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        let chosenURL = info[UIImagePickerControllerMediaURL]
+        let chosenURL = info[UIImagePickerControllerReferenceURL] // info[UIImagePickerControllerMediaURL]
         
 //        if isFullResolution() {
 //            // if full resolution we need to use the original URL, not the 
