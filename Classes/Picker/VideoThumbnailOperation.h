@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by Chen Mike on 4/8/11.
-//  Copyright 2011 Red/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

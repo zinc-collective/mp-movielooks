@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by jack on 9/8/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,7 +14,7 @@
 	UIWebView					*browser_;
 	NSString					*url_;
 	BOOL						bLoading;
-	
+
 	UITextField					*mSearchField;
 }
 @property (nonatomic,strong) NSString* url_;

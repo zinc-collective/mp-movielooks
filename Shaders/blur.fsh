@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 7/19/10.
-//  Copyright RED/SAFI 2010. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 //bret hd
 #ifdef GL_ES
@@ -22,13 +22,13 @@ vec4 blurMe()
 		float pixelWidth = float(factor) / 1280.0 ;
 		float pixelHeight = float(factor) / 720.0 ;
 		vec4 sum = vec4(0.0, 0.0, 0.0, 0.0);
-		
+
 		float x = 0.0;
 		float y = 0.0;
 		float xx = 0.0;
 		float yy = 0.0;
 		float avgFactor = 1.0 / float((radius*2 + 1)*(radius*2 + 1));
-		
+
 		y = float(-radius) * pixelHeight;
 		for (int i = -radius; i <= radius; i++)
 		{
@@ -45,7 +45,7 @@ vec4 blurMe()
 					yy = 0.0;
 				else if ( yy > 1.0 )
 					yy = 1.0;
-					
+
 				sum += texture2D(sampler, vec2(xx, yy));
 				x += pixelWidth;
 			}

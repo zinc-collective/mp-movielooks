@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by jack on 9/9/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -32,8 +32,8 @@ typedef enum
 	CGSize					outputSizeCropped;
 	CGSize					estimateOutputSize;
 	NSDictionary			*__weak mLookDic;
-	
-	UIActivityIndicatorView *mActivityIndicator;	
+
+	UIActivityIndicatorView *mActivityIndicator;
 	UIImageView				*mThumbImageView;
 	UIView					*mThumbView;
 	UISlider				*strengthSlider;
@@ -48,7 +48,7 @@ typedef enum
 	NSTimeInterval			estimateFrameProcessTime;
 	NSTimeInterval			estimateClipProcessTime;
 	NSTimeInterval			estimateTotalRenderTime;
-	
+
 	UILabel					*strengthLabel;
 	UIImageView				*sIncrease;
 	UIImageView				*sDecrease;

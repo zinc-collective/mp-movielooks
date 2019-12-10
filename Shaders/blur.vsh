@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 7/19/10.
-//  Copyright RED/SAFI 2010. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 attribute vec4 position;
@@ -21,5 +21,5 @@ void main()
 {
 	gl_Position = position;
 	texCoord0 = texcoord;
-//	colorVarying = color;	
+//	colorVarying = color;
 }

@@ -1,9 +1,9 @@
 //
 //  MyStoreObserver.h
-//  
+//
 //
 //  Created by George on 10-9-1.
-//  Copyright RED/SAFI 2010. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "MyStoreObserver.h"
@@ -18,17 +18,17 @@
 {
 	NSLog(@"recordTransaction:");
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	
+
 	NSArray *looks = [prefs arrayForKey:kUserLooks];
-	
+
 	if (looks != nil)
 	{
 		NSMutableArray *mutableLooks = [NSMutableArray arrayWithCapacity:[looks count]];
-		
+
 		for (NSDictionary *groupsDic in looks)
 		{
 			NSString *identifier = [groupsDic objectForKey:kProductIdentifier];
-			
+
 			if ([identifier compare:transaction.payment.productIdentifier] == NSOrderedSame)
 			{
 				NSMutableDictionary *mutableGroupsDic = [groupsDic mutableCopy];
@@ -40,7 +40,7 @@
 				[mutableLooks addObject:groupsDic];
 			}
 		}
-		
+
 		[prefs setObject:mutableLooks forKey:kUserLooks];
 		[prefs synchronize];
 	}
@@ -62,7 +62,7 @@
 	// Your application should implement these two methods.
 	[self recordTransaction: transaction];
 	[self provideContent: transaction.payment.productIdentifier];
-	
+
 	// Remove the transaction from the payment queue.
 	[[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
@@ -73,7 +73,7 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"faliedTransaction" object:nil];
     else
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"cancelTransaction" object:nil];
-	
+
 	[[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 

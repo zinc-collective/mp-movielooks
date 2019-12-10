@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by jack on 8/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -17,19 +17,19 @@
 #import "PlaybackView.h" //bret
 
 typedef enum VIDEO_WRITING_STATUS{
-	
+
 	Video_Ready_Writing = 0,
 	Video_Writing,
 	Video_Writing_End
-	
+
 } VideoWritingStatus;
 
 typedef enum AUDIO_WRITING_STATUS{
-	
+
 	Audio_Ready_Writing = 0,
 	Audio_Writing,
 	Audio_Writing_End
-	
+
 } AudioWritingStatus;
 
 typedef enum
@@ -48,11 +48,11 @@ typedef enum
 @end
 
 @interface VideoRenderer : NSObject <MovieProcessorDelegate, MProgressViewDelegate> {
-	
+
 	RendererType renderType;
 	BOOL		 renderFullFramerate;
     BOOL         isAppActive;
-	
+
 	CGSize				videoSize_;
 	CGSize				outputSize;
 	ES2RendererOld			*__weak renderer;
@@ -67,14 +67,14 @@ typedef enum
     float               timeElapsedPortrait;
     float               timeScale;
 	int					framePastedFromPause;
-	
+
 	struct timeval		lastUpdate;
 	NSTimer				*timer;
-	
+
 	float				fStrengthValue;
 	float				fBrightnessValue;
 	BOOL				needCheckPoint;
-	
+
 	NSTimeInterval 			renderStartTime;
 	NSTimeInterval			estimateFrameProcessTime;		// amount of time a single frame is expected to endure
 	NSTimeInterval			estimateClipProcessTime;		// adjustment factor applied to estimates for a single frame

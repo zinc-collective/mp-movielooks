@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 10/19/10.
-//  Copyright RED/SAFI 2010. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 //bret hd
 #import <Foundation/Foundation.h>
@@ -42,18 +42,18 @@ typedef enum VideoMode
 {
 @protected
     EAGLContext *context;
-	
+
 	GLint frameWidth;
     GLint frameHeight;
-	
+
 	GLint outputFrameWidth;
     GLint outputFrameHeight;
-	
+
 	float looksStrengthValue;
 	float looksBrightnessValue;
-	
+
     GLuint defaultFramebuffer, colorRenderbuffer;
-	
+
 	BOOL doQuickRender;
 }
 

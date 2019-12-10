@@ -3,19 +3,19 @@
 //  MobileLooks
 //
 //  Created by jack on 8/26/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @class UIImage;
 @interface VideoFrameTrack : NSObject {
-	
+
 	NSURL		*mURL;
 	UIImage		*mImage;
 	CMTime		mDuration;
 	CGSize		mSize;
-	
+
 }
 - (id)initWithURL:(NSURL*)URL;
 

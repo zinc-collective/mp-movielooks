@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 10/26/10.
-//  Copyright 2010 RED/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "Renderer.h"

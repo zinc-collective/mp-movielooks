@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 8/24/10.
-//  Copyright 2010 RED/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <StoreKit/StoreKit.h>
@@ -19,18 +19,18 @@
 	NSArray *products;
 	NSMutableArray *groupsViews;
 	NSMutableArray *looksViews;
-	
+
     NSInteger selectedLookIndex; //storyboard
     NSInteger selectedGroupIndex;//storyboard
-    
+
 	NSString *productIdentifier;
-	
+
 	UIScrollView *groupsScrollView;
 	BOOL thumbnailRequred;
     ScrollViewEnhancer *scrollEnhancer;
 	UIScrollView *looksScrollView;
 	NSMutableDictionary *requestDictionary;
-	
+
 	ES2RendererOld *renderer;
 	CGSize frameSize;
 	CGSize outputSize; //bret now cropped
@@ -38,23 +38,23 @@
 	VideoMode videoMode;
 	VideoMode originalVideoMode;
 //	BOOL isRenderAlready;
-	
+
 	BOOL renderThreadCancel;
 	BOOL mRenderThreadStop;
 	NSCondition* renderCondition;
 	NSMutableArray* renderQueue;
-	
+
 	NSMutableArray  *looksDic_;
 	//UITableView		*tableView_;
 	int				currentSelectedGroup;
 	int				selectedGroupIndex_landscape;
 	int				selectedGroupIndex_Portrait;
-	
-	
+
+
 	UIImageView *backgroundView_;
 	UIView *groupsBackgroundView;
 	//UIImageView *groupsBackgroundView;
-	
+
     UIButton *leftScrollButton;
     UIButton *rightScrollButton;
     UIButton *topScrollButton;
@@ -64,7 +64,7 @@
     UIButton *topScrollOpaque;
     UIButton *bottomScrollOpaque;
     UIView *buttonBottomOpaque;
-    
+
     UIButton *backToTrimButton;
     UIButton *nextButton;
     BOOL mScrollViewHackFirstTime;

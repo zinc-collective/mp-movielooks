@@ -2,12 +2,12 @@
 //  FileCache.h
 //
 //  Created by Jack on 3/12/09.
-//  Copyright 2009 Redsafi. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 @interface FileCache : NSObject {
-    
-    
+
+
 }
 
 /*****************************************/
@@ -36,4 +36,4 @@
 - (void) cacheLocalImageAsync:(NSString *)filename image:(UIImage*)image;
 - (void) cacheFileAsync:(NSDictionary *)info;
 
-@end 
+@end

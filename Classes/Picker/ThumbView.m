@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by jack on 9/3/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "ThumbView.h"
@@ -15,18 +15,18 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
-		
+
 		self.backgroundColor = [UIColor clearColor];
-		
+
 		mThumbnailLayers = [[NSMutableDictionary alloc] init];
-		
+
 		mQueue = dispatch_queue_create("PlayerThumbnailView queue", 0);
-		
+
 		mNumberOfThumbnails = 128;
 		mThumbnailInterval = 0.3f;
-		
+
 		mCropSize = CGSizeMake(640, 640);
-		
+
 		isInitial = YES;
     }
     return self;
@@ -36,11 +36,11 @@
 {
 	NSTimeInterval minTime = fmax(0.f, time - 1.5f * mNumberOfThumbnails * mThumbnailInterval);
 	NSTimeInterval maxTime = fmin(mDuration, time + 1.5f * mNumberOfThumbnails * mThumbnailInterval);
-	
+
 	for (NSNumber* key in [mThumbnailLayers allKeys])
 	{
 		NSTimeInterval keyAsTime = [key doubleValue];
-		
+
 		if (keyAsTime < minTime || keyAsTime > maxTime)
 		{
 			[[mThumbnailLayers objectForKey:key] removeFromSuperlayer];
@@ -53,21 +53,21 @@
 {
 	if (!mImageGenerator)
 		return nil;
-	
+
 	CALayer* layer = [CALayer layer];
-	
+
 	CGFloat height;
-	
+
 	if (mNaturalSize.width == 0.f || mNaturalSize.height == 0.f)
 		height = 1.f;
 	else
 		height = mNaturalSize.height / mNaturalSize.width;
-	
+
 	[layer setAnchorPoint:CGPointMake(0.5f, 0.f)];
 	[layer setBounds:CGRectMake(0.f, 0.f, 1.f, height)];
 	[layer setContentsGravity:kCAGravityResizeAspect];
 	[layer setEdgeAntialiasingMask:kCALayerLeftEdge|kCALayerRightEdge|kCALayerTopEdge|kCALayerBottomEdge];
-	
+
 	[mImageGenerator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:[NSValue valueWithCMTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)]] completionHandler:
 	 ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
 	 {
@@ -76,16 +76,16 @@
 			 [CATransaction begin];
 			 [CATransaction setDisableActions:YES];
 			 [layer setContents:(__bridge id)image];
-			 
+
 			 if(isInitial){
 				 isInitial = NO;
 				 [self update:0];
 			 }
-			 
+
 			 [CATransaction commit];
 		 }
 	 }];
-	
+
 	return layer;
 }
 
@@ -93,21 +93,21 @@
 {
 	if (!mImageGenerator)
 		return;
-	
+
 	NSInteger minIndex = ceil(fmax(0.f, time - 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
 	NSInteger maxIndex = floor(fmin(mDuration, time + 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
-	
+
 	NSLog(@"%ld - %ld", (long)minIndex, (long)maxIndex);
 	for (NSInteger index = minIndex; index < maxIndex; index++)
 	{
 		NSTimeInterval thumbnailTime = mThumbnailInterval * index;
 		NSNumber* key = [NSNumber numberWithDouble:thumbnailTime];
-		
+
 		if ([mThumbnailLayers objectForKey:key])
 			continue;
-		
+
 		CALayer* layer = [self _makeThumbnailLayerForTime:thumbnailTime];
-		
+
 		if (layer)
 		{
 			[mThumbnailLayers setObject:layer forKey:key];
@@ -116,28 +116,28 @@
 }
 
 - (int) timeToIndex:(NSTimeInterval)time{
-	
+
 	NSInteger minIndex = ceil(fmax(0.f, time - 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
 	NSInteger maxIndex = floor(fmin(mDuration, time + 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
-	
+
 	NSInteger x = time*maxIndex/mDuration + minIndex;
-	
+
 	return (int)x;
-	
+
 }
 
 - (CALayer *)getLayerByTime:(NSTimeInterval) time{
 	if (!mImageGenerator)
 		return nil;
-	
+
 	NSInteger minIndex = ceil(fmax(0.f, time - 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
 	NSInteger maxIndex = floor(fmin(mDuration, time + 1.5f * mNumberOfThumbnails * mThumbnailInterval) / mThumbnailInterval);
-	
+
 	NSInteger x = time*maxIndex/mDuration + minIndex;
 	NSLog(@"%ld",(long)x);
-	
+
 	CALayer *findlayer = nil;
-	
+
 	NSTimeInterval thumbnailTime = mThumbnailInterval * x;
 	NSNumber* findkey = [NSNumber numberWithDouble:thumbnailTime];
 	findlayer = [mThumbnailLayers objectForKey:findkey];
@@ -150,25 +150,25 @@
 		{
 			NSTimeInterval thumbnailTime = mThumbnailInterval * index;
 			NSNumber* key = [NSNumber numberWithDouble:thumbnailTime];
-			
+
 			if ([mThumbnailLayers objectForKey:key])
 				continue;
-			
+
 			CALayer* layer = [self _makeThumbnailLayerForTime:thumbnailTime];
-			
+
 			if (layer)
 			{
 				//[[self layer] addSublayer:layer];
 				[mThumbnailLayers setObject:layer forKey:key];
 			}
 		}
-		
+
 		[self _generateThumbnailLayersForTime:time];
-		
+
 		findlayer = [mThumbnailLayers objectForKey:findkey];
 	}
 	return findlayer;
-	
+
 }
 
 - (void) ready{
@@ -186,18 +186,18 @@
 		[self.layer setContents:layer.contents];
 	}
 
-	
+
 	[self setNeedsDisplay];
 }
 
 - (UIImage*)currentFrame{
-	
+
 	CGImageRef imgRef = (__bridge CGImageRef)[self.layer contents];
-	
+
 	if(imgRef == nil)return nil;
-	
+
 	UIImage *img = [UIImage imageWithCGImage:imgRef];
-	
+
 	return img;
 }
 
@@ -212,28 +212,28 @@
 }
 
 - (void) setAsset:(AVAsset *)asset{
-	
+
 	mDuration = CMTimeGetSeconds(asset.duration);
-	
+
 	dispatch_sync(mQueue,
 				  ^{
 					  if (mImageGenerator)
 					  {
 						  mImageGenerator = nil;
 					  }
-					  
+
 					  if (asset)
 					  {
 						  mImageGenerator = [[AVAssetImageGenerator allocWithZone:nil] initWithAsset:asset];
 						  [mImageGenerator setAppliesPreferredTrackTransform:YES];
 						  [mImageGenerator setMaximumSize:mCropSize];
 					  }
-					  
+
 					  [self _clearThumbnailLayers];
-					  [self _generateThumbnailLayersForTime:CMTimeGetSeconds(kCMTimeZero)];	
+					  [self _generateThumbnailLayersForTime:CMTimeGetSeconds(kCMTimeZero)];
 
 				  });
-	
+
 }
 
 /*

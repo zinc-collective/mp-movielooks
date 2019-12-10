@@ -2,7 +2,7 @@
 //  WebSiteCtrlor.m
 //
 //  Created by Radar on 10-5-4.
-//  Copyright 2009 Radar. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "WebSiteCtrlor.h"
@@ -63,13 +63,13 @@
 	return self;
 }
 
-- (void)viewDidLoad 
-{	
+- (void)viewDidLoad
+{
 	[self.navBar setTintColor:self.navBarTintColor];
 	self.navItem.title = _navTitle;
-	[self.toolBar setTintColor:self.toolBarTintColor]; 
-	
-	
+	[self.toolBar setTintColor:self.toolBarTintColor];
+
+
 	//got webview's frame
 	if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)  //iPhone & iPod touch
 	{
@@ -131,15 +131,15 @@
 	}
 
 
-	
-	
+
+
 	//add webview
 	if(_webView == nil)
 	{
 		_webView = [[RWebView alloc] initWithFrame:_webFramePortrait];
 		[_webView setDelegate:self];
 	}
-	
+
 	if(self.statusBarOrientation == UIInterfaceOrientationPortrait || self.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[_webView changeFrameByRect:_webFramePortrait];
@@ -150,20 +150,20 @@
 	}
 
 	[self.view insertSubview:_webView atIndex:0];
-	
-	
+
+
 	//check if add top done btn
 	if(!bShowToolBar)
 	{
 		//add topDone button
 		UIBarButtonItem *topDoneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneBtnAction:)];
 		self.navItem.leftBarButtonItem = topDoneBtn;
-		
+
 		//hide toolbar
 		self.toolBar.hidden = YES;
 	}
-	
-	
+
+
 	[super viewDidLoad];
 }
 
@@ -183,7 +183,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	
+
 	if(interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
 	{
 		[_webView changeFrameByRect:_webFramePortrait];
@@ -192,7 +192,7 @@
 	{
 		[_webView changeFrameByRect:_webFrameLandscap];
 	}
-	
+
 	return YES;
 }
 
@@ -207,7 +207,7 @@
 	//check if http:// make the _webSiteURL must have http:// words
 	NSRange rangehttp  = [webURL rangeOfString:@"http://"];
 	NSRange rangehttps = [webURL rangeOfString:@"https://"];
-	if(rangehttp.length == 0 && rangehttps.length == 0) 
+	if(rangehttp.length == 0 && rangehttps.length == 0)
 	{
 		self._webSiteURL =  [NSString stringWithFormat:@"http://%@", webURL];
 	}
@@ -215,7 +215,7 @@
 	{
 		self._webSiteURL = webURL;
 	}
-	
+
 	if(titleStr == nil)
 	{
 		self._navTitle = @"";
@@ -239,11 +239,11 @@
 -(IBAction)doneBtnAction:(id)sender
 {
 	[_webView closeWeb];
-	
+
 	if (![[self presentedViewController] isBeingDismissed]) {
         [self dismissViewControllerAnimated:YES completion:^{}];
 	}
-	
+
 	//return to delegate
 	if(self.delegate &&[(NSObject*)self.delegate respondsToSelector:@selector(webSiteCtrlorDidDismissed)])
 	{

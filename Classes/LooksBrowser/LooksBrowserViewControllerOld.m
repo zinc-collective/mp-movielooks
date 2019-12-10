@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 8/24/10.
-//  Copyright 2010 RED/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "LooksBrowserViewControllerOld.h"
@@ -82,16 +82,16 @@
 - (void)loadKeyFrame
 {
 	UIImage* keyFrameImage = [[UIImage alloc] initWithContentsOfFile:[Utilities savedKeyFrameImagePath]];
-	
+
 	CGImageRef imageRef = keyFrameImage.CGImage;
 	if (!imageRef)
-	{ 
+	{
 		return;
 	}
-	
+
 	CGFloat width = CGImageGetWidth(imageRef);
 	CGFloat height = CGImageGetHeight(imageRef);
-	
+
 #if 0
     videoMode = VideoModeTraditionalLandscape; //bret doesn't seem to be used
     outputSize = CGSizeMake(FRAME_CROP_SIZE_WIDTH_IPHONE, FRAME_CROP_SIZE_HEIGHT_IPHONE);
@@ -102,10 +102,10 @@
     }
 #endif
 //#if 0
-    
+
 	double aspectRatio = (double)width/(double)height;
 	//NSLog(@"aspectRatio=%.3f", aspectRatio);
-	
+
 	frameSize = CGSizeMake(width, height);
 	NSLog(@"Frame Size:(%f,%f)", width, height);
 #if 0
@@ -163,7 +163,7 @@
 		{
 			CGFloat factor = height/outputSize.height;
 			outputSize = CGSizeMake(outputSize.width*factor,outputSize.height*factor);
-		}		
+		}
 	}
 	else
 	{
@@ -174,7 +174,7 @@
 		}
 	}
 #endif
-	
+
     if (aspectRatio > 1.77 && aspectRatio < 1.78) //16:9=1.777778
 	{
 		videoMode = VideoModeWideSceenLandscape;
@@ -240,7 +240,7 @@
 		}
 	}
 
-    
+
     //#endif
     originalOutputSize = CGSizeMake(outputSize.width,outputSize.height);
     originalVideoMode = videoMode;
@@ -257,7 +257,7 @@
 - (void)loadData
 {
 	[self loadKeyFrame];
-	
+
 	self.products = [[NSUserDefaults standardUserDefaults] arrayForKey:kUserLooks];
 }
 
@@ -265,9 +265,9 @@
 {
 	//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSLog(@"renderer init");
-	
+
 	thumbnailRequred = YES;
-	
+
 	renderer = [[ES2RendererOld alloc] initWithFrameSize:outputSize outputFrameSize:outputSize];
 //	[renderer loadKeyFrame];
 	//	isRenderAlready = YES;
@@ -284,7 +284,7 @@
 		if(thumbnail.renderingState==RenderingStateRendering)
 			thumbnail.renderingState = RenderingStateNone;
 	}
-	
+
 	[self layoutAfterorientation:[[UIApplication sharedApplication] statusBarOrientation]];
 	renderThreadCancel = NO;
 	self.isRenderThreadStop = NO;
@@ -297,13 +297,13 @@
 	renderThreadCancel = YES;
 	[renderCondition signal];
 	[renderCondition unlock];
-	/*	
+	/*
 	 while (!self.isRenderThreadStop)
-	 {	
+	 {
 	 NSLog(@"Waiting Rendering Thread");
 	 [NSThread sleepForTimeInterval:0.5];
 	 }
-	 */ 
+	 */
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -325,7 +325,7 @@
 		previewController.videoMode = originalVideoMode; //videoMode;
 		previewController.lookDic = lookDic;
     }
-    
+
 }
 
 - (void)backAction:(id)sender
@@ -334,19 +334,19 @@
 	for (LookThumbnailView *thumbView in looksViews)
 		thumbView.delegate = nil;
 	{
-		//wait rendering thread stoped 
+		//wait rendering thread stoped
 		[self endRender];
-//		NSLog(@"backAction:Wait Rendering Thread");			
+//		NSLog(@"backAction:Wait Rendering Thread");
 		while (!self.isRenderThreadStop)
-		{	
+		{
 			NSLog(@"Waiting Rendering Thread");
 //			[NSThread sleepForTimeInterval:0.3];
 		}
-//		NSLog(@"backAction:Waited Rendering Thread");			
+//		NSLog(@"backAction:Waited Rendering Thread");
 	}
 
 	[self releaseRender:nil];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"BackToHome" object:nil]; 
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"BackToHome" object:nil];
 }
 
 - (void)backToTrimAction:(id)sender
@@ -365,7 +365,7 @@
 		}
         //		NSLog(@"backAction:Waited Rendering Thread");
 	}
-    
+
 	[self releaseRender:nil];
 	//[[NSNotificationCenter defaultCenter] postNotificationName:@"BackToTrim" object:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"BackToHome" object:nil];
@@ -384,7 +384,7 @@
         pageWidth = looksScrollView.frame.size.height;
         page = floor((looksScrollView.contentOffset.y - pageWidth / 2) / pageWidth) + 1;
     }
-    
+
     LookThumbnailView *thumbView = [looksViews objectAtIndex:page];
 	//[self.tapLook:page inGroup:thumbView.groupIndex];
 
@@ -424,10 +424,10 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     leftScrollButton.hidden = YES;
     leftScrollOpaque.hidden = YES;
-    
+
 }
 
 - (void)leftScrollButtonAnimateToShow
@@ -443,7 +443,7 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     leftScrollButton.hidden = NO;
     leftScrollOpaque.hidden = NO;
 #endif
@@ -467,7 +467,7 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     rightScrollButton.hidden = YES;
     rightScrollOpaque.hidden = YES;
 }
@@ -485,7 +485,7 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     rightScrollButton.hidden = NO;
     rightScrollOpaque.hidden = NO;
 #endif
@@ -509,7 +509,7 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     topScrollButton.hidden = YES;
     topScrollOpaque.hidden = YES;
 }
@@ -527,7 +527,7 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     topScrollButton.hidden = NO;
     topScrollOpaque.hidden = NO;
 #endif
@@ -537,7 +537,7 @@
 #else
     topScrollOpaque.hidden = YES;
 #endif
-    
+
 }
 
 - (void)bottomScrollButtonAnimateToHide
@@ -552,7 +552,7 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     bottomScrollButton.hidden = YES;
     bottomScrollOpaque.hidden = YES;
 }
@@ -570,7 +570,7 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:NULL
                     completion:NULL];
-    
+
     bottomScrollButton.hidden = NO;
     bottomScrollOpaque.hidden = NO;
 #endif
@@ -727,13 +727,13 @@
 - (void)resetGroups:(NSUInteger)selectedIndex
 {
 	ToggleButton *groupButton = [groupsViews objectAtIndex:selectedIndex];
-	
+
 	if(groupButton.frame.origin.x - 20 < groupsScrollView.contentOffset.x) //left part hidden
 	{
 		CGPoint offset;
 		offset.x = groupButton.frame.origin.x - 20;
 		offset.y = 0;
-		
+
 		[groupsScrollView setContentOffset:offset animated:YES];
 	}
 	else if (groupButton.frame.origin.x + groupButton.frame.size.width + 20 - groupsScrollView.frame.size.width > groupsScrollView.contentOffset.x) //right part hidden
@@ -741,10 +741,10 @@
 		CGPoint offset;
 		offset.x = groupButton.frame.origin.x + groupButton.frame.size.width + 20 - groupsScrollView.frame.size.width;
 		offset.y = 0;
-		
+
 		[groupsScrollView setContentOffset:offset animated:YES];
 	}
-	
+
 	for (ToggleButton *button in groupsViews)
 	{
 		if(button.tag == selectedIndex)
@@ -759,7 +759,7 @@
 			button.toggleState = ToggleStateNormal;
 		}
 	}
-	
+
 	currentSelectedGroup = (int)groupButton.tag;
     {
 		selectedGroupIndex_landscape = (int)groupButton.tag;
@@ -770,11 +770,11 @@
 - (void)toggleGroup:(id)sender
 {
 	ToggleButton *groupButton = (ToggleButton*)sender;
-	
+
 	[self resetGroups:groupButton.tag];
-	
+
 	//currentSelectedGroup = groupButton.tag;
-	
+
 	for (LookThumbnailView *thumbView in looksViews)
 	{
 		if(thumbView.groupIndex == groupButton.tag)
@@ -801,7 +801,7 @@
 }
 
 - (void) layoutUIs:(UIInterfaceOrientation)toInterfaceOrientation{
-	
+
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
 		if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
@@ -946,46 +946,46 @@
 			//groupsBackgroundView.image = [UIImage imageNamed:@"LooksBrowser02_huitiao_shu.png"];
 			//backgroundView_.image = [UIImage imageNamed:@"LooksBrowser02_background.png"];
 		}
-        
+
     }
 }
 
 -(void)renderLoop
-{	
+{
 	@autoreleasepool {
 		NSUInteger thumbnailIndex = 0;
-		//for a first frame render bug 
+		//for a first frame render bug
 		BOOL isRenderFirstTime = YES;
 		while (!renderThreadCancel) {
 //		if(!isRenderAlready) continue;
-			
+
 			[renderCondition lock];
 			while ([renderQueue count]==0 && !renderThreadCancel)
 				[renderCondition wait];
-			if (!renderThreadCancel) 
+			if (!renderThreadCancel)
 			{
 				thumbnailIndex = [[renderQueue lastObject] unsignedIntValue];
 				if(!isRenderFirstTime)
 					[renderQueue removeLastObject];
 			}
 			[renderCondition unlock];
-			if(renderThreadCancel) 
+			if(renderThreadCancel)
 				break;
-			
+
 			LookThumbnailView* thumbnailView = [looksViews objectAtIndex:thumbnailIndex];
 			NSLog(@"Render thumb %lu",(unsigned long)thumbnailIndex);
 			//if (thumbnailView.renderingState!=RenderingStateNone)
 			//	continue;
-			
+
 			NSDictionary *packDic = [self.products objectAtIndex:thumbnailView.groupIndex];
 			NSArray *items = [packDic objectForKey:kProductLooks];
 			NSDictionary *lookDic = [items objectAtIndex:thumbnailView.lookIndex];
-				
+
 			[renderer loadLookParam:lookDic withMode:videoMode];
 			renderer.looksStrengthValue = 1.0;
 			renderer.looksBrightnessValue = 0.5;
-					
-			
+
+
 			UIImage* processedImage = nil;
 			CGImageRef processedCGImageRef = [renderer frameProcessingAndReturnImage:nil flipPixel:NO];
 			if(videoMode==VideoModeWideSceenPortrait || videoMode==VideoModeTraditionalPortrait) {
@@ -994,9 +994,9 @@
 			else {
 				processedImage = [[UIImage alloc] initWithCGImage:processedCGImageRef];
 			}
-			
+
 			CGImageRelease(processedCGImageRef);
-			
+
 			dispatch_async(dispatch_get_main_queue(),
 						   ^{
 							   if(!isRenderFirstTime)
@@ -1004,11 +1004,11 @@
 								   [thumbnailView setThumbnailImage:processedImage];
 								   thumbnailView.renderingState = RenderingStateCompleted;
 								   [thumbnailView.activityIndicator stopAnimating];
-							   } 
+							   }
 						   });
 			isRenderFirstTime = NO;
 		}
-	}	
+	}
 	NSLog(@"Render Thread Stop!");
 	self.isRenderThreadStop = YES;
 }
@@ -1017,12 +1017,12 @@
 {
 	@autoreleasepool {
 //	[renderLock lock];
-	
+
 		NSLog(@"renderer reset");
 		[renderer resetFrameSize:frameSize outputFrameSize:outputSize];
-	
+
 //	[renderLock unlock];
-	
+
 	}
 }
 
@@ -1030,22 +1030,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+
     mScrollViewHackFirstTime = YES;
-    
+
 	renderQueue = [[NSMutableArray alloc] init];
 	//self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:41/255.0 green:41/255.0 blue:41/255.0 alpha:1];
-	
+
 	[self loadData];
-	
+
 	//self.view.backgroundColor = [UIColor blackColor];
-	
+
 	self.title = NSLocalizedString(@"Select a Look", nil);
-	
+
     float f_width;
 	float s_height;
 	float f_looksScrollViewLeft;
-	
+
 	float f_looksScrollViewWidth;
 	float f_looksScrollViewHeight;
 	float f_looksScrollViewTop;
@@ -1055,10 +1055,10 @@
     f_width = 480;
     s_height = 320-41-44;
     f_looksScrollViewLeft = (480 - FRAME_CROP_SIZE_WIDTH_IPHONE)/2-(f_looksScrollOffset/2);
-    
+
     f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH_IPHONE+f_looksScrollOffset;
     f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT_IPHONE;
-    
+
     f_looksScrollViewTop = 41+f_looksScrollOffset;
 
     if (IS_IPHONE_5)
@@ -1067,10 +1067,10 @@
         f_width = 568;
         s_height = 320-41-44;
         f_looksScrollViewLeft = (568 - FRAME_CROP_SIZE_WIDTH_IPHONE)/2-(f_looksScrollOffset/2);
-        
+
         f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH_IPHONE+f_looksScrollOffset;
         f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT_IPHONE;
-        
+
         f_looksScrollViewTop = 41+f_looksScrollOffset;
 	}
 
@@ -1080,13 +1080,13 @@
         f_width = 1024;
 		s_height = 1004-41-44;
 		f_looksScrollViewLeft = (1024 - FRAME_CROP_SIZE_WIDTH)/2-(f_looksScrollOffset/2);
-		
+
 		f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH+f_looksScrollOffset;
 		f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT;
-		
+
 		f_looksScrollViewTop = 80+f_looksScrollOffset;
 	}
-	
+
 	//bret moved
 	backgroundView_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, 41, f_width, s_height)];
 	[backgroundView_ setBackgroundColor:[UIColor blackColor]];
@@ -1104,12 +1104,12 @@
 	scrollEnhancer.scrollView = looksScrollView;
 	[self.view insertSubview:scrollEnhancer belowSubview:looksScrollView];
     //
-    
+
     groupsBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, f_width, 41)];
 	//groupsBackgroundView.image = [UIImage imageNamed:@"lb_groups_background.png"];
 	groupsBackgroundView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:groupsBackgroundView];
-	
+
 	self.groupsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, f_width, 41)];
 	groupsScrollView.backgroundColor = [UIColor clearColor];
 	groupsScrollView.showsVerticalScrollIndicator = NO;
@@ -1126,32 +1126,32 @@
 		lock = [UIImage imageNamed:@"LooksBrowser_suo.png"];
 		//titleBackground = [[UIImage imageNamed:@"LooksBrowser02_hongtiao.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:0];
 	}
-	
+
 	self.groupsViews = [NSMutableArray array];
 	self.looksViews = [NSMutableArray array];
 	looksDic_ = [[NSMutableArray alloc] init];
-	
+
 	headers = [[NSMutableDictionary alloc] init];
-	
+
 	float lookOffset = 0.0;
 	float groupOffset = 24.0;
 	NSUInteger thumbViewPageIndex = 0;
 	for (int i = 0; i < [products count]; i++)
 	{
 		NSDictionary *groupDic = [products objectAtIndex:i];
-		
+
 		NSString *groupName = [groupDic objectForKey:kProductName];
 		NSArray *looks = [groupDic objectForKey:kProductLooks];
 		BOOL locked = [[groupDic objectForKey:kProductLocked] boolValue];
-		
+
 		CGPoint groupOrigin = CGPointMake(groupOffset, 6);
-		
+
 		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
 			groupOrigin = CGPointMake(groupOffset, 13);
 		}
-		
+
 		NSString *subtitle = [NSString stringWithFormat:@"(%lu)", (unsigned long)[looks count]];
-		
+
 		ToggleButton *groupButton = [[ToggleButton alloc] initWithOrigin:groupOrigin title:groupName subtitle:subtitle];
 		[groupButton addTarget:self action:@selector(toggleGroup:) forControlEvents:UIControlEventTouchUpInside];
 		groupButton.tag = i;
@@ -1168,22 +1168,22 @@
 			groupOffset += 18.0 + groupButton.frame.size.width;
 		}
 
-		
+
 //		NSLog(@"groupButton.frame.origin={%.1f, %.1f}", groupButton.frame.origin.x, groupButton.frame.origin.y);
-		
+
 		if (i == 0)
 		{
 			groupButton.toggleState = ToggleStateHighlighted;
 		}
-		
+
 		NSMutableArray *array = [NSMutableArray array];
-		
+
 		NSMutableArray *gLooksArr = [NSMutableArray array];
-		
+
 		for (int j = 0; j < [looks count]; j++)
 		{
 			NSDictionary *lookDic = [looks objectAtIndex:j];
-			
+
 			//if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
             //{
 			//	lookOffset += 7;
@@ -1201,7 +1201,7 @@
 				offset = FRAME_CROP_SIZE_WIDTH_IPHONE;
 				lookOffset += f_looksScrollOffset;
             }
-		
+
 			LookThumbnailView *thumbView = [[LookThumbnailView alloc] initWithFrame:thumbRect lookInfo:lookDic];
 			thumbView.groupIndex = i;
 			thumbView.lookIndex = j;
@@ -1209,27 +1209,27 @@
 			thumbView.borderView.image = border;
 			thumbView.delegate = self;
 			lookOffset += offset;
-			
+
 			thumbView.actualRect = thumbRect;
-			
+
 			if(locked)
 			{
 				thumbView.lockView.image = lock;
 			}
-			
+
 			[array addObject:thumbView];
-			
+
 			[looksScrollView addSubview:thumbView];
 			[self.looksViews addObject:thumbView];
 			++thumbViewPageIndex;
-			
+
 			[gLooksArr addObject:thumbView];
-						
+
 		}
-		
+
 		[looksDic_ addObject:gLooksArr];
 	}
-	
+
 	groupsScrollView.contentSize = CGSizeMake(groupOffset + 8, 0);
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
     {
@@ -1278,14 +1278,14 @@
     NSString *topScrollButtonFilenameSel = @"camera_roll_button_top_iphone.png";
     NSString *bottomScrollButtonFilename = @"camera_roll_button_bottom_iphone.png";
     NSString *bottomScrollButtonFilenameSel = @"camera_roll_button_bottom_iphone.png";
-    
+
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         leftScrollButtonFrame = CGRectMake(18, 274, 86, 119);
         rightScrollButtonFrame = CGRectMake(920, 274, 86, 119);
         topScrollButtonFrame = CGRectMake(325, 14+80, 119, 86);
         bottomScrollButtonFrame = CGRectMake(325, 880-80, 119, 86);
-		
+
         leftScrollButtonFilename = @"camera_roll_button_left_ipad.png";
         leftScrollButtonFilenameSel = @"camera_roll_button_left_ipad.png";
         rightScrollButtonFilename = @"camera_roll_button_right_ipad.png";
@@ -1294,7 +1294,7 @@
         topScrollButtonFilenameSel = @"camera_roll_button_top_ipad.png";
         bottomScrollButtonFilename = @"camera_roll_button_bottom_ipad.png";
         bottomScrollButtonFilenameSel = @"camera_roll_button_bottom_ipad.png";
-        
+
         landscapeheight = FRAME_CROP_SIZE_WIDTH+FRAME_CROP_SIZE_WIDTH_OFFSET;
         landscapewidth = (1024-(FRAME_CROP_SIZE_WIDTH+FRAME_CROP_SIZE_WIDTH_OFFSET))/2;
         //CGFloat portraitheight = 1024 - FRAME_OPAQUE_HEIGHT - 44 - 80;
@@ -1306,7 +1306,7 @@
         topScrollOpaqueFrame = CGRectMake(0, 80, portraitwidth, portraitheight);
         bottomScrollOpaqueFrame = CGRectMake(0, 1024-44-FRAME_OPAQUE_HEIGHT-portraitheight, portraitwidth, portraitheight);
 	}
-	
+
     leftScrollButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	leftScrollButton.frame = leftScrollButtonFrame;
 	leftScrollButton.hidden = YES;
@@ -1315,7 +1315,7 @@
 	[leftScrollButton setImage:[UIImage imageNamed:leftScrollButtonFilenameSel] forState:UIControlStateHighlighted];
 	[leftScrollButton addTarget:self action:@selector(leftScrollButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:leftScrollButton];
-    
+
     rightScrollButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	rightScrollButton.frame = rightScrollButtonFrame;
 	rightScrollButton.hidden = YES;
@@ -1324,7 +1324,7 @@
 	[rightScrollButton setImage:[UIImage imageNamed:rightScrollButtonFilenameSel] forState:UIControlStateHighlighted];
 	[rightScrollButton addTarget:self action:@selector(rightScrollButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:rightScrollButton];
-    
+
     topScrollButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	topScrollButton.frame = topScrollButtonFrame;
 	topScrollButton.hidden = YES;
@@ -1333,7 +1333,7 @@
 	[topScrollButton setImage:[UIImage imageNamed:topScrollButtonFilenameSel] forState:UIControlStateHighlighted];
 	[topScrollButton addTarget:self action:@selector(topScrollButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:topScrollButton];
-    
+
     bottomScrollButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	bottomScrollButton.frame = bottomScrollButtonFrame;
 	bottomScrollButton.hidden = YES;
@@ -1342,7 +1342,7 @@
 	[bottomScrollButton setImage:[UIImage imageNamed:bottomScrollButtonFilenameSel] forState:UIControlStateHighlighted];
 	[bottomScrollButton addTarget:self action:@selector(bottomScrollButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:bottomScrollButton];
-    
+
     leftScrollOpaque = [UIButton buttonWithType:UIButtonTypeCustom];
 	leftScrollOpaque.frame = leftScrollOpaqueFrame;
 	leftScrollOpaque.hidden = YES;
@@ -1350,7 +1350,7 @@
 	leftScrollOpaque.backgroundColor = [UIColor blackColor];
 	leftScrollOpaque.alpha = .35;
     [self.view addSubview:leftScrollOpaque];
-    
+
     rightScrollOpaque = [UIButton buttonWithType:UIButtonTypeCustom];
 	rightScrollOpaque.frame = rightScrollOpaqueFrame;
 	rightScrollOpaque.hidden = YES;
@@ -1358,7 +1358,7 @@
 	rightScrollOpaque.backgroundColor = [UIColor blackColor];
 	rightScrollOpaque.alpha = .35;
     [self.view addSubview:rightScrollOpaque];
-    
+
     topScrollOpaque = [UIButton buttonWithType:UIButtonTypeCustom];
 	topScrollOpaque.frame = topScrollOpaqueFrame;
 	topScrollOpaque.hidden = YES;
@@ -1366,7 +1366,7 @@
 	topScrollOpaque.backgroundColor = [UIColor blackColor];
 	topScrollOpaque.alpha = .35;
     [self.view addSubview:topScrollOpaque];
-    
+
     bottomScrollOpaque = [UIButton buttonWithType:UIButtonTypeCustom];
 	bottomScrollOpaque.frame = bottomScrollOpaqueFrame;
 	bottomScrollOpaque.hidden = YES;
@@ -1374,12 +1374,12 @@
 	bottomScrollOpaque.backgroundColor = [UIColor blackColor];
 	bottomScrollOpaque.alpha = .35;
     [self.view addSubview:bottomScrollOpaque];
-    
+
 	buttonBottomOpaque = [[UIView alloc] initWithFrame:bottomScrollOpaqueFrame];
 	buttonBottomOpaque.backgroundColor = [UIColor blackColor];
 	[self.view addSubview:buttonBottomOpaque];
 	//[buttonBottomOpaque release];
-    
+
     //bret end button code
 //#endif
 
@@ -1393,7 +1393,7 @@
         //[backToTrimButton setImage:[UIImage imageNamed:@"looksbrowser_cancel_button225x72.png"] forState:UIControlStateHighlighted];
         //[backToTrimButton addTarget:self action:@selector(backToTrimAction:) forControlEvents:UIControlEventTouchUpInside];
         //[self.view addSubview:backToTrimButton];
-        
+
         nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         nextButton.frame = CGRectMake(1024-225-12, 768-44-FRAME_OPAQUE_HEIGHT+((FRAME_OPAQUE_HEIGHT-72)/2), 225, 72);
         nextButton.hidden = NO;
@@ -1415,7 +1415,7 @@
         //[backToTrimButton setImage:[UIImage imageNamed:@"looksbrowser_cancel_button103x33_iphone.png"] forState:UIControlStateHighlighted];
         //[backToTrimButton addTarget:self action:@selector(backToTrimAction:) forControlEvents:UIControlEventTouchUpInside];
         //[self.view addSubview:backToTrimButton];
-        
+
         nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         if (IS_IPHONE_5)
             nextButton.frame = CGRectMake(568-225-12, 320-44-FRAME_OPAQUE_HEIGHT_IPHONE+((FRAME_OPAQUE_HEIGHT_IPHONE-33)/2), 106, 33);
@@ -1427,27 +1427,27 @@
         [nextButton setImage:[UIImage imageNamed:@"looksbrowser_next_button106x33_iphone.png"] forState:UIControlStateHighlighted];
         [nextButton addTarget:self action:@selector(nextAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:nextButton];
-        
+
     }
 //	isRenderAlready = NO;
 	renderCondition = [[NSCondition alloc] init];
 
 	if (renderer == nil)
 		[self initRenderer:nil];
-	
+
 	currentSelectedGroup = 0;
 	selectedGroupIndex_Portrait = 0;
 	selectedGroupIndex_landscape = 0;
 	[self layoutAfterorientation:self.statusBarOrientation];
-	
+
 	if([looksScrollView superview]){
 		[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(renderFirst) userInfo:nil repeats:NO];
 	}
 	[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(releaseRender:) 
+                                             selector:@selector(releaseRender:)
                                              name:@"ReleaseRender"
                                              object:nil];
-    
+
     mScrollViewHackFirstTime = NO;
 
 }
@@ -1479,7 +1479,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	
+
 //#if 0
     leftScrollButton.hidden = YES;
     leftScrollOpaque.hidden = YES;
@@ -1490,34 +1490,34 @@
     bottomScrollButton.hidden = YES;
     bottomScrollOpaque.hidden = YES;
 //#endif
-    
+
     [super viewWillAppear:animated];
 	//[self.navigationController setNavigationBarHidden:NO animated:NO];
 
 	[self startRender];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(purchaseSuccess:) 
+                                             selector:@selector(purchaseSuccess:)
                                                  name:@"purchaseSuccess"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(faliedTransaction:) 
+                                             selector:@selector(faliedTransaction:)
                                                  name:@"faliedTransaction"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(cancelTransaction:) 
+                                             selector:@selector(cancelTransaction:)
                                                  name:@"cancelTransaction"
-                                               object:nil];	  
+                                               object:nil];
 	NSLog(@"Thread Start");
     //bret
     //[self layoutAfterorientation:self.statusBarOrientation];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"LooksPreviewOnScreen" object:nil];    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LooksPreviewOnScreen" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated // Called when the view is dismissed, covered or otherwise hidden. Default does nothing
-{	
+{
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"purchaseSuccess" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"faliedTransaction" object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"cancelTransaction" object:nil];	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"cancelTransaction" object:nil];
 	[super viewWillDisappear:animated];
 }
 
@@ -1568,43 +1568,43 @@
 {
 	UIApplication *application = [UIApplication sharedApplication];
 	application.networkActivityIndicatorVisible = NO;
-	
+
 	NSLog(@"productsRequest:didReceiveResponse:");
 	NSArray *myProducts = response.products;
-	
+
 	NSLog(@"the count of products is %lu", (unsigned long)[myProducts count]);
 	if ([myProducts count] == 0)
 	{
 //		self.overView.hidden = YES;
 //		[self.activityIndicator stopAnimating];
-				
+
 //		CustomAlertView *alerView =  [[CustomAlertView alloc] initWithTitle:@"Error"
 //																	message:@"Failed retrieve production infomation from Apple App Store"
 //																   delegate:self
 //																 leftButton:cancelButton
 //																rightButton:nil];
-		
+
 //		[alerView show];
 //		[alerView release];
 	}
-	
+
 	// populate UI
 	for(SKProduct *product in myProducts)
 	{
 		NSString *lookName = [requestDictionary objectForKey:[request description]];
-		
+
 		NSString *currencySymbol = [[product priceLocale] objectForKey:NSLocaleCurrencySymbol];
 		NSString *msg = [NSString stringWithFormat:@"This Look is a part of the \"%@\" Look Pack. Do you wish to purchase it now for %@%@?",
 						 [product localizedTitle], currencySymbol, [product price] ];
-		
+
 		UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:lookName
 															 message:msg
 															delegate:self
 												   cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
 												   otherButtonTitles:NSLocalizedString(@"Purchase",nil), nil];
-		
+
 		[alertView show];
-		
+
 		self.productIdentifier = product.productIdentifier;
         self.currentProduct = product;
 	}
@@ -1622,7 +1622,7 @@
 													   delegate:self
 											  cancelButtonTitle:NSLocalizedString(@"OK",nil)
 											  otherButtonTitles:nil];
-	
+
 	[alerView show];
 }
 
@@ -1649,13 +1649,13 @@
 	if ([[notification name] isEqualToString:@"purchaseSuccess"])
 	{
 		NSLog (@"Purchase Success!");
-		
+
 		[self hiddenNetworkActivityIndicator];
-		
+
 		self.products = [[NSUserDefaults standardUserDefaults] arrayForKey:kUserLooks];
-		
+
 		NSString *purchasedIdentifier = [notification object];
-		
+
 		for (int i = 0; i < [products count]; i++)
 		{
 			NSDictionary *groupDic = [products objectAtIndex:i];
@@ -1702,7 +1702,7 @@
 //		[self.view bringSubviewToFront:overView];
 //		[overView release];
 //	}
-//	
+//
 //	if (activityIndicator)
 //	{
 //		[activityIndicator startAnimating];
@@ -1719,28 +1719,28 @@
 //		{
 //			activityIndicator.frame = CGRectMake(225, 118, 30, 30);
 //		}
-//		
+//
 //		//overView.autoresizingMask  = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
 //		[self.view addSubview:activityIndicator];
 //		[self.view bringSubviewToFront:activityIndicator];
 //		[activityIndicator startAnimating];
 //		[activityIndicator release];
 //	}
-	
+
 	[self showNetworkActivityIndicator];
-	
+
 	NSLog(@"requestProductData:%@", identifier);
 	NSSet *productSet =[NSSet setWithObject:identifier];
-	SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers: productSet]; 
+	SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers: productSet];
 	request.delegate = self;
-	
+
 	if (requestDictionary == nil)
 	{
 		self.requestDictionary = [NSMutableDictionary dictionaryWithCapacity:2];
 	}
-	
+
 	[requestDictionary setObject:lookName forKey:[request description]];
-	
+
 	[request start];
 }
 
@@ -1749,14 +1749,14 @@
 	NSDictionary *groupDic = [self.products objectAtIndex:groupIndex];
 	NSArray *looks = [groupDic objectForKey:kProductLooks];
 	NSDictionary *lookDic = [looks objectAtIndex:lookIndex];
-	
+
 	//Business
 	BOOL locked = [[groupDic objectForKey:kProductLocked] boolValue];
 	if (locked)
 	{
 //		MobileLooksAppDelegate* appDelegate = (MobileLooksAppDelegate*)[UIApplication sharedApplication].delegate;
 //		[appDelegate startPurchaseMask];
-		
+
 		NSString *identifier = [groupDic objectForKey:kProductIdentifier];
 		NSString *lookName = [lookDic objectForKey:kLookName];
 		[self purchaseProduct:identifier withLookName:lookName];
@@ -1770,7 +1770,7 @@
 		previewController.outputSize = outputSize;
 		previewController.renderer = renderer;
 		previewController.videoMode = videoMode;
-		previewController.lookDic = lookDic;		
+		previewController.lookDic = lookDic;
 		[self.navigationController pushViewController:previewController animated:YES];
 		[previewController release];
 #endif
@@ -1781,13 +1781,13 @@
         {
 			//wait rendering thread stoped for a while
 			[self endRender];
-//			NSLog(@"tapLook:Wait Rendering Thread");			
+//			NSLog(@"tapLook:Wait Rendering Thread");
 			while (!self.isRenderThreadStop)
-			{	
+			{
 				NSLog(@"Waiting Rendering Thread");
 				//[NSThread sleepForTimeInterval:0.3];
 			}
-//			NSLog(@"tapLook:Waited Rendering Thread");			
+//			NSLog(@"tapLook:Waited Rendering Thread");
 		}
 	}
 }
@@ -1795,7 +1795,7 @@
 #pragma mark -
 #pragma mark Thumbnail Preview Rendering
 - (void) rendererThumbnail:(LookThumbnailView*)thumbView
-{	
+{
 	 if(thumbView.renderingState == RenderingStateNone)
 	 {
 		 [renderCondition lock];
@@ -1804,16 +1804,16 @@
 		 [renderQueue addObject:[NSNumber numberWithInt:(int)thumbView.pageIndex]];
 		 [renderCondition signal];
 		 [renderCondition unlock];
-	 }	
+	 }
 }
 
 - (void)processingOnscreenLooks
 {
 	//NSLog(@"processingOnscreenLooks:");
-	
+
 	//CGFloat pageWidth = looksScrollView.frame.size.width;
     //int page = floor((looksScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-	
+
     CGFloat pageWidth;
     int page;
     if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
@@ -1825,13 +1825,13 @@
         pageWidth = looksScrollView.frame.size.height;
         page = floor((looksScrollView.contentOffset.y - pageWidth / 2) / pageWidth) + 1;
     }
-    
+
 	if (page < [looksViews count])
 	{
 		LookThumbnailView *thumbView = [looksViews objectAtIndex:page];
 		[self rendererThumbnail:thumbView];
 	}
-	
+
 	if (page+1 < [looksViews count])
 	{
 		LookThumbnailView *thumbView = [looksViews objectAtIndex:page+1];
@@ -1972,7 +1972,7 @@
 	{
 		return;
 	}
-	
+
     CGFloat pageWidth;
     int page;
     if(self.statusBarOrientation==UIInterfaceOrientationLandscapeLeft || self.statusBarOrientation==UIInterfaceOrientationLandscapeRight)
@@ -1984,14 +1984,14 @@
         pageWidth = sender.frame.size.height;
         page = floor((sender.contentOffset.y - pageWidth / 2) / pageWidth) + 1;
     }
-    
+
 	if (page < [looksViews count])
 	{
 		LookThumbnailView *thumbView = [looksViews objectAtIndex:page];
 		[self resetGroups:thumbView.groupIndex];
 		[self rendererThumbnail:thumbView];
 	}
-	
+
 	if (page+1 < [looksViews count])
 	{
 		LookThumbnailView *thumbView = [looksViews objectAtIndex:page+1];
@@ -2002,7 +2002,7 @@
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
 	if(scrollView != looksScrollView)return;
-	
+
     //bret button scroll
 //#if 0
     if (IS_IPAD)
@@ -2138,14 +2138,14 @@
 //	{
 //		CGFloat pageWidth = scrollView.frame.size.width;
 //		int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-//		
+//
 //		if (page < [looksViews count])
 //		{
 //			LookThumbnailView *thumbView = [looksViews objectAtIndex:page];
 //			[self resetGroups:thumbView.groupIndex];
 //			[self rendererThumbnail:thumbView];
 //		}
-//		
+//
 //		if (page+1 < [looksViews count])
 //		{
 //			LookThumbnailView *thumbView = [looksViews objectAtIndex:page+1];
@@ -2155,27 +2155,27 @@
 //}
 
 - (void) layoutAfterorientation:(UIInterfaceOrientation)toInterfaceOrientation{
-	
+
 #if 0
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
 		return;
 	}
 #endif
 	[self layoutUIs:toInterfaceOrientation];
-    
+
     float f_width;
 	float s_height;
 	float f_looksScrollViewLeft;
-	
+
 	float f_looksScrollViewWidth;
 	float f_looksScrollViewHeight;
 	float f_looksScrollViewTop;
 	float f_looksScrollOffset;
     float lookOffset;
     float offset;
-    
+
 	CGPoint currentScrollPoint = looksScrollView.contentOffset;
-    
+
     if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
     {
         if (IS_IPAD)
@@ -2185,17 +2185,17 @@
                 currentScrollPoint.x = FRAME_CROP_SIZE_WIDTH+FRAME_CROP_SIZE_WIDTH_OFFSET;
                 [looksScrollView setContentOffset:currentScrollPoint animated:NO];
             }
-            
+
             f_looksScrollOffset = 20;
             f_width = 1024;
             s_height = 1004-41-44;
             f_looksScrollViewLeft = (1024 - FRAME_CROP_SIZE_WIDTH)/2-(f_looksScrollOffset/2);
-            
+
             f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH+f_looksScrollOffset;
             f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT;
-            
+
             f_looksScrollViewTop = 80+(f_looksScrollOffset/2);
-            
+
             self.looksScrollView.frame = CGRectMake(f_looksScrollViewLeft, f_looksScrollViewTop, f_looksScrollViewWidth, f_looksScrollViewHeight);
             scrollEnhancer.frame = CGRectMake(0, f_looksScrollViewTop, f_width, f_looksScrollViewHeight);
             lookOffset = 0.0;
@@ -2221,17 +2221,17 @@
                 currentScrollPoint.x = FRAME_CROP_SIZE_WIDTH_IPHONE+FRAME_CROP_SIZE_WIDTH_OFFSET_IPHONE;
                 [looksScrollView setContentOffset:currentScrollPoint animated:NO];
             }
-            
+
             if (IS_IPHONE_5)
             {
                 f_looksScrollOffset = FRAME_CROP_SIZE_WIDTH_OFFSET_IPHONE;
                 f_width = 568;
                 s_height = 320-41-44;
                 f_looksScrollViewLeft = (568 - FRAME_CROP_SIZE_WIDTH_IPHONE)/2-(f_looksScrollOffset/2);
-                
+
                 f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH_IPHONE+f_looksScrollOffset;
                 f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT_IPHONE;
-                
+
                 f_looksScrollViewTop = 41+f_looksScrollOffset;
             }else
             {
@@ -2239,10 +2239,10 @@
                 f_width = 480;
                 s_height = 320-41-44;
                 f_looksScrollViewLeft = (480 - FRAME_CROP_SIZE_WIDTH_IPHONE)/2-(f_looksScrollOffset/2);
-                
+
                 f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH_IPHONE+f_looksScrollOffset;
                 f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT_IPHONE;
-                
+
                 f_looksScrollViewTop = 41+f_looksScrollOffset;
             }
             self.looksScrollView.frame = CGRectMake(f_looksScrollViewLeft, f_looksScrollViewTop, f_looksScrollViewWidth, f_looksScrollViewHeight);
@@ -2294,10 +2294,10 @@
             f_width = 768;
             //s_height = 1004-41-44;
             f_looksScrollViewLeft = (768 - FRAME_CROP_SIZE_WIDTH)/2;  //-(f_looksScrollOffset/2);
-            
+
             f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH;
             f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT+f_looksScrollOffset;
-            
+
             //f_looksScrollViewTop = 80+f_looksScrollOffset;
             //f_looksScrollViewTop = ((1024-44-80) - FRAME_CROP_SIZE_HEIGHT)/2-(f_looksScrollOffset/2);
             f_looksScrollViewTop = ((1024-44-80-FRAME_OPAQUE_HEIGHT)-(FRAME_CROP_SIZE_HEIGHT+FRAME_CROP_SIZE_HEIGHT_OFFSET))/2;
@@ -2332,7 +2332,7 @@
                 f_width = 320;
                 //s_height = 1004-41-44;
                 f_looksScrollViewLeft = (320 - FRAME_CROP_SIZE_WIDTH_IPHONE)/2;  //-(f_looksScrollOffset/2);
-                
+
                 f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH_IPHONE;
                 f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT_IPHONE+f_looksScrollOffset;
             }else
@@ -2341,7 +2341,7 @@
                 f_width = 320;
                 //s_height = 1004-41-44;
                 f_looksScrollViewLeft = (320 - FRAME_CROP_SIZE_WIDTH_IPHONE)/2;  //-(f_looksScrollOffset/2);
-                
+
                 f_looksScrollViewWidth = FRAME_CROP_SIZE_WIDTH_IPHONE;
                 f_looksScrollViewHeight = FRAME_CROP_SIZE_HEIGHT_IPHONE+f_looksScrollOffset;
             }
@@ -2352,12 +2352,12 @@
             else
                 f_looksScrollViewTop = ((480-44-41-FRAME_OPAQUE_HEIGHT_IPHONE)-(FRAME_CROP_SIZE_HEIGHT_IPHONE+FRAME_CROP_SIZE_HEIGHT_OFFSET_IPHONE))/2;
             self.looksScrollView.frame = CGRectMake(f_looksScrollViewLeft, f_looksScrollViewTop+41, f_looksScrollViewWidth, f_looksScrollViewHeight);
-            
+
             if (IS_IPHONE_5)
                 scrollEnhancer.frame = CGRectMake(0, 41, f_width, 568-44-41-FRAME_OPAQUE_HEIGHT_IPHONE ); //f_looksScrollViewHeight);
             else
                 scrollEnhancer.frame = CGRectMake(0, 41, f_width, 480-44-41-FRAME_OPAQUE_HEIGHT_IPHONE ); //f_looksScrollViewHeight);
-            
+
             lookOffset = 0.0;
             offset = FRAME_CROP_SIZE_HEIGHT_IPHONE;
             for(int i = 0; i < [looksDic_ count]; i++)
@@ -2391,7 +2391,7 @@
 		//CGFloat pageWidth = looksScrollView.frame.size.width;
 		//int page = floor((looksScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 	}
-    
+
     //bret button scroll
 //#if 0
     if (IS_IPAD)
@@ -2528,7 +2528,7 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -2543,9 +2543,9 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReleaseRender" object:nil];
 
 	[self releaseRender:nil];
-    
 
-	
+
+
 }
 
 @end

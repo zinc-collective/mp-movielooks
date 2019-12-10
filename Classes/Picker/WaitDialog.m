@@ -1,7 +1,7 @@
 //  MobileLooks
 //
 //  Created by jack on 8/30/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "WaitDialog.h"
@@ -13,14 +13,14 @@
 
 - (id) initWithFrame:(CGRect)frame{
 	if(self = [super initWithFrame:frame]){
-		
+
 		UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
 		backGroundView.backgroundColor = [UIColor blackColor];
 		backGroundView.alpha = 0.0;
 		backGroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-		
+
 		[self addSubview:backGroundView];
-		
+
 		// create indicator
 		float top = (frame.size.height - 20)/2.0;
 		UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(140, top, 20, 20)];
@@ -29,7 +29,7 @@
 		//indicator.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 		//[indicator startAnimating];
 		[self addSubview:indicator];
-		
+
 		// label
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(130, top+40+10, 100, 20)];
 		label.backgroundColor = [UIColor clearColor];
@@ -39,7 +39,7 @@
 		label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
 		label.tag = LABEL_TAG;
 		[self addSubview:label];
-		
+
 		self.backgroundColor = [UIColor clearColor];
 		return self;
 	}
@@ -47,7 +47,7 @@
 }
 
 - (void) updateSpin{
-	
+
 	UIView *v = [self viewWithTag:INDICATOR_TAG];
 	v.center = self.center;
 }
@@ -55,8 +55,8 @@
 
 - (UIView *) createView
 {
-    
-    
+
+
     return nil;
 }
 
@@ -71,14 +71,14 @@
 	UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[self viewWithTag:INDICATOR_TAG];
 	//[indicator stopAnimating];
 	[indicator startAnimating];
-	
+
 	// label
 	[(UILabel *)[self viewWithTag:LABEL_TAG] setText:title_];
 }
 
 - (void) endLoading {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	
+
 	//self.hidden = YES;
 	UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[self viewWithTag:INDICATOR_TAG];
 	[indicator stopAnimating];

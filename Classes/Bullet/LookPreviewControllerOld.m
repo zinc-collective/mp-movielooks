@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by jack on 9/9/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "LookPreviewControllerOld.h"
@@ -33,23 +33,23 @@
 - (void)loadKeyFrame
 {
 	UIImage* keyFrameImage = [[UIImage alloc] initWithContentsOfFile:[Utilities savedKeyFrameImagePath]];
-	
+
 	CGImageRef imageRef = keyFrameImage.CGImage;
 	if (!imageRef)
-	{ 
+	{
 		[keyFrameImage release];
 		return;
 	}
-	
+
 	GLsizei width = CGImageGetWidth(imageRef);
 	GLsizei height = CGImageGetHeight(imageRef);
 	[keyFrameImage release];
-	
+
 	double aspectRatio = (double)width/(double)height;
 	//NSLog(@"aspectRatio=%.3f", aspectRatio);
-	
+
 	frameSize = CGSizeMake(width, height);
-	
+
 	if (aspectRatio > 1.77 && aspectRatio < 1.78) //16:9=1.777778
 	{
 		outputSize = CGSizeMake(320, 180);
@@ -91,8 +91,8 @@
 			outputSize = CGSizeMake(320*2.5, 180*2.5);
 		}
 	}
-	
-	
+
+
 	if(height<outputSize.height)
 	{
 		CGFloat factor = height/outputSize.height;
@@ -106,28 +106,28 @@
 	{
 		return;
 	}
-	
+
 	mLookDic = lookDic;
-	
+
 	if (renderer && mLookDic)
 	{
 		mRendererStatus = RendererNew;
-		
+
 		EAGLSharegroup* group = renderer.context.sharegroup;
-		
+
 		if (!group)
 		{
 			NSLog(@"Could not get sharegroup from the main context");
 			return;
 		}
-		
+
 		EAGLContext *subContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2 sharegroup:group];
 		if (!subContext || ![EAGLContext setCurrentContext:subContext])
 		{
 			NSLog(@"Could not create WorkingContext");
 			return;
 		}
-		
+
 		[renderer loadLookParam:lookDic withMode:videoMode];
 	}
 }
@@ -136,7 +136,7 @@
 {
 	//[border release];
 	self.renderer = nil;
-	
+
 }
 
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -148,22 +148,22 @@
 #pragma mark Renderer
 
 - (void) processImage:(UIImage*)img{
-	/*	
+	/*
 	 int width = outputSize.width, height = outputSize.height;
 	 //	double aspectRatio = (double)width/(double)height;
-	 
+
 	 unsigned char *buffer = malloc(width * height * glPixelSize);
 	 NSLog(@"processImage::Alloca a Image Buffer(%d*%d)",width,height);
 	 [renderer frameProcessing:keyFrameData toDest:buffer flipPixel:NO];
-	 CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); 
-	 
+	 CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+
 	 CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, width * height * glPixelSize, NULL);
 	 CGImageRef imageRef =  CGImageCreate(width, height, 8, 32, width*glPixelSize, colorSpace, kCGImageAlphaPremultipliedLast, provider, NULL, NO, kCGRenderingIntentDefault);
 	 CGDataProviderRelease(provider);
 	 CGColorSpaceRelease(colorSpace);
 	 mThumbView.layer.contents = (id)imageRef;
 	 CGImageRelease(imageRef);
-	 */	
+	 */
 	//	mThumbView.image = [renderer frameProcessingAndReturnImage:nil flipPixel:NO];
 }
 
@@ -183,7 +183,7 @@
 - (void)renderImage:(id)sender
 {
 	@autoreleasepool {
-	
+
 		renderer.looksStrengthValue = fStrengthValue;
 		renderer.looksBrightnessValue = fBrightnessValue;
 
@@ -196,9 +196,9 @@
 			image = [[UIImage alloc] initWithCGImage:imageRef];
 //#endif
 //    image = [[UIImage alloc] initWithCGImage:imageRef];
-		
+
     CGImageRelease(imageRef);
-		
+
 		dispatch_async(dispatch_get_main_queue(),
 					   ^{
                        //mThumbImageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
@@ -227,7 +227,7 @@
                        //
 					   });
 	}
-	
+
 	[self rendererEnd];
 }
 
@@ -241,11 +241,11 @@
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
+
 	[renderer resetFrameSize:self.outputSize outputFrameSize:self.outputSize];
 	[renderer resetRenderBuffer];
-	[renderer loadKeyFrame];	
-	
+	[renderer loadKeyFrame];
+
 	if (IS_IPAD)
         [self layoutiPadAfterorientation:self.statusBarOrientation];
     else
@@ -257,16 +257,16 @@
 	[super viewDidAppear:animated];
 	//[self.navigationItem setHidesBackButton:NO animated:NO];
 //	NSLog(@"viewDidAppear:mRendererStatus=%i", mRendererStatus);
-	
+
 	if (mRendererStatus == RendererNew)
 	{
 		fStrengthValue = DEFAULT_STRENGTH;
 		fBrightnessValue = DEFAULT_BRIGHTNESS;
-		
+
 		strengthSlider.value = fStrengthValue;
 		brightnessSlider.value = fBrightnessValue;
 		modeSwitcher.on = false;
-		
+
 #if 0 && defined(DEBUG)		// turn this on you want to debug full render resolution by default
 		[modeSwitcher setOn:YES animated:NO];
 #endif
@@ -303,13 +303,13 @@
         //CGRect frame7 = self.view.frame;
     }
     self.title = NSLocalizedString(@"Tweak Your Look", nil);
-	
+
 	//UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Select a Look",nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissAction:)];
 	//self.navigationItem.leftBarButtonItem = backButton;
-	
+
     fStrengthValue = DEFAULT_STRENGTH;
 	fBrightnessValue = DEFAULT_BRIGHTNESS;
-	
+
 	self.view.backgroundColor = [UIColor blackColor];
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
@@ -323,7 +323,7 @@
 
 
 - (void) layoutiPadAfterorientation:(UIInterfaceOrientation)toInterfaceOrientation{
-		
+
 	if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
     {
 		if(!mThumbView)
@@ -334,12 +334,12 @@
 			[mThumbView addSubview:mThumbImageView];
 			mThumbView.backgroundColor = [UIColor blackColor];
 			[self.view addSubview:mThumbView];
-						
+
 			mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 			mActivityIndicator.center = CGPointMake(mThumbView.frame.size.width/2.0, mThumbView.frame.size.height/2.0);
 			mActivityIndicator.hidesWhenStopped = YES;
 			[mThumbView addSubview:mActivityIndicator];
-			
+
 			float y = 24;
 			float x = 12;
 
@@ -348,7 +348,7 @@
             UIImage *imgMin;
 			UIImage *imgMax;
 			UIImage *thumbImg;
-            
+
 			//y = y + textSize.height + 12;
 			strengthSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 416, 47)];
 			strengthSlider.value = fStrengthValue;
@@ -363,11 +363,11 @@
 			[strengthSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[strengthSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[strengthSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			strengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+416+8 , y-3, 128, 55)];
 			strengthLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_strength_ipad"]];
 			[self.view addSubview:strengthLabel];
-            
+
 			y = y + textSize.height + 48-16+4;
 			brightnessSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 416, 47)];
 			brightnessSlider.value = fBrightnessValue;
@@ -382,11 +382,11 @@
 			[brightnessSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[brightnessSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[brightnessSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			brightnessLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+416+8 , y-3, 152, 55)];
 			brightnessLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_brightness_ipad"]];
 			[self.view addSubview:brightnessLabel];
-            
+
             y = y + textSize.height + 48-16+4;
             modeSwitcher = [[UISwitch alloc] initWithFrame:CGRectMake(x+12, y, 76, 53)];
             [modeSwitcher addTarget: self action: @selector(modeSwitcher:) forControlEvents:UIControlEventValueChanged];
@@ -397,21 +397,21 @@
             //tintColor
             //onImage //no effect in ios 7
             //offImage //no effect in ios 7
-            
+
             [self.view addSubview:modeSwitcher];
 			resolutionLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+76-8, y-9, 66, 50)];
 			resolutionLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_hd_ipad"]];
             if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
                 resolutionLabel.frame = CGRectMake(x+76-8+32, y-9, 66, 50);
             [self.view addSubview:resolutionLabel];
-									   
+
 			developButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			developButton.frame = CGRectMake(1024-225-12, 768-44-94+((94-71)/2), 225, 71);
 			[developButton setBackgroundImage:[UIImage imageNamed:@"looktweak_develop_button225x71.png"] forState:UIControlStateNormal];
 			[developButton setBackgroundImage:[UIImage imageNamed:@"looktweak_develop_button225x71.png"] forState:UIControlStateHighlighted];
 			[developButton addTarget:self action:@selector(develop:) forControlEvents:UIControlEventTouchUpInside];
 			[self.view addSubview:developButton];
-		
+
 			backToLooksBrowserButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			backToLooksBrowserButton.frame = CGRectMake(12, 768-44-94+((94-71)/2), 227, 71);
 			[backToLooksBrowserButton setBackgroundImage:[UIImage imageNamed:@"looktweak_selectlook_button227x71.png"] forState:UIControlStateNormal];
@@ -457,21 +457,21 @@
 			[mThumbView addSubview:mThumbImageView];
 			mThumbView.backgroundColor = [UIColor blackColor];
 			[self.view addSubview:mThumbView];
-									
+
             mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 			mActivityIndicator.center = CGPointMake(mThumbView.frame.size.width/2.0, mThumbView.frame.size.height/2.0);
 			mActivityIndicator.hidesWhenStopped = YES;
 			[mThumbView addSubview:mActivityIndicator];
-			
+
 			float y = 24;
 			float x = 12;
-            
+
             CGSize textSize;
 			textSize.height = 18+18;
             UIImage *imgMin;
 			UIImage *imgMax;
 			UIImage *thumbImg;
-            
+
 			//y = y + textSize.height + 12;
 			strengthSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 416, 47)];
 			strengthSlider.value = fStrengthValue;
@@ -486,11 +486,11 @@
 			[strengthSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[strengthSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[strengthSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			strengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+416+8 , y-3, 128, 55)];
 			strengthLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_strength_ipad"]];
 			[self.view addSubview:strengthLabel];
-            
+
 			y = y + textSize.height + 48-16+4;
 			brightnessSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 416, 47)];
 			brightnessSlider.value = fBrightnessValue;
@@ -505,11 +505,11 @@
 			[brightnessSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[brightnessSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[brightnessSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			brightnessLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+416+8 , y-3, 152, 55)];
 			brightnessLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_brightness_ipad"]];
 			[self.view addSubview:brightnessLabel];
-            
+
             y = y + textSize.height + 48-16+4;
             modeSwitcher = [[UISwitch alloc] initWithFrame:CGRectMake(x+12, y, 76, 53)];
             [modeSwitcher addTarget: self action: @selector(modeSwitcher:) forControlEvents:UIControlEventValueChanged];
@@ -520,21 +520,21 @@
             //tintColor
             //onImage //no effect in ios 7
             //offImage //no effect in ios 7
-            
+
             [self.view addSubview:modeSwitcher];
 			resolutionLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+76-8, y-9, 66, 50)];
 			resolutionLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_hd_ipad"]];
             if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
                 resolutionLabel.frame = CGRectMake(x+76-8+32, y-9, 66, 50);
             [self.view addSubview:resolutionLabel];
-            
+
 			developButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			developButton.frame = CGRectMake(768-225-12, 1024-44-94+((94-71)/2), 225, 71);
 			[developButton setBackgroundImage:[UIImage imageNamed:@"looktweak_develop_button225x71.png"] forState:UIControlStateNormal];
 			[developButton setBackgroundImage:[UIImage imageNamed:@"looktweak_develop_button225x71.png"] forState:UIControlStateHighlighted];
 			[developButton addTarget:self action:@selector(develop:) forControlEvents:UIControlEventTouchUpInside];
 			[self.view addSubview:developButton];
-            
+
 			backToLooksBrowserButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			backToLooksBrowserButton.frame = CGRectMake(12, 1024-44-94+((94-71)/2), 227, 71);
 			[backToLooksBrowserButton setBackgroundImage:[UIImage imageNamed:@"looktweak_selectlook_button227x71.png"] forState:UIControlStateNormal];
@@ -573,18 +573,18 @@
                     CGSize thumbnailImageSize = CGSizeMake(imagesize.width*thumbnailRect.size.height/imagesize.height,thumbnailRect.size.height);
                     mThumbImageView.frame = CGRectMake((thumbnailRect.size.width-thumbnailImageSize.width)/2, 0, thumbnailImageSize.width, thumbnailImageSize.height);
                 }
-                
+
             }
 			developButton.frame = CGRectMake(768-225-12, 1024-44-94+((94-71)/2), 225, 71);
 			backToLooksBrowserButton.frame = CGRectMake(12, 1024-44-94+((94-71)/2), 227, 71);
 		}
 
 	}
-	
+
 }
 
 - (void) layoutiPhoneAfterorientation:(UIInterfaceOrientation)toInterfaceOrientation{
-	
+
 	if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
     {
 		if(!mThumbView)
@@ -597,26 +597,26 @@
                 mThumbView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 568, 320)];
 			else
                 mThumbView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 480, 320)];
-            
+
             mThumbImageView = [[UIImageView alloc] init];
 			[mThumbView addSubview:mThumbImageView];
 			mThumbView.backgroundColor = [UIColor blackColor];
 			[self.view addSubview:mThumbView];
-            
+
 			mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 			mActivityIndicator.center = CGPointMake(mThumbView.frame.size.width/2.0, mThumbView.frame.size.height/2.0);
 			mActivityIndicator.hidesWhenStopped = YES;
 			[mThumbView addSubview:mActivityIndicator];
-			
+
             float y = 24/2;
 			float x = 12/2;
-            
+
             CGSize textSize;
 			textSize.height = (18+18)/2;
             UIImage *imgMin;
 			UIImage *imgMax;
 			UIImage *thumbImg;
-            
+
 			//y = y + textSize.height + 12;
 			strengthSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 208, 24)];
 			strengthSlider.value = fStrengthValue;
@@ -631,11 +631,11 @@
 			[strengthSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[strengthSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[strengthSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			strengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+208+(8/2) , y-2, 64, 28)];
 			strengthLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_strength_iphone"]];
 			[self.view addSubview:strengthLabel];
-            
+
 			y = y + textSize.height + (48-16+4)/2;
 			brightnessSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 208, 24)];
 			brightnessSlider.value = fBrightnessValue;
@@ -650,11 +650,11 @@
 			[brightnessSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[brightnessSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[brightnessSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			brightnessLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+208+(8/2) , y-2, 76, 28)];
 			brightnessLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_brightness_iphone"]];
 			[self.view addSubview:brightnessLabel];
-            
+
             y = y + textSize.height + (48-16+4)/2;
             modeSwitcher = [[UISwitch alloc] initWithFrame:CGRectMake(x+(12/2)-12+4, y, 76/2, 53/2)];
             [modeSwitcher addTarget: self action: @selector(modeSwitcher:) forControlEvents:UIControlEventValueChanged];
@@ -666,15 +666,15 @@
             //tintColor
             //onImage //no effect in ios 7
             //offImage //no effect in ios 7
-            
+
             [self.view addSubview:modeSwitcher];
 			resolutionLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+((76-8)/2)+8, y-(9/2)+7, 33, 25)];
 			resolutionLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_hd_iphone"]];
             if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
                 resolutionLabel.frame = CGRectMake(x+((76-8)/2)+8+16+12, y-(9/2)+6, 33, 25);
-            
+
             [self.view addSubview:resolutionLabel];
-            
+
 			developButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			if (IS_IPHONE_5)
                 developButton.frame = CGRectMake(568-105-12, 320-44-44+((44-33)/2), 105, 33);
@@ -684,14 +684,14 @@
 			[developButton setBackgroundImage:[UIImage imageNamed:@"looktweak_develop_button105x33_iphone.png"] forState:UIControlStateHighlighted];
 			[developButton addTarget:self action:@selector(develop:) forControlEvents:UIControlEventTouchUpInside];
 			[self.view addSubview:developButton];
-            
+
 			backToLooksBrowserButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			backToLooksBrowserButton.frame = CGRectMake(12, 320-44-44+((44-33)/2), 106, 33);
 			[backToLooksBrowserButton setBackgroundImage:[UIImage imageNamed:@"looktweak_selectlook_button106x33_iphone.png"] forState:UIControlStateNormal];
 			[backToLooksBrowserButton setBackgroundImage:[UIImage imageNamed:@"looktweak_selectlook_button106x33_iphone.png"] forState:UIControlStateHighlighted];
 			[backToLooksBrowserButton addTarget:self action:@selector(dismissAction:) forControlEvents:UIControlEventTouchUpInside];
 			[self.view addSubview:backToLooksBrowserButton];
-            
+
         }
 		else {
             //if (IS_IPHONE_5)
@@ -702,7 +702,7 @@
                 mThumbView.frame = CGRectMake(0, 0, 568, 320);
 			else
                 mThumbView.frame = CGRectMake(0, 0, 480, 320);
-            
+
             if (mThumbImageView.image != nil)
             {
                 CGRect thumbnailRect = mThumbView.frame;
@@ -731,8 +731,8 @@
                     CGSize thumbnailImageSize = CGSizeMake(imagesize.width*thumbnailRect.size.height/imagesize.height,thumbnailRect.size.height);
                     mThumbImageView.frame = CGRectMake((thumbnailRect.size.width-thumbnailImageSize.width)/2, 0, thumbnailImageSize.width, thumbnailImageSize.height);
                 }
-            
-            
+
+
             }
 			if (IS_IPHONE_5)
                 developButton.frame = CGRectMake(568-105-12, 320-44-44+((44-33)/2), 105, 33);
@@ -752,26 +752,26 @@
                 mThumbView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
 			else
                 mThumbView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-            
+
             mThumbImageView = [[UIImageView alloc] init];
 			[mThumbView addSubview:mThumbImageView];
 			[self.view addSubview:mThumbView];
             mThumbView.backgroundColor = [UIColor blackColor];
-            
+
 			mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 			mActivityIndicator.center = CGPointMake(mThumbView.frame.size.width/2.0, mThumbView.frame.size.height/2.0);
 			mActivityIndicator.hidesWhenStopped = YES;
 			[mThumbView addSubview:mActivityIndicator];
-			
+
             float y = 24/2;
 			float x = 12/2;
-            
+
             CGSize textSize;
 			textSize.height = (18+18)/2;
             UIImage *imgMin;
 			UIImage *imgMax;
 			UIImage *thumbImg;
-            
+
 			//y = y + textSize.height + 12;
 			strengthSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 208, 24)];
 			strengthSlider.value = fStrengthValue;
@@ -786,11 +786,11 @@
 			[strengthSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[strengthSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[strengthSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			strengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+208+(8/2) , y-2, 64, 28)];
 			strengthLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_strength_iphone"]];
 			[self.view addSubview:strengthLabel];
-            
+
 			y = y + textSize.height + (48-16+4)/2;
 			brightnessSlider = [[UISlider alloc] initWithFrame:CGRectMake(x, y, 208, 24)];
 			brightnessSlider.value = fBrightnessValue;
@@ -805,11 +805,11 @@
 			[brightnessSlider setThumbImage:thumbImg forState:UIControlStateHighlighted];
 			[brightnessSlider setMinimumTrackImage:imgMin forState:UIControlStateNormal];
 			[brightnessSlider setMaximumTrackImage:imgMax forState:UIControlStateNormal];
-            
+
 			brightnessLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+208+(8/2) , y-2, 76, 28)];
 			brightnessLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_brightness_iphone"]];
 			[self.view addSubview:brightnessLabel];
-            
+
             y = y + textSize.height + (48-16+4)/2;
             modeSwitcher = [[UISwitch alloc] initWithFrame:CGRectMake(x+(12/2)-12+4, y, 76/2, 53/2)];
             [modeSwitcher addTarget: self action: @selector(modeSwitcher:) forControlEvents:UIControlEventValueChanged];
@@ -821,14 +821,14 @@
             //tintColor
             //onImage //no effect in ios 7
             //offImage //no effect in ios 7
-            
+
             [self.view addSubview:modeSwitcher];
 			resolutionLabel = [[UILabel alloc] initWithFrame:CGRectMake(x+((76-8)/2)+8, y-(9/2)+7, 33, 25)];
 			resolutionLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweak_hd_iphone"]];
             if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
                 resolutionLabel.frame = CGRectMake(x+((76-8)/2)+8+16+12, y-(9/2)+6, 33, 25);
             [self.view addSubview:resolutionLabel];
-            
+
 			developButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			if (IS_IPHONE_5)
                 developButton.frame = CGRectMake(320-105-12, 568-44-44+((44-33)/2), 105, 33);
@@ -838,7 +838,7 @@
 			[developButton setBackgroundImage:[UIImage imageNamed:@"looktweak_develop_button105x33_iphone.png"] forState:UIControlStateHighlighted];
 			[developButton addTarget:self action:@selector(develop:) forControlEvents:UIControlEventTouchUpInside];
 			[self.view addSubview:developButton];
-            
+
 			backToLooksBrowserButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			if (IS_IPHONE_5)
                 backToLooksBrowserButton.frame = CGRectMake(12, 568-44-44+((44-33)/2), 106, 33);
@@ -886,7 +886,7 @@
                     CGSize thumbnailImageSize = CGSizeMake(imagesize.width*thumbnailRect.size.height/imagesize.height,thumbnailRect.size.height);
                     mThumbImageView.frame = CGRectMake((thumbnailRect.size.width-thumbnailImageSize.width)/2, 0, thumbnailImageSize.width, thumbnailImageSize.height);
                 }
-                
+
             }
 			if (IS_IPHONE_5)
                 developButton.frame = CGRectMake(320-105-12, 568-44-44+((44-33)/2), 105, 33);
@@ -914,11 +914,11 @@
 		bulletViewController.estimateTotalRenderTime = estimateTotalRenderTime;
 		bulletViewController.videoMode = videoMode;
         bulletViewController.mThumbImage = mThumbImageView.image;
-		
+
 		// grab the current time interval for measuring total duration later
 		bulletViewController.renderStartTime = [NSDate timeIntervalSinceReferenceDate];
-        
-        
+
+
 		RendererType type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeHalf:RendererTypeFull;
         bool modeSwitcherHD;
         if (modeSwitcher.on)
@@ -928,14 +928,14 @@
         {
             modeSwitcherHD = false;
 		}
-        
+
 
         if (modeSwitcherHD) {
             type = RendererTypeFull;
         } else {
             type = RendererTypeHalf;
 		}
-		
+
         BOOL fullFramerate = YES;
         if (HALF_FRAMERATE_ENABLED && type == RendererTypeHalf)
         {
@@ -944,7 +944,7 @@
 
         [bulletViewController setRendererType:type withFullFramerate:fullFramerate andLookParam:mLookDic];
     }
-    
+
 }
 
 
@@ -954,28 +954,28 @@
 	// Or better yet, just grab a total count of all frames in the video if possible.
 	// it is assumed that videos recorded from the iPhone are usually very close to 30fps.
 	float fps = 30.0f;
-	
+
 	AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:processURL options:nil];
 	NSUInteger movieFrames = CMTimeGetSeconds(movieAsset.duration)*fps;
-	
+
 	if (!renderFullFramerate) {
 		movieFrames = ceil((float)movieFrames / 2.0);
 	}
-	
+
     CGSize movieOriginSize = [AVAssetUtilities naturalSize:movieAsset];
 	CGSize movieOutputSize = movieOriginSize;
-	
+
 	CGFloat smallestSupportHeight = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?120:100;
 	CGFloat smallestSupportWidth = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?240:200;
 	if (renderType == RendererTypeHalf && movieOriginSize.height>smallestSupportHeight && movieOriginSize.width>smallestSupportWidth)
 		movieOutputSize = CGSizeMake(movieOriginSize.width/2.0, movieOriginSize.height/2.0);
 	[renderer resetFrameSize:movieOriginSize outputFrameSize:movieOutputSize];
 	estimateOutputSize = movieOutputSize;
-	
+
 	AVAssetImageGenerator* avImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:movieAsset];
 	[avImageGenerator setAppliesPreferredTrackTransform:YES];
 	[avImageGenerator setMaximumSize:movieOriginSize];
-	
+
 	//render buffer
 	CGImageRef estimateFrameRef =  [avImageGenerator copyCGImageAtTime:CMTimeMake(0, 600) actualTime:NULL error:NULL];
 	unsigned char* estimateFrameData = malloc(movieOriginSize.width*movieOriginSize.height * glPixelSize);
@@ -989,19 +989,19 @@
 	NSTimeInterval singleFrameRenderStartTime = [NSDate timeIntervalSinceReferenceDate];
 	[renderer frameProcessing:estimateFrameData toDest:estimateFrameData flipPixel:YES];
 	estimateFrameProcessTime = [NSDate timeIntervalSinceReferenceDate]-singleFrameRenderStartTime;
-	
+
 	// NOTE: joe- this appears to be a scale factor that is applied to the eestimate.  Not sure where this is coming from ??
 	// This could be a factor of how much time is spend doing other things during the process loop.
 	// When the profiling the app, the frame rendering is approximately 66% of the time.
-	estimateClipProcessTime = 0.37;		
+	estimateClipProcessTime = 0.37;
 
 	[renderer resetFrameSize:self.outputSize outputFrameSize:self.outputSize];
 /*
-	//save rendered image  
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); 
+	//save rendered image
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGContextRef imgCGContext = CGBitmapContextCreate (estimateFrameData, movieOutputSize.width, movieOutputSize.height, 8, movieOutputSize.width*glPixelSize, colorSpace,kCGImageAlphaPremultipliedLast);
 	CGImageRef imgRef = CGBitmapContextCreateImage(imgCGContext);
-	CGColorSpaceRelease(colorSpace); 
+	CGColorSpaceRelease(colorSpace);
 	CGContextRelease(imgCGContext);
 
 	ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
@@ -1011,14 +1011,14 @@
 		});
 	}];
 	[assetsLibrary release];
-	
+
 */
 
 	NSTimeInterval estimateRenderTimeRemaining = estimateFrameProcessTime*movieFrames+ceil(movieFrames/fps)*estimateClipProcessTime;
 	NSLog(@"Estimated Render Time: %f seconds", estimateRenderTimeRemaining);
-	
+
 	free(estimateFrameData);
-	
+
 	return estimateRenderTimeRemaining;
 }
 
@@ -1030,7 +1030,7 @@ if(TooHighForDevice(videoSize))
 													   delegate:self
 											  cancelButtonTitle:NSLocalizedString(@"OK",nil)
 											  otherButtonTitles:nil];
-	
+
 	[alerView show];
 	[alerView release];
 	return;
@@ -1049,15 +1049,15 @@ if(TooHighForDevice(videoSize))
 /*
 	//" This process%@ will take approximately %02d:%02d.";
 	NSString *replace = @"";
-	
+
 	MobileLooksAppDelegate *appDelegate = (MobileLooksAppDelegate*)[[UIApplication sharedApplication] delegate];
 	//CGSize videoSize = appDelegate.videoSize;
 	double videoDuration = appDelegate.videoDuration;
 	double duration = 0.0;
-	
+
 	BOOL quickRender = [[mLookDic objectForKey:kLookQuickRender] boolValue];
 	//float width = videoSize.width > videoSize.height ? videoSize.width : videoSize.height;
-*/	
+*/
 #if 0 //bret
 	BOOL type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeHalf:RendererTypeFull;
 	if ([modeSwitcher isOn])
@@ -1066,7 +1066,7 @@ if(TooHighForDevice(videoSize))
 	}
 	if (type == RendererTypeFull)
 		title = NSLocalizedString(@"Full Resolution",nil);
-		
+
 	BOOL fullFramerate = YES;
 	if (HALF_FRAMERATE_ENABLED && type == RendererTypeHalf) {
 		fullFramerate = NO;
@@ -1082,7 +1082,7 @@ if(TooHighForDevice(videoSize))
     {
         modeSwitcherHD = false;
 	}
-	
+
 #if 0
     BOOL type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeHalf:RendererTypeFull;
 	if (modeSwitcherHD)
@@ -1094,7 +1094,7 @@ if(TooHighForDevice(videoSize))
 		fullFramerate = NO;
 	}
 #endif
-    
+
 	BOOL type;
     if (modeSwitcherHD)
 	{
@@ -1103,13 +1103,13 @@ if(TooHighForDevice(videoSize))
 	{
         type = RendererTypeHalf;
     }
-	
+
 	BOOL fullFramerate = YES;
 	if (HALF_FRAMERATE_ENABLED && type == RendererTypeHalf)
     {
 		fullFramerate = NO;
 	}
-	
+
     estimateTotalRenderTime = [self estimateProcessingTime:[Utilities selectedVideoPathWithURL:nil] withType:type withFullFramerate:fullFramerate];
     [self performSegueWithIdentifier:@"BulletViewController" sender:self];
 
@@ -1119,7 +1119,7 @@ if(TooHighForDevice(videoSize))
 		NSLog(@"WARNING: HD Video not supported, using half quality render type");
 		type = RendererTypeHalf;
 	}
-	
+
 	if (type == RendererTypeFull)
 	{
 		title = NSLocalizedString(@"Full Resolution",nil);
@@ -1142,23 +1142,23 @@ if(TooHighForDevice(videoSize))
 		bulletViewController.estimateClipProcessTime = estimateClipProcessTime;
 		bulletViewController.estimateTotalRenderTime = estimateTotalRenderTime;
 		bulletViewController.videoMode = videoMode;
-		
+
 		// grab the current time interval for measuring total duration later
 		bulletViewController.renderStartTime = [NSDate timeIntervalSinceReferenceDate];
-	
+
 
 		RendererType type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeHalf:RendererTypeFull;
 		if ([modeSwitcher isOn])
 		{
 			type = (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)?RendererTypeFull:RendererTypeHalf;
 		}
-		
+
 		BOOL fullFramerate = YES;
 		if (HALF_FRAMERATE_ENABLED && type == RendererTypeHalf) {
 			// NOTE: fullFramerate is currently tied to the same UI toggle switch as the render resolution
 			fullFramerate = NO;
 		}
-		
+
 		[bulletViewController setRendererType:type withFullFramerate:fullFramerate andLookParam:mLookDic];
 		[self.navigationController pushViewController:bulletViewController animated:YES];
 		[bulletViewController release];
@@ -1173,9 +1173,9 @@ if(TooHighForDevice(videoSize))
 - (void) endscrubStrength:(UISlider*)slider
 {
 	fStrengthValue = slider.value;
-	
+
 	NSLog(@"%f", fStrengthValue);
-	
+
 	if (mRendererStatus == RendererReady)
 	{
 		[self rendererStart];
@@ -1185,7 +1185,7 @@ if(TooHighForDevice(videoSize))
 - (void) endscrubBrightness:(UISlider*)slider
 {
 	fBrightnessValue = slider.value;
-	
+
 	if (mRendererStatus == RendererReady)
 	{
 		[self rendererStart];
@@ -1233,7 +1233,7 @@ if(TooHighForDevice(videoSize))
         [self layoutiPadAfterorientation:toInterfaceOrientation];
     else
         [self layoutiPhoneAfterorientation:toInterfaceOrientation];
-    
+
 }
 
 @end

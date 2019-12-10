@@ -2,7 +2,7 @@
 //  RWebView.m
 //
 //  Created by Radar on 09-9-21.
-//  Copyright 2009 Radar. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "RWebView.h"
@@ -18,23 +18,23 @@
 #pragma mark system functions
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        // Initialization code		
-		
+        // Initialization code
+
 		self.backgroundColor = [UIColor blackColor];
-		
+
 		//add UIWebView
 		_webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
 		_webView.backgroundColor = [UIColor blackColor];
 		_webView.scalesPageToFit = YES;
 		[_webView setDelegate:self];
 		[self addSubview:_webView];
-		
+
 		//add spinner
 		_waitSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 		_waitSpinner.hidesWhenStopped = YES;
 		_waitSpinner.frame = CGRectMake((frame.size.width-25.0)/2, (frame.size.height-25.0)/2, 25.0, 25.0);
 		[self addSubview:_waitSpinner];
-		
+
     }
     return self;
 }
@@ -47,22 +47,22 @@
 -(void)showWebforURL:(NSString*)webURL
 {
 	if(webURL != nil && [webURL compare:@""] != NSOrderedSame)
-	{			
+	{
 		self.webShowURL = webURL;
 		NSRange rangehttp  = [webURL rangeOfString:@"http://"];
 		NSRange rangehttps = [webURL rangeOfString:@"https://"];
-		if(rangehttp.length == 0 && rangehttps.length == 0) 
+		if(rangehttp.length == 0 && rangehttps.length == 0)
 		{
 			self.webShowURL =  [NSString stringWithFormat:@"http://%@", self.webShowURL];
 		}
-		
+
 		if(_webView.loading)
 		{
 			[_webView stopLoading];
 		}
 		[_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webShowURL]]];
 	}
-	
+
 }
 -(void)webGoBack
 {
@@ -97,7 +97,7 @@
 		[_waitSpinner stopAnimating];
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	}
-	
+
 	[self clearWebContent];
 }
 
@@ -137,13 +137,13 @@
 			[self.delegate loadStateOfGoBack:YES andGoForward:NO];
 		}
 	}
-	
+
 	return YES;
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView
-{	
+{
 	[self StartWaitWeb];
-	
+
 	if(self.delegate &&[(NSObject*)self.delegate respondsToSelector:@selector(loadStateOfGoBack:andGoForward:)])
 	{
 		[self.delegate loadStateOfGoBack:_webView.canGoBack andGoForward:_webView.canGoForward];
@@ -153,7 +153,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
 	[self StopWaitWeb];
-	
+
 	if(self.delegate &&[(NSObject*)self.delegate respondsToSelector:@selector(loadStateOfGoBack:andGoForward:)])
 	{
 		[self.delegate loadStateOfGoBack:_webView.canGoBack andGoForward:_webView.canGoForward];
@@ -161,7 +161,7 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{	
+{
 	[self StopWaitWeb];
 }
 
@@ -175,8 +175,8 @@
 	{
 		[_webView stopLoading];
 	}
-	
-	
+
+
 }
 
 

@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by Chen Mike on 3/15/11.
-//  Copyright 2011 Red/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +11,7 @@
 
 typedef enum  {
 	PickerItemStyleForIphone,
-	PickerItemStyleForIpad,	
+	PickerItemStyleForIpad,
 } PickerItemStyle;
 
 @protocol MobileLooksPickerItemDelegate

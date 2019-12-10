@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by Chen Mike on 1/19/11.
-//  Copyright 2011 Red/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -36,17 +36,17 @@
 		MovieStateComplete,
 		MovieStateSamplerError,
 	}movieRenderState;
-	
+
 	AVAssetReader		*avMovieReader;
 	AVAssetReaderOutput *avVideoReaderOutput;
 	AVAssetReaderOutput *avAudioReaderOutput;
-	
+
 	AVAssetWriter		*avMovieWriter;
 	AVAssetWriterInput  *avVideoWriterInput;
 	AVAssetWriterInput  *avAudioWriterInput;
 	AVAssetWriterInputPixelBufferAdaptor* avMoviePixelBufferAdaptor;
 	AVAssetExportSession *avComposeSession;
-	NSCondition* avMovieCondition;	
+	NSCondition* avMovieCondition;
 	BOOL	avVideoProcessCompleted;
 	BOOL	avAudioProcessCompleted;
 	BOOL	avVideoProcessPaused;

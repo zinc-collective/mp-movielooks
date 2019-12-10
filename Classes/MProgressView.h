@@ -3,7 +3,7 @@
 //  FlickrPlug
 //
 //  Created by jack on 4/8/09.
-//  Copyright 2009 Redsafi. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -21,7 +21,7 @@
 @protocol MProgressViewDelegate;
 
 @interface MProgressView : UIView {
-	
+
 	id				 __weak delegate_;
     UILabel	         *progress_;
 	UIProgressView   *progressView_;

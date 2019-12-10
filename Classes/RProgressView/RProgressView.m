@@ -3,7 +3,7 @@
 //  FlickrPlug
 //
 //  Created by jack on 4/8/09.
-//  Copyright 2009 Redsafi. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "RProgressView.h"
@@ -33,9 +33,9 @@
 #pragma mark system functions @rewrited
 - (id) initWithProgress:(CGRect)frame showLogo:(NSString*)logo{
 	if(self = [super initWithFrame:frame]){
-		
+
 		self.backgroundColor = [UIColor clearColor];
-		
+
 		delegate_ = nil;
 
 		float w = frame.size.width;
@@ -45,12 +45,12 @@
 		backGroundView.alpha = 0.5;
 		[self addSubview:backGroundView];
 		[backGroundView release];
-		
-		
+
+
 		//background
 		float width = 298.0;
 		float height = 280.0;
-		
+
 		float l = (w-width)/2.0;
 		float t = (h-height)/2.0;
 		UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(l, t, width, 53.0)];
@@ -59,7 +59,7 @@
 		//imgView.alpha = 0.75;
 		[self addSubview:imgView];
 		[imgView release];
-		
+
 		if([logo isEqualToString:@"facebook"]){
 			UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(l+20, t+20, 106, 22.0)];
 			logo.image = [UIImage imageNamed:@"facebook.png"];
@@ -74,20 +74,20 @@
 			[self addSubview:logo];
 			[logo release];
 		}
-		
+
 		UIView *middle = [[UIView alloc] initWithFrame:CGRectMake(l, t+53.0, width, height - 70.0)];
 		[middle setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_middle.png"]]];
 		middle.tag = BG_MIDDLE_TAG;
 		[self addSubview:middle];
 		[middle release];
-		
+
 		UIImageView *imgViewDown = [[UIImageView alloc] initWithFrame:CGRectMake(l, t+height-70.0+53.0, width, 17.0)];
 		imgViewDown.image = [UIImage imageNamed:@"bg_down.png"];
 		imgViewDown.tag = BG_DOWN_TAG;
 		[self addSubview:imgViewDown];
 		[imgViewDown release];
-		
-		
+
+
 		//progress
 		float progress_left = l+(width - 252.0)/2.0;
 
@@ -96,18 +96,18 @@
 		progress_.textColor = [UIColor blackColor];
 		progress_.backgroundColor = [UIColor clearColor];
 		[self addSubview:progress_];
-		
+
 		progressView_ = [[UIProgressView alloc] initWithFrame:CGRectMake(progress_left, t+120.0, 252.0, 20.0)];
 		progressView_.progress = 0.0;
 		[self addSubview:progressView_];
-		
+
 		UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(progress_left+10, t+90.0, 43, 43.0)];
 		icon.image = [UIImage imageNamed:@"succeed.png"];
 		icon.tag = ICON_TAG;
 		[self addSubview:icon];
 		icon.hidden = YES;
 		[icon release];
-		
+
 		UILabel* status = [[UILabel alloc] initWithFrame:CGRectMake(progress_left+55.0, t+104.0, 180, 20.0)];
 		status.textAlignment = UITextAlignmentCenter;
 		status.textColor = [UIColor blackColor];
@@ -120,12 +120,12 @@
 		[self addSubview:status];
 		status.hidden = YES;
 		[status release];
-		
-		
+
+
 		//button
 		float btn_left = l+(width - 253)/2.0;
 		float btn_top = h - t - 69.0;
-		
+
 		CGRect rect = CGRectMake(btn_left, btn_top, 253.0, 39.0);
 		UIButton *cancelBtn = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		cancelBtn.frame = rect;
@@ -139,7 +139,7 @@
 		cancelBtn.tag = BG_CANCEL_BT_TAG;
 		[self addSubview:cancelBtn];
 		[cancelBtn release];
-		
+
 		UIButton *backBtn = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		backBtn.frame = rect;
 		[backBtn setBackgroundImage:[UIImage imageNamed:@"bg_btn.png"] forState:UIControlStateNormal];
@@ -153,7 +153,7 @@
 		[self addSubview:backBtn];
 		backBtn.hidden = YES;
 		[backBtn release];
-		
+
 		UIButton *retry = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		retry.frame = CGRectMake(btn_left, btn_top-39.0-5, 253.0, 39.0);
 		[retry setBackgroundImage:[UIImage imageNamed:@"bg_btn.png"] forState:UIControlStateNormal];
@@ -167,28 +167,28 @@
 		[self addSubview:retry];
 		retry.hidden = YES;
 		[retry release];
-		
+
 	}
     return self;
 }
 
 - (id) initWithFrame:(CGRect)frame{
 	if(self = [super initWithFrame:frame]){
-		
+
 		self.backgroundColor = [UIColor clearColor];
-		
+
 		[self createView:frame];
-		
+
 		return self;
 	}
     return nil;
 }
 
-- (void) dealloc 
+- (void) dealloc
 {
 	[progress_ release];
 	[progressView_ release];
-	
+
     [super dealloc];
 }
 
@@ -207,7 +207,7 @@
     backGroundView.alpha = 0.5;
 	[self addSubview:backGroundView];
     [backGroundView release];
-	
+
 	float l = (w-280.0)/2.0;
 	float t = (h-180.0)/2.0;
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(l, t, 280.0, 180.0)];
@@ -215,11 +215,11 @@
 	imgView.alpha = 0.75;
     [self addSubview:imgView];
     [imgView release];
-    
+
     progressView_ = [[UIProgressView alloc] initWithFrame:CGRectMake(l+40.0, t+80.0, 200, 20.0)];
 	progressView_.progress = 0.0;
 	[self addSubview:progressView_];
-	
+
 	progress_ = [[UILabel alloc] initWithFrame:CGRectMake(l+40.0, t+100.0, 200, 20.0)];
 	progress_.textAlignment = UITextAlignmentCenter;
 	progress_.textColor = [UIColor whiteColor];
@@ -254,73 +254,73 @@
 - (void) showSuccess{
 	progressView_.hidden = YES;
 	progress_.hidden = YES;
-	
+
 	UIView * view = [self viewWithTag:BG_CANCEL_BT_TAG];
 	view.hidden = YES;
-	
+
 	view = [self viewWithTag:BG_RETRY_TAG];
 	view.hidden = YES;
-	
+
 	UIImageView* icon = (UIImageView*)[self viewWithTag:ICON_TAG];
 	icon.image = [UIImage imageNamed:@"succeed.png"];
 	icon.hidden = NO;
-	
+
 	UILabel *status = (UILabel*)[self viewWithTag:STATUS_LABEL_TAG];
 	status.text = @"Message Posted";
 	status.hidden = NO;
-	
+
 	view = [self viewWithTag:BG_BACK_BT_TAG];
 	view.hidden = NO;
 }
 - (void) showFailed{
 	progressView_.hidden = YES;
 	progress_.hidden = YES;
-	
+
 	UIView* view = [self viewWithTag:BG_BACK_BT_TAG];
 	view.hidden = YES;
-	
+
 	view = [self viewWithTag:BG_CANCEL_BT_TAG];
 	view.hidden = NO;
-	
+
 	view = [self viewWithTag:BG_RETRY_TAG];
 	view.hidden = NO;
-	
+
 	UIImageView* icon = (UIImageView*)[self viewWithTag:ICON_TAG];
 	icon.image = [UIImage imageNamed:@"failed.png"];
 	icon.hidden = NO;
-	
+
 	UILabel *status = (UILabel*)[self viewWithTag:STATUS_LABEL_TAG];
 	status.text = @"Posting Failed";
 	status.hidden = NO;
-	
+
 }
 - (void) showProgress{
-	
+
 	progressView_.hidden = NO;
 	progress_.hidden = NO;
-	
+
 	progress_.text = @"0%";
 	progressView_.progress = 0;
-	
+
 	UIView* view = [self viewWithTag:BG_CANCEL_BT_TAG];
 	view.hidden = NO;
-	
+
 	view = [self viewWithTag:BG_BACK_BT_TAG];
 	view.hidden = YES;
-	
+
 	view = [self viewWithTag:BG_RETRY_TAG];
 	view.hidden = YES;
-	
+
 	UIImageView* icon = (UIImageView*)[self viewWithTag:ICON_TAG];
 	icon.hidden = YES;
-	
+
 	UILabel *status = (UILabel*)[self viewWithTag:STATUS_LABEL_TAG];
 	status.hidden = YES;
 }
 
 - (void) updteProgress:(float)progress{
 	progressView_.progress = progress;
-	
+
 	if(progress < 1.0){
 		progress_.text = [NSString stringWithFormat:@"%d%%", (int)(progress*100)];
 	}

@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 12/15/10.
-//  Copyright 2010 RED/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -13,13 +13,13 @@ typedef enum {
 	ToggleStateHighlighted
 } ToggleState;
 
-@interface ToggleButton : UIControl 
+@interface ToggleButton : UIControl
 {
 @private
 	UIImageView *backgroundView;
 	UILabel *titleLabel;
 	UILabel *subtitleLabel;
-	
+
 	BOOL touchUpInside;
 	ToggleState _toggleState;
 }

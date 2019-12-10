@@ -2,7 +2,7 @@
 //  FileCache.m
 //
 //  Created by Jack on 3/12/09.
-//  Copyright 2009 Redsafi. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "FileCache.h"
@@ -15,7 +15,7 @@ static FileCache *_sharedCacher;
 - (id)init {
 	if((self = [super init]))
 	{
-		
+
 	}
 	return self;
 }
@@ -39,7 +39,7 @@ static FileCache *_sharedCacher;
 	[imageData writeToFile:fullPathToFile atomically:NO];
 }
 
-- (void) cacheLocalImageAsync:(NSString *)filename image:(UIImage*)image 
+- (void) cacheLocalImageAsync:(NSString *)filename image:(UIImage*)image
 {
 	NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:filename,@"filename",image,@"image",nil];
 	[self deleteCacheLocalImage:filename];
@@ -49,7 +49,7 @@ static FileCache *_sharedCacher;
 -(void) cacheFileAsync:(NSDictionary *)info
 {
 	@autoreleasepool {
-	
+
 		@try {
 			[self cacheLocalImage:[info objectForKey:@"filename"] image:[info objectForKey:@"image"]];
 		}
@@ -59,7 +59,7 @@ static FileCache *_sharedCacher;
 		@finally {
 			;
 		}
-	
+
 	}
 }
 
@@ -67,13 +67,13 @@ static FileCache *_sharedCacher;
 /** Delete cached image file			 */
 /*****************************************/
 - (void) deleteCacheLocalImage:(NSString *)filename{
-		
+
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *cachesDirectory = [paths objectAtIndex:0];
 	NSError* error;
 	NSString* fullPathToFile = [cachesDirectory stringByAppendingPathComponent:filename];
-	
+
 	if ([fileManager fileExistsAtPath:fullPathToFile] == YES)
 	{
 		[fileManager removeItemAtPath:fullPathToFile error:&error];
@@ -84,21 +84,21 @@ static FileCache *_sharedCacher;
 /** If cached, return the cached image   */
 /*****************************************/
 - (UIImage *) cachedLocalImage:(NSString*)filename{
-	
+
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *cachesDirectory = [paths objectAtIndex:0];
 	NSString* fullPathToFile = [cachesDirectory stringByAppendingPathComponent:filename];
-	
+
 	if ([fileManager fileExistsAtPath:fullPathToFile] == YES){
-		
+
 		NSData * data = [NSData dataWithContentsOfFile:fullPathToFile];
 		return [UIImage imageWithData:data];
 	}
 	return nil;
-	
+
 }
 
 
 
-@end 
+@end

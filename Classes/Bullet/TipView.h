@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 11/15/10.
-//  Copyright 2010 RED/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -13,7 +13,7 @@
 {
 	UIImageView *borderView;
 	UIImageView *background;
-	
+
 	UILabel *titleLabel;
 	UILabel *contentLabel;
 }

@@ -2,7 +2,7 @@
 //  RWebView.h
 //
 //  Created by Radar on 09-9-21.
-//  Copyright 2009 Radar. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -20,9 +20,9 @@
 	UIActivityIndicatorView *_waitSpinner;
 	UIWebView *_webView;
 	NSString *webShowURL;
-	
+
 @private
-	id __weak _delegate;	
+	id __weak _delegate;
 }
 
 @property (nonatomic, strong) NSString *webShowURL;

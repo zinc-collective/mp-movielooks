@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by Chen Mike on 1/20/11.
-//  Copyright 2011 Red/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "ComposeProgressView.h"
@@ -30,13 +30,13 @@
 
 	[(CAGradientLayer *)(self.layer) setStartPoint:CGPointMake(0.0, 0.5)];
 	[(CAGradientLayer *)(self.layer) setEndPoint:CGPointMake(1.0, 0.5)];
-	
+
 	[(CAGradientLayer *)(self.layer) setColors:colors];
-	[(CAGradientLayer *)(self.layer) setLocations:[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:progress], [NSNumber numberWithFloat:1.0],nil]];			
+	[(CAGradientLayer *)(self.layer) setLocations:[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:progress], [NSNumber numberWithFloat:1.0],nil]];
 }
 
 - (id)initWithFrame:(CGRect)frame {
-    
+
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code.
@@ -48,7 +48,7 @@
 			//UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet_time_background.png"]];
 			//[self addSubview:background];
 			//[background release];
-			
+
 			titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 			titleLabel.font = [UIFont systemFontOfSize:14.0];
 			titleLabel.backgroundColor = [UIColor clearColor];

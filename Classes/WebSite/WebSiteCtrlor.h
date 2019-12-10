@@ -2,7 +2,7 @@
 //  WebSiteCtrlor.h
 //
 //  Created by Radar on 10-5-4.
-//  Copyright 2009 Radar. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 
@@ -25,7 +25,7 @@
 	RWebView *_webView;
 	CGRect _webFramePortrait;
 	CGRect _webFrameLandscap;
-	
+
 	IBOutlet UINavigationBar *navBar;
 	IBOutlet UINavigationItem *navItem;
 	IBOutlet UIToolbar *toolBar;
@@ -34,18 +34,18 @@
 	IBOutlet UIBarButtonItem *backBtn;
 	IBOutlet UIBarButtonItem *forwardBtn;
 	IBOutlet UIBarButtonItem *safariBtn;
-	
-	
+
+
 #pragma mark -
 #pragma mark for out set parameters
 	UIColor *navBarTintColor;    //navigation bar tint color
 	UIColor *toolBarTintColor;   //tool bar tint color
 	BOOL     bShowToolBar;       //if YES, will show toolbar and hide top Done button, default is YES.
 	BOOL     bShowStatusBar;     //if YES, will show statusbar, default is YES.
-	
-	
+
+
 @private
-	id __weak _delegate;	
+	id __weak _delegate;
 }
 @property (weak) id<WebSiteCtrlorDelegate> delegate;
 

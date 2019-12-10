@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by George on 9/14/10.
-//  Copyright 2010 RED/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -31,7 +31,7 @@ typedef NSUInteger RenderingState;
 	NSInteger pageIndex;
 
 	id<LooksBrowserEventDelegate> __weak delegate;
-	
+
 	UIImageView *frameView;
 	UIImageView *borderView;
 	UIView *titleBackgroundView;
@@ -40,9 +40,9 @@ typedef NSUInteger RenderingState;
 	UILabel *descLabel;
 	UIImageView *lockView;
 	UIActivityIndicatorView *activityIndicator;
-	
+
 	RenderingState renderingState;
-	
+
 	CGRect  actualRect;
 }
 

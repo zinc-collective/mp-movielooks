@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by Chen Mike on 3/17/11.
-//  Copyright 2011 Red/SAFI. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "QuartzTrimView.h"
@@ -19,7 +19,7 @@
 @synthesize maskWidth = mMaskWidth;
 @synthesize maskHeight = mMaskHeight;
 @synthesize maskWidthSpace = mMaskWidthSpace;
-@synthesize maskHeightSpace = mMaskHeightSpace;	
+@synthesize maskHeightSpace = mMaskHeightSpace;
 
 
 //#define Trim_HEIGHT_SPACE 4
@@ -39,7 +39,7 @@
     if (self) {
         // Initialization code
 		self.backgroundColor = [UIColor clearColor];
-		
+
         mMaskImageRef = NULL;
         mControlImageRef = NULL;
 		pickerTrimValue = TRIM_MIN;
@@ -59,7 +59,7 @@
 -(void)resize:(CGRect)newFrame
 {
 	self.frame = newFrame;
-	
+
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{
 		mHandleWidth = 16;
@@ -90,14 +90,14 @@
 {
 	leftTrimValue = 0.0f;
 	rightTrimValue = 1.0f;
-	
+
 	isLeftHolded = NO;
 	isRightHolded = NO;
 	isPickerHolded = NO;
-	
+
 	isEditing = NO;
 	isRangeChanged = NO;
-	
+
 //	if(mBackImageRef!=NULL)
 //		CGImageRelease(mBackImageRef);
 //	mBackImageRef = CGImageCreateCopy(backImageRef);
@@ -120,7 +120,7 @@
 		if(factor>TRIM_MAX)factor=TRIM_MAX;
 		if(factor<leftTrimValue)factor=leftTrimValue;
 		if(factor>rightTrimValue)factor=rightTrimValue;
-		
+
 		pickerTrimValue = factor;
 		[self setNeedsDisplay];
 	}
@@ -145,27 +145,27 @@
 -(void)drawInContext:(CGContextRef)context
 {
 	// Default is to do nothing!
-	
+
     CGFloat maskOffsetX = mMaskWidthSpace;
     CGFloat maskOffsetY = mMaskHeightSpace;
 	CGFloat boardOffsetY = self.bounds.size.height/2-mMaskHeight/2-mBoardHeight;
-	
+
     CGFloat height = self.bounds.size.height;
 	CGContextTranslateCTM(context, 0.0, height);
 	CGContextScaleCTM(context, 1.0, -1.0);
-	
+
     //draw back image
     //CGImageRef backImageRef = mBackImage.CGImage;
     //CGContextDrawImage(context, CGRectMake(maskOffsetX, maskOffsetY, mMaskWidth, mMaskHeight), mBackImageRef);
-	
-    
+
+
     //draw mask
     //CGImageRef maskImageRef = mMaskImage.CGImage;
     CGFloat maskImgWidth = CGImageGetWidth(mMaskImageRef);
     CGFloat maskImgHeight = CGImageGetWidth(mMaskImageRef);
     CGFloat leftTrimX = mMaskWidth*leftTrimValue;
     CGFloat rightTrimX = mMaskWidth*rightTrimValue;
-    
+
     CGContextSaveGState(context);
 	// For this operation we extract the 35 pixel strip on each side of the source image.
 	CGRect clips[] =
@@ -177,57 +177,57 @@
 	CGContextDrawImage(context, CGRectMake(maskOffsetX, maskOffsetY, mMaskWidth, mMaskHeight), mMaskImageRef);
 	CGContextRestoreGState(context);
     //draw trim control
-	if(isEditing)	
+	if(isEditing)
 	{
 		CGFloat controlWidth = CGImageGetWidth(mControlImageRef);
 		CGFloat controlHeight = CGImageGetWidth(mControlImageRef);
-		
+
 		CGRect leftClipRect = CGRectMake(0, 0, IMAGE_BORDER_WIDTH, controlHeight);
 		CGRect rightClipRect = CGRectMake(controlWidth-IMAGE_BORDER_WIDTH, 0,IMAGE_BORDER_WIDTH, controlHeight);
 		CGRect middleClipRect = CGRectMake(IMAGE_BORDER_WIDTH, 0,controlWidth-IMAGE_BORDER_WIDTH*2, controlHeight);
-		
+
 		CGImageRef leftClipImageRef = CGImageCreateWithImageInRect(mControlImageRef, leftClipRect);
 		CGImageRef rightClipImageRef = CGImageCreateWithImageInRect(mControlImageRef, rightClipRect);
 		CGImageRef middleClipImageRef = CGImageCreateWithImageInRect(mControlImageRef, middleClipRect);
-		
+
 		CGContextDrawImage(context, CGRectMake(maskOffsetX+mMaskWidth*leftTrimValue-mBoardWidth	,boardOffsetY, mBoardWidth, mMaskHeight+mBoardHeight*2)									,leftClipImageRef);
-		CGContextDrawImage(context, CGRectMake(maskOffsetX+mMaskWidth*leftTrimValue				,boardOffsetY, mMaskWidth*(rightTrimValue-leftTrimValue), mMaskHeight+mBoardHeight*2)	,middleClipImageRef); 
+		CGContextDrawImage(context, CGRectMake(maskOffsetX+mMaskWidth*leftTrimValue				,boardOffsetY, mMaskWidth*(rightTrimValue-leftTrimValue), mMaskHeight+mBoardHeight*2)	,middleClipImageRef);
 		CGContextDrawImage(context, CGRectMake(maskOffsetX+mMaskWidth*rightTrimValue			,boardOffsetY, mBoardWidth, mMaskHeight+mBoardHeight*2)									,rightClipImageRef);
-		
+
 		if(mDrawPicker)
 		{
 			CGFloat pickerTrimX = mMaskWidth*pickerTrimValue;
 			CGContextDrawImage(context, CGRectMake(maskOffsetX+pickerTrimX-mHandleWidth/2, boardOffsetY, mHandleWidth, mMaskHeight+mBoardHeight*2),mPickerImageRef);
 		}
-		
+
 		CGImageRelease(leftClipImageRef);
 		CGImageRelease(rightClipImageRef);
 		CGImageRelease(middleClipImageRef);
 	}
 	else
-	{	
+	{
 		CGFloat controlWidth = CGImageGetWidth(mControlImageRef);
 		CGFloat controlHeight = CGImageGetWidth(mControlImageRef);
-		
+
 		CGRect leftClipRect = CGRectMake(0, 0, IMAGE_BORDER_WIDTH, controlHeight);
 		CGRect rightClipRect = CGRectMake(controlWidth-IMAGE_BORDER_WIDTH, 0,IMAGE_BORDER_WIDTH, controlHeight);
 		CGRect middleClipRect = CGRectMake(IMAGE_BORDER_WIDTH, 0,controlWidth-IMAGE_BORDER_WIDTH*2, controlHeight);
-		
+
 		CGImageRef leftClipImageRef = CGImageCreateWithImageInRect(mUnselectedControlImageRef, leftClipRect);
 		CGImageRef rightClipImageRef = CGImageCreateWithImageInRect(mUnselectedControlImageRef, rightClipRect);
 		CGImageRef middleClipImageRef = CGImageCreateWithImageInRect(mUnselectedControlImageRef, middleClipRect);
-		
+
 		CGContextDrawImage(context, CGRectMake(maskOffsetX-mBoardWidth	,boardOffsetY, mBoardWidth, mMaskHeight+mBoardHeight*2)	,leftClipImageRef);
-		CGContextDrawImage(context, CGRectMake(maskOffsetX				,boardOffsetY, mMaskWidth, mMaskHeight+mBoardHeight*2)	,middleClipImageRef); 
+		CGContextDrawImage(context, CGRectMake(maskOffsetX				,boardOffsetY, mMaskWidth, mMaskHeight+mBoardHeight*2)	,middleClipImageRef);
 		CGContextDrawImage(context, CGRectMake(maskOffsetX+mMaskWidth	,boardOffsetY, mBoardWidth, mMaskHeight+mBoardHeight*2)	,rightClipImageRef);
-		
+
 		CGFloat pickerTrimX = mMaskWidth*pickerTrimValue;
 		CGContextDrawImage(context, CGRectMake(maskOffsetX+pickerTrimX-mHandleWidth/2, boardOffsetY, mHandleWidth, mMaskHeight+mBoardHeight*2),mPickerImageRef);
-	
+
 		CGImageRelease(leftClipImageRef);
 		CGImageRelease(rightClipImageRef);
 		CGImageRelease(middleClipImageRef);
-	
+
 	}
 }
 
@@ -239,13 +239,13 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	
+
 	UITouch* touch = [touches anyObject];
     CGPoint position = [touch locationInView:self];
-    
+
     CGFloat maskOffsetX = mMaskWidthSpace;
 //    CGFloat maskOffsetY = Mask_HEIGHT_SPACE;
-	
+
     CGFloat leftTrimPosX = maskOffsetX+leftTrimValue*mMaskWidth-mBoardWidth/2;
     CGFloat rightTrimPosX = maskOffsetX+rightTrimValue*mMaskWidth+mBoardWidth/2;
 	CGFloat pickerTrimX = maskOffsetX+mMaskWidth*pickerTrimValue;
@@ -258,49 +258,49 @@
 		isRightHolded = NO;
 		return;
 	}
-	
+
     if(position.x-leftTrimPosX<mBoardWidth/2 && position.x-leftTrimPosX>-mBoardWidth/2)
         isLeftHolded = YES;
     if(position.x-rightTrimPosX<mBoardWidth/2 && position.x-rightTrimPosX>-mBoardWidth/2)
-        isRightHolded = YES;  
-	
+        isRightHolded = YES;
+
 	if(!isEditing && (isLeftHolded || isRightHolded))
 	{
 		isEditing = YES;
 		isPickerHolded = NO;
 		[self.delegate trimBeginEdit:self];
 		[self setNeedsDisplay];
-	} 
+	}
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch* touch = [touches anyObject];
     CGPoint position = [touch locationInView:self];
-	
+
     CGFloat maskOffsetX = mMaskWidthSpace;
 //    CGFloat maskOffsetY = Mask_HEIGHT_SPACE;
-    
+
     CGFloat leftTrimPosX = maskOffsetX+leftTrimValue*mMaskWidth-mBoardWidth/2;
     CGFloat rightTrimPosX = maskOffsetX+rightTrimValue*mMaskWidth+mBoardWidth/2;
 	CGFloat pickerTrimX = maskOffsetX+mMaskWidth*pickerTrimValue;
-    
+
 	if(position.x-pickerTrimX<mHandleWidth && position.x-pickerTrimX>-mHandleWidth && !isLeftHolded && !isRightHolded)
 		isPickerHolded = YES;
     if(position.x-leftTrimPosX<mBoardWidth/2 && position.x-leftTrimPosX>-mBoardWidth/2 && !isPickerHolded)
         isLeftHolded = YES;
     if(position.x-rightTrimPosX<mBoardWidth/2 && position.x-rightTrimPosX>-mBoardWidth/2 && !isPickerHolded)
-        isRightHolded = YES; 
-	
+        isRightHolded = YES;
+
     if(isLeftHolded && isEditing)
     {
         CGFloat detaX = position.x-leftTrimPosX;
         CGFloat newLeftValue = leftTrimValue+detaX/mMaskWidth;
         if(newLeftValue<rightTrimValue-0.05 && newLeftValue>0.f && abs(detaX)>0.4f)
-        {    
+        {
             leftTrimValue = newLeftValue;
 			if(pickerTrimValue<leftTrimValue)
-			{	
+			{
 				pickerTrimValue = leftTrimValue;
 				[self.delegate changePicker:self withPos:pickerTrimValue];
 			}
@@ -315,10 +315,10 @@
         CGFloat detaX = position.x-rightTrimPosX;
         CGFloat newRightValue = rightTrimValue+detaX/mMaskWidth;
         if(newRightValue>leftTrimValue+0.05 && newRightValue<1.f && abs(detaX)>0.4f)
-        {   
+        {
             rightTrimValue = newRightValue;
 			if(pickerTrimValue>rightTrimValue)
-			{	
+			{
 				pickerTrimValue = rightTrimValue;
 				[self.delegate changePicker:self withPos:pickerTrimValue];
 			}
@@ -349,12 +349,12 @@
     isLeftHolded = NO;
     isRightHolded = NO;
 	isPickerHolded = NO;
-	
+
 	if(!isRangeChanged && isEditing)
-	{	
+	{
 		[self.delegate trimCancelEdit:self];
 		[self resetTrimEditor];
-	} 
+	}
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
@@ -362,9 +362,9 @@
     isLeftHolded = NO;
     isRightHolded = NO;
 	isPickerHolded = NO;
-	
+
 	if(!isRangeChanged && isEditing)
-	{	
+	{
 		[self.delegate trimCancelEdit:self];
 		[self resetTrimEditor];
 	}
@@ -382,7 +382,7 @@
 	if(mControlImageRef)
 		CGImageRelease(mControlImageRef);
 	if(mUnselectedControlImageRef)
-		CGImageRelease(mUnselectedControlImageRef);	
+		CGImageRelease(mUnselectedControlImageRef);
     [super dealloc];
 }
 

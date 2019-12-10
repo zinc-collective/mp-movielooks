@@ -3,7 +3,7 @@
 //  MobileLooks
 //
 //  Created by jack on 8/26/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2019 Zinc Collective, LLC. All rights reserved.
 //
 
 #import "VideoFrameTrack.h"
@@ -21,47 +21,47 @@
 - (void)generateThumbnailInBackgroundAndNotifyOnQueue:(dispatch_queue_t) queue requestedTime:(NSValue*)requestedTime withBlock:(void (^)(CGImageRef thumbnail))block
 {
 	AVAssetImageGenerator* generator = [[AVAssetImageGenerator allocWithZone:NULL] initWithAsset:self];
-	
+
 	[generator setAppliesPreferredTrackTransform:YES];
 	//[generator setMaximumSize:CGSizeMake(1920, 1080)];
 	[generator setMaximumSize:CGSizeMake(1280, 720)];
-	
-	
+
+
 	[generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:requestedTime] completionHandler:
 	 ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
 	 {
 		 //NSLog(@"actual got image at time:%f", CMTimeGetSeconds(requestedTime));
-		 
+
 		 dispatch_async(queue,
 						^{
 							block(image);
 						});
-		 
-	 }];	
+
+	 }];
 }
 
 - (void)generateThumbnailInBackgroundAndNotifyOnQueue:(dispatch_queue_t) queue requestedTime:(NSValue*)requestedTime  maxSize:(CGSize)maxSize withBlock:(void (^)(CGImageRef thumbnail))block
 {
 	AVAssetImageGenerator* generator = [[AVAssetImageGenerator allocWithZone:NULL] initWithAsset:self];
-	
+
 	[generator setAppliesPreferredTrackTransform:YES];
 	[generator setMaximumSize:maxSize];
-	
+
 	[generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:requestedTime] completionHandler:
 	 ^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error)
 	 {
 		 CGImageRetain(image);
-		 
+
 		 //NSLog(@"actual got image at time:%f", CMTimeGetSeconds(requestedTime));
-		 
+
 		 dispatch_async(queue,
 						^{
 							block(image);
-							
+
 							CGImageRelease(image);
 						});
-		 
-	 }];	
+
+	 }];
 }
 
 @end
@@ -74,15 +74,15 @@
 	mDuration = kCMTimeZero;
 	if (!URL)
 		return [super init];
-	
+
 	if ((self = [super init]))
 	{
 		NSZone* zone = nil;
-		
+
 		mURL = [URL copyWithZone:zone];
-		
+
 	}
-	
+
 	return self;
 }
 
@@ -95,29 +95,29 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
 				   ^{
 					   AVAsset* asset = [[AVURLAsset alloc] initWithURL:mURL options:nil];
-					   
+
 					   if (asset)
 					   {
 						   mDuration = asset.duration;
                            mSize = [AVAssetUtilities naturalSize:asset];
-						   
+
 						   NSValue *requestedTime = [NSValue valueWithCMTime:CMTimeMake(mDuration.value/2.0, mDuration.timescale)];
-						   
+
 						   CGSize max = mSize;
 						   if (mSize.width > 800) {
 							   max = CGSizeMake(mSize.width/2, mSize.height/2);
 						   }
-						   
+
 						   [asset generateThumbnailInBackgroundAndNotifyOnQueue:dispatch_get_main_queue() requestedTime:requestedTime maxSize:max withBlock:
 							^(CGImageRef image)
 							{
 								mImage = [[UIImage allocWithZone:nil] initWithCGImage:image];
-								
+
 								[[NSNotificationCenter defaultCenter] postNotificationName:AVFrameTrackedDidFinishNotification object:self];
 							}];
-						   
+
 					   }
-					   
+
 				   });
 }
 
@@ -125,31 +125,31 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
 				   ^{
 					   AVAsset* asset = [[AVURLAsset allocWithZone:NULL] initWithURL:mURL options:nil];
-					   
+
 					   if (asset)
 					   {
 						   mDuration = asset.duration;
                            mSize = [AVAssetUtilities naturalSize:asset];
-						   
+
 						   CGSize max = mSize;
-						   
+
 						   if (mSize.width > 800) {
 							   max = CGSizeMake(mSize.width/2, mSize.height/2);
 						   }
-						   
+
 						   NSValue *requestedTime = [NSValue valueWithCMTime:time];
 						   //CMTimeMake(time, mDuration.timescale)
-						   
+
 						   [asset generateThumbnailInBackgroundAndNotifyOnQueue:dispatch_get_main_queue() requestedTime:requestedTime maxSize:max withBlock:
 							^(CGImageRef image)
 							{
 								mImage = [[UIImage allocWithZone:nil] initWithCGImage:image];
-								
+
 								[[NSNotificationCenter defaultCenter] postNotificationName:AVFrameTrackedDidFinishNotification object:self];
 							}];
-						   
+
 					   }
-					   
+
 				   });
 }
 
