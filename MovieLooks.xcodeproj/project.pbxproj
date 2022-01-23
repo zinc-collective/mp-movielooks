@@ -1916,14 +1916,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MovieLooks" */;
 			buildPhases = (
+				6CAD38B4EF87C0D4B44E30DD /* [CP] Check Pods Manifest.lock */,
 				1AB918481CEA0EDDC9DB111A /* 📦 Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				4E430B719680C7F65567CD17 /* 📦 Embed Pods Frameworks */,
-				6810D1B72E371F505CAC0EF0 /* 📦 Copy Pods Resources */,
 				78D9FD331CEA249400745DDE /* ShellScript */,
 				789212561E89695800F548B0 /* Embed App Extensions */,
+				28F40EB9F76583586158BD95 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1944,7 +1945,7 @@
 				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = G8R2KJ59DE;
+						DevelopmentTeam = 5GGD34ZNFU;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.OMC = {
@@ -2421,6 +2422,26 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		28F40EB9F76583586158BD95 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BButton/BButton.framework",
+				"${BUILT_PRODUCTS_DIR}/DAProgressOverlayLayeredView/DAProgressOverlayLayeredView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DAProgressOverlayLayeredView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4E430B719680C7F65567CD17 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2436,19 +2457,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6810D1B72E371F505CAC0EF0 /* 📦 Copy Pods Resources */ = {
+		6CAD38B4EF87C0D4B44E30DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MovieLooks-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78D9FD331CEA249400745DDE /* ShellScript */ = {
@@ -2580,7 +2604,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = G8R2KJ59DE;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
@@ -2642,7 +2666,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = G8R2KJ59DE;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
@@ -2671,7 +2695,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = G8R2KJ59DE;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2703,7 +2727,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = G8R2KJ59DE;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
