@@ -54,7 +54,7 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
     // needs to be called BEFORE loading
     func loadVideo(_ videoURL:URL) throws {
         self.videoURL = videoURL
-        keyFrame = try Video.sharedManager.keyFrame(videoURL, atTime: kCMTimeZero)
+        keyFrame = try Video.sharedManager.keyFrame(videoURL, atTime: CMTime.zero)
         cellSize = cellSize(keyFrame)
         lookStates = lookStates(lookGroups)
         

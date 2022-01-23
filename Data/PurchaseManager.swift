@@ -20,7 +20,7 @@ class PurchaseManager: NSObject {
     static func loadLooks() -> [LookGroup] {
         let bundleLooksURL = Bundle.main.url(forResource: "looks", withExtension: "plist")!
         let bundleLooks = NSArray(contentsOf: bundleLooksURL) as! [[String : AnyObject]]
-        return bundleLooks.flatMap(LookGroup.parse)
+        return bundleLooks.compactMap(LookGroup.parse)
     }
     
     override init() {

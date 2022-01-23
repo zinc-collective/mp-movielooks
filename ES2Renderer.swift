@@ -13,7 +13,7 @@ class ES2Renderer: ES2RendererOld {
     func loadKeyFrame(_ image:UIImage) {
         // save the key frame
         // the renderer requires this, because it is retarted
-        if let imageData = UIImagePNGRepresentation(image) {
+        if let imageData = image.pngData() {
             let imagePath = Utilities.savedKeyFrameImagePath()
             try? imageData.write(to: URL(fileURLWithPath: imagePath!), options: [])
         }

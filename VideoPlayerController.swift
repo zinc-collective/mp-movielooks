@@ -93,7 +93,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         let buttonFrame = CGRect(x: 0, y: 0, width: 150, height: 30)
         let newVideoButton = BButton(frame: buttonFrame)
         newVideoButton.setType(.primary)
-        newVideoButton.setTitle(newVideoButtonItem.title, for: UIControlState())
+        newVideoButton.setTitle(newVideoButtonItem.title, for: UIControl.State())
         newVideoButton.addTarget(self, action: #selector(didTapNewVideo), for: .touchUpInside)
         newVideoButtonItem.customView = newVideoButton
     }
@@ -125,7 +125,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
     func play() {
         if isFinished {
             isFinished = false
-            player.seek(to: kCMTimeZero)
+            player.seek(to: CMTime.zero)
         }
 
         isPlaying = true
@@ -142,7 +142,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         navigationItem.rightBarButtonItems = [playItem, actionItem]
     }
 
-    func didFinishPlaying() {
+    @objc func didFinishPlaying() {
         isFinished = true
         pause()
         self.animateBarsHidden(false)
@@ -173,7 +173,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
                     self.didShare = true
                 }
 
-                if activity == UIActivityType.saveToCameraRoll && completed {
+                if activity == UIActivity.ActivityType.saveToCameraRoll && completed {
                     self.savePhotoFeedback()
                 }
             }
@@ -228,7 +228,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
         print("VIDEO ERROR!", description)
     }
 
-    func didTapNewVideo() {
+    @objc func didTapNewVideo() {
         print("didShare", didShare)
         if (didShare) {
             _ = self.navigationController?.popToRootViewController(animated: true)
@@ -252,7 +252,7 @@ class VideoPlayerController : UIViewController, VideoRenderDelegate {
 
     func savePhotoFeedback() {
         let alert = UIAlertController(title: "Saved in your Photos library", message: nil, preferredStyle: .alert)
-        self.present(alert, animated: true, completion: { _ in
+        self.present(alert, animated: true, completion: { 
             delay(0.8) {
                 self.dismiss(animated: true, completion: nil)
             }
