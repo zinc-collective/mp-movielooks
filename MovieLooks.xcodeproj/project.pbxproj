@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1945,7 +1945,6 @@
 				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 5GGD34ZNFU;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.OMC = {
@@ -1956,7 +1955,7 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MovieLooks" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -2610,7 +2609,10 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
@@ -2672,7 +2674,10 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
@@ -2703,7 +2708,10 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
@@ -2733,7 +2741,10 @@
 				GCC_PREFIX_HEADER = MovieLooks_Prefix.pch;
 				INFOPLIST_FILE = "MovieLooks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.movielooks;
 				PRODUCT_NAME = MovieLooks;
 				PROVISIONING_PROFILE = "";
@@ -2811,7 +2822,8 @@
 				PROVISIONING_PROFILE = "E7B9C602-ECA9-4AA7-A4E8-2DD1868C27E0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E7B9C602-ECA9-4AA7-A4E8-2DD1868C27E0";
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
