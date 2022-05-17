@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
 import MobileCoreServices
 import BButton
-import Crashlytics
 
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -91,12 +91,14 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         // I would rather crash than have this missing. I need it to operate
         if chosenURL == nil {
-            CLSLogv("Media URL Undefined: %@", getVaList([info]))
+            print("Media URL Undefined: \(info)")
+            Crashlytics.crashlytics().log("Media URL Undefined: \(info)")
 
             // TEST: does this fix the crash?
             // dismiss first
             self.navigationController?.dismiss(animated: true, completion: {
-                CLSLogv("Inside dismiss: %@", getVaList([info]))
+                print("Inside dismiss: \(info)")
+                Crashlytics.crashlytics().log("Inside dismiss: \(info)")
                 if let chosenURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] {
                     self.performSegue(withIdentifier: "LooksBrowserViewController", sender: chosenURL)
                 }
@@ -105,7 +107,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
                         UIApplication.shared.openURL(URL(string: "http://www.momentpark.com/contact-us/")!)
                         alert.dismiss(animated: true, completion: {
-                            Crashlytics.sharedInstance().crash()
+                            Crashlytics.crashlytics().log("Someone found the 'Please help!' alert controller: \(info)")
                         })
                     }))
                     self.present(alert, animated: true, completion: nil)

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FirebaseAnalytics
+import FirebaseCrashlytics
 import BButton
-import Crashlytics
 
 let LookCellIdentifier = "LookCell"
 let LookGroupHeaderIdentifier = "LookGroupHeader"
@@ -36,8 +37,8 @@ class LooksBrowserViewController: UIViewController, UICollectionViewDataSource, 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         
         if (videoURL == nil) {
-            CLSLogv("loadVideo not called before load", getVaList([]))
-            Crashlytics.sharedInstance().crash()
+            print("loadVideo not called before load")
+            Crashlytics.crashlytics().log("loadVideo not called before load")
         }
     }
     

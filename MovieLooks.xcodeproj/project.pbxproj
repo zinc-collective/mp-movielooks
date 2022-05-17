@@ -387,6 +387,7 @@
 		5EFDDC971283B4CF00EC208E /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFDDC961283B4CF00EC208E /* Renderer.m */; };
 		6A30666B85EFC2EB0EF50DA4 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3192B2471208932B2DEA8D0B /* Pods_MovieLooks.framework */; };
 		6BB91E431B72F0BE799BEC75 /* Pods_MovieLooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB962D952B28A7581DB944B /* Pods_MovieLooks.framework */; };
+		6DF0DC892833F49100FB749B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DF0DC882833F49100FB749B /* GoogleService-Info.plist */; };
 		74560847125EC25400963BDD /* vignette1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560843125EC25400963BDD /* vignette1.png */; };
 		74560848125EC25400963BDD /* vignette2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560844125EC25400963BDD /* vignette2.png */; };
 		74560849125EC25400963BDD /* vignette3.png in Resources */ = {isa = PBXBuildFile; fileRef = 74560845125EC25400963BDD /* vignette3.png */; };
@@ -930,6 +931,7 @@
 		5EFDDC941283B45800EC208E /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		5EFDDC961283B4CF00EC208E /* Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Renderer.m; sourceTree = "<group>"; };
 		6BEFFA679D9CE31CF48E870D /* Pods-MovieLooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.release.xcconfig"; sourceTree = "<group>"; };
+		6DF0DC882833F49100FB749B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70A7258FBFF222862E714C72 /* Pods-MovieLooks.ad hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLooks.ad hoc.xcconfig"; path = "Pods/Target Support Files/Pods-MovieLooks/Pods-MovieLooks.ad hoc.xcconfig"; sourceTree = "<group>"; };
 		74560843125EC25400963BDD /* vignette1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette1.png; sourceTree = "<group>"; };
 		74560844125EC25400963BDD /* vignette2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vignette2.png; sourceTree = "<group>"; };
@@ -1531,6 +1533,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				6DF0DC882833F49100FB749B /* GoogleService-Info.plist */,
 				781C462A1CE650FB0041DE34 /* MovieLooks.entitlements */,
 				7883105E1CD93903003DDBBD /* todo.md */,
 				785F732A1CDB9638009BCB5A /* AppDelegate.swift */,
@@ -1922,9 +1925,9 @@
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				4E430B719680C7F65567CD17 /* 📦 Embed Pods Frameworks */,
-				78D9FD331CEA249400745DDE /* ShellScript */,
 				789212561E89695800F548B0 /* Embed App Extensions */,
 				28F40EB9F76583586158BD95 /* [CP] Embed Pods Frameworks */,
+				78D9FD331CEA249400745DDE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2361,6 +2364,7 @@
 				04D48F5F134EBBFA002A5ECE /* news@2x.png in Resources */,
 				04D48F61134EBC0E002A5ECE /* news-iPad.png in Resources */,
 				9CACD9B9135021CA00717286 /* pop_background.png in Resources */,
+				6DF0DC892833F49100FB749B /* GoogleService-Info.plist in Resources */,
 				9CACD9BA135021CA00717286 /* pop_button.png in Resources */,
 				19EEBC4118383D0B0059BFC6 /* slider_back_iphone_74x33.png in Resources */,
 				19717F8218441FA900C9B604 /* develop_facebook_button127x126.png in Resources */,
@@ -2477,12 +2481,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6a09c19815c2f7f42d12f74f97f8f87c0f139e62 d29b37ba3305e7a136158c7684175a69995c401705890454f260b5b758d91816";
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n#\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2580,7 +2586,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "053E5EDB-8EE8-40C9-95A2-C411893B7BC7";
 				"PROVISIONING_PROFILE[sdk=*]" = "053E5EDB-8EE8-40C9-95A2-C411893B7BC7";
@@ -2593,7 +2598,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70A7258FBFF222862E714C72 /* Pods-MovieLooks.ad hoc.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2649,7 +2654,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E7B9C602-ECA9-4AA7-A4E8-2DD1868C27E0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E7B9C602-ECA9-4AA7-A4E8-2DD1868C27E0";
@@ -2662,7 +2666,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E70126454921E1326E71395 /* Pods-MovieLooks.distribution.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2698,7 +2702,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F17B776F3517F5E2752EAE23 /* Pods-MovieLooks.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2737,7 +2741,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BEFFA679D9CE31CF48E870D /* Pods-MovieLooks.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2797,7 +2801,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "4F621E1B-451C-4F0C-A014-84CE47A7FEB6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F621E1B-451C-4F0C-A014-84CE47A7FEB6";
@@ -2830,7 +2833,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E7B9C602-ECA9-4AA7-A4E8-2DD1868C27E0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E7B9C602-ECA9-4AA7-A4E8-2DD1868C27E0";
